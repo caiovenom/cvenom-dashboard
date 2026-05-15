@@ -286,18 +286,19 @@ tbody tr:hover{background:#f8fafc;}
 </div>
 
 <script>
-// ── DADOS ESTÁTICOS — atualizados planilha 11/05/2026 ─────────────────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 15/05/2026 ─────────────────────────
 const ACOES=[
   {t:'VALE3', p:83.78, pm:62.53, q:2687,  v:225116.86, teto:75.00, ms:-10.48, s:'Mineração'},
   {t:'EGIE3', p:33.75, pm:28.01, q:3514,  v:118597.50, teto:28.60, ms:-15.26, s:'Elétrico'},
   {t:'TAEE11',p:41.28, pm:34.62, q:3352,  v:138370.56, teto:47.33, ms:14.66,  s:'Elétrico'},
   {t:'ISAE4', p:29.98, pm:23.69, q:6010,  v:180179.80, teto:28.58, ms:-4.67,  s:'Elétrico'},
-  {t:'BBSE3', p:34.37, pm:32.12, q:5439,  v:186938.43, teto:35.50, ms:3.29,   s:'Seguridade'},
-  {t:'CXSE3', p:17.44, pm:15.09, q:10451, v:182265.44, teto:18.70, ms:7.22,   s:'Seguridade'},
-  {t:'BBAS3', p:21.63, pm:22.20, q:10878, v:235291.14, teto:25.00, ms:15.58,  s:'Bancos'},
+  {t:'BBSE3', p:34.37, pm:32.12, q:5539,  v:190375.43, teto:35.50, ms:3.29,   s:'Seguridade'},
+  {t:'CXSE3', p:17.44, pm:15.26, q:10651, v:185753.44, teto:18.70, ms:7.22,   s:'Seguridade'},
+  {t:'BBAS3', p:21.63, pm:22.20, q:11078, v:239617.14, teto:25.00, ms:15.58,  s:'Bancos'},
   {t:'ITSA4', p:13.28, pm:7.97,  q:7603,  v:100967.84, teto:11.50, ms:-13.40, s:'Bancos'},
+  {t:'BBDC3', p:15.28, pm:15.27, q:1000,  v:15280.00,  teto:17.43, ms:14.07,  s:'Bancos'},
   {t:'SAPR4', p:8.08,  pm:3.58,  q:2309,  v:18656.72,  teto:3.64,  ms:-54.95, s:'Saneamento', sell:true},
-  {t:'KLBN11',p:17.09, pm:16.35, q:4429,  v:75691.61,  teto:28.00, ms:63.84,  s:'Papel/Cel.'},
+  {t:'KLBN11',p:17.09, pm:16.35, q:4729,  v:80818.61,  teto:28.00, ms:63.84,  s:'Papel/Cel.'},
   {t:'WEGE3', p:44.11, pm:29.42, q:866,   v:38199.26,  teto:37.00, ms:-16.12, s:'Bens Ind.'},
   {t:'VIVT3', p:36.21, pm:20.04, q:1680,  v:60832.80,  teto:34.58, ms:-4.50,  s:'Telecom'},
   {t:'PETR4', p:46.33, pm:30.38, q:1863,  v:86312.79,  teto:38.00, ms:-17.98, s:'Petróleo', trim:true},
@@ -321,37 +322,38 @@ const FIIS=[
   {t:'KNRI11',p:163.02,pm:149.73,q:161,  v:26246.22, teto:164.00,ms:0.60,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.41,chg:0.14,dy:8.51,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:109.91,chg:-0.19,dy:9.15,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:106.91,chg:-0.88,dy:8.34,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.30,chg:0.43,dy:13.09,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:109.10,chg:0.34,dy:10.15,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.90,chg:1.38,dy:14.68,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:103.32,chg:0.20,dy:9.40,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.23,chg:-0.04,dy:11.19,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:160.25,chg:0.41,dy:8.27,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.33,chg:-0.16,dy:12.58,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.68,chg:0.73,dy:15.58,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:80.58,chg:0.04,dy:13.68,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:129.72,chg:-0.08,dy:8.78,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:75.57,chg:0.71,dy:6.40,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.60,chg:-0.20,dy:12.16,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.05,chg:-0.29,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:109.93,chg:0.37,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:108.72,chg:0.13,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.17,chg:-1.08,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:108.05,chg:1.68,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.19,chg:0.21,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:102.99,chg:-0.11,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:107.47,chg:-0.24,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:162.00,chg:-0.25,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:96.31,chg:-0.35,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:80.80,chg:-0.06,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:80.55,chg:-1.26,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:128.64,chg:-0.74,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:75.00,chg:-0.08,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.07,chg:-0.25,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:81.42,chg:-1.75,pl:25.13,dy:8.32,pvp:1.89,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.65,chg:-1.25,pl:25.19,dy:9.70,pvp:2.59,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:20.57,chg:-0.92,pl:9.27,dy:1.35,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.75,chg:0.45,pl:19.86,dy:6.70,pvp:1.66,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.45,chg:-1.52,pl:7.99,dy:9.13,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.27,chg:-7.03,pl:5.64,dy:2.88,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:12.96,chg:-1.59,pl:8.53,dy:74.00,pvp:1.64,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.54,chg:0.12,pl:14.46,dy:5.64,pvp:2.73,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:38.37,chg:-0.62,pl:39.15,dy:8.48,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:45.48,chg:1.07,pl:5.59,dy:8.62,pvp:1.41,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.38,chg:-0.91,pl:11.90,dy:7.98,pvp:3.79,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:43.37,chg:-0.80,pl:28.91,dy:92.00,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.20,chg:-0.81,pl:7.22,dy:15.12,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'}
+  {t:'VALE3',p:83.25,chg:-0.24,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.82,chg:-1.06,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:21.32,chg:-1.02,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:36.33,chg:0.86,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:29.74,chg:-1.13,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:8.02,chg:-0.50,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:13.03,chg:-1.66,pl:8.80,dy:7.30,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:33.16,chg:-1.46,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:39.77,chg:-2.85,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:45.68,chg:-1.62,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.28,chg:-0.75,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:43.39,chg:-1.74,pl:28.93,dy:1.54,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.21,chg:-0.26,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.28,chg:0,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -418,16 +420,16 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:15456,fii:6000,acoes:9456, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3239992}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3204161}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT    = 3239992;
-let CAIO   = 2452260;
-let FATIMA = 787731;
+let PAT    = 3204161;
+let CAIO   = 2424706;
+let FATIMA = 779455;
 let RF     = 521424;
-let CAIXA  = 68713;
-let ACOES_US = 61165;
+let CAIXA  = 42713;
+let ACOES_US = 60761;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -452,7 +454,7 @@ const TICKER_MAP = {
   'ISAE4':'ISAE4','BBSE3':'BBSE3','CXSE3':'CXSE3','BVMF:BBAS3':'BBAS3',
   'BBAS3':'BBAS3','ITSA4':'ITSA4','SAPR4':'SAPR4','KLBN11':'KLBN11',
   'BVMF:WEGE3':'WEGE3','WEGE3':'WEGE3','BVMF:VIVT3':'VIVT3','VIVT3':'VIVT3',
-  'PETR4':'PETR4','HODL11':'HODL11'
+  'PETR4':'PETR4','HODL11':'HODL11','BVMF:BBDC3':'BBDC3','BBDC3':'BBDC3'
 };
 const FII_SET = new Set(['XPML11','PMLL11','BTLG11','TRXF11','HGRU11','MCCI11',
   'HGLG11','RECR11','VGIP11','BTHF11','PVBI11','LVBI11','IRIM11','VISC11','KNRI11']);
@@ -549,7 +551,7 @@ async function loadSheet(){
   }catch(e){
     banner.className='banner static';
     banner.textContent=`📋 Preços via Yahoo Finance · ${new Date().toLocaleDateString('pt-BR')} (planilha indisponível)`;
-    src.textContent='07/05/2026';
+    src.textContent='15/05/2026';
     renderAll();
   }
 }
@@ -876,12 +878,12 @@ function renderPontos(){
        detail:'Aguardar queda abaixo de R$95 para reconsiderar novo aporte. Papel de qualidade mas sem margem de segurança atual.'},
     ]},
     {titulo:'🟢 Executado / Oportunidade — Aportar', tipo:'good', items:[
-      {t:'KLBN11',msg:'+700 cotas compradas (3.729→4.429) — maior M.S. ações +63,84%',sub:'Hoje +200 cotas (4.229→4.429) | Cotação R$17,09 vs Teto R$28,00',
-       detail:'+200 cotas compradas hoje (11/05/26), acumulando +700 total desde abr/26. KLBN11 continua sendo a maior margem de segurança em ações da carteira. Klabin lidera em embalagens de papel no Brasil. Candidato prioritário para receber capital da venda de SAPR4.'},
-      {t:'BBSE3',msg:'+340 cotas compradas (5.099→5.439) — seguridade com DY sólido',sub:'M.S. +2,57% | PM R$32,12 | ROE ~20%',
-       detail:'Compra executada em maio/26. BBSE3 é seguradora líder com pay-out elevado e ROE consistente. Próximo do teto mas fundamentos sólidos justificam a posição.'},
-      {t:'CXSE3',msg:'+900 cotas compradas (9.551→10.451) em 2 aportes',sub:'M.S. +7,22% | PM R$15,09 | 07/05 +300 cotas executado',
-       detail:'+300 cotas adicionais compradas em 07/05/26, totalizando +900 desde o pós ex-div de 04/05. Posição total: 10.451 cotas. CXSE3 é seguradora com crescimento de dividendos consistente.'},
+      {t:'KLBN11',msg:'+1.000 cotas compradas (3.729→4.729) — maior M.S. ações +63,84%',sub:'Hoje +300 cotas (4.429→4.729) | Cotação R$17,09 vs Teto R$28,00',
+       detail:'+300 cotas adicionais compradas (15/05/26), acumulando +1.000 total desde abr/26. KLBN11 continua sendo a maior margem de segurança em ações da carteira. Klabin lidera em embalagens de papel no Brasil. Candidato prioritário para receber capital da venda de SAPR4.'},
+      {t:'BBSE3',msg:'+440 cotas compradas (5.099→5.539) — seguridade com DY sólido',sub:'M.S. +3,29% | PM R$32,12 | ROE ~20%',
+       detail:'Compras executadas em mai/26. BBSE3 é seguradora líder com pay-out elevado e ROE consistente. +100 cotas em 15/05/26, totalizando 5.539 cotas. Próximo do teto mas fundamentos sólidos justificam a posição.'},
+      {t:'CXSE3',msg:'+1.100 cotas compradas (9.551→10.651) em 3 aportes',sub:'M.S. +7,22% | PM R$15,26 | 15/05 +100 cotas executado',
+       detail:'+100 cotas adicionais compradas em 15/05/26, totalizando +1.100 desde o pós ex-div de 04/05. Posição total: 10.651 cotas. CXSE3 é seguradora com crescimento de dividendos consistente e DUC 15/05/26.'},
       {t:'XPML11',msg:'+24 cotas compradas hoje (639→663) — Shopping premium',sub:'Cotação R$106,97 | M.S. +20,59% vs Teto R$129,00',
        detail:'Compra de 24 cotas executada hoje (11/05/26) com o mercado em queda. XPML11 tem portfólio de shoppings premium e M.S. de +20% oferece boa oportunidade de acumulação.'},
       {t:'TRXF11',msg:'FII prioritário — M.S. +34,65%',sub:'P/VP 0,93 | DY 12,87% | Vacância 0,42% | 808 cotas',
@@ -890,8 +892,10 @@ function renderPontos(){
        detail:'Lidera em dividend yield absoluto. CRIs indexados a IPCA+, beneficiado pela Selic alta. +12 cotas desde última atualização.'},
       {t:'BTLG11',msg:'Logístico premium — M.S. +8,30% | ativo',sub:'Vacância 2,9% | dividendos em recorde | 637 cotas',
        detail:'15+ meses consecutivos de crescimento de dividendos. Portfólio logístico premium. Continuar acumulando.'},
-      {t:'BBAS3',msg:'Bancos subpeso | M.S. +14,42%',sub:'ROE >20% | P/L <5x | DY >8% | 10.878 cotas',
-       detail:'Setor bancário está subpeso na carteira. BBAS3 com M.S. de +14% é o único banco aportável. Aguardar pullback para R$20–R$21 para novo aporte.'},
+      {t:'BBAS3',msg:'Bancos subpeso | M.S. +15,58%',sub:'ROE >20% | P/L <5x | DY >8% | 11.078 cotas',
+       detail:'Setor bancário está subpeso na carteira. BBAS3 com M.S. de +15,58% e BBDC3 recém-comprado ampliam a exposição ao setor. Aguardar pullback para R$20–R$21 para novo aporte em BBAS3.'},
+      {t:'BBDC3',msg:'1.000 cotas compradas — ON com maior DY que PN',sub:'PM R$15,27 | M.S. +14,07% | Teto R$17,43 | 15/05/26',
+       detail:'BBDC3 estreia na carteira CVENOM® com 1.000 cotas em 15/05/26. ON escolhido sobre PN porque o spread PN/ON > 10% inverte o DY em favor do ON — análise validada por Baroni. Bradesco em turnaround: posição inicial para acumulação gradual conforme os fundamentos normalizam.'},
     ]},
   ];
   document.getElementById('alerts-content').innerHTML=grupos.map(g=>`
