@@ -174,6 +174,7 @@ tbody tr:hover{background:#f8fafc;}
   <button class="tab-btn" onclick="showTab('acoes',this)">Ações</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Proventos</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
+  <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
@@ -285,6 +286,63 @@ tbody tr:hover{background:#f8fafc;}
 <div id="tab-pontos" class="tab-panel"><div id="alerts-content" class="alert-list"></div></div>
 </div>
 
+<div id="tab-aportes" class="tab-panel">
+<style>
+.ap-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px;}
+.ap-hcard{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:13px 15px;position:relative;overflow:hidden;}
+.ap-hcard::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;}
+.ap-hcard.gold::before{background:var(--gold);}
+.ap-hcard.blue::before{background:#2563eb;}
+.ap-hcard.purple::before{background:#7c3aed;}
+.ap-hcard.green::before{background:var(--green);}
+.ap-hcard-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
+.ap-hcard-val{font-size:17px;font-weight:800;color:var(--brand);}
+.ap-hcard.blue .ap-hcard-val{color:#2563eb;}
+.ap-hcard.purple .ap-hcard-val{color:#7c3aed;}
+.ap-hcard.green .ap-hcard-val{color:var(--green);}
+.ap-hcard-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.ap-badge-c{display:inline-block;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;border-radius:4px;font-size:10px;font-weight:700;padding:1px 6px;}
+.ap-badge-f{display:inline-block;background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe;border-radius:4px;font-size:10px;font-weight:700;padding:1px 6px;}
+.ap-g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:900px){.ap-g3{grid-template-columns:1fr;}}
+.ap-cw{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:13px;}
+.ap-ct{font-size:11px;font-weight:700;color:var(--brand);margin-bottom:9px;text-transform:uppercase;letter-spacing:.3px;display:flex;align-items:center;gap:6px;}
+.ap-share-bar{background:#f1f5f9;border-radius:5px;height:10px;overflow:hidden;margin:6px 0 3px;display:flex;}
+.ap-sc{height:10px;background:#2563eb;}
+.ap-sf{height:10px;background:#7c3aed;}
+.ap-share-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
+.ap-mhdr{display:grid;grid-template-columns:72px 1fr 1fr 105px;background:#f1f5f9;border:1px solid var(--border);border-radius:8px 8px 0 0;}
+.ap-mhdr>div{padding:6px 10px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;}
+.ap-mhdr>div:last-child{text-align:right;}
+.ap-mrow{display:grid;grid-template-columns:72px 1fr 1fr 105px;background:var(--card);border:1px solid var(--border);border-top:none;align-items:stretch;}
+.ap-mrow:last-child{border-radius:0 0 8px 8px;}
+.ap-mrow:hover{background:#f8fafc;}
+.ap-mlabel{font-size:12px;font-weight:800;color:var(--brand);padding:9px 10px;border-right:1px solid var(--border);display:flex;align-items:center;}
+.ap-mpicks{padding:7px 10px;border-right:1px solid var(--border);display:flex;flex-wrap:wrap;gap:3px;align-items:center;}
+.ap-chip{display:inline-flex;gap:3px;background:#f1f5f9;border-radius:4px;padding:2px 5px;font-size:10px;font-weight:600;}
+.ap-chip.cc{background:#eff6ff;color:#2563eb;}
+.ap-chip.fc{background:#f5f3ff;color:#7c3aed;}
+.ap-mtotal{padding:9px 10px;text-align:right;display:flex;flex-direction:column;justify-content:center;}
+.ap-mtval{font-size:13px;font-weight:800;color:var(--brand);}
+.ap-mtsub{font-size:10px;color:var(--muted);margin-top:1px;}
+</style>
+<div class="sec">Visão Geral — 13 Meses · Mai/2025 → Mai/2026</div>
+<div class="ap-hero" id="ap-hero"></div>
+<div class="ap-g3">
+  <div class="ap-cw"><div class="ap-ct">📅 Aportes Mensais <span class="ap-badge-c">Caio</span><span class="ap-badge-f">Fátima</span></div><canvas id="ap-mensal" height="175"></canvas></div>
+  <div class="ap-cw"><div class="ap-ct">🧩 Por Setor</div><canvas id="ap-setor" height="175"></canvas></div>
+  <div class="ap-cw"><div class="ap-ct">👤 Caio vs Fátima</div><canvas id="ap-pessoa" height="130"></canvas><div id="ap-share" style="margin-top:8px;"></div></div>
+</div>
+<div class="sec">Top 15 Ativos Aportados</div>
+<div class="tbl-wrap" id="ap-top15"></div>
+<div class="ap-cw" style="margin:14px 0;"><div class="ap-ct">📊 Alocação por Setor — Evolução Mensal</div><canvas id="ap-setor-mensal" height="100"></canvas></div>
+<div class="sec">Detalhe Mensal</div>
+<div class="ap-mhdr"><div>Mês</div><div><span class="ap-badge-c">Caio</span></div><div><span class="ap-badge-f">Fátima</span></div><div>Total</div></div>
+<div id="ap-mrows"></div>
+<div class="sec">Comparativo por Setor</div>
+<div class="tbl-wrap" id="ap-setor-tbl"></div>
+</div>
+
 <script>
 // ── DADOS ESTÁTICOS — atualizados planilha 15/05/2026 ─────────────────────────
 const ACOES=[
@@ -323,24 +381,23 @@ const FIIS=[
 ];
 const FII_SI=[
   {t:'HGLG11',p:155.50,chg:0.19,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:110.10,chg:-0.02,dy:9.16,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:107.19,chg:-0.62,dy:8.40,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.32,chg:0.65,dy:13.00,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:109.80,chg:0.98,dy:10.05,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.52,chg:0.80,dy:14.57,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'VISC11',p:110.10,chg:-0.02,dy:9.16,pvp:0.94,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:107.19,chg:-0.62,dy:8.40,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.32,chg:0.65,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:109.80,chg:0.98,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.52,chg:0.80,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
   {t:'BTLG11',p:103.40,chg:0.28,dy:9.38,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.55,chg:0.26,dy:11.16,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'PMLL11',p:107.55,chg:0.26,dy:11.16,pvp:0.92,caixa:0,s:'Shopping',cor:'#9333ea'},
   {t:'KNRI11',p:160.00,chg:0.25,dy:8.25,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.85,chg:0.45,dy:12.52,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:82.98,chg:2.33,dy:15.22,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.11,chg:0.70,dy:13.59,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:131.38,chg:1.20,dy:8.68,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:76.95,chg:2.55,dy:6.24,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.80,chg:0.02,dy:12.16,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'MCCI11',p:95.85,chg:0.45,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:82.98,chg:2.33,dy:15.22,pvp:0.93,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.11,chg:0.70,dy:13.59,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:131.38,chg:1.20,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:76.95,chg:2.55,dy:6.24,pvp:0.71,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.80,chg:0.02,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:83.50,chg:0.76,pl:25.23,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
   {t:'KLBN11',p:16.43,chg:-2.55,pl:24.86,dy:9.96,pvp:2.56,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
   {t:'BBAS3',p:20.70,chg:-0.29,pl:9.32,dy:1.36,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
   {t:'VIVT3',p:35.52,chg:-0.20,pl:19.73,dy:6.72,pvp:1.65,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
@@ -979,6 +1036,49 @@ function showTab(id,btn){
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 loadSheet();
+</script>
+<script>
+(function(){
+const AD={"months":["2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"labels":["Mai/25","Jun/25","Jul/25","Ago/25","Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26"],"monthly_caio":[11867.87,238260.67,27144.06,30971.26,497624.57,329918.26,316680.03,319152.33,381598.48,543185.3,655729.3,484387.23,284401.87],"monthly_fatima":[13468.92,60255.47,13745.69,29076.38,35771.79,18059.44,5268.72,23181.95,16626.61,37567.27,40268.46,27966.01,26297.31],"monthly_total":[25336.79,298516.14,40889.75,60047.64,533396.36,347977.7,321948.75,342334.28,398225.09,580752.57,695997.76,512353.24,310699.18],"top15":[["VALE3",993617.0,5087.0],["EGIE3",629590.28,14193.0],["BBAS3",568515.48,28244.19],["VIVT3",428442.4,0],["TAEE11",321587.48,1737.0],["PETR4",253025.52,19610.84],["KLBN11",224975.92,7800.25],["TESOURO",154450.34,46001.08],["BBSE3",144366.89,41668.9],["CDB",75839.82,94275.47],["WEGE3",151247.34,0],["CXSE3",76789.61,53610.83],["HGRU11",21338.24,3970.52],["HODL11",19107.85,5012.91],["TRXF11",11758.51,6044.04]],"setores":[["Mineração",998704.0],["Elétrico",978151.82],["Bancos",596759.67],["Telecom",428442.4],["Renda Fixa",370566.71],["Seguridade",316436.23],["Petróleo",272636.36],["Papel/Cel.",232776.17],["Bens Ind.",151247.34],["FII Híbrido",43111.31],["ETF BTC",24120.76],["FII Shopping",16666.81],["FII Logíst.",15449.24],["FII Papel",13246.25],["FII Lajes",8170.68],["FII Hedge",1986.0],["Outros",3.5]],"setor_caio":[["Mineração",993617.0],["Elétrico",956741.58],["Bancos",568515.48],["Telecom",428442.4],["Renda Fixa",230290.16],["Seguridade",221156.5],["Petróleo",253025.52],["Papel/Cel.",224975.92],["Bens Ind.",151247.34],["FII Híbrido",33096.75],["ETF BTC",19107.85],["FII Shopping",10217.37],["FII Logíst.",10075.64],["FII Papel",12255.78],["FII Lajes",6169.94],["FII Hedge",1986.0],["Outros",0]],"setor_fat":[["Mineração",5087.0],["Elétrico",21410.24],["Bancos",28244.19],["Telecom",0],["Renda Fixa",140276.55],["Seguridade",95279.73],["Petróleo",19610.84],["Papel/Cel.",7800.25],["Bens Ind.",0],["FII Híbrido",10014.56],["ETF BTC",5012.91],["FII Shopping",6449.44],["FII Logíst.",5373.6],["FII Papel",990.47],["FII Lajes",2000.74],["FII Hedge",0],["Outros",3.5]],"total_caio":4120921.23,"total_fat":347554.02,"monthly_setor":{"2025-05":{"Bancos":10076.18,"FII Híbrido":862.87,"FII Shopping":910.89,"Seguridade":6340.22,"Petróleo":4583.34,"FII Papel":826.29,"Elétrico":1737.0},"2025-06":{"Seguridade":28146.54,"FII Shopping":1993.4,"Telecom":46329.6,"Mineração":122705.4,"Petróleo":43327.68,"FII Lajes":530.86,"FII Papel":972.7,"Bancos":36376.009999999995,"FII Híbrido":1981.9,"Papel/Cel.":1955.55,"Elétrico":14193.0,"Outros":3.5},"2025-07":{"Seguridade":19368.620000000003,"Elétrico":9867.46,"Bancos":3730.5299999999997,"Papel/Cel.":991.9,"FII Lajes":605.76,"FII Híbrido":2241.6,"FII Shopping":999.88,"Petróleo":3084.0},"2025-08":{"Seguridade":13985.449999999999,"Petróleo":7242.85,"Bancos":11114.0,"Renda Fixa":23541.13,"FII Shopping":965.27,"FII Lajes":1008.94,"Elétrico":2190.0},"2025-09":{"Seguridade":15479.0,"Elétrico":106481.82999999999,"Telecom":50236.0,"Papel/Cel.":4667.3,"FII Papel":1978.4699999999998,"Bancos":169453.98,"Renda Fixa":179098.18000000002,"Petróleo":3045.0,"FII Hedge":1986.0,"FII Híbrido":970.6},"2025-10":{"Elétrico":86730.75,"FII Lajes":967.93,"Telecom":52592.0,"Papel/Cel.":5442.71,"Bancos":169085.41,"Seguridade":5566.9400000000005,"Petróleo":11590.029999999999,"Renda Fixa":16001.93},"2025-11":{"Telecom":102280.8,"Papel/Cel.":89768.37000000001,"FII Papel":5916.99,"Elétrico":110441.68,"FII Shopping":4022.0299999999997,"FII Híbrido":2532.7,"FII Lajes":986.18,"Petróleo":6000.0},"2025-12":{"Petróleo":4586.5,"Mineração":169903.6,"Seguridade":6368.0,"Elétrico":70154.7,"ETF BTC":20109.76,"Renda Fixa":20000.38,"Papel/Cel.":49944.84,"FII Híbrido":1266.5},"2026-01":{"Telecom":56255.2,"Elétrico":268926.5,"ETF BTC":4011.0,"Petróleo":5623.7699999999995,"Bens Ind.":35774.28,"Renda Fixa":19998.660000000003,"FII Híbrido":3017.83,"FII Logíst.":2053.0,"FII Shopping":2564.8500000000004},"2026-02":{"Seguridade":115846.95999999999,"Elétrico":102663.0,"Bens Ind.":41323.86,"Petróleo":57327.06,"FII Híbrido":4291.88,"Mineração":185416.5,"Telecom":58991.2,"FII Logíst.":3939.8999999999996,"FII Shopping":1048.22,"Renda Fixa":9903.99},"2026-03":{"Seguridade":59096.399999999994,"FII Lajes":1140.6,"FII Logíst.":5935.12,"FII Híbrido":12460.16,"Renda Fixa":19903.89,"Bancos":6013.96,"Papel/Cel.":55849.5,"Mineração":165053.7,"Petróleo":65719.13,"Telecom":61757.6,"Elétrico":204765.9,"Bens Ind.":36687.6,"FII Shopping":1614.2},"2026-04":{"Papel/Cel.":3569.0,"Seguridade":15113.0,"FII Logíst.":3521.2200000000003,"FII Híbrido":11449.43,"Petróleo":4752.0,"FII Papel":2554.96,"Bens Ind.":37461.6,"Bancos":186757.6,"Mineração":188079.0,"Renda Fixa":58103.630000000005,"FII Lajes":991.8},"2026-05":{"Bancos":4152.0,"Seguridade":31125.1,"Papel/Cel.":20587.0,"Petróleo":55755.0,"FII Lajes":1938.6100000000001,"FII Shopping":2548.07,"Renda Fixa":24014.92,"FII Híbrido":2035.8400000000001,"FII Papel":996.84,"Mineração":167545.8}},"caio_detail":{"2025-05":{"BBAS3":6264.18,"HGRU11":862.87,"MALL11":910.89,"CXSE3":1503.0,"PETR4":1500.6399999999999,"VGIP11":826.29},"2025-06":{"CXSE3":11738.39,"MALL11":997.4,"VIVT3":46329.6,"VALE3":117618.4,"PETR4":41040.0,"PVBI11":530.86,"VGIP11":972.7,"BBAS3":17043.27,"HGRU11":972.0,"KLBN11":1018.05},"2025-07":{"CXSE3":14458.220000000001,"BBSE3":671.4,"ISAE4":5563.82,"TAEE11":1013.4,"BBAS3":598.08,"KLBN11":991.9,"PVBI11":605.76,"HGRU11":1230.7,"MALL11":999.88,"TRXF11":1010.9},"2025-08":{"CXSE3":6819.0,"BBSE3":1035.49,"PETR4":3004.5,"BBAS3":9147.0,"CDB":10000.0,"PMLL11":965.27},"2025-09":{"CXSE3":12693.0,"EGIE3":106481.82999999999,"VIVT3":50236.0,"KLBN11":4667.3,"VGIP11":961.93,"BBAS3":169453.98,"TESOURO":119450.57,"PETR4":3045.0,"BTHF11":1986.0,"CDB":26661.82,"MCCI11":1016.54,"TRXF11":970.6},"2025-10":{"EGIE3":86730.75,"PVBI11":967.93,"VIVT3":52592.0,"KLBN11":4568.21,"BBAS3":169085.41,"BBSE3":1300.4,"PETR4":4671.92,"TESOURO":10001.64},"2025-11":{"VIVT3":102280.8,"KLBN11":85490.12000000001,"RECR11":1983.9099999999999,"TAEE11":110441.68,"XPML11":2018.7199999999998,"HGRU11":2532.7,"VGIP11":2942.6099999999997,"PMLL11":2003.31,"PVBI11":986.18,"PETR4":6000.0},"2025-12":{"PETR4":4586.5,"VALE3":169903.6,"CXSE3":3200.0,"EGIE3":70154.7,"HODL11":15096.849999999999,"TESOURO":4999.34,"KLBN11":49944.84,"HGRU11":1266.5},"2026-01":{"VIVT3":56255.2,"EGIE3":167332.5,"HODL11":4011.0,"PETR4":5623.7699999999995,"WEGE3":35774.28,"TAEE11":101594.0,"TESOURO":9999.810000000001,"HGRU11":1007.92},"2026-02":{"BBSE3":90134.5,"EGIE3":102663.0,"WEGE3":41323.86,"PETR4":57327.06,"TRXF11":2260.44,"VALE3":185416.5,"VIVT3":58991.2,"HGLG11":2997.72,"HGRU11":1022.8,"PMLL11":1048.22},"2026-03":{"CXSE3":15825.0,"PVBI11":1140.6,"HGLG11":3449.4999999999995,"HGRU11":5549.02,"TESOURO":4999.33,"TRXF11":3949.26,"BBAS3":6013.96,"KLBN11":55849.5,"VALE3":165053.7,"BBSE3":23926.0,"PETR4":65719.13,"VIVT3":61757.6,"EGIE3":96227.5,"BTLG11":1043.2,"TAEE11":108538.4,"WEGE3":36687.6},"2026-04":{"KLBN11":3569.0,"BBSE3":13753.0,"BTLG11":2585.2200000000003,"HGRU11":5855.04,"PETR4":4752.0,"RECR11":2554.96,"TRXF11":2570.16,"WEGE3":37461.6,"BBAS3":186757.6,"VALE3":188079.0,"CDB":31450.0,"TESOURO":4999.65},"2026-05":{"BBAS3":4152.0,"BBSE3":13546.1,"KLBN11":18877.0,"PETR4":55755.0,"PVBI11":1938.6100000000001,"CXSE3":10553.0,"XPML11":1273.68,"CDB":7728.0,"HGRU11":1038.69,"RECR11":996.84,"TRXF11":997.15,"VALE3":167545.8}},"fat_detail":{"2025-05":{"BBAS3":3812.0,"CXSE3":4837.22,"PETR4":3082.7,"TAEE11":1737.0},"2025-06":{"EGIE3":14193.0,"KLBN4":3.5,"CXSE3":16408.15,"VALE3":5087.0,"TRXF11":1009.9,"MALL11":996.0,"BBAS3":19332.739999999998,"PETR4":2287.68,"KLBN11":937.5},"2025-07":{"CXSE3":4239.0,"PETR4":3084.0,"BBAS3":3132.45,"ISAE4":3290.24},"2025-08":{"BBSE3":2470.48,"CXSE3":3660.48,"PETR4":4238.35,"CDB":13541.130000000001,"PVBI11":1008.94,"BBAS3":1967.0,"ISAE4":2190.0},"2025-09":{"TESOURO":10000.32,"CXSE3":2786.0,"CDB":22985.47},"2025-10":{"PETR4":6918.11,"BBSE3":4266.54,"KLBN11":874.5,"TESOURO":6000.29},"2025-11":{"KLBN11":4278.25,"RECR11":990.47},"2025-12":{"TESOURO":15001.04,"CXSE3":3168.0,"HODL11":5012.91},"2026-01":{"BTLG11":2053.0,"PMLL11":1037.94,"TRXF11":2009.91,"XPML11":1526.91,"TESOURO":9998.85},"2026-02":{"BBSE3":25712.46,"CDB":9903.99,"HGLG11":942.18,"HGRU11":1008.64},"2026-03":{"HGRU11":2961.88,"BBSE3":7859.42,"CXSE3":11485.98,"TESOURO":5000.58,"XPML11":1614.2,"CDB":9903.98,"BTLG11":1442.42},"2026-04":{"BBSE3":1360.0,"CDB":21653.98,"TRXF11":3024.23,"HGLG11":936.0,"PVBI11":991.8},"2026-05":{"CXSE3":7026.0,"KLBN11":1710.0,"XPML11":1274.39,"CDB":16286.92}}};
+const R=v=>'R$'+Math.round(v).toLocaleString('pt-BR');
+const Pct=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+const tC=AD.total_caio,tF=AD.total_fat,tH=tC+tF,avg=tH/AD.months.length;
+const maxM=Math.max(...AD.monthly_total);
+document.getElementById('ap-hero').innerHTML=[
+  {l:'Total Holding',v:R(tH),s:'Mai/25 → Mai/26',c:'gold'},
+  {l:'Caio',v:R(tC),s:Pct(tC/tH*100)+' do total',c:'blue'},
+  {l:'Fátima',v:R(tF),s:Pct(tF/tH*100)+' do total',c:'purple'},
+  {l:'Média Mensal',v:R(avg),s:'por mês (holding)',c:'green'},
+  {l:'Maior Mês',v:R(maxM),s:AD.labels[AD.monthly_total.indexOf(maxM)],c:'gold'},
+  {l:'Média Caio/mês',v:R(tC/AD.months.length),s:'13 meses',c:'blue'},
+].map(h=>`<div class="ap-hcard ${h.c}"><div class="ap-hcard-label">${h.l}</div><div class="ap-hcard-val">${h.v}</div><div class="ap-hcard-sub">${h.s}</div></div>`).join('');
+
+new Chart(document.getElementById('ap-mensal'),{type:'bar',data:{labels:AD.labels,datasets:[
+  {label:'Caio',data:AD.monthly_caio,backgroundColor:'rgba(37,99,235,.8)',borderRadius:3,stack:'s'},
+  {label:'Fátima',data:AD.monthly_fatima,backgroundColor:'rgba(124,58,237,.8)',borderRadius:3,stack:'s'},
+]},options:{responsive:true,plugins:{legend:{labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${R(c.raw)}`}}},scales:{x:{stacked:true,ticks:{font:{size:9}}},y:{stacked:true,ticks:{font:{size:9},callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v}}}}});
+
+const SC=['#2563eb','#16a34a','#1d4ed8','#0891b2','#c8a84b','#dc2626','#ea580c','#7c3aed','#0f172a','#f59e0b','#d97706','#9333ea','#64748b','#b45309','#0369a1','#475569'];
+new Chart(document.getElementById('ap-setor'),{type:'doughnut',data:{labels:AD.setores.map(s=>s[0]),datasets:[{data:AD.setores.map(s=>s[1]),backgroundColor:SC,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,cutout:'58%',plugins:{legend:{position:'right',labels:{font:{size:9},boxWidth:9}},tooltip:{callbacks:{label:c=>`${c.label}: ${R(c.raw)} (${Pct(c.raw/tH*100)})`}}}}});
+
+new Chart(document.getElementById('ap-pessoa'),{type:'doughnut',data:{labels:['Caio','Fátima'],datasets:[{data:[tC,tF],backgroundColor:['rgba(37,99,235,.85)','rgba(124,58,237,.85)'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>`${c.label}: ${R(c.raw)} (${Pct(c.raw/tH*100)})`}}}}});
+const pc=(tC/tH*100).toFixed(1),pf=(tF/tH*100).toFixed(1);
+document.getElementById('ap-share').innerHTML=`<div class="ap-share-bar"><div class="ap-sc" style="width:${pc}%"></div><div class="ap-sf" style="width:${pf}%"></div></div><div class="ap-share-row"><span><span class="ap-badge-c">Caio</span> ${pc}%</span><span><span class="ap-badge-f">Fátima</span> ${pf}%</span></div>`;
+
+const SM={VALE3:'Mineração',EGIE3:'Elétrico',BBAS3:'Bancos',VIVT3:'Telecom',TAEE11:'Elétrico',PETR4:'Petróleo',KLBN11:'Papel/Cel.',TESOURO:'Renda Fixa',BBSE3:'Seguridade',CDB:'Renda Fixa',WEGE3:'Bens Ind.',CXSE3:'Seguridade',HGRU11:'FII Híbrido',HODL11:'ETF BTC',TRXF11:'FII Híbrido'};
+const mx=Math.max(...AD.top15.map(r=>r[1]+r[2]));
+document.getElementById('ap-top15').innerHTML='<table><thead><tr><th>Ativo</th><th>Setor</th><th>Caio</th><th>Fátima</th><th>Total</th><th style="min-width:110px">Visual</th><th>% Holding</th></tr></thead><tbody>'+AD.top15.map((r,i)=>{const[t,c,f]=r,tot=c+f;return`<tr><td>${i+1}. ${t}</td><td>${SM[t]||'—'}</td><td>${c?R(c):'—'}</td><td>${f?R(f):'—'}</td><td style="font-weight:700">${R(tot)}</td><td><div style="background:#f1f5f9;border-radius:3px;height:7px;overflow:hidden;display:flex"><div style="width:${c/mx*100}%;background:rgba(37,99,235,.7)"></div><div style="width:${f/mx*100}%;background:rgba(124,58,237,.7)"></div></div></td><td>${Pct(tot/tH*100)}</td></tr>`;}).join('')+'</tbody><tfoot><tr><td>TOP 15</td><td></td><td>'+R(AD.top15.reduce((a,r)=>a+r[1],0))+'</td><td>'+R(AD.top15.reduce((a,r)=>a+r[2],0))+'</td><td>'+R(AD.top15.reduce((a,r)=>a+r[1]+r[2],0))+'</td><td></td><td>'+Pct(AD.top15.reduce((a,r)=>a+r[1]+r[2],0)/tH*100)+'</td></tr></tfoot></table>';
+
+const SC2={'Mineração':'#2563eb','Elétrico':'#16a34a','Bancos':'#1d4ed8','Telecom':'#0891b2','Renda Fixa':'#c8a84b','Seguridade':'#dc2626','Petróleo':'#64748b','Papel/Cel.':'#7c3aed','Bens Ind.':'#0f172a','FII Híbrido':'#f59e0b'};
+const topS=AD.setores.slice(0,8).map(s=>s[0]);
+new Chart(document.getElementById('ap-setor-mensal'),{type:'bar',data:{labels:AD.labels,datasets:topS.map(s=>({label:s,data:AD.months.map(m=>AD.monthly_setor[m]&&AD.monthly_setor[m][s]?Math.round(AD.monthly_setor[m][s]):0),backgroundColor:SC2[s]||'#888',stack:'s',borderWidth:0}))},options:{responsive:true,plugins:{legend:{labels:{font:{size:9},boxWidth:9}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${R(c.raw)}`}}},scales:{x:{stacked:true,ticks:{font:{size:9}}},y:{stacked:true,ticks:{font:{size:9},callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v}}}}});
+
+const picks=(obj,cls,n=4)=>obj?Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([t,v])=>`<span class="ap-chip ${cls}">${t} <span style="opacity:.7">${R(v)}</span></span>`).join(''):'<span style="color:#ccc;font-size:10px">—</span>';
+document.getElementById('ap-mrows').innerHTML=AD.months.map((m,i)=>`<div class="ap-mrow"><div class="ap-mlabel">${AD.labels[i]}</div><div class="ap-mpicks">${picks(AD.caio_detail[m],'cc')}</div><div class="ap-mpicks">${picks(AD.fat_detail[m],'fc')}</div><div class="ap-mtotal"><div class="ap-mtval">${R(AD.monthly_total[i])}</div><div class="ap-mtsub">C: ${R(AD.monthly_caio[i])} F: ${R(AD.monthly_fatima[i])}</div></div></div>`).join('');
+
+const mxS=Math.max(...AD.setores.map(s=>s[1]));
+document.getElementById('ap-setor-tbl').innerHTML='<table><thead><tr><th>Setor</th><th style="min-width:90px">Visual</th><th>Caio</th><th>% Caio</th><th>Fátima</th><th>% Fátima</th><th>Total</th><th>% Holding</th></tr></thead><tbody>'+AD.setores.filter(s=>s[1]>0).map((s,i)=>{const[nome,tot]=s,c=AD.setor_caio[i][1],f=AD.setor_fat[i][1];return`<tr><td>${nome}</td><td><div style="background:#f1f5f9;border-radius:3px;height:7px;overflow:hidden;display:flex"><div style="width:${c/mxS*100}%;background:rgba(37,99,235,.5)"></div><div style="width:${f/mxS*100}%;background:rgba(124,58,237,.5)"></div></div></td><td>${c?R(c):'—'}</td><td>${c?Pct(c/tC*100):'—'}</td><td>${f?R(f):'—'}</td><td>${f?Pct(f/tF*100):'—'}</td><td style="font-weight:700">${R(tot)}</td><td>${Pct(tot/tH*100)}</td></tr>`;}).join('')+'</tbody><tfoot><tr><td>TOTAL</td><td></td><td>'+R(tC)+'</td><td>100%</td><td>'+R(tF)+'</td><td>100%</td><td>'+R(tH)+'</td><td>100%</td></tr></tfoot></table>';
+})();
 </script>
 </body>
 </html>
