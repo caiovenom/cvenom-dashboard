@@ -19,37 +19,37 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{
-  --brand:#0f172a;--gold:#c8a84b;--green:#16a34a;--red:#dc2626;
-  --orange:#ea580c;--blue:#2563eb;--purple:#7c3aed;
-  --bg:#eef2f7;--card:#ffffff;--border:#e8edf3;--muted:#64748b;--text:#1e293b;
-  --sh:0 2px 10px rgba(15,23,42,.08),0 1px 3px rgba(15,23,42,.05);
-  --sh-sm:0 1px 4px rgba(15,23,42,.06);
-  --sh-md:0 4px 20px rgba(15,23,42,.11),0 2px 6px rgba(15,23,42,.06);
-  --r:14px;--r-sm:8px;
+  --brand:#1a1a2e;--gold:#c8a84b;--green:#22c55e;--red:#ef4444;
+  --orange:#f97316;--blue:#2563eb;--purple:#7c3aed;--cyan:#00b4d8;
+  --bg:#f3f5f8;--card:#ffffff;--border:#e5e7eb;--muted:#9ca3af;--text:#1f2937;
+  --sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --sh-sm:0 1px 2px rgba(0,0,0,.05);
+  --sh-md:0 4px 16px rgba(0,0,0,.09),0 2px 4px rgba(0,0,0,.05);
+  --r:12px;--r-sm:8px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);font-size:13px;-webkit-font-smoothing:antialiased;}
 
 /* HEADER */
-.hdr{background:#fff;box-shadow:var(--sh-sm);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;}
-.hdr-brand{font-size:15px;font-weight:900;color:var(--brand);letter-spacing:-.3px;}
+.hdr{background:#fff;box-shadow:var(--sh-sm);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;border-bottom:1px solid var(--border);}
+.hdr-brand{font-size:15px;font-weight:900;color:var(--brand);letter-spacing:-.5px;}
 .hdr-brand span{color:var(--gold);}
 .hdr-meta{font-size:11px;color:var(--muted);text-align:right;}
 .hdr-meta strong{display:block;color:var(--brand);font-size:12px;font-weight:700;}
 
-/* TABS — pill style */
-.tabs{background:#fff;box-shadow:0 1px 0 var(--border);display:flex;padding:8px 20px;gap:4px;overflow-x:auto;position:sticky;top:52px;z-index:199;}
-.tab-btn{padding:7px 17px;border:none;background:none;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);border-radius:20px;white-space:nowrap;transition:all .18s;font-family:inherit;}
-.tab-btn:hover{background:var(--bg);color:var(--text);}
-.tab-btn.active{background:var(--brand);color:#fff;font-weight:700;}
+/* TABS — Kinvo lifted card style */
+.tabs{background:var(--bg);border-bottom:1px solid var(--border);display:flex;padding:12px 24px 0;gap:2px;overflow-x:auto;position:sticky;top:52px;z-index:199;}
+.tab-btn{padding:10px 20px 11px;border:1px solid transparent;border-bottom:none;background:transparent;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);border-radius:8px 8px 0 0;white-space:nowrap;transition:all .15s;font-family:inherit;margin-bottom:-1px;}
+.tab-btn:hover{color:var(--brand);}
+.tab-btn.active{background:#fff;color:var(--brand);font-weight:700;border-color:var(--border);border-bottom-color:#fff;}
 
 /* LAYOUT */
 .content{padding:20px 24px;max-width:1300px;margin:0 auto;}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
 
-/* SECTION HEADER */
-.sec{font-size:10.5px;font-weight:700;color:var(--muted);margin:22px 0 10px;text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:8px;}
-.sec::after{content:'';flex:1;height:1px;background:var(--border);}
+/* SECTION HEADER — Kinvo | bar style */
+.sec{font-size:16px;font-weight:800;color:var(--brand);margin:24px 0 14px;display:flex;align-items:center;gap:10px;letter-spacing:-.2px;}
+.sec::before{content:'';display:block;width:4px;height:22px;background:var(--cyan);border-radius:3px;flex-shrink:0;}
 .sec:first-child{margin-top:0;}
 
 /* TABLES */
@@ -70,12 +70,15 @@ tbody tr:hover{background:#fafbfc;}
 .warn-b{display:inline-block;background:#fff7ed;color:var(--orange);border:1px solid #fed7aa;border-radius:4px;font-size:9.5px;font-weight:700;padding:1px 5px;margin-left:3px;vertical-align:middle;}
 .ativo-b{display:inline-block;background:#f0fdf4;color:var(--green);border:1px solid #bbf7d0;border-radius:4px;font-size:9.5px;font-weight:700;padding:1px 5px;margin-left:3px;vertical-align:middle;}
 
-/* CARDS */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px;}
-.card{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);border:none;}
-.card-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;}
-.card-value{font-size:15px;font-weight:800;color:var(--brand);}
-.card-sub{font-size:10px;color:var(--muted);margin-top:3px;}
+/* CARDS — Kinvo style */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:16px;}
+.card{background:var(--card);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);border:1px solid var(--border);}
+.card-label{font-size:11.5px;color:var(--muted);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.card-label::before{content:'';display:block;width:3px;height:14px;background:var(--brand);border-radius:2px;flex-shrink:0;}
+.card-value{font-size:20px;font-weight:800;color:var(--brand);letter-spacing:-.4px;margin-bottom:10px;}
+.card-divider{height:1px;background:var(--border);margin:0 0 8px;}
+.card-sub{font-size:11px;color:var(--muted);}
+.card-sub strong,.card-sub b{color:var(--cyan);font-weight:700;}
 .card.gold .card-value{color:var(--gold);}
 .card.green .card-value{color:var(--green);}
 .card.purple .card-value{color:var(--purple);}
@@ -83,8 +86,8 @@ tbody tr:hover{background:#fafbfc;}
 /* ALLOC */
 .alloc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;margin-bottom:16px;}
 .alloc-item{background:var(--card);border-radius:var(--r-sm);padding:10px 12px;text-align:center;box-shadow:var(--sh-sm);}
-.alloc-label{font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px;}
-.alloc-val{font-size:12.5px;font-weight:800;color:var(--brand);}
+.alloc-label{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
+.alloc-val{font-size:13px;font-weight:800;color:var(--brand);}
 .alloc-ideal{font-size:10px;color:var(--muted);}
 .alloc-item.over .alloc-val{color:var(--red);}
 .alloc-item.under .alloc-val{color:var(--orange);}
@@ -96,15 +99,15 @@ tbody tr:hover{background:#fafbfc;}
 @media(max-width:900px){.chart-row-3{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.chart-row,.chart-row-3{grid-template-columns:1fr;}}
 .chart-wrap{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);}
-.chart-title{font-size:10.5px;font-weight:700;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;}
+.chart-title{font-size:14px;font-weight:800;color:var(--brand);margin-bottom:14px;display:flex;align-items:center;gap:9px;letter-spacing:-.1px;}.chart-title::before{content:'';display:block;width:3px;height:18px;background:var(--cyan);border-radius:2px;flex-shrink:0;}
 
 /* PROGRESS */
 .prog-wrap{background:var(--card);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;box-shadow:var(--sh-sm);}
 .prog-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
 .prog-track{background:#eef2f7;border-radius:20px;height:8px;overflow:hidden;margin-bottom:6px;}
 .prog-fill{height:8px;border-radius:20px;}
-.prog-fill.gold{background:linear-gradient(90deg,var(--gold),#f59e0b);}
-.prog-fill.green{background:linear-gradient(90deg,var(--gold),var(--green));}
+.prog-fill.gold{background:linear-gradient(90deg,var(--cyan),var(--gold));}
+.prog-fill.green{background:linear-gradient(90deg,var(--cyan),var(--green));}
 .prog-fill.blue{background:linear-gradient(90deg,#2563eb,#7c3aed);}
 .prog-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
 
@@ -144,8 +147,8 @@ tbody tr:hover{background:#fafbfc;}
 .prov-card.purple::before{background:var(--purple);}
 .prov-card.red::before{background:var(--red);}
 .prov-card.orange::before{background:var(--orange);}
-.prov-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
-.prov-val{font-size:20px;font-weight:800;color:var(--brand);letter-spacing:-.3px;}
+.prov-label{font-size:11.5px;color:var(--muted);font-weight:500;margin-bottom:8px;}
+.prov-val{font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.5px;}
 .prov-sub{font-size:10px;color:var(--muted);margin-top:4px;}
 
 /* PROJEÇÕES */
@@ -155,7 +158,7 @@ tbody tr:hover{background:#fafbfc;}
 .proj-val{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.2px;}
 .proj-month{font-size:11px;color:var(--muted);margin-top:3px;}
 .proj-bar-wrap{margin-top:8px;background:#eef2f7;border-radius:20px;height:5px;}
-.proj-bar-fill{height:5px;border-radius:20px;background:linear-gradient(90deg,var(--gold),var(--green));}
+.proj-bar-fill{height:5px;border-radius:20px;background:linear-gradient(90deg,var(--cyan),var(--green));}
 .proj-meta{font-size:9px;color:var(--muted);margin-top:4px;}
 
 /* PROV TABLE */
@@ -342,7 +345,7 @@ tbody tr:hover{background:#fafbfc;}
 .ap-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-bottom:16px;}
 .ap-hcard{background:var(--card);border-radius:var(--r);padding:16px 18px;position:relative;overflow:hidden;box-shadow:var(--sh);}
 .ap-hcard::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:14px 0 0 14px;}
-.ap-hcard.gold::before{background:var(--gold);}
+.ap-hcard.gold::before{background:var(--cyan);}
 .ap-hcard.blue::before{background:#2563eb;}
 .ap-hcard.purple::before{background:#7c3aed;}
 .ap-hcard.green::before{background:var(--green);}
@@ -360,7 +363,7 @@ tbody tr:hover{background:#fafbfc;}
 .ap-g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-bottom:14px;}
 @media(max-width:900px){.ap-g2,.ap-g3{grid-template-columns:1fr;}}
 .ap-cw{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);}
-.ap-ct{font-size:10.5px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.ap-ct{font-size:15px;font-weight:800;color:var(--brand);margin-bottom:12px;display:flex;align-items:center;gap:9px;letter-spacing:-.1px;}.ap-ct::before{content:'';display:block;width:3px;height:18px;background:var(--cyan);border-radius:2px;flex-shrink:0;}
 
 /* TABELA MENSAL */
 .ap-tbl{width:100%;border-collapse:collapse;background:var(--card);}
@@ -480,38 +483,38 @@ const FIIS=[
   {t:'KNRI11',p:163.02,pm:149.73,q:161,  v:26246.22, teto:164.00,ms:0.60,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.50,chg:0.19,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:110.10,chg:-0.02,dy:9.16,pvp:0.94,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:107.19,chg:-0.62,dy:8.40,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.32,chg:0.65,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:109.80,chg:0.98,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.52,chg:0.80,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:103.40,chg:0.28,dy:9.38,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.55,chg:0.26,dy:11.16,pvp:0.92,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:160.00,chg:0.25,dy:8.25,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.85,chg:0.45,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:82.98,chg:2.33,dy:15.22,pvp:0.93,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.11,chg:0.70,dy:13.59,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:131.38,chg:1.20,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:76.95,chg:2.55,dy:6.24,pvp:0.71,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.80,chg:0.02,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.05,chg:-0.29,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:109.93,chg:0.37,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:108.72,chg:0.13,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.17,chg:-1.08,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:108.05,chg:1.68,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.19,chg:0.21,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:102.99,chg:-0.11,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:107.47,chg:-0.24,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:162.00,chg:-0.25,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:96.31,chg:-0.35,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:80.80,chg:-0.06,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:80.55,chg:-1.26,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:128.64,chg:-0.74,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:75.00,chg:-0.08,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.07,chg:-0.25,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:83.50,chg:0.76,pl:25.23,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.43,chg:-2.55,pl:24.86,dy:9.96,pvp:2.56,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:20.70,chg:-0.29,pl:9.32,dy:1.36,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.52,chg:-0.20,pl:19.73,dy:6.72,pvp:1.65,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.54,chg:-1.21,pl:8.02,dy:9.24,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.33,chg:-6.27,pl:9.64,dy:3.07,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:12.96,chg:-1.59,pl:8.53,dy:75.00,pvp:1.64,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.57,chg:0.22,pl:14.48,dy:5.62,pvp:2.74,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:38.29,chg:-0.83,pl:39.47,dy:8.55,pvp:1.73,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:45.47,chg:1.04,pl:5.59,dy:8.53,pvp:1.41,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.39,chg:-0.86,pl:11.91,dy:8.05,pvp:3.79,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:43.13,chg:-1.35,pl:28.75,dy:93.00,pvp:10.39,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.12,chg:-1.04,pl:7.20,dy:15.28,pvp:5.24,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.36,chg:-1.16,pl:7.31,dy:1.35,pvp:0.90,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
+  {t:'VALE3',p:83.25,chg:-0.24,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.82,chg:-1.06,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:21.32,chg:-1.02,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:36.33,chg:0.86,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:29.74,chg:-1.13,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:8.02,chg:-0.50,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:13.03,chg:-1.66,pl:8.80,dy:7.30,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:33.16,chg:-1.46,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:39.77,chg:-2.85,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:45.68,chg:-1.62,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.28,chg:-0.75,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:43.39,chg:-1.74,pl:28.93,dy:1.54,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.21,chg:-0.26,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.28,chg:0,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -945,7 +948,7 @@ function renderCarteira(){
 
   mkC('chartAloc',{type:'doughnut',data:{
     labels:['Ações BR','FIIs','Renda Fixa','Caixa','Ações US$'],
-    datasets:[{data:[tA,tF,RF,CAIXA,ACOES_US],backgroundColor:['#2563eb','#c8a84b','#16a34a','#64748b','#ea580c'],borderWidth:2,borderColor:'#fff'}]
+    datasets:[{data:[tA,tF,RF,CAIXA,ACOES_US],backgroundColor:['#7c3aed','#00b4d8','#22c55e','#9ca3af','#f97316'],borderWidth:2,borderColor:'#fff'}]
   },options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
     title:()=>'Carteira',
     label:()=>null,
@@ -977,7 +980,7 @@ function renderCarteira(){
       const reais=sign+'R$'+(Math.abs(diff)/1000).toFixed(0)+'k';
       return[p.ano, reais];
     }),
-    datasets:[{label:'Patrimônio',data:PATRIM_EVOL.map(p=>p.v),backgroundColor:['rgba(200,168,75,.75)','rgba(200,168,75,.75)','rgba(200,168,75,.75)','rgba(200,168,75,.75)','rgba(22,163,74,.8)'],borderRadius:5}]
+    datasets:[{label:'Patrimônio',data:PATRIM_EVOL.map(p=>p.v),backgroundColor:['rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(34,197,94,.8)'],borderRadius:5}]
   },options:{responsive:true,plugins:{legend:{display:false},tooltip:{enabled:false,external:makeTooltip,callbacks:{label:c=>{
     const i=c.dataIndex;
     if(i===0)return`Patrimônio: ${brl(c.raw)}`;
@@ -1092,9 +1095,9 @@ function renderProventos(){
   document.querySelectorAll(`.mo-row[data-yr="${lastYr}"]`).forEach(r=>r.classList.add('visible'));
 
   mkC('chartAnual',{type:'bar',data:{labels:ANUAL.map(a=>a.ano+(a.parcial?'*':'')),datasets:[
-    {label:'FIIs', data:ANUAL.map(a=>a.fii), backgroundColor:'rgba(200,168,75,.85)',borderRadius:3},
-    {label:'Ações',data:ANUAL.map(a=>a.acoes),backgroundColor:'rgba(37,99,235,.75)', borderRadius:3},
-    {label:'Dólar',data:ANUAL.map(a=>a.dolar),backgroundColor:'rgba(22,163,74,.7)',  borderRadius:3},
+    {label:'FIIs', data:ANUAL.map(a=>a.fii), backgroundColor:'rgba(0,180,216,.8)',borderRadius:4},
+    {label:'Ações',data:ANUAL.map(a=>a.acoes),backgroundColor:'rgba(124,58,237,.75)',borderRadius:4},
+    {label:'Dólar',data:ANUAL.map(a=>a.dolar),backgroundColor:'rgba(34,197,94,.7)', borderRadius:4},
   ]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{font:{size:11}}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
       label:c=>` ${c.dataset.label}: ${brl(c.raw)}`,
       footer:items=>'Total: '+brl(items.reduce((s,i)=>s+i.raw,0))
@@ -1103,9 +1106,9 @@ function renderProventos(){
   const u12=MENSAIS.slice(-12);
   const prev12=MENSAIS.slice(-24,-12);
   mkC('chartMensal',{type:'line',data:{labels:u12.map(m=>m.m),datasets:[
-    {label:'Total',      data:u12.map(m=>m.total),   borderColor:'rgba(200,168,75,1)',  backgroundColor:'rgba(200,168,75,.10)',borderWidth:2,  pointRadius:3,fill:true, tension:0.3},
-    {label:'Ações',      data:u12.map(m=>m.acoes),   borderColor:'rgba(37,99,235,.85)', backgroundColor:'transparent',         borderWidth:1.5,pointRadius:2,fill:false,tension:0.3},
-    {label:'FIIs',       data:u12.map(m=>m.fii),     borderColor:'rgba(22,163,74,.75)', backgroundColor:'transparent',         borderWidth:1.5,pointRadius:2,fill:false,tension:0.3},
+    {label:'Total',      data:u12.map(m=>m.total),   borderColor:'#00b4d8',backgroundColor:'rgba(0,180,216,.08)',borderWidth:2.5,pointRadius:3,fill:true, tension:0.4},
+    {label:'Ações',      data:u12.map(m=>m.acoes),   borderColor:'#7c3aed',            backgroundColor:'transparent',         borderWidth:1.5,pointRadius:2,fill:false,tension:0.4},
+    {label:'FIIs',       data:u12.map(m=>m.fii),     borderColor:'#22c55e',            backgroundColor:'transparent',         borderWidth:1.5,pointRadius:2,fill:false,tension:0.4},
     {label:'12m ant.',   data:prev12.map(m=>m.total),borderColor:'rgba(200,168,75,.38)',backgroundColor:'transparent',         borderWidth:1.5,pointRadius:2,fill:false,tension:0.3,borderDash:[5,4]},
   ]},options:{responsive:true,plugins:{legend:{labels:{font:{size:11},usePointStyle:true}},tooltip:{enabled:false,external:makeTooltip,callbacks:{label:c=>` ${c.dataset.label}: ${brl(c.raw)}`}}},interaction:{mode:'index',intersect:false},scales:{x:{ticks:{font:{size:9},maxRotation:45}},y:{ticks:{callback:v=>brlK(v),font:{size:10}}}}}});
 }
@@ -1270,8 +1273,8 @@ document.getElementById('ap-hero').innerHTML=[
 const cTot=AD.months.map(m=>Math.round(AD.resumos[m].compras.total));
 const vTot=AD.months.map(m=>-Math.round(AD.resumos[m].vendas.total));
 new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.labels,datasets:[
-  {label:'Compras',data:cTot,backgroundColor:'rgba(22,163,74,.75)',borderRadius:3},
-  {label:'Vendas',data:vTot,backgroundColor:'rgba(220,38,38,.65)',borderRadius:3},
+  {label:'Compras',data:cTot,backgroundColor:'rgba(34,197,94,.8)',borderRadius:5},
+  {label:'Vendas',data:vTot,backgroundColor:'rgba(249,115,22,.75)',borderRadius:5},
 ]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{font:{size:10}}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
     label:c=>{const v=Math.abs(c.raw);const tot=Math.abs(c.chart.data.datasets.reduce((a,d)=>a+(d.data[c.dataIndex]||0),0));return ` ${c.dataset.label}: ${R(v)}${tot>0?' ('+Pct(v/tot*100)+')':''}`;},
     afterBody:items=>{
@@ -1298,7 +1301,7 @@ AD.months.forEach(m=>{const c=AD.resumos[m].compras;totAcoes+=c.acoes;totFiis+=c
 new Chart(document.getElementById('ap-classe'),{type:'doughnut',data:{
   labels:['Ações','FIIs','Renda Fixa','Outros'],
   datasets:[{data:[Math.round(totAcoes),Math.round(totFiis),Math.round(totRF),Math.round(totOutros)],
-    backgroundColor:['#2563eb','#16a34a','#c8a84b','#94a3b8'],borderWidth:1,borderColor:'#fff'}]
+    backgroundColor:['#7c3aed','#00b4d8','#22c55e','#9ca3af'],borderWidth:1,borderColor:'#fff'}]
 },options:{responsive:true,cutout:'58%',plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
     title:()=>'Aportes por Classe',
     label:()=>null,
@@ -1312,7 +1315,7 @@ new Chart(document.getElementById('ap-classe'),{type:'doughnut',data:{
 
 // CHART PESSOA
 new Chart(document.getElementById('ap-pessoa'),{type:'doughnut',data:{
-  labels:['Caio','Fatima'],datasets:[{data:[Math.round(totC),Math.round(totF)],backgroundColor:['rgba(37,99,235,.85)','rgba(124,58,237,.85)'],borderWidth:2,borderColor:'#fff'}]
+  labels:['Caio','Fatima'],datasets:[{data:[Math.round(totC),Math.round(totF)],backgroundColor:['#00b4d8','#7c3aed'],borderWidth:2,borderColor:'#fff'}]
 },options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
     title:()=>'Aportes por Pessoa',
     label:()=>null,
