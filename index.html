@@ -950,7 +950,10 @@ function renderProventos(){
     {label:'FIIs', data:ANUAL.map(a=>a.fii), backgroundColor:'rgba(200,168,75,.85)',borderRadius:3},
     {label:'Ações',data:ANUAL.map(a=>a.acoes),backgroundColor:'rgba(37,99,235,.75)', borderRadius:3},
     {label:'Dólar',data:ANUAL.map(a=>a.dolar),backgroundColor:'rgba(22,163,74,.7)',  borderRadius:3},
-  ]},options:{responsive:true,plugins:{legend:{labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+brl(c.raw)}}},scales:{x:{stacked:true,ticks:{font:{size:11}}},y:{stacked:true,ticks:{callback:v=>brlK(v),font:{size:10}}}}}});
+  ]},options:{responsive:true,plugins:{legend:{labels:{font:{size:11}}},tooltip:{callbacks:{
+      label:c=>` ${c.dataset.label}: ${brl(c.raw)}`,
+      footer:items=>'Total: '+brl(items.reduce((s,i)=>s+i.raw,0))
+    }}},scales:{x:{stacked:true,ticks:{font:{size:11}}},y:{stacked:true,ticks:{callback:v=>brlK(v),font:{size:10}}}}}});
 
   const u12=MENSAIS.slice(-12);
   const prev12=MENSAIS.slice(-24,-12);
@@ -1126,7 +1129,22 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
   {label:'Vendas',data:vTot,backgroundColor:'rgba(220,38,38,.65)',borderRadius:3},
 ]},options:{responsive:true,plugins:{legend:{labels:{font:{size:10}}},tooltip:{callbacks:{
     label:c=>{const v=Math.abs(c.raw);const tot=Math.abs(c.chart.data.datasets.reduce((a,d)=>a+(d.data[c.dataIndex]||0),0));return ` ${c.dataset.label}: ${R(v)}${tot>0?' ('+Pct(v/tot*100)+')':''}`;},
-    footer:items=>'Total: '+R(items.reduce((a,i)=>a+Math.abs(i.raw),0))
+    afterBody:items=>{
+      const m=AD.months[items[0].dataIndex];
+      const mData=AD.data[m]||{};
+      const compras={},vendas={};
+      ['Caio','Fatima'].forEach(p=>{
+        Object.entries(mData[p]?.compras||{}).forEach(([t,v])=>{compras[t]=(compras[t]||0)+v;});
+        Object.entries(mData[p]?.vendas||{}).forEach(([t,v])=>{vendas[t]=(vendas[t]||0)+v;});
+      });
+      const lines=[];
+      const sc=Object.entries(compras).sort((a,b)=>b[1]-a[1]);
+      const sv=Object.entries(vendas).sort((a,b)=>b[1]-a[1]);
+      if(sc.length){lines.push('── Compras ──');sc.forEach(([t,v])=>lines.push('  '+t+': '+R(v)));}
+      if(sv.length){lines.push('── Vendas ──');sv.forEach(([t,v])=>lines.push('  '+t+': '+R(v)));}
+      return lines;
+    },
+    footer:items=>'Total movimentado: '+R(items.reduce((a,i)=>a+Math.abs(i.raw),0))
   }}},scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9},callback:v=>v<0?'-'+R(-v):R(v)}}}}});
 
 // CHART CLASSES (Ações / FIIs / RF)
@@ -1152,6 +1170,20 @@ const pc=(totC/totH*100).toFixed(1),pf=(totF/totH*100).toFixed(1);
 document.getElementById('ap-share').innerHTML=`<div style="background:#f1f5f9;border-radius:5px;height:10px;overflow:hidden;margin:6px 0 3px;display:flex"><div style="width:${pc}%;background:#2563eb;height:10px"></div><div style="width:${pf}%;background:#7c3aed;height:10px"></div></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted)"><span><span class="ap-bc">Caio</span> ${pc}%</span><span><span class="ap-bf">Fatima</span> ${pf}%</span></div>`;
 
 // TOP ATIVOS POR ANO
+// Net CDB: subtract rollover redemptions so balance reflects real new capital
+['2025','2026'].forEach(ano=>{
+  const mths=AD.months.filter(m=>m.startsWith(ano));
+  let cC=0,cV=0;
+  mths.forEach(m=>['Caio','Fatima'].forEach(p=>{cC+=(AD.data[m]?.[p]?.compras?.CDB||0);cV+=(AD.data[m]?.[p]?.vendas?.CDB||0);}));
+  const netCDB=Math.max(0,cC-cV);
+  const entry=AD.top_por_ano[ano]?.find(e=>e.ticker==='CDB');
+  if(entry&&netCDB<entry.valor){
+    entry.valor=netCDB;
+    const tot=AD.top_por_ano[ano].reduce((s,e)=>s+e.valor,0);
+    AD.top_por_ano[ano].forEach(e=>e.pct=e.valor/tot*100);
+    AD.top_por_ano[ano].sort((a,b)=>b.valor-a.valor);
+  }
+});
 const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b2','#0f172a','#64748b','#9333ea'];
 ['2025','2026'].forEach(ano=>{
   const top=AD.top_por_ano[ano];
