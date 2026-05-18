@@ -75,12 +75,12 @@ tbody tr:hover{background:#f9fafb;}
 .card{background:var(--card);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh-sm);border:1px solid var(--border);}
 .card-label{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .card-label::before{content:'';display:block;width:3px;height:13px;background:var(--brand);border-radius:2px;flex-shrink:0;}
-.card-value{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.4px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px;}
+.card-value{font-size:17px;font-weight:800;color:#2563eb;letter-spacing:-.4px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px;}
 .card-sub{font-size:11.5px;color:var(--muted);line-height:1.5;}
 .card-sub strong,.card-sub b{color:var(--cyan);font-weight:600;}
 .card.gold .card-value{color:var(--gold);}
 .card.green .card-value{color:var(--green);}
-.card.purple .card-value{color:var(--brand);}
+.card.purple .card-value{color:#2563eb;}
 
 /* ALLOC */
 .alloc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;margin-bottom:16px;}
@@ -482,36 +482,36 @@ const FIIS=[
   {t:'KNRI11',p:163.02,pm:149.73,q:161,  v:26246.22, teto:164.00,ms:0.60,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.17,chg:-0.21,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'HGLG11',p:155.16,chg:-0.22,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
   {t:'VISC11',p:109.01,chg:-0.99,dy:9.16,pvp:0.94,caixa:0,s:'Shopping',cor:'#7c3aed'},
   {t:'LVBI11',p:106.56,chg:-0.59,dy:8.40,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.29,chg:-0.32,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:109.09,chg:-0.65,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'BTHF11',p:9.30,chg:-0.21,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:109.10,chg:-0.64,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
   {t:'IRIM11',p:66.67,chg:0.23,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:102.64,chg:0.05,dy:9.38,pvp:0.99,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'BTLG11',p:102.65,chg:0.06,dy:9.38,pvp:0.99,caixa:0,s:'Logístico',cor:'#16a34a'},
   {t:'PMLL11',p:107.38,chg:-0.16,dy:11.16,pvp:0.92,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:158.69,chg:-0.82,dy:8.25,pvp:0.99,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'KNRI11',p:158.83,chg:-0.73,dy:8.25,pvp:0.99,caixa:0,s:'Híbrido',cor:'#ea580c'},
   {t:'MCCI11',p:95.28,chg:-0.59,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
   {t:'RECR11',p:81.05,chg:-2.33,dy:15.22,pvp:0.93,caixa:0,s:'Papel',cor:'#b45309'},
   {t:'VGIP11',p:81.32,chg:0.26,dy:13.59,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:129.31,chg:-1.58,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'HGRU11',p:129.35,chg:-1.55,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
   {t:'PVBI11',p:74.40,chg:-3.31,dy:6.24,pvp:0.71,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.69,chg:-0.12,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'TRXF11',p:91.70,chg:-0.11,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
   {t:'VALE3',p:82.10,chg:-1.68,pl:24.80,dy:8.26,pvp:1.90,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
   {t:'KLBN11',p:16.35,chg:-0.49,pl:24.74,dy:9.96,pvp:2.54,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:20.34,chg:-1.74,pl:9.16,dy:1.36,pvp:0.62,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.17,chg:-0.99,pl:19.54,dy:6.72,pvp:1.64,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.44,chg:-0.35,pl:7.99,dy:9.24,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.42,chg:1.23,pl:9.76,dy:3.07,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:12.81,chg:-1.16,pl:8.43,dy:75.00,pvp:1.62,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.16,chg:-1.26,pl:14.29,dy:5.62,pvp:2.70,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'BBAS3',p:20.33,chg:-1.79,pl:9.16,dy:1.36,pvp:0.62,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:35.15,chg:-1.04,pl:19.53,dy:6.72,pvp:1.63,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:28.43,chg:-0.39,pl:7.99,dy:9.24,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:7.40,chg:0.95,pl:9.74,dy:3.07,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:12.80,chg:-1.23,pl:8.42,dy:75.00,pvp:1.62,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:32.15,chg:-1.29,pl:14.29,dy:5.62,pvp:2.70,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
   {t:'TAEE11',p:38.44,chg:0.39,pl:39.63,dy:8.55,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:46.04,chg:1.25,pl:5.66,dy:8.53,pvp:1.43,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'PETR4',p:46.03,chg:1.23,pl:5.66,dy:8.53,pvp:1.43,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
   {t:'CXSE3',p:17.49,chg:0.58,pl:11.98,dy:8.05,pvp:3.81,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:42.48,chg:-1.51,pl:28.32,dy:93.00,pvp:10.23,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'WEGE3',p:42.47,chg:-1.53,pl:28.31,dy:93.00,pvp:10.23,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
   {t:'BBSE3',p:34.10,chg:-0.06,pl:7.19,dy:15.28,pvp:5.24,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
   {t:'BBDC3',p:15.30,chg:-0.39,pl:7.29,dy:1.35,pvp:0.90,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
 ];
