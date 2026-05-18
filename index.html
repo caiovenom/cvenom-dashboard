@@ -21,7 +21,7 @@
 :root{
   --brand:#111827;--gold:#c8a84b;--green:#22c55e;--red:#f97316;
   --orange:#f97316;--blue:#7c3aed;--purple:#7c3aed;--cyan:#00b3d9;
-  --bg:#f5f6f8;--card:#ffffff;--border:#ebebeb;--muted:#8a8a9a;--text:#111827;
+  --bg:#f5f5f5;--card:#ffffff;--border:#ebebeb;--muted:#8c8c8c;--text:#111827;
   --sh:0 1px 4px rgba(0,0,0,.05);
   --sh-sm:0 1px 2px rgba(0,0,0,.04);
   --sh-md:0 4px 12px rgba(0,0,0,.08);
@@ -33,7 +33,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 /* HEADER */
 .hdr{background:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;border-bottom:1px solid var(--border);}
 .hdr-brand{font-size:14px;font-weight:700;color:var(--brand);letter-spacing:-.2px;}
-.hdr-brand span{color:var(--gold);}
+.hdr-brand span{color:var(--brand);}
 .hdr-meta{font-size:11px;color:var(--muted);text-align:right;}
 .hdr-meta strong{display:block;color:var(--brand);font-size:12px;font-weight:600;}
 
@@ -44,8 +44,9 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .tab-btn.active{background:#fff;color:var(--brand);font-weight:600;border-color:var(--border);border-bottom-color:#fff;}
 
 /* LAYOUT */
-.content{padding:24px 28px;max-width:1320px;margin:0 auto;}
-.tab-panel{display:none;}.tab-panel.active{display:block;}
+.content{padding:20px 24px;max-width:1320px;margin:0 auto;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;background:var(--card);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh-sm);padding:24px 26px;}
 
 /* SECTION HEADER — Kinvo | bar style */
 .sec{font-size:17px;font-weight:700;color:var(--brand);margin:28px 0 16px;display:flex;align-items:center;gap:10px;letter-spacing:-.3px;}
@@ -53,9 +54,9 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .sec:first-child{margin-top:0;}
 
 /* TABLES */
-.tbl-wrap{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh);background:var(--card);}
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border);}
 table{width:100%;border-collapse:collapse;background:var(--card);}
-thead th{background:#fafafa;padding:10px 11px;text-align:right;font-size:10px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:1px solid var(--border);letter-spacing:.4px;text-transform:uppercase;}
+thead th{background:var(--card);padding:10px 11px;text-align:right;font-size:10px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:1px solid var(--border);letter-spacing:.4px;text-transform:uppercase;}
 thead th:first-child,thead th:nth-child(2){text-align:left;}
 tbody td{padding:8px 11px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;font-size:12.5px;}
 tbody td:first-child{text-align:left;font-weight:700;color:var(--brand);}
@@ -63,7 +64,7 @@ tbody td:nth-child(2){text-align:left;color:var(--muted);font-size:11px;}
 tbody tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:#f9fafb;}
 .pos{color:var(--green)!important;font-weight:700;}
-.neg{color:var(--red)!important;font-weight:700;}
+.neg{color:var(--muted)!important;font-weight:500;}
 
 /* BADGES */
 .sell-b{display:inline-block;background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:4px;font-size:9.5px;font-weight:700;padding:1px 5px;margin-left:3px;vertical-align:middle;}
@@ -72,8 +73,8 @@ tbody tr:hover{background:#f9fafb;}
 
 /* CARDS — Kinvo style */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:18px;}
-.card{background:var(--card);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh-sm);border:1px solid var(--border);}
-.card-label{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.card{background:var(--card);border-radius:var(--r);padding:20px 22px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid var(--border);}
+.card-label{font-size:12px;color:var(--brand);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .card-label::before{content:'';display:block;width:3px;height:13px;background:var(--brand);border-radius:2px;flex-shrink:0;}
 .card-value{font-size:17px;font-weight:800;color:#2563eb;letter-spacing:-.4px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px;}
 .card-sub{font-size:11.5px;color:var(--muted);line-height:1.5;}
@@ -81,10 +82,11 @@ tbody tr:hover{background:#f9fafb;}
 .card.gold .card-value{color:var(--gold);}
 .card.green .card-value{color:var(--green);}
 .card.purple .card-value{color:#2563eb;}
+.card.pat .card-value{color:#7c3aed;}
 
 /* ALLOC */
 .alloc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;margin-bottom:16px;}
-.alloc-item{background:var(--card);border-radius:var(--r-sm);padding:12px 14px;text-align:center;border:1px solid var(--border);}
+.alloc-item{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;text-align:center;border:1px solid var(--border);}
 .alloc-label{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
 .alloc-val{font-size:13px;font-weight:800;color:var(--brand);}
 .alloc-ideal{font-size:10px;color:var(--muted);}
@@ -97,17 +99,17 @@ tbody tr:hover{background:#f9fafb;}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
 @media(max-width:900px){.chart-row-3{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.chart-row,.chart-row-3{grid-template-columns:1fr;}}
-.chart-wrap{background:var(--card);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh-sm);border:1px solid var(--border);}
+.chart-wrap{background:var(--bg);border-radius:var(--r-sm);padding:20px 22px;border:1px solid var(--border);}
 .chart-title{font-size:14px;font-weight:700;color:var(--brand);margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px;}.chart-title::before{content:'';display:block;width:3px;height:18px;background:var(--brand);border-radius:2px;flex-shrink:0;}
 
 /* PROGRESS */
-.prog-wrap{background:var(--card);border-radius:var(--r);padding:18px 22px;margin-bottom:12px;box-shadow:var(--sh-sm);border:1px solid var(--border);}
+.prog-wrap{background:var(--bg);border-radius:var(--r-sm);padding:18px 22px;margin-bottom:10px;border:1px solid var(--border);}
 .prog-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
 .prog-track{background:#efefef;border-radius:20px;height:5px;overflow:hidden;margin-bottom:6px;}
 .prog-fill{height:6px;border-radius:20px;}
-.prog-fill.gold{background:linear-gradient(90deg,var(--cyan),var(--gold));}
-.prog-fill.green{background:linear-gradient(90deg,var(--cyan),var(--green));}
-.prog-fill.blue{background:linear-gradient(90deg,#2563eb,#7c3aed);}
+.prog-fill.gold{background:#2563eb;}
+.prog-fill.green{background:#22c55e;}
+.prog-fill.blue{background:#7c3aed;}
 .prog-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
 
 /* FII TOOLBAR */
@@ -128,7 +130,7 @@ tbody tr:hover{background:#f9fafb;}
 .fii-price span{font-size:11px;font-weight:400;color:var(--muted);}
 .fii-chg{font-size:11px;font-weight:700;}
 .fii-chg.up{color:var(--green);}
-.fii-chg.down{color:var(--red);}
+.fii-chg.down{color:var(--muted);}
 .fii-div{height:1px;background:var(--border);margin:9px 0 8px;}
 .fii-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;}
 .fii-mlabel{font-size:9px;color:var(--muted);font-weight:500;margin-bottom:2px;}
@@ -157,13 +159,13 @@ tbody tr:hover{background:#f9fafb;}
 .proj-val{font-size:19px;font-weight:800;color:var(--brand);letter-spacing:-.4px;}
 .proj-month{font-size:11px;color:var(--muted);margin-top:3px;}
 .proj-bar-wrap{margin-top:8px;background:#eef2f7;border-radius:20px;height:5px;}
-.proj-bar-fill{height:5px;border-radius:20px;background:linear-gradient(90deg,var(--cyan),var(--green));}
+.proj-bar-fill{height:5px;border-radius:20px;background:#2563eb;}
 .proj-meta{font-size:9px;color:var(--muted);margin-top:4px;}
 
 /* PROV TABLE */
 .prov-table .yr-row{cursor:pointer;user-select:none;}
-.prov-table .yr-row td{background:#f8fafc;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
-.prov-table .yr-row:hover td{background:#f1f5f9!important;}
+.prov-table .yr-row td{background:#ececec;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
+.prov-table .yr-row:hover td{background:#e5e5e5!important;}
 .prov-table .yr-row td:first-child::before{content:'▶  ';font-size:9px;opacity:.5;}
 .prov-table .yr-row.open td:first-child::before{content:'▼  ';}
 .prov-table .mo-row{display:none;}
@@ -198,7 +200,7 @@ tbody tr:hover{background:#f9fafb;}
 .banner.static{background:#f8fafc;border-color:var(--border);color:var(--muted);}
 
 /* PREV BOX */
-.prev-box{background:#eff6ff;border:none;border-radius:var(--r);padding:16px;margin-bottom:16px;box-shadow:var(--sh-sm);}
+.prev-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;margin-bottom:16px;}
 .prev-title{font-size:10.5px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px;}
 .prev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;}
 .prev-item{background:#fff;border:none;border-radius:var(--r-sm);padding:12px 14px;box-shadow:var(--sh-sm);}
@@ -313,17 +315,17 @@ tbody tr:hover{background:#f9fafb;}
   <div class="prog-wrap">
     <div class="prog-label">Independência Financeira — Meta R$40.000/mês em proventos</div>
     <div class="prog-track"><div class="prog-fill green" id="ms-fill" style="width:0%"></div></div>
-    <div class="prog-row"><span>R$0</span><span id="ms-cur"></span><span>R$40.000/mês</span></div>
+    <div class="prog-row"><span>R$0</span><span id="ms-cur" style="font-weight:700;color:#22c55e"></span><span>R$40.000/mês</span></div>
   </div>
   <div class="prog-wrap" style="margin-top:-6px">
     <div class="prog-label" id="fii-prog-label">Meta FIIs — R$10.000/mês</div>
     <div class="prog-track"><div class="prog-fill gold" id="fii-prog-fill" style="width:0%"></div></div>
-    <div class="prog-row"><span>R$0</span><span id="fii-prog-cur" style="font-weight:700;color:var(--gold)"></span><span>R$10.000/mês</span></div>
+    <div class="prog-row"><span>R$0</span><span id="fii-prog-cur" style="font-weight:700;color:#2563eb"></span><span>R$10.000/mês</span></div>
   </div>
   <div class="prog-wrap" style="margin-top:-6px">
     <div class="prog-label" id="acoes-prog-label">Meta Ações — R$30.000/mês</div>
     <div class="prog-track"><div class="prog-fill blue" id="acoes-prog-fill" style="width:0%"></div></div>
-    <div class="prog-row"><span>R$0</span><span id="acoes-prog-cur" style="font-weight:700;color:#2563eb"></span><span>R$30.000/mês</span></div>
+    <div class="prog-row"><span>R$0</span><span id="acoes-prog-cur" style="font-weight:700;color:#7c3aed"></span><span>R$30.000/mês</span></div>
   </div>
   <div class="chart-row">
     <div class="chart-wrap"><div class="chart-title">Evolução Anual de Proventos</div><canvas id="chartAnual" height="200"></canvas></div>
@@ -333,7 +335,7 @@ tbody tr:hover{background:#f9fafb;}
   <div class="proj-grid" id="proj-grid"></div>
   <div class="sec">Histórico Mensal Completo</div>
   <div class="tbl-wrap"><table class="prov-table"><thead><tr>
-    <th style="text-align:left">Período</th><th>FIIs</th><th>Ações</th><th>Dólar</th><th>Total</th><th>vs Ano Ant.</th><th>Méd. Mensal</th>
+    <th style="text-align:left">Período</th><th>FIIs</th><th>Ações</th><th>Dólar</th><th>Total</th><th>vs Ano Ant.</th><th>Méd. Mensal</th><th>Por Dia</th>
   </tr></thead><tbody id="prov-body"></tbody></table></div>
 </div>
 <div id="tab-pontos" class="tab-panel"><div id="alerts-content" class="alert-list"></div></div>
@@ -349,29 +351,38 @@ tbody tr:hover{background:#f9fafb;}
 .ap-hcard.purple::before{background:#7c3aed;}
 .ap-hcard.green::before{background:var(--green);}
 .ap-hcard.red::before{background:var(--red);}
-.ap-hl{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:10px;display:flex;align-items:center;gap:8px;}.ap-hl::before{content:'';display:block;width:3px;height:13px;background:var(--brand);border-radius:2px;flex-shrink:0;}
+.ap-hl{font-size:12px;color:var(--brand);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;}.ap-hl::before{content:'';display:block;width:3px;height:13px;background:var(--brand);border-radius:2px;flex-shrink:0;}
 .ap-hv{font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.5px;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:8px;}
 .ap-hcard.blue .ap-hv{color:#2563eb;}
 .ap-hcard.purple .ap-hv{color:#7c3aed;}
 .ap-hcard.green .ap-hv{color:var(--green);}
 .ap-hcard.red .ap-hv{color:var(--red);}
+.ap-hcard.dark-val .ap-hv{color:#64748b!important;}
+.ap-hcard.dark-val::before{background:#64748b!important;}
 .ap-hs{font-size:11.5px;color:var(--muted);}
 .ap-bc{display:inline-block;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;border-radius:5px;font-size:10px;font-weight:700;padding:1px 6px;}
 .ap-bf{display:inline-block;background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe;border-radius:5px;font-size:10px;font-weight:700;padding:1px 6px;}
 .ap-g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
 .ap-g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-bottom:14px;}
 @media(max-width:900px){.ap-g2,.ap-g3{grid-template-columns:1fr;}}
-.ap-cw{background:var(--card);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh-sm);border:1px solid var(--border);}
+.ap-cw{background:var(--bg);border-radius:var(--r-sm);padding:20px 22px;border:1px solid var(--border);}
 .ap-ct{font-size:14px;font-weight:700;color:var(--brand);margin-bottom:14px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px;}.ap-ct::before{content:'';display:block;width:3px;height:18px;background:var(--brand);border-radius:2px;flex-shrink:0;}
 
 /* TABELA MENSAL */
 .ap-tbl{width:100%;border-collapse:collapse;background:var(--card);}
-.ap-tbl thead th{background:#fafafa;padding:10px 11px;font-size:10px;font-weight:600;color:var(--muted);text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;text-transform:uppercase;letter-spacing:.4px;}
+.ap-tbl thead th{background:var(--card);padding:10px 11px;font-size:10px;font-weight:600;color:var(--muted);text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;text-transform:uppercase;letter-spacing:.4px;}
 .ap-tbl thead th:first-child{text-align:left;}
 .ap-tbl tbody td{padding:8px 11px;font-size:12.5px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
 .ap-tbl tbody td:first-child{text-align:left;font-weight:700;color:var(--brand);}
 .ap-tbl tbody tr:hover{background:#f9fafb;}
-.ap-tbl tfoot td{padding:8px 10px;font-size:12px;font-weight:700;text-align:right;background:#f8fafc;border-top:2px solid var(--border);}
+.ap-tbl .yr-row{cursor:pointer;user-select:none;}
+.ap-tbl .yr-row td{background:#ececec;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
+.ap-tbl .yr-row:hover td{background:#e5e5e5!important;}
+.ap-tbl .yr-row td:first-child::before{content:'▶  ';font-size:9px;opacity:.5;}
+.ap-tbl .yr-row.open td:first-child::before{content:'▼  ';}
+.ap-tbl .mo-row{display:none;}
+.ap-tbl .mo-row.visible{display:table-row;}
+.ap-tbl tfoot td{padding:8px 10px;font-size:12px;font-weight:700;text-align:right;background:#ececec;border-top:2px solid var(--border);}
 .ap-tbl tfoot td:first-child{text-align:left;}
 .ap-pill{display:inline-block;border-radius:4px;font-size:9px;font-weight:700;padding:1px 5px;margin-left:3px;}
 .pill-a{background:#eff6ff;color:#2563eb;}
@@ -400,7 +411,7 @@ tbody tr:hover{background:#f9fafb;}
 .mes-chip.sell{background:#fef2f2;color:var(--red);border:1px solid #fecaca;}
 </style>
 
-<div class="sec">Visão Geral · Mai/2025 → Mai/2026</div>
+<div class="sec">Movimentações · últ. 12 meses</div>
 <div class="ap-hero" id="ap-hero"></div>
 
 <div class="ap-g3">
@@ -482,38 +493,38 @@ const FIIS=[
   {t:'KNRI11',p:163.02,pm:149.73,q:161,  v:26246.22, teto:164.00,ms:0.60,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.16,chg:-0.22,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:109.01,chg:-0.99,dy:9.16,pvp:0.94,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:106.56,chg:-0.59,dy:8.40,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.30,chg:-0.21,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:109.10,chg:-0.64,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.67,chg:0.23,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:102.65,chg:0.06,dy:9.38,pvp:0.99,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.38,chg:-0.16,dy:11.16,pvp:0.92,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:158.83,chg:-0.73,dy:8.25,pvp:0.99,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.28,chg:-0.59,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.05,chg:-2.33,dy:15.22,pvp:0.93,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.32,chg:0.26,dy:13.59,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:129.35,chg:-1.55,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:74.40,chg:-3.31,dy:6.24,pvp:0.71,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.70,chg:-0.11,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.25,chg:-0.16,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:108.85,chg:-1.14,dy:9.16,pvp:0.94,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:106.67,chg:-0.49,dy:8.40,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.29,chg:-0.32,dy:13.00,pvp:0.93,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:109.68,chg:-0.11,dy:10.05,pvp:1.00,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.44,chg:-0.12,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:102.79,chg:0.19,dy:9.38,pvp:0.99,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:107.40,chg:-0.14,dy:11.16,pvp:0.92,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:158.78,chg:-0.76,dy:8.25,pvp:0.99,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:96.15,chg:0.31,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:81.16,chg:-2.19,dy:15.22,pvp:0.93,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.15,chg:0.05,dy:13.59,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:129.65,chg:-1.32,dy:8.68,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:74.44,chg:-3.26,dy:6.24,pvp:0.71,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.31,chg:-0.53,dy:12.16,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:82.10,chg:-1.68,pl:24.80,dy:8.26,pvp:1.90,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.35,chg:-0.49,pl:24.74,dy:9.96,pvp:2.54,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'VALE3',p:82.00,chg:-1.80,pl:24.77,dy:8.26,pvp:1.90,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.39,chg:-0.24,pl:24.80,dy:9.96,pvp:2.55,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
   {t:'BBAS3',p:20.33,chg:-1.79,pl:9.16,dy:1.36,pvp:0.62,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.15,chg:-1.04,pl:19.53,dy:6.72,pvp:1.63,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.43,chg:-0.39,pl:7.99,dy:9.24,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.40,chg:0.95,pl:9.74,dy:3.07,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:12.80,chg:-1.23,pl:8.42,dy:75.00,pvp:1.62,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.15,chg:-1.29,pl:14.29,dy:5.62,pvp:2.70,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:38.44,chg:0.39,pl:39.63,dy:8.55,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:46.03,chg:1.23,pl:5.66,dy:8.53,pvp:1.43,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.49,chg:0.58,pl:11.98,dy:8.05,pvp:3.81,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:42.47,chg:-1.53,pl:28.31,dy:93.00,pvp:10.23,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.10,chg:-0.06,pl:7.19,dy:15.28,pvp:5.24,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.30,chg:-0.39,pl:7.29,dy:1.35,pvp:0.90,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
+  {t:'VIVT3',p:35.09,chg:-1.21,pl:19.49,dy:6.72,pvp:1.63,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:28.51,chg:-0.11,pl:8.01,dy:9.24,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:7.32,chg:-0.14,pl:9.63,dy:3.07,pvp:0.18,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:12.83,chg:-1.00,pl:8.44,dy:75.00,pvp:1.62,mb:25.32,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:32.32,chg:-0.77,pl:14.36,dy:5.62,pvp:2.71,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:38.51,chg:0.57,pl:39.70,dy:8.55,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:46.01,chg:1.19,pl:5.66,dy:8.53,pvp:1.43,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.52,chg:0.75,pl:12.00,dy:8.05,pvp:3.82,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:42.50,chg:-1.46,pl:28.33,dy:93.00,pvp:10.24,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.21,chg:0.26,pl:7.22,dy:15.28,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.32,chg:-0.26,pl:7.30,dy:1.35,pvp:0.90,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -911,7 +922,7 @@ function renderCarteira(){
   const caioPct=(CAIO/PAT*100).toFixed(1);
 
   document.getElementById('summary-cards').innerHTML=`<div class="cards">
-    <div class="card"><div class="card-label">Patrimônio Total</div><div class="card-value">${brl(PAT)}</div><div class="card-sub">Caio + Fatima · ao vivo</div></div>
+    <div class="card pat"><div class="card-label">Patrimônio Total</div><div class="card-value">${brl(PAT)}</div><div class="card-sub">CVENOM ® HOLDING</div></div>
     <div class="card"><div class="card-label">Caio</div><div class="card-value">${brl(CAIO)}</div><div class="card-sub">${caioPct}% do total</div></div>
     <div class="card purple"><div class="card-label">Fatima</div><div class="card-value">${brl(FATIMA)}</div><div class="card-sub">${fatPct}% · incl. INSS+IBMPREV</div></div>
     <div class="card gold"><div class="card-label">Meta R$7M (nov/29)</div><div class="card-value">${(PAT/META_7M*100).toFixed(1)}%</div><div class="card-sub">${brl(META_7M-PAT)} de distância</div></div>
@@ -939,7 +950,7 @@ function renderCarteira(){
     <div class="prog-wrap" style="margin-bottom:8px">
       <div class="prog-label">Meta R$7M — Novembro/2029</div>
       <div class="prog-track"><div class="prog-fill gold" style="width:${Math.min(PAT/META_7M*100,100).toFixed(1)}%"></div></div>
-      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:var(--gold)">${brl(PAT)} (${(PAT/META_7M*100).toFixed(1)}%)</span><span>R$7M</span></div>
+      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:#2563eb">${brl(PAT)} (${(PAT/META_7M*100).toFixed(1)}%)</span><span>R$7M</span></div>
     </div>`;
 
   document.getElementById('acoes-body').innerHTML=ACOES.map(renderAcaoRow).join('');
@@ -972,15 +983,20 @@ function renderCarteira(){
   document.getElementById('tbl-set-f').innerHTML=tblW('Segmento',fk.map((s,i)=>tblR(s,fm[s],tF,FC[i%FC.length])).join(''),tF);
 
   mkC('chartPatrim',{type:'bar',data:{
-    labels:PATRIM_EVOL.map((p,i)=>{
-      if(i===0)return p.ano;
-      const diff=p.v-PATRIM_EVOL[i-1].v;
-      const sign=diff>=0?'+':'';
-      const reais=sign+'R$'+(Math.abs(diff)/1000).toFixed(0)+'k';
-      return[p.ano, reais];
-    }),
+    labels:PATRIM_EVOL.map(p=>p.ano),
     datasets:[{label:'Patrimônio',data:PATRIM_EVOL.map(p=>p.v),backgroundColor:['rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(0,180,216,.65)','rgba(34,197,94,.8)'],borderRadius:5}]
-  },options:{responsive:true,plugins:{legend:{display:false},tooltip:{enabled:false,external:makeTooltip,callbacks:{label:c=>`Patrimônio: ${brl(c.raw)}`}}},scales:{x:{ticks:{font:{size:10},maxRotation:0}},y:{ticks:{callback:v=>'R$'+(v/1000000).toFixed(1)+'M',font:{size:10}}}}}});
+  },options:{responsive:true,plugins:{legend:{display:false},tooltip:{enabled:false,external:makeTooltip,callbacks:{
+      title:items=>PATRIM_EVOL[items[0].dataIndex].ano,
+      label:c=>`Patrimônio: ${brl(c.raw)}`,
+      afterBody:items=>{
+        const i=items[0].dataIndex;
+        if(i===0)return[];
+        const diff=PATRIM_EVOL[i].v-PATRIM_EVOL[i-1].v;
+        const pct=((PATRIM_EVOL[i].v/PATRIM_EVOL[i-1].v-1)*100).toFixed(1);
+        const s=diff>=0?'+':'';
+        return[`Upside: ${s}${brl(diff)}`,`Crescimento: ${s}${pct}%`];
+      }
+    }}},scales:{x:{ticks:{font:{size:10},maxRotation:0}},y:{ticks:{callback:v=>'R$'+(v/1000000).toFixed(1)+'M',font:{size:10}}}}}});
 }
 
 // ── PROVENTOS ────────────────────────────────────────────────────────────────
@@ -1003,12 +1019,12 @@ function renderProventos(){
 
   // Prov-hero cards
   document.getElementById('prov-hero').innerHTML=`
-    <div class="prov-card gold"><div class="prov-label">Total Histórico</div><div class="prov-val">${brl(totalHist)}</div><div class="prov-sub">Caio+Fatima desde 2018</div></div>
-    <div class="prov-card green"><div class="prov-label">Melhor Mês</div><div class="prov-val" style="color:var(--green)">${brl(melhorMes.total)}</div><div class="prov-sub">${melhorMes.m} 🏆</div></div>
-    <div class="prov-card blue"><div class="prov-label">Média Mensal 2026</div><div class="prov-val" style="color:#2563eb">${brl(media2026)}</div><div class="prov-sub">Últ 12m: ${brl(media12m)}</div></div>
-    <div class="prov-card purple"><div class="prov-label">Projeção 2026</div><div class="prov-val" style="color:var(--purple)">${brl(proj2026)}</div><div class="prov-sub">DY s/ renda variável: ${dyRV}%</div></div>
-    <div class="prov-card red"><div class="prov-label">Renda FIIs — Média 6m</div><div class="prov-val" style="font-size:16px">${brl(fii6avg)}/mês</div><div class="prov-sub">Meta R$10k · gap ${brl(META_FII_MENSAL-fii6avg)}/mês</div></div>
-    <div class="prov-card orange"><div class="prov-label">Renda Ações — Média 6m</div><div class="prov-val" style="font-size:16px;color:var(--orange)">${brl(acoes6avg)}/mês</div><div class="prov-sub">Meta R$30k · gap ${brl(META_ACOES_MENSAL-acoes6avg)}/mês</div></div>`;
+    <div class="prov-card purple"><div class="prov-label">Total Histórico</div><div class="prov-val" style="color:var(--purple)">${brl(totalHist)}</div><div class="prov-sub">Caio+Fatima desde 2018</div></div>
+    <div class="prov-card blue"><div class="prov-label">Melhor Mês</div><div class="prov-val" style="color:#2563eb">${brl(melhorMes.total)}</div><div class="prov-sub">${melhorMes.m} 🏆</div></div>
+    <div class="prov-card blue"><div class="prov-label">Média Mensal 2026</div><div class="prov-val">${brl(media2026)}</div><div class="prov-sub">Últ 12m: ${brl(media12m)}</div></div>
+    <div class="prov-card purple"><div class="prov-label">Projeção 2026</div><div class="prov-val">${brl(proj2026)}</div><div class="prov-sub">DY s/ renda variável: ${dyRV}%</div></div>
+    <div class="prov-card blue"><div class="prov-label">Renda FIIs — Média 6m</div><div class="prov-val" style="font-size:16px;color:#2563eb">${brl(fii6avg)}/mês</div><div class="prov-sub">Meta R$10k · gap ${brl(META_FII_MENSAL-fii6avg)}/mês</div></div>
+    <div class="prov-card purple"><div class="prov-label">Renda Ações — Média 6m</div><div class="prov-val" style="font-size:16px;color:#7c3aed">${brl(acoes6avg)}/mês</div><div class="prov-sub">Meta R$30k · gap ${brl(META_ACOES_MENSAL-acoes6avg)}/mês</div></div>`;
 
   // Progress bars
   const pctMS=Math.min(renda6avg/META_PROV_MENSAL*100,100);
@@ -1070,7 +1086,7 @@ function renderProventos(){
       :`<td style="text-align:right;color:#94a3b8">—</td>`;
     const nMeses=rows.filter(r=>r.total>0).length||1;
     const medMes=sT/nMeses;
-    h+=`<tr class="yr-row" onclick="toggleYr('${yr}')" data-yr="${yr}"><td><strong>${yr}${yr==='2026'?' (parcial)':''}</strong></td><td style="font-weight:400">${brl(sF)}</td><td style="font-weight:400">${brl(sA)}</td><td style="font-weight:400">${brl(sD)}</td><td><strong>${brl(sT)}</strong></td>${yrYoy}<td style="text-align:right;font-weight:400">${brl(medMes)}</td></tr>`;
+    h+=`<tr class="yr-row" onclick="toggleYr('${yr}')" data-yr="${yr}"><td><strong>${yr}${yr==='2026'?' (parcial)':''}</strong></td><td style="font-weight:400">${brl(sF)}</td><td style="font-weight:400">${brl(sA)}</td><td style="font-weight:400">${brl(sD)}</td><td><strong>${brl(sT)}</strong></td>${yrYoy}<td style="text-align:right;font-weight:400">${brl(medMes)}</td>${pdCell(sT,yrDias)}</tr>`;
     prevT=sT;
     rows.forEach(r=>{
       const mDias=diasMes(r.m.split('/')[0],r.ano);
@@ -1078,7 +1094,7 @@ function renderProventos(){
         <td style="padding-left:18px;font-weight:${r.melhor?700:400};color:${r.melhor?'var(--green)':'var(--brand)'}">${r.m}${r.melhor?' 🏆':''}</td>
         <td>${brl(r.fii)}</td><td>${brl(r.acoes)}</td><td>${brl(r.dolar)}</td>
         <td style="font-weight:700;color:${r.melhor?'var(--green)':'var(--text)'}">${brl(r.total)}</td>
-        ${yoyCell(r)}<td style="text-align:right;color:#cbd5e1">—</td>
+        ${yoyCell(r)}<td style="text-align:right;color:#cbd5e1">—</td><td style="text-align:right;color:#cbd5e1">—</td>
       </tr>`;
     });
   });
@@ -1256,11 +1272,11 @@ const liquido=totCompras-totVendas;
 
 // HERO
 document.getElementById('ap-hero').innerHTML=[
-  {l:'Total Compras',v:R(totCompras),s:'12 meses (bruto)',c:'green'},
+  {l:'Total Compras',v:R(totCompras),s:'12 meses (bruto)',c:'purple'},
   {l:'Total Vendas',v:R(totVendas),s:'12 meses',c:'red'},
-  {l:'Líquido',v:R(liquido),s:'Compras − Vendas',c:'blue'},
-  {l:'Compras Caio',v:R(totC),s:Pct(totC/totH*100)+' do total',c:'blue'},
-  {l:'Compras Fatima',v:R(totF),s:Pct(totF/totH*100)+' do total',c:'purple'},
+  {l:'Líquido',v:R(liquido),s:'Compras − Vendas',c:'green'},
+  {l:'Compras Caio',v:R(totC),s:Pct(totC/totH*100)+' do total',c:'blue dark-val'},
+  {l:'Compras Fatima',v:R(totF),s:Pct(totF/totH*100)+' do total',c:'blue dark-val'},
 ].map(h=>`<div class="ap-hcard ${h.c}"><div class="ap-hl">${h.l}</div><div class="ap-hv">${h.v}</div><div class="ap-hs">${h.s}</div></div>`).join('');
 
 // CHART COMPRAS vs VENDAS MENSAL
@@ -1354,38 +1370,90 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
 
 // TABELA MENSAL
 let sumC={acoes:0,fiis:0,rf:0,total:0},sumV=0;
-const tbody=document.getElementById('ap-tbody');
-tbody.innerHTML=AD.months.map((m,i)=>{
-  const r=AD.resumos[m];
-  const c=r.compras, v=r.vendas.total||0, liq=c.total-v;
-  sumC.acoes+=c.acoes; sumC.fiis+=c.fiis; sumC.rf+=c.rf; sumC.total+=c.total; sumV+=v;
-  const pA=c.total?Pct(c.acoes/c.total*100):'—';
-  const pF=c.total?Pct(c.fiis/c.total*100):'—';
-  const pR=c.total?Pct(c.rf/c.total*100):'—';
-  const liqCls=liq>=0?'style="color:var(--green);font-weight:700"':'style="color:var(--red);font-weight:700"';
+// Agrupar meses por ano
+const yrGroups={};
+AD.months.forEach((m,i)=>{
+  const yr=m.slice(0,4);
+  if(!yrGroups[yr])yrGroups[yr]={months:[],labels:[],idxs:[]};
+  yrGroups[yr].months.push(m);
+  yrGroups[yr].labels.push(AD.labels[i]);
+  yrGroups[yr].idxs.push(i);
+});
 
-  // Picks compras
-  const buyPicks=r.top_compra.slice(0,4).map(([t,v])=>`<span class="mes-chip buy">▲ ${t} ${R(v)}</span>`).join('');
-  const sellPicks=r.top_venda.slice(0,3).map(([t,v])=>`<span class="mes-chip sell">▼ ${t} ${R(v)}</span>`).join('');
+let tbodyHtml='';
+Object.keys(yrGroups).sort().forEach(yr=>{
+  const g=yrGroups[yr];
+  // Totais do ano para a linha de resumo
+  let yrC={acoes:0,fiis:0,rf:0,total:0},yrV=0;
+  g.months.forEach(m=>{
+    const r=AD.resumos[m];
+    yrC.acoes+=r.compras.acoes; yrC.fiis+=r.compras.fiis;
+    yrC.rf+=r.compras.rf; yrC.total+=r.compras.total;
+    yrV+=r.vendas.total||0;
+  });
+  // Acumular totais gerais
+  sumC.acoes+=yrC.acoes; sumC.fiis+=yrC.fiis; sumC.rf+=yrC.rf; sumC.total+=yrC.total; sumV+=yrV;
+  const yrLiq=yrC.total-yrV;
+  const yrLiqStyle=yrLiq>=0?'color:var(--green)':'color:var(--red)';
+  const pA=yrC.total?Pct(yrC.acoes/yrC.total*100):'—';
+  const pF=yrC.total?Pct(yrC.fiis/yrC.total*100):'—';
+  const pR=yrC.total?Pct(yrC.rf/yrC.total*100):'—';
 
-  return `<tr class="mes-row" onclick="toggleMes('d${i}')">
-    <td>${AD.labels[i]}</td>
-    <td>${c.acoes?R(c.acoes):'—'}</td><td>${pA}</td>
-    <td>${c.fiis?R(c.fiis):'—'}</td><td>${pF}</td>
-    <td>${c.rf?R(c.rf):'—'}</td><td>${pR}</td>
-    <td style="font-weight:700">${R(c.total)}</td>
-    <td style="color:var(--red)">${v?R(v):'—'}</td>
-    <td ${liqCls}>${R(liq)}</td>
-    <td style="color:var(--muted);font-size:10px">▼</td>
-  </tr>
-  <tr id="d${i}det" style="display:none"><td colspan="11">
-    <div class="mes-detail-inner">
-      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:4px;">COMPRAS</div>
-      <div class="mes-picks">${buyPicks}</div>
-      ${sellPicks?`<div style="font-size:10px;color:var(--muted);font-weight:600;margin:8px 0 4px">VENDAS</div><div class="mes-picks">${sellPicks}</div>`:''}
-    </div>
-  </td></tr>`;
-}).join('');
+  tbodyHtml+=`<tr class="yr-row" onclick="toggleApYr('${yr}')" data-yr="${yr}">
+    <td>${yr}${yr==='2026'?' (parcial)':''}</td>
+    <td>${R(yrC.acoes)}</td><td>${pA}</td>
+    <td>${R(yrC.fiis)}</td><td>${pF}</td>
+    <td>${yrC.rf?R(yrC.rf):'—'}</td><td>${pR}</td>
+    <td>${R(yrC.total)}</td>
+    <td style="${yrLiq<0?'color:var(--red)':'color:var(--muted)'}">${yrV?R(yrV):'—'}</td>
+    <td style="${yrLiqStyle};font-weight:700">${R(yrLiq)}</td>
+    <td></td>
+  </tr>`;
+
+  g.months.forEach((m,gi)=>{
+    const i=g.idxs[gi];
+    const r=AD.resumos[m];
+    const c=r.compras, v=r.vendas.total||0, liq=c.total-v;
+    const pA2=c.total?Pct(c.acoes/c.total*100):'—';
+    const pF2=c.total?Pct(c.fiis/c.total*100):'—';
+    const pR2=c.total?Pct(c.rf/c.total*100):'—';
+    const liqCls=liq>=0?'color:var(--green);font-weight:700':'color:var(--red);font-weight:700';
+    const buyPicks=r.top_compra.slice(0,4).map(([t,vv])=>`<span class="mes-chip buy">▲ ${t} ${R(vv)}</span>`).join('');
+    const sellPicks=r.top_venda.slice(0,3).map(([t,vv])=>`<span class="mes-chip sell">▼ ${t} ${R(vv)}</span>`).join('');
+
+    tbodyHtml+=`<tr class="mo-row" data-yr="${yr}" onclick="toggleMes('d${i}')">
+      <td style="padding-left:20px;font-weight:400">${g.labels[gi]}</td>
+      <td>${c.acoes?R(c.acoes):'—'}</td><td>${pA2}</td>
+      <td>${c.fiis?R(c.fiis):'—'}</td><td>${pF2}</td>
+      <td>${c.rf?R(c.rf):'—'}</td><td>${pR2}</td>
+      <td style="font-weight:700">${R(c.total)}</td>
+      <td style="color:var(--red)">${v?R(v):'—'}</td>
+      <td style="${liqCls}">${R(liq)}</td>
+      <td style="color:var(--muted);font-size:10px">▼</td>
+    </tr>
+    <tr class="mo-row" data-yr="${yr}" id="d${i}det" style="display:none"><td colspan="11">
+      <div class="mes-detail-inner">
+        <div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:4px;">COMPRAS</div>
+        <div class="mes-picks">${buyPicks}</div>
+        ${sellPicks?`<div style="font-size:10px;color:var(--muted);font-weight:600;margin:8px 0 4px">VENDAS</div><div class="mes-picks">${sellPicks}</div>`:''}
+      </div>
+    </td></tr>`;
+  });
+});
+document.getElementById('ap-tbody').innerHTML=tbodyHtml;
+// Abrir o ano mais recente por padrão
+const lastApYr=Object.keys(yrGroups).sort().pop();
+if(lastApYr){
+  const lastYrRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${lastApYr}"]`);
+  if(lastYrRow){lastYrRow.classList.add('open');document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${lastApYr}"]`).forEach(r=>r.classList.add('visible'));}
+}
+window.toggleApYr=function(yr){
+  const yRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${yr}"]`);
+  const mRows=document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${yr}"]`);
+  const isOpen=yRow.classList.contains('open');
+  yRow.classList.toggle('open',!isOpen);
+  mRows.forEach(r=>{if(!r.id||!r.id.endsWith('det'))r.classList.toggle('visible',!isOpen);});
+};
 
 const liquTot=sumC.total-sumV;
 const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
