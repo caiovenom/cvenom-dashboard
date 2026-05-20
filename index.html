@@ -2,7 +2,7 @@
 {
   "name": "Cvenom Dashboard Diario",
   "schemaVersion": 1,
-  "description": "Dashboard completo da CVENOM® Holding — cotações ao vivo via planilha Google Sheet, gráficos setoriais na aba Carteira, Pontos de Atenção com fundamentação detalhada por ativo, DY calculado somente sobre renda variável. Atualizado 07/05/2026 com dados da planilha.",
+  "description": "Dashboard completo da CVENOM® Holding — cotações ao vivo via brapi.dev, gráficos setoriais na aba Carteira, Pontos de Atenção com fundamentação detalhada por ativo, DY calculado somente sobre renda variável, sem aba Conselho do Mestre.",
   "mcpTools": [
     "mcp__e675dddb-5a81-44d7-a362-c8758a047b87__read_file_content"
   ],
@@ -525,21 +525,21 @@ const FII_SI=[
   {t:'HGLG11',p:154.80,chg:0.49,dy:8.57,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
   {t:'VISC11',p:108.44,chg:0.23,dy:9.32,pvp:0.93,caixa:0,s:'Shopping',cor:'#7c3aed'},
   {t:'LVBI11',p:105.20,chg:0.96,dy:8.64,pvp:0.87,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.25,chg:1.09,dy:13.25,pvp:0.91,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:106.85,chg:0.27,dy:10.36,pvp:0.96,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.51,chg:1.09,dy:14.73,pvp:0.78,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTHF11',p:9.25,chg:1.09,dy:13.25,pvp:0.92,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:106.85,chg:0.27,dy:10.36,pvp:0.97,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.51,chg:1.09,dy:14.73,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
   {t:'BTLG11',p:102.97,chg:0.26,dy:9.46,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
   {t:'PMLL11',p:106.87,chg:0.23,dy:11.25,pvp:0.91,caixa:0,s:'Shopping',cor:'#9333ea'},
   {t:'KNRI11',p:159.80,chg:1.30,dy:8.37,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.85,chg:1.29,dy:12.68,pvp:0.99,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.36,chg:0.94,dy:15.67,pvp:0.91,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.23,chg:0.74,dy:13.67,pvp:0.88,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:130.68,chg:1.64,dy:8.87,pvp:1.00,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:74.20,chg:1.99,dy:6.60,pvp:0.67,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'MCCI11',p:95.85,chg:1.29,dy:12.68,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:81.36,chg:0.94,dy:15.67,pvp:0.92,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.23,chg:0.74,dy:13.67,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:130.68,chg:1.64,dy:8.87,pvp:1.01,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:74.20,chg:1.99,dy:6.60,pvp:0.69,caixa:0,s:'Lajes',cor:'#0f172a'},
   {t:'TRXF11',p:91.15,chg:0.72,dy:12.33,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'HODL11',p:65.20,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
+  {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
   {t:'VALE3',p:82.00,chg:1.21,pl:24.77,dy:8.51,pvp:1.90,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
   {t:'KLBN11',p:16.52,chg:2.61,pl:24.99,dy:10.16,pvp:2.57,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
   {t:'BBAS3',p:20.70,chg:2.32,pl:9.32,dy:1.39,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
