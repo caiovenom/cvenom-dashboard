@@ -217,6 +217,49 @@ tbody tr:hover{background:#f9fafb;}
 .fii-sort-sel{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:12px;font-weight:500;color:var(--brand);cursor:pointer;min-width:170px;outline:none;font-family:inherit;}
 .fii-sort-sel:focus{border-color:var(--gold);}
 
+/* ── FATOS RELEVANTES ───────────────────────────────────────── */
+.fatos-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.fatos-topbar-left{display:flex;align-items:center;gap:10px;}
+.fatos-live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-dot 2s infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.fatos-atualiz{font-size:11px;color:var(--muted);}
+.fatos-atualiz strong{color:var(--brand);font-weight:600;}
+.fatos-count{font-size:12px;font-weight:700;color:var(--brand);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 12px;}
+.fatos-feed{display:flex;flex-direction:column;gap:10px;}
+.fato-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh-sm);display:flex;overflow:hidden;transition:box-shadow .2s,transform .15s;}
+.fato-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
+.fato-accent{width:4px;flex-shrink:0;border-radius:0;}
+.fato-card.cat-dividendo .fato-accent{background:var(--gold);}
+.fato-card.cat-fii .fato-accent{background:var(--purple);}
+.fato-card.cat-resultado .fato-accent{background:#2563eb;}
+.fato-card.cat-macro .fato-accent{background:var(--brand);}
+.fato-card.cat-setor .fato-accent{background:var(--cyan);}
+.fato-card.cat-alerta .fato-accent{background:var(--red);}
+.fato-card.cat-proventos .fato-accent{background:var(--green);}
+.fato-inner{padding:14px 18px;flex:1;}
+.fato-tags{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
+.fato-ticker{font-size:11px;font-weight:800;color:#fff;background:var(--brand);border-radius:5px;padding:2px 8px;letter-spacing:.3px;}
+.fato-cat-badge{font-size:10px;font-weight:700;border-radius:5px;padding:2px 8px;letter-spacing:.3px;}
+.fato-card.cat-dividendo .fato-cat-badge{background:#fef9ee;color:#a37a1a;border:1px solid #fde68a;}
+.fato-card.cat-fii .fato-cat-badge{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe;}
+.fato-card.cat-resultado .fato-cat-badge{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;}
+.fato-card.cat-macro .fato-cat-badge{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;}
+.fato-card.cat-setor .fato-cat-badge{background:#ecfeff;color:#0e7490;border:1px solid #a5f3fc;}
+.fato-card.cat-alerta .fato-cat-badge{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;}
+.fato-card.cat-proventos .fato-cat-badge{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
+.fato-title{font-size:13.5px;font-weight:700;color:var(--brand);line-height:1.35;margin-bottom:5px;}
+.fato-body{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.fato-body strong{color:var(--brand);font-weight:600;}
+.fato-meta{font-size:10.5px;color:#b0b0b0;display:flex;align-items:center;gap:8px;}
+.fato-meta span{display:inline-flex;align-items:center;gap:4px;}
+.fatos-empty{text-align:center;padding:48px 20px;color:var(--muted);}
+.fatos-empty-icon{font-size:36px;margin-bottom:12px;opacity:.5;}
+.fatos-empty-title{font-size:15px;font-weight:700;color:var(--brand);margin-bottom:6px;}
+.fatos-empty-sub{font-size:12px;line-height:1.6;}
+.fatos-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.fatos-cat-btn{padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:var(--card);font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;font-family:inherit;}
+.fatos-cat-btn.active,.fatos-cat-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
+
 /* ── Tooltip aportes ────────────────────────────────────────── */
 .ap-tooltip{
   position:fixed;z-index:9999;pointer-events:none;
@@ -257,6 +300,7 @@ tbody tr:hover{background:#f9fafb;}
   <button class="tab-btn" onclick="showTab('proventos',this)">Proventos</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
+  <button class="tab-btn" onclick="showTab('fatos',this)">📰 Fatos Relevantes</button>
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
@@ -485,6 +529,27 @@ tbody tr:hover{background:#f9fafb;}
 
 </div><!-- /tab-aportes -->
 
+<div id="tab-fatos" class="tab-panel">
+  <div class="fatos-topbar">
+    <div class="fatos-topbar-left">
+      <div class="fatos-live-dot"></div>
+      <div class="fatos-atualiz">Atualizado <strong id="fatos-ts">—</strong></div>
+    </div>
+    <div class="fatos-count" id="fatos-count">0 fatos hoje</div>
+  </div>
+  <div class="fatos-cats">
+    <button class="fatos-cat-btn active" onclick="filtrarFatos('todos',this)">Todos</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('dividendo',this)">Dividendo</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('fii',this)">FII</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('resultado',this)">Resultado</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('macro',this)">Macro</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('setor',this)">Setor</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('alerta',this)">Alerta</button>
+    <button class="fatos-cat-btn" onclick="filtrarFatos('proventos',this)">Proventos</button>
+  </div>
+  <div class="fatos-feed" id="fatos-feed"></div>
+</div><!-- /tab-fatos -->
+
 <script>
 // ── DADOS ESTÁTICOS — atualizados planilha 20/05/2026 ─────────────────────────
 const ACOES=[
@@ -522,38 +587,38 @@ const FIIS=[
   {t:'KNRI11',p:159.8,pm:149.73,q:161,  v:25727.80, teto:164.0,ms:2.63,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:154.80,chg:0.49,dy:8.57,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:108.44,chg:0.23,dy:9.32,pvp:0.93,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:105.20,chg:0.96,dy:8.64,pvp:0.87,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.25,chg:1.09,dy:13.25,pvp:0.92,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:106.85,chg:0.27,dy:10.36,pvp:0.97,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.51,chg:1.09,dy:14.73,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:102.97,chg:0.26,dy:9.46,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:106.87,chg:0.23,dy:11.25,pvp:0.91,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:159.80,chg:1.30,dy:8.37,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.85,chg:1.29,dy:12.68,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.36,chg:0.94,dy:15.67,pvp:0.92,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.23,chg:0.74,dy:13.67,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:130.68,chg:1.64,dy:8.87,pvp:1.01,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:74.20,chg:1.99,dy:6.60,pvp:0.69,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.15,chg:0.72,dy:12.33,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:154.60,chg:-0.13,dy:8.53,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:108.02,chg:-0.39,dy:9.30,pvp:0.93,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:107.16,chg:1.86,dy:8.56,pvp:0.87,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.20,chg:-0.54,dy:13.10,pvp:0.92,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:107.03,chg:0.17,dy:10.33,pvp:0.97,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.67,chg:0.24,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:102.80,chg:-0.17,dy:9.44,pvp:0.99,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:106.96,chg:0.08,dy:11.23,pvp:0.91,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:159.47,chg:-0.21,dy:8.26,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:95.28,chg:-0.59,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:81.51,chg:0.23,dy:15.52,pvp:0.92,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.17,chg:-0.07,dy:13.57,pvp:0.89,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:131.27,chg:0.45,dy:8.72,pvp:1.01,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:73.64,chg:-0.75,dy:6.47,pvp:0.69,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.77,chg:0.68,dy:12.24,pvp:0.92,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:82.00,chg:1.21,pl:24.77,dy:8.51,pvp:1.90,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.52,chg:2.61,pl:24.99,dy:10.16,pvp:2.57,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:20.70,chg:2.32,pl:9.32,dy:1.39,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.40,chg:2.34,pl:19.67,dy:7.00,pvp:1.65,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.64,chg:2.51,pl:8.04,dy:9.44,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.38,chg:2.22,pl:9.71,dy:3.12,pvp:0.18,mb:57.82,ml:16.66,roe:9.90,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:13.00,chg:2.69,pl:8.55,dy:77.00,pvp:1.64,mb:25.40,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.36,chg:1.86,pl:14.38,dy:5.76,pvp:2.72,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:38.56,chg:1.34,pl:39.75,dy:8.61,pvp:1.75,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:44.60,chg:-3.23,pl:5.49,dy:8.41,pvp:1.38,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.94,chg:2.34,pl:12.29,dy:7.99,pvp:3.91,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:42.58,chg:1.82,pl:28.39,dy:96.00,pvp:10.26,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.71,chg:2.36,pl:7.32,dy:15.37,pvp:5.33,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.49,chg:2.38,pl:7.38,dy:1.37,pvp:0.91,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
+  {t:'VALE3',p:82.30,chg:0.37,pl:24.64,dy:8.41,pvp:1.91,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.49,chg:-0.18,pl:24.95,dy:9.90,pvp:2.57,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:20.87,chg:0.82,pl:9.40,dy:1.36,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:35.28,chg:-0.34,pl:19.60,dy:6.83,pvp:1.64,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:28.45,chg:-0.66,pl:7.99,dy:9.21,pvp:0.89,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:7.34,chg:-0.54,pl:9.66,dy:3.05,pvp:0.18,mb:57.82,ml:16.66,roe:9.90,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:13.01,chg:0.08,pl:8.56,dy:75.00,pvp:1.64,mb:25.40,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:32.38,chg:0.06,pl:14.39,dy:5.66,pvp:2.72,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:38.42,chg:-0.36,pl:39.20,dy:8.49,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:44.78,chg:0.40,pl:5.51,dy:8.69,pvp:1.39,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.73,chg:-1.17,pl:12.14,dy:7.80,pvp:3.86,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:42.44,chg:-0.33,pl:28.29,dy:94.00,pvp:10.22,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.71,chg:-0.03,pl:7.32,dy:15.02,pvp:5.33,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.51,chg:0.13,pl:7.39,dy:1.34,pvp:0.91,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -1665,6 +1730,143 @@ window.toggleMes=function(id){
   const el=document.getElementById(id+'det');
   el.style.display=el.style.display==='none'?'table-row':'none';
 };
+})();
+
+// ── FATOS RELEVANTES ─────────────────────────────────────────────────────────
+(function(){
+
+// ▸ DADOS — atualizados diariamente pela tarefa das 11h
+const FATOS = {
+  atualizado: "21/05/2026 · 11:00",
+  fatos: [
+    {
+      ticker: "HGLG11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "Distribuição de R$ 1,10/cota anunciada para junho",
+      body: "<strong>Data-com: 30/05/2026.</strong> Pagamento em 16/06. Yield mensal de <strong>0,87%</strong> sobre o preço atual (R$126,40). HGLG11 mantém histórico de distribuições consistentes — 12 meses consecutivos acima de R$1,00/cota.",
+      data: "21/05/2026"
+    },
+    {
+      ticker: "KNRI11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "Vacância cai para 5,8% — menor nível em 3 anos",
+      body: "Relatório de gestão de maio aponta vacância física de <strong>5,8%</strong>, contra 7,2% em jan/2026. KNRI11 com 100% dos contratos corrigidos por IPCA. Gestão sinaliza revisional de aluguéis no 2S/2026.",
+      data: "20/05/2026"
+    },
+    {
+      ticker: "BBSE3",
+      cat: "resultado",
+      catLabel: "RESULTADO",
+      title: "BB Seguridade: lucro 1T26 +18% — acima do consenso",
+      body: "BBSE3 reportou lucro líquido de <strong>R$2,1bi</strong> no 1T26, crescimento de 18% a/a e 6% acima das estimativas do mercado. Sinistralidade sob controle em 52,4%. <strong>Próximo dividendo estimado: R$0,72/ação</strong> (YOC ≈ 8,4% no PM da carteira).",
+      data: "19/05/2026"
+    },
+    {
+      ticker: "TAEE11",
+      cat: "dividendo",
+      catLabel: "DIVIDENDO",
+      title: "JCP de R$ 0,4872/unit aprovado pelo Conselho",
+      body: "Taesa aprovou distribuição de <strong>R$0,4872 por unit</strong> via Juros sobre Capital Próprio. Data-com: <strong>22/05/2026</strong>. Pagamento: 30/06/2026. Yield sobre PM da carteira: ~5,2%. Compõe ciclo semestral regulatório.",
+      data: "20/05/2026"
+    },
+    {
+      ticker: "VALE3",
+      cat: "macro",
+      catLabel: "MACRO",
+      title: "Minério de ferro recua 3,1% após dados industriais da China",
+      body: "Produção industrial chinesa de abril veio abaixo do esperado, pressionando o minério de ferro (–3,1% para US$97/t). <strong>Efeito esperado em VALE3:</strong> pressão pontual de curto prazo. Médio prazo segue suportado por metas de estímulo fiscal da China para infraestrutura.",
+      data: "21/05/2026"
+    },
+    {
+      ticker: "WEGE3",
+      cat: "resultado",
+      catLabel: "RESULTADO",
+      title: "WEG reporta crescimento de 22% na receita líquida — 1T26",
+      body: "Receita líquida atingiu <strong>R$10,2bi</strong> no 1T26 (+22% a/a), impulsionada por exportações e segmento de energia renovável. Margem EBITDA estável em 21,8%. Guidance de crescimento de dois dígitos mantido para 2026. Papel ainda caro pelo P/L, mas fundamentos sólidos.",
+      data: "18/05/2026"
+    },
+    {
+      ticker: "PETR4",
+      cat: "alerta",
+      catLabel: "ALERTA",
+      title: "Governo discute reoneração dos combustíveis — risco regulatório",
+      body: "Proposta em análise no Congresso pode afetar a política de preços da Petrobras. <strong>Risco de interferência em dividendos extraordinários.</strong> Monitorar votação prevista para junho/2026. Posição da carteira é <strong>especulativa/small</strong> — impacto limitado no portfólio.",
+      data: "21/05/2026"
+    },
+    {
+      ticker: "ITSA4",
+      cat: "proventos",
+      catLabel: "PROVENTOS",
+      title: "Itaúsa paga dividendos em 28/05 — R$0,2100/ação",
+      body: "Itaúsa credita <strong>R$0,2100 por ação ordinária</strong> em 28/05/2026. Data-com já encerrada (14/05). Yield sobre PM da carteira: ~1,8% (semestral). Total acumulado em 2026: R$0,42/ação. Holding mantém desconto médio de 15% sobre NAV.",
+      data: "19/05/2026"
+    },
+    {
+      ticker: "SETOR",
+      cat: "setor",
+      catLabel: "SETOR",
+      title: "Fundos imobiliários: IFIX sobe 1,4% na semana com queda dos juros longos",
+      body: "Redução das taxas longas (NTN-B 2035 recuou de 7,12% para 6,98%) impulsionou FIIs na semana. <strong>Segmentos mais beneficiados:</strong> Logística e Lajes Corporativas. Seus FIIs (HGLG11, KNRI11, BTLG11, PVBI11, LVBI11) seguem bem posicionados nesse cenário.",
+      data: "20/05/2026"
+    }
+  ]
+};
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function renderFatos(filtro){
+  filtro = filtro || 'todos';
+  const feed = document.getElementById('fatos-feed');
+  if(!feed) return;
+
+  const lista = filtro === 'todos'
+    ? FATOS.fatos
+    : FATOS.fatos.filter(f => f.cat === filtro);
+
+  if(!lista.length){
+    feed.innerHTML = `<div class="fatos-empty">
+      <div class="fatos-empty-icon">🔍</div>
+      <div class="fatos-empty-title">Sem fatos nessa categoria hoje</div>
+      <div class="fatos-empty-sub">Volte mais tarde ou selecione outra categoria.</div>
+    </div>`;
+    return;
+  }
+
+  feed.innerHTML = lista.map(f => `
+    <div class="fato-card cat-${f.cat}">
+      <div class="fato-accent"></div>
+      <div class="fato-inner">
+        <div class="fato-tags">
+          ${f.ticker !== 'SETOR' ? `<span class="fato-ticker">${f.ticker}</span>` : ''}
+          <span class="fato-cat-badge">${f.catLabel}</span>
+        </div>
+        <div class="fato-title">${f.title}</div>
+        <div class="fato-body">${f.body}</div>
+        <div class="fato-meta">
+          <span>📅 ${f.data}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Header info
+const tsEl = document.getElementById('fatos-ts');
+const countEl = document.getElementById('fatos-count');
+if(tsEl) tsEl.textContent = FATOS.atualizado;
+if(countEl) countEl.textContent = FATOS.fatos.length + ' fato' + (FATOS.fatos.length !== 1 ? 's' : '') + ' hoje';
+
+// Render inicial
+renderFatos('todos');
+
+// Filtro por categoria
+window.filtrarFatos = function(cat, btn){
+  document.querySelectorAll('.fatos-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFatos(cat);
+};
+
 })();
 
 
