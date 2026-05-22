@@ -337,6 +337,7 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('teto',this)">Teto</th>
     <th class="tbl-sort" onclick="sortAcoesTable('ms',this)">M.S.%</th>
     <th class="tbl-sort" onclick="sortAcoesByDy(this)">DY</th>
+    <th class="tbl-sort" onclick="sortAcoesTable('roe',this)">ROE</th>
   </tr></thead><tbody id="acoes-body"></tbody></table></div>
   <div class="sec" style="margin-top:20px">FIIs — preços ao vivo da planilha</div>
   <div class="tbl-wrap"><table><thead id="fiis-head"><tr>
@@ -961,6 +962,7 @@ function tblSortBy(arr,key,dir){
     else if(key==='yoc'){va=a.div?(a.div/a.pm*100):0;vb=b.div?(b.div/b.pm*100):0;}
     else if(key==='pvp'){va=(_FII_SI_MAP[a.t]||{}).pvp||0;vb=(_FII_SI_MAP[b.t]||{}).pvp||0;}
     else if(key==='dy'){va=(_ACOES_SI_MAP[a.t]||{}).dy||0;vb=(_ACOES_SI_MAP[b.t]||{}).dy||0;}
+    else if(key==='roe'){va=(_ACOES_SI_MAP[a.t]||{}).roe||0;vb=(_ACOES_SI_MAP[b.t]||{}).roe||0;}
     else{va=a[key]||0;vb=b[key]||0;}
     if(typeof va==='string')return dir*va.localeCompare(vb,'pt');
     return dir*(va-vb);
@@ -969,6 +971,8 @@ function tblSortBy(arr,key,dir){
 function renderAcaoRow(a){
   const asi=_ACOES_SI_MAP[a.t]||{};
   const dy=asi.dy!=null?asi.dy.toFixed(2)+'%':'—';
+  const roeVal=asi.roe!=null?asi.roe:null;
+  const roe=roeVal!=null?roeVal.toFixed(1)+'%':'—';
   return`<tr>
     <td>${a.t}${a.sell?'<span class="sell-b">VENDER</span>':''}${a.trim?'<span class="warn-b">TRIM</span>':''}${a.watch?`<span class="warn-b">${a.watch}</span>`:''}</td>
     <td>${a.s}</td><td>${brl(a.p)}</td><td>${brl(a.pm)}</td>
@@ -977,6 +981,7 @@ function renderAcaoRow(a){
     <td>${(a.v/PAT*100).toFixed(2)}%</td><td>${brl(a.teto)}</td>
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${dy}</td>
+    <td>${roe}</td>
   </tr>`;
 }
 function renderFiiRow(f){
