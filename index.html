@@ -2,7 +2,7 @@
 {
   "name": "Cvenom Dashboard Diario",
   "schemaVersion": 1,
-  "description": "Dashboard completo da CVENOM® Holding — cotações ao vivo via brapi.dev, gráficos setoriais na aba Carteira, Pontos de Atenção com fundamentação detalhada por ativo, DY calculado somente sobre renda variável, sem aba Conselho do Mestre.",
+  "description": "Dashboard completo da CVENOM® Holding — cotações ao vivo via planilha Google Sheet, gráficos setoriais na aba Carteira, Pontos de Atenção com fundamentação detalhada por ativo, DY calculado somente sobre renda variável. Atualizado 07/05/2026 com dados da planilha.",
   "mcpTools": [
     "mcp__e675dddb-5a81-44d7-a362-c8758a047b87__read_file_content"
   ],
@@ -578,38 +578,38 @@ const FIIS=[
   {t:'KNRI11',p:159.8,pm:149.73,q:161,  v:25727.80, teto:164.0,ms:2.63,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:154.75,chg:-0.03,dy:8.53,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:107.81,chg:-0.58,dy:9.30,pvp:0.93,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:107.43,chg:2.12,dy:8.56,pvp:0.89,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.19,chg:-0.65,dy:13.10,pvp:0.91,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:107.05,chg:0.19,dy:10.33,pvp:0.97,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.60,chg:0.14,dy:14.57,pvp:0.79,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:103.20,chg:0.22,dy:9.44,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:106.40,chg:-0.44,dy:11.23,pvp:0.91,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:159.92,chg:0.08,dy:8.26,pvp:1.00,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.25,chg:-0.63,dy:12.52,pvp:1.00,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.41,chg:0.06,dy:15.52,pvp:0.92,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:80.66,chg:-0.70,dy:13.57,pvp:0.88,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:132.00,chg:1.01,dy:8.72,pvp:1.02,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:73.32,chg:-1.19,dy:6.47,pvp:0.68,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.76,chg:0.67,dy:12.24,pvp:0.93,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.05,chg:-0.29,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:109.93,chg:0.37,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:108.72,chg:0.13,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.17,chg:-1.08,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:108.05,chg:1.68,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:66.19,chg:0.21,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:102.99,chg:-0.11,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:107.47,chg:-0.24,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:162.00,chg:-0.25,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:96.31,chg:-0.35,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:80.80,chg:-0.06,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:80.55,chg:-1.26,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:128.64,chg:-0.74,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:75.00,chg:-0.08,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.07,chg:-0.25,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
   {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:82.63,chg:0.77,pl:24.74,dy:8.41,pvp:1.91,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.51,chg:-0.06,pl:24.98,dy:9.90,pvp:2.57,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:20.82,chg:0.58,pl:9.38,dy:1.36,pvp:0.64,mb:null,ml:20.42,roe:9.22,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:35.29,chg:-0.31,pl:19.61,dy:6.83,pvp:1.64,mb:48.28,ml:10.50,roe:9.25,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.41,chg:-0.80,pl:7.98,dy:9.21,pvp:0.88,mb:38.81,ml:24.64,roe:11.27,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.35,chg:-0.41,pl:9.67,dy:3.05,pvp:0.18,mb:57.82,ml:16.66,roe:9.90,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:12.99,chg:-0.08,pl:8.55,dy:75.00,pvp:1.64,mb:25.40,ml:2.03,roe:18.40,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.34,chg:-0.06,pl:14.37,dy:5.66,pvp:2.72,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:38.42,chg:-0.36,pl:39.20,dy:8.49,pvp:1.74,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:44.95,chg:0.78,pl:5.53,dy:8.69,pvp:1.39,mb:47.36,ml:21.60,roe:25.60,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.77,chg:-0.95,pl:12.17,dy:7.80,pvp:3.87,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:42.47,chg:-0.26,pl:28.31,dy:94.00,pvp:10.23,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.74,chg:0.09,pl:7.33,dy:15.02,pvp:5.33,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.57,chg:0.52,pl:7.41,dy:1.34,pvp:0.92,mb:null,ml:25.36,roe:13.37,s:'Bancos',cor:'#1e40af'}
+  {t:'VALE3',p:83.25,chg:-0.24,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.82,chg:-1.06,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:21.32,chg:-1.02,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:36.33,chg:0.86,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:29.74,chg:-1.13,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:8.02,chg:-0.50,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:13.03,chg:-1.66,pl:8.80,dy:8.31,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:33.16,chg:-1.46,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:39.77,chg:-2.85,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:45.68,chg:-1.62,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.28,chg:-0.75,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:43.39,chg:-1.74,pl:28.93,dy:2.19,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.21,chg:-0.26,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.28,chg:0,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -676,16 +676,16 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16101,fii:6638,acoes:9463, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3213357}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3206477}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3213357;
-let CAIO = 2424595;
-let FATIMA = 788762;
+let PAT = 3209564;
+let CAIO = 2422108;
+let FATIMA = 787456;
 let RF = 521424;
 let CAIXA = 41113;
-let ACOES_US = 61325;
+let ACOES_US = 61427;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1732,15 +1732,39 @@ window.toggleMes=function(id){
 
 // ▸ DADOS — atualizados diariamente pela tarefa das 11h
 const FATOS = {
-  atualizado: "21/05/2026 · 11:00",
+  atualizado: "22/05/2026 · 11:00",
   fatos: [
     {
-      ticker: "HGLG11",
+      ticker: "CXSE3",
+      cat: "acao",
+      catLabel: "Ação",
+      title: "CXSE3: lucro +13,2% no 1T26 e dividendo de R$0,35/ação",
+      body: "<strong>Caixa Seguridade</strong> lucrou R$1,14bi no 1T26 (+13,2% a/a), receitas operacionais +7,6%. Conselho aprovou <strong>R$0,35/ação</strong> em dividendos (91,9% do lucro). Yield pontual ~2,3% sobre PM da carteira.",
+      data: "22/05/2026"
+    },
+    {
+      ticker: "BBSE3",
+      cat: "acao",
+      catLabel: "Ação",
+      title: "BB Seguridade: lucro de R$2,2bi no 1T26, alta de 11,2%",
+      body: "BBSE3 entregou <strong>R$2,2bi</strong> de lucro no 1T26 (+11,2% a/a), dentro das expectativas. Brasilprev puxou crescimento, resultado financeiro +58,5% e sinistralidade historicamente baixa.",
+      data: "22/05/2026"
+    },
+    {
+      ticker: "XPML11",
       cat: "fii",
       catLabel: "FII",
-      title: "Distribuição de R$ 1,10/cota anunciada para junho",
-      body: "<strong>Data-com: 30/05/2026.</strong> Pagamento em 16/06. Yield mensal de <strong>0,87%</strong> sobre o preço atual (R$126,40). HGLG11 mantém histórico de distribuições consistentes — 12 meses consecutivos acima de R$1,00/cota.",
-      data: "21/05/2026"
+      title: "XPML11 paga R$0,92/cota e vende fatia do Shops Jardins",
+      body: "XP Malls distribuiu <strong>R$0,92 por cota</strong> em maio (yield 11,11% a.a.). O fundo também desinvestiu fatia do Shops Jardins — gestão ativa do portfólio. Data-com: 11/05/2026.",
+      data: "22/05/2026"
+    },
+    {
+      ticker: "TAEE11",
+      cat: "acao",
+      catLabel: "Ação",
+      title: "TAEE11: data-com do JCP R$0,4872/unit foi HOJE",
+      body: "Taesa tinha <strong>data-com hoje, 22/05/2026</strong>, para o JCP de R$0,4872 por unit. Quem carregou o papel até hoje tem direito ao provento. Pagamento: 30/06/2026. Yield semestral ~5,2% sobre PM.",
+      data: "22/05/2026"
     },
     {
       ticker: "KNRI11",
@@ -1748,63 +1772,15 @@ const FATOS = {
       catLabel: "FII",
       title: "Vacância cai para 5,8% — menor nível em 3 anos",
       body: "Relatório de gestão de maio aponta vacância física de <strong>5,8%</strong>, contra 7,2% em jan/2026. KNRI11 com 100% dos contratos corrigidos por IPCA. Gestão sinaliza revisional de aluguéis no 2S/2026.",
-      data: "20/05/2026"
-    },
-    {
-      ticker: "BBSE3",
-      cat: "resultado",
-      catLabel: "RESULTADO",
-      title: "BB Seguridade: lucro 1T26 +18% — acima do consenso",
-      body: "BBSE3 reportou lucro líquido de <strong>R$2,1bi</strong> no 1T26, crescimento de 18% a/a e 6% acima das estimativas do mercado. Sinistralidade sob controle em 52,4%. <strong>Próximo dividendo estimado: R$0,72/ação</strong> (YOC ≈ 8,4% no PM da carteira).",
-      data: "19/05/2026"
-    },
-    {
-      ticker: "TAEE11",
-      cat: "dividendo",
-      catLabel: "DIVIDENDO",
-      title: "JCP de R$ 0,4872/unit aprovado pelo Conselho",
-      body: "Taesa aprovou distribuição de <strong>R$0,4872 por unit</strong> via Juros sobre Capital Próprio. Data-com: <strong>22/05/2026</strong>. Pagamento: 30/06/2026. Yield sobre PM da carteira: ~5,2%. Compõe ciclo semestral regulatório.",
-      data: "20/05/2026"
+      data: "21/05/2026"
     },
     {
       ticker: "VALE3",
       cat: "macro",
-      catLabel: "MACRO",
-      title: "Minério de ferro recua 3,1% após dados industriais da China",
-      body: "Produção industrial chinesa de abril veio abaixo do esperado, pressionando o minério de ferro (–3,1% para US$97/t). <strong>Efeito esperado em VALE3:</strong> pressão pontual de curto prazo. Médio prazo segue suportado por metas de estímulo fiscal da China para infraestrutura.",
+      catLabel: "Macro",
+      title: "Minério de ferro recua 3,1% após dados da China",
+      body: "Produção industrial chinesa de abril abaixo do esperado pressionou o minério (–3,1% para US$97/t). <strong>VALE3:</strong> pressão pontual de curto prazo. Médio prazo suportado pelo estímulo fiscal chinês a infraestrutura.",
       data: "21/05/2026"
-    },
-    {
-      ticker: "WEGE3",
-      cat: "resultado",
-      catLabel: "RESULTADO",
-      title: "WEG reporta crescimento de 22% na receita líquida — 1T26",
-      body: "Receita líquida atingiu <strong>R$10,2bi</strong> no 1T26 (+22% a/a), impulsionada por exportações e segmento de energia renovável. Margem EBITDA estável em 21,8%. Guidance de crescimento de dois dígitos mantido para 2026. Papel ainda caro pelo P/L, mas fundamentos sólidos.",
-      data: "18/05/2026"
-    },
-    {
-      ticker: "PETR4",
-      cat: "alerta",
-      catLabel: "ALERTA",
-      title: "Governo discute reoneração dos combustíveis — risco regulatório",
-      body: "Proposta em análise no Congresso pode afetar a política de preços da Petrobras. <strong>Risco de interferência em dividendos extraordinários.</strong> Monitorar votação prevista para junho/2026. Posição da carteira é <strong>especulativa/small</strong> — impacto limitado no portfólio.",
-      data: "21/05/2026"
-    },
-    {
-      ticker: "ITSA4",
-      cat: "proventos",
-      catLabel: "PROVENTOS",
-      title: "Itaúsa paga dividendos em 28/05 — R$0,2100/ação",
-      body: "Itaúsa credita <strong>R$0,2100 por ação ordinária</strong> em 28/05/2026. Data-com já encerrada (14/05). Yield sobre PM da carteira: ~1,8% (semestral). Total acumulado em 2026: R$0,42/ação. Holding mantém desconto médio de 15% sobre NAV.",
-      data: "19/05/2026"
-    },
-    {
-      ticker: "SETOR",
-      cat: "setor",
-      catLabel: "SETOR",
-      title: "Fundos imobiliários: IFIX sobe 1,4% na semana com queda dos juros longos",
-      body: "Redução das taxas longas (NTN-B 2035 recuou de 7,12% para 6,98%) impulsionou FIIs na semana. <strong>Segmentos mais beneficiados:</strong> Logística e Lajes Corporativas. Seus FIIs (HGLG11, KNRI11, BTLG11, PVBI11, LVBI11) seguem bem posicionados nesse cenário.",
-      data: "20/05/2026"
     }
   ]
 };
