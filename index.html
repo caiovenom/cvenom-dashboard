@@ -542,74 +542,74 @@ tbody tr:hover{background:#f9fafb;}
 </div><!-- /tab-fatos -->
 
 <script>
-// ── DADOS ESTÁTICOS — atualizados planilha 20/05/2026 ─────────────────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 23/05/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:82.0, pm:62.53, q:2687,  v:220334.00, teto:75.0, ms:-8.54,  s:'Mineração'},
-  {t:'EGIE3', p:32.36, pm:28.01, q:3514,  v:113713.04, teto:28.6, ms:-11.62,  s:'Elétrico'},
-  {t:'TAEE11',p:38.56, pm:34.62, q:3352,  v:129253.12, teto:47.33, ms:22.74,  s:'Elétrico'},
-  {t:'ISAE4', p:28.64, pm:23.69, q:6010,  v:172126.40, teto:28.58, ms:-0.21,   s:'Elétrico'},
-  {t:'BBSE3', p:34.71, pm:32.22, q:5639,  v:195729.69, teto:35.5, ms:2.28,   s:'Seguridade'},
-  {t:'CXSE3', p:17.94, pm:15.26, q:10651, v:191078.94, teto:18.7, ms:4.24,   s:'Seguridade'},
-  {t:'BBAS3', p:20.7, pm:22.17, q:11078, v:229314.60, teto:25.0, ms:20.77,  s:'Bancos'},
-  {t:'ITSA4', p:13.0, pm:7.97,  q:7603,  v:98839.00,  teto:11.5, ms:-11.54,  s:'Bancos'},
-  {t:'BBDC3', p:15.49, pm:15.22, q:1600,  v:24784.00,  teto:17.43, ms:12.52,  s:'Bancos'},
-  {t:'SAPR4', p:7.38,  pm:3.58,  q:2309,  v:17040.42,  teto:3.64,  ms:-50.68, s:'Saneamento', sell:true},
-  {t:'KLBN11',p:16.52, pm:16.35, q:4729,  v:78123.08,  teto:28.0, ms:69.49,  s:'Papel/Cel.'},
-  {t:'WEGE3', p:42.58, pm:29.42, q:866,   v:36874.28,  teto:37.0, ms:-13.1, s:'Bens Ind.'},
-  {t:'VIVT3', p:35.4, pm:20.04, q:1680,  v:59472.00,  teto:34.58, ms:-2.32,  s:'Telecom'},
-  {t:'PETR4', p:44.6, pm:30.38, q:1863,  v:83089.80,  teto:38.0, ms:-14.8, s:'Petróleo', trim:true},
-  {t:'HODL11',p:65.20, pm:80.67, q:299,   v:19494.80,  teto:85.00, ms:30.37,  s:'ETF BTC'},
+  {t:'VALE3', p:83.1, pm:62.53, q:2687,  v:223289.7, teto:75.0, ms:-9.75,  s:'Mineração'},
+  {t:'EGIE3', p:32.31, pm:28.01, q:3514,  v:113537.34, teto:28.6, ms:-11.48,  s:'Elétrico'},
+  {t:'TAEE11',p:38.73, pm:34.62, q:3352,  v:129822.96, teto:47.33, ms:22.21,  s:'Elétrico'},
+  {t:'ISAE4', p:28.2, pm:23.69, q:6010,  v:169482.0, teto:28.58, ms:1.35,    s:'Elétrico'},
+  {t:'BBSE3', p:34.47, pm:32.22, q:5639,  v:194376.33, teto:35.5, ms:2.99,   s:'Seguridade'},
+  {t:'CXSE3', p:17.48, pm:15.26, q:10651, v:186179.48, teto:18.7, ms:6.98,   s:'Seguridade'},
+  {t:'BBAS3', p:20.94, pm:22.17, q:11078, v:231973.32, teto:25.0, ms:19.39,  s:'Bancos'},
+  {t:'ITSA4', p:12.87, pm:7.97,  q:7603,  v:97850.61,  teto:11.5, ms:-10.64,  s:'Bancos'},
+  {t:'BBDC3', p:15.42, pm:15.22, q:1600,  v:24672.0,  teto:17.43, ms:13.04,  s:'Bancos'},
+  {t:'SAPR4', p:7.26,  pm:3.58,  q:2309,  v:16763.34,  teto:3.64,  ms:-49.86, s:'Saneamento', sell:true},
+  {t:'KLBN11',p:16.46, pm:16.35, q:4729,  v:77839.34,  teto:28.0, ms:70.11,  s:'Papel/Cel.'},
+  {t:'WEGE3', p:42.73, pm:29.42, q:866,   v:37004.18,  teto:37.0, ms:-13.41, s:'Bens Ind.'},
+  {t:'VIVT3', p:34.81, pm:20.04, q:1680,  v:58480.8,  teto:34.58, ms:-0.66,  s:'Telecom'},
+  {t:'PETR4', p:44.48, pm:30.38, q:1863,  v:82866.24,  teto:38.0, ms:-14.57, s:'Petróleo', trim:true},
+  {t:'HODL11',p:64.05, pm:80.67, q:299,   v:19150.95,  teto:85.00, ms:32.71,  s:'ETF BTC'},
 ];
 const FIIS=[
-  {t:'XPML11',p:106.85,pm:105.12,q:663,  v:70841.55, teto:129.0,ms:20.73, s:'Shopping', div:0.92, yoc:0.88, ativo:true},
-  {t:'PMLL11',p:106.87,pm:102.93,q:553,  v:59099.11, teto:123.0,ms:15.09, s:'Shopping', div:1.00, yoc:0.97},
-  {t:'BTLG11',p:102.97,pm:102.29,q:642,  v:66106.74, teto:112.0,ms:8.77,  s:'Logístico',div:0.81, yoc:0.79, ativo:true},
-  {t:'TRXF11',p:91.15, pm:103.62,q:808,  v:73649.20, teto:123.0,ms:34.94, s:'Híbrido',  div:0.93, yoc:0.89, ativo:true},
-  {t:'HGRU11',p:130.68,pm:121.58,q:408,  v:53317.44, teto:140.0,ms:7.13,  s:'Híbrido',  div:0.95, yoc:0.78, ativo:true},
-  {t:'MCCI11',p:95.85, pm:89.17, q:514,  v:49266.90, teto:95.0, ms:-0.89,  s:'Papel'},
-  {t:'HGLG11',p:154.8,pm:166.66,q:284,  v:43963.20, teto:164.0,ms:5.94,  s:'Logístico',div:1.10, yoc:0.66, ativo:true},
-  {t:'RECR11',p:81.36, pm:83.09, q:710,  v:57765.60, teto:89.0, ms:9.39, s:'Papel',    div:1.034,yoc:1.24, ativo:true},
-  {t:'VGIP11',p:81.23, pm:86.09, q:563,  v:45732.49, teto:90.0, ms:10.8, s:'Papel'},
-  {t:'BTHF11',p:9.25,  pm:10.12, q:4252, v:39331.00, teto:9.0,  ms:-2.7, s:'Hedge'},
-  {t:'PVBI11',p:74.2, pm:81.06, q:511,  v:37916.20, teto:97.0, ms:30.73, s:'Lajes',    div:0.40, yoc:0.49, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:105.2,pm:100.99,q:278,  v:29245.60, teto:113.0,ms:7.41,  s:'Logístico'},
-  {t:'IRIM11',p:66.51, pm:77.95, q:431,  v:28665.81, teto:81.0, ms:21.79, s:'Hedge',    div:0.75, yoc:0.90},
-  {t:'VISC11',p:108.44,pm:109.21,q:188,  v:20386.72, teto:114.0,ms:5.13,  s:'Shopping'},
-  {t:'KNRI11',p:159.8,pm:149.73,q:161,  v:25727.80, teto:164.0,ms:2.63,  s:'Híbrido'},
+  {t:'XPML11',p:107.0,pm:105.12,q:663,  v:70941.0, teto:129.0,ms:20.56, s:'Shopping', div:0.92, yoc:0.88, ativo:true},
+  {t:'PMLL11',p:106.83,pm:102.93,q:553,  v:59076.99, teto:123.0,ms:15.14, s:'Shopping', div:1.00, yoc:0.97},
+  {t:'BTLG11',p:103.5,pm:102.29,q:642,  v:66447.0, teto:112.0,ms:8.21,  s:'Logístico',div:0.81, yoc:0.79, ativo:true},
+  {t:'TRXF11',p:91.76, pm:103.62,q:808,  v:74142.08, teto:123.0,ms:34.05, s:'Híbrido',  div:0.93, yoc:0.89, ativo:true},
+  {t:'HGRU11',p:131.09,pm:121.58,q:408,  v:53484.72, teto:140.0,ms:6.8,  s:'Híbrido',  div:0.95, yoc:0.78, ativo:true},
+  {t:'MCCI11',p:96.17, pm:89.17, q:514,  v:49431.38, teto:95.0, ms:-1.22,  s:'Papel'},
+  {t:'HGLG11',p:155.3,pm:166.66,q:284,  v:44105.2, teto:164.0,ms:5.6,  s:'Logístico',div:1.10, yoc:0.66, ativo:true},
+  {t:'RECR11',p:80.95, pm:83.09, q:710,  v:57474.5, teto:89.0, ms:9.94, s:'Papel',    div:1.034,yoc:1.24, ativo:true},
+  {t:'VGIP11',p:81.33, pm:86.09, q:563,  v:45788.79, teto:90.0, ms:10.66, s:'Papel'},
+  {t:'BTHF11',p:9.24,  pm:10.12, q:4252, v:39288.48, teto:9.0,  ms:-2.60, s:'Hedge'},
+  {t:'PVBI11',p:74.4, pm:81.06, q:511,  v:38018.4, teto:97.0, ms:30.38, s:'Lajes',    div:0.40, yoc:0.49, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:107.53,pm:100.99,q:278,  v:29893.34, teto:113.0,ms:5.09,  s:'Logístico'},
+  {t:'IRIM11',p:67.82, pm:77.95, q:431,  v:29230.42, teto:81.0, ms:19.43, s:'Hedge',    div:0.75, yoc:0.90},
+  {t:'VISC11',p:108.0,pm:109.21,q:188,  v:20304.0, teto:114.0,ms:5.56,  s:'Shopping'},
+  {t:'KNRI11',p:158.75,pm:149.73,q:161,  v:25558.75, teto:164.0,ms:3.31,  s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.05,chg:-0.29,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:109.93,chg:0.37,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:108.72,chg:0.13,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.17,chg:-1.08,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:108.05,chg:1.68,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:66.19,chg:0.21,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:102.99,chg:-0.11,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.47,chg:-0.24,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:162.00,chg:-0.25,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:96.31,chg:-0.35,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:80.80,chg:-0.06,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:80.55,chg:-1.26,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:128.64,chg:-0.74,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:75.00,chg:-0.08,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.07,chg:-0.25,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.3,chg:-0.29,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:108.0,chg:0.37,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:107.53,chg:0.13,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.24,chg:-1.08,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:107.0,chg:1.68,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:67.82,chg:0.21,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:103.5,chg:-0.11,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:106.83,chg:-0.24,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:158.75,chg:-0.25,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:96.17,chg:-0.35,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:80.95,chg:-0.06,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.33,chg:-1.26,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:131.09,chg:-0.74,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:74.4,chg:-0.08,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.76,chg:-0.25,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'HODL11',p:67.33,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:83.25,chg:-0.24,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.82,chg:-1.06,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:21.32,chg:-1.02,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:36.33,chg:0.86,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:29.74,chg:-1.13,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:8.02,chg:-0.50,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:13.03,chg:-1.66,pl:8.80,dy:8.31,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:33.16,chg:-1.46,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:39.77,chg:-2.85,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:45.68,chg:-1.62,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.28,chg:-0.75,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:43.39,chg:-1.74,pl:28.93,dy:2.19,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.21,chg:-0.26,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.28,chg:0,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
+  {t:'HODL11',p:64.05,chg:0,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
+  {t:'VALE3',p:83.1,chg:-0.24,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.46,chg:-1.06,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:20.94,chg:-1.02,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:34.81,chg:0.86,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:28.2,chg:-1.13,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:7.26,chg:-0.50,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:12.87,chg:-1.66,pl:8.80,dy:8.31,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:32.31,chg:-1.46,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:38.73,chg:-2.85,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:44.48,chg:-1.62,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.48,chg:-0.75,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:42.73,chg:-1.74,pl:28.93,dy:2.19,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.47,chg:-0.26,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.42,chg:0,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -618,7 +618,7 @@ const ANUAL=[
   {ano:'2023',total:64886,  fii:29819, acoes:34452, dolar:615},
   {ano:'2024',total:108074, fii:49114, acoes:58170, dolar:790},
   {ano:'2025',total:154228, fii:67106, acoes:86028, dolar:1094},
-  {ano:'2026',total:76092,  fii:29174, acoes:46877, dolar:41, parcial:true},
+  {ano:'2026',total:76737,  fii:29812, acoes:46884, dolar:41, parcial:true},
 ];
 const MENSAIS=[
   {ano:'2022',m:'Jan/22',total:2169, fii:2007,acoes:132,  dolar:30},
@@ -676,7 +676,7 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16101,fii:6638,acoes:9463, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3206477}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3209564}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
@@ -807,7 +807,7 @@ async function loadSheet(){
   }catch(e){
     banner.className='banner static';
     banner.textContent=`📋 Preços via Yahoo Finance · ${new Date().toLocaleDateString('pt-BR')} (planilha indisponível)`;
-    src.textContent='15/05/2026';
+    src.textContent='22/05/2026';
     renderAll();
   }
 }
