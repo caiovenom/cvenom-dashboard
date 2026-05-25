@@ -120,6 +120,23 @@ tbody tr:hover{background:#f9fafb;}
 
 /* FII CARDS */
 .fii-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}
+.atv-perf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.atv-card{background:var(--card);border-radius:var(--r);padding:16px 18px;border:1px solid var(--border);box-shadow:var(--sh-sm);position:relative;overflow:hidden;}
+.atv-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;border-radius:var(--r) var(--r) 0 0;}
+.atv-card.atv-total::before{background:linear-gradient(90deg,var(--cyan),#2563eb);}
+.atv-card.atv-fiis::before{background:linear-gradient(90deg,var(--brand),var(--orange));}
+.atv-card.atv-acoes::before{background:linear-gradient(90deg,#7c3aed,#2563eb);}
+.atv-card.atv-ibov::before{background:linear-gradient(90deg,#16a34a,var(--cyan));}
+.atv-card.atv-ifix::before{background:linear-gradient(90deg,var(--orange),#dc2626);}
+.atv-card.atv-idiv::before{background:linear-gradient(90deg,var(--green),#16a34a);}
+.atv-card.atv-loading{color:var(--muted);font-size:13px;padding:18px;}
+.atv-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.atv-val{font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.5px;margin-bottom:4px;}
+.atv-sub{font-size:13px;font-weight:600;}
+.atv-sub.up{color:var(--green);}
+.atv-sub.down{color:var(--red);}
+.atv-sub.neutral{color:var(--muted);}
+.atv-note{font-size:10px;color:var(--muted);margin-top:4px;}
 .fii-card{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:box-shadow .2s,transform .15s;}
 .fii-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
 .fii-ticker-row{display:flex;justify-content:space-between;margin-bottom:8px;}
@@ -295,8 +312,7 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('carteira',this)">Carteira</button>
-  <button class="tab-btn" onclick="showTab('fiis',this)">FIIs</button>
-  <button class="tab-btn" onclick="showTab('acoes',this)">Ações</button>
+  <button class="tab-btn" onclick="showTab('ativos',this)">📊 Ativos</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Proventos</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
@@ -356,7 +372,19 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortFiisByPvp(this)">P/VP</th>
   </tr></thead><tbody id="fiis-body"></tbody></table></div>
 </div>
-<div id="tab-fiis" class="tab-panel">
+<div id="tab-ativos" class="tab-panel">
+  <!-- ── Daily Performance + Indices ── -->
+  <div id="ativos-perf-section" style="margin-bottom:18px">
+    <div class="sec" style="margin-top:0;margin-bottom:10px">📈 Performance do Dia</div>
+    <div id="ativos-perf-cards" class="atv-perf-grid">
+      <div class="atv-card atv-loading">⏳ Calculando...</div>
+    </div>
+    <div class="sec" style="margin-top:14px;margin-bottom:10px">🌐 Índices</div>
+    <div id="ativos-idx-cards" class="atv-perf-grid">
+      <div class="atv-card atv-loading">⏳ Buscando índices...</div>
+    </div>
+  </div>
+  <!-- ── FIIs ── -->
   <div class="fii-toolbar">
     <div style="font-size:16px;font-weight:800;color:var(--brand)">FIIs <span style="font-size:12px;font-weight:400;color:var(--muted)" id="fii-ts">— carregando...</span></div>
     <select class="fii-sort-sel" onchange="sortFiiCards(this.value)">
@@ -369,9 +397,8 @@ tbody tr:hover{background:#f9fafb;}
     </select>
   </div>
   <div class="fii-grid" id="fii-grid"></div>
-</div>
-<div id="tab-acoes" class="tab-panel">
-  <div class="fii-toolbar">
+  <!-- ── Ações ── -->
+  <div class="fii-toolbar" style="margin-top:22px">
     <div style="font-size:16px;font-weight:800;color:var(--brand)">Ações <span style="font-size:12px;font-weight:400;color:var(--muted)">— Status Invest · preço via planilha</span></div>
     <select class="fii-sort-sel" onchange="sortAcoesSI(this.value)">
       <option value="default">Ordenar: Padrão</option>
@@ -1341,6 +1368,103 @@ function toggleYr(yr){
   moRows.forEach(r=>r.classList.toggle('visible',!isOpen));
 }
 
+// ── ATIVOS: DAILY PERFORMANCE + INDICES ──────────────────────────────────────
+function renderAtivosPerfCards(){
+  const r=v=>`R$ ${Math.abs(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  const pct=v=>`${v>=0?'+':'-'}${Math.abs(v).toFixed(2).replace('.',',')}%`;
+  const cls=v=>v>=0?'up':'down';
+  const arrow=v=>v>=0?'↑':'↓';
+
+  // Carteira Ações: soma(valor_atual × chg/100)
+  let acChgR=0, acTot=0;
+  ACOES_SI.forEach(a=>{
+    const estoq=ACOES.find(x=>x.t===a.t);
+    if(!estoq)return;
+    const vAtual=estoq.v;
+    acTot+=vAtual;
+    acChgR+=(a.chg/100)*vAtual/(1+a.chg/100);
+  });
+  const acPct=acTot>0?(acChgR/(acTot-acChgR))*100:0;
+
+  // Carteira FIIs: soma(valor_atual × chg/100)
+  let fiChgR=0, fiTot=0;
+  FII_SI.forEach(f=>{
+    const estoq=FIIS.find(x=>x.t===f.t);
+    if(!estoq)return;
+    const vAtual=estoq.v;
+    fiTot+=vAtual;
+    fiChgR+=(f.chg/100)*vAtual/(1+f.chg/100);
+  });
+  const fiPct=fiTot>0?(fiChgR/(fiTot-fiChgR))*100:0;
+
+  // Total
+  const totChgR=acChgR+fiChgR;
+  const totTot=acTot+fiTot;
+  const totPct=totTot>0?(totChgR/(totTot-totChgR))*100:0;
+
+  const cards=[
+    {id:'atv-total',label:'Carteira Total',val:r(totChgR),sub:`${arrow(totPct)} ${pct(totPct)}`,cls:cls(totPct)},
+    {id:'atv-acoes',label:'Carteira Ações',val:r(acChgR),sub:`${arrow(acPct)} ${pct(acPct)}`,cls:cls(acPct)},
+    {id:'atv-fiis',label:'Carteira FIIs',val:r(fiChgR),sub:`${arrow(fiPct)} ${pct(fiPct)}`,cls:cls(fiPct)},
+  ];
+
+  document.getElementById('ativos-perf-cards').innerHTML=cards.map(c=>`
+    <div class="atv-card ${c.id}">
+      <div class="atv-label">${c.label}</div>
+      <div class="atv-val">${totChgR<0&&c.id==='atv-total'?'−':totChgR>0&&c.id==='atv-total'?'+':''}${c.val}</div>
+      <div class="atv-sub ${c.cls}">${c.sub}</div>
+      <div class="atv-note">variação estimada hoje</div>
+    </div>`).join('');
+}
+
+async function fetchIndices(){
+  const indices=[
+    {id:'atv-ibov',sym:'^BVSP',label:'Ibovespa',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' pts'},
+    {id:'atv-ifix',sym:'IFIX.SA',label:'IFIX',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+' pts'},
+    {id:'atv-idiv',sym:'IDIV.SA',label:'IDIV',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+' pts'},
+  ];
+
+  const el=document.getElementById('ativos-idx-cards');
+  // Show loading state per card
+  el.innerHTML=indices.map(i=>`<div class="atv-card ${i.id}" id="idx-${i.id}">
+    <div class="atv-label">${i.label}</div>
+    <div class="atv-val" style="font-size:14px;color:var(--muted)">⏳</div>
+  </div>`).join('');
+
+  for(const idx of indices){
+    try{
+      const url=`https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(idx.sym)}?interval=1d&range=1d`;
+      const res=await fetch(url,{headers:{'User-Agent':'Mozilla/5.0'}});
+      const json=await res.json();
+      const meta=json?.chart?.result?.[0]?.meta;
+      if(!meta)throw new Error('no meta');
+      const price=meta.regularMarketPrice;
+      const prev=meta.chartPreviousClose||meta.previousClose||price;
+      const chgR=price-prev;
+      const chgP=prev>0?(chgR/prev)*100:0;
+      const arrow=chgP>=0?'↑':'↓';
+      const cls=chgP>=0?'up':'down';
+      document.getElementById(`idx-${idx.id}`).innerHTML=`
+        <div class="atv-label">${idx.label}</div>
+        <div class="atv-val" style="font-size:17px">${idx.fmt(price)}</div>
+        <div class="atv-sub ${cls}">${arrow} ${chgP>=0?'+':'-'}${Math.abs(chgP).toFixed(2).replace('.',',')}% · ${chgR>=0?'+':'-'}${Math.abs(chgR).toFixed(2).replace('.',',')}</div>
+        <div class="atv-note">mercado hoje</div>`;
+    }catch(e){
+      document.getElementById(`idx-${idx.id}`).innerHTML=`
+        <div class="atv-label">${idx.label}</div>
+        <div class="atv-val" style="font-size:14px;color:var(--muted)">—</div>
+        <div class="atv-note" style="color:var(--red)">indisponível</div>`;
+    }
+  }
+}
+
+function renderAtivos(){
+  renderFiiCards([...FII_SI]);
+  renderAcoesSI([...ACOES_SI]);
+  renderAtivosPerfCards();
+  fetchIndices();
+}
+
 // ── RENDER ALL ────────────────────────────────────────────────────────────────
 // lookup maps para cruzamento de dados
 const _FII_SI_MAP=Object.fromEntries(FII_SI.map(x=>[x.t,x]));
@@ -1350,6 +1474,7 @@ function renderAll(){
   renderProventos();
   renderPontos();
   renderAcoesSI([...ACOES_SI]);
+  renderAtivos();
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
