@@ -89,6 +89,7 @@ tbody tr:hover{background:#f9fafb;}
 .alloc-item{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;text-align:center;border:1px solid var(--border);}
 .alloc-label{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
 .alloc-val{font-size:13px;font-weight:800;color:var(--brand);}
+.alloc-rs{font-size:10px;font-weight:600;color:var(--text);margin-bottom:2px;}
 .alloc-ideal{font-size:10px;color:var(--muted);}
 .alloc-item.over .alloc-val{color:var(--brand);}
 .alloc-item.under .alloc-val{color:var(--brand);}
@@ -164,8 +165,8 @@ tbody tr:hover{background:#f9fafb;}
 .prov-card.red::before{background:var(--red);}
 .prov-card.orange::before{background:var(--orange);}
 .prov-label{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:10px;}
-.prov-val{font-size:24px;font-weight:800;color:var(--brand);letter-spacing:-.7px;}
-.prov-sub{font-size:10px;color:var(--muted);margin-top:4px;}
+.prov-val{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.4px;}
+.prov-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
 
 /* PROJEÇÕES */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:18px;}
@@ -1086,6 +1087,7 @@ function renderCarteira(){
     return`<div class="alloc-item ${c}">
       <div class="alloc-label">${a.label}</div>
       <div class="alloc-val">${p.toFixed(1)}%</div>
+      <div class="alloc-rs">${brl(a.v)}</div>
       <div class="alloc-ideal">ideal ${a.ideal}% · ${diff>=0?'+':''}${diff.toFixed(1)}%</div>
     </div>`;
   }).join('');
@@ -1167,8 +1169,8 @@ function renderProventos(){
     <div class="prov-card blue"><div class="prov-label">Melhor Mês</div><div class="prov-val" style="color:#2563eb">${brl(melhorMes.total)}</div><div class="prov-sub">${melhorMes.m} 🏆</div></div>
     <div class="prov-card blue"><div class="prov-label">Média Mensal 2026</div><div class="prov-val">${brl(media2026)}</div><div class="prov-sub">Últ 12m: ${brl(media12m)}</div></div>
     <div class="prov-card purple"><div class="prov-label">Projeção 2026</div><div class="prov-val">${brl(proj2026)}</div><div class="prov-sub">DY s/ renda variável: ${dyRV}%</div></div>
-    <div class="prov-card blue"><div class="prov-label">Renda FIIs — Média 6m</div><div class="prov-val" style="font-size:16px;color:#2563eb">${brl(fii6avg)}/mês</div><div class="prov-sub">Meta R$10k · gap ${brl(META_FII_MENSAL-fii6avg)}/mês</div></div>
-    <div class="prov-card purple"><div class="prov-label">Renda Ações — Média 6m</div><div class="prov-val" style="font-size:16px;color:#7c3aed">${brl(acoes6avg)}/mês</div><div class="prov-sub">Meta R$30k · gap ${brl(META_ACOES_MENSAL-acoes6avg)}/mês</div></div>`;
+    <div class="prov-card blue"><div class="prov-label">Renda FIIs — Média 6m</div><div class="prov-val" style="color:#2563eb">${brl(fii6avg)}</div><div class="prov-sub">Meta R$10k · gap ${brl(META_FII_MENSAL-fii6avg)}/mês</div></div>
+    <div class="prov-card purple"><div class="prov-label">Renda Ações — Média 6m</div><div class="prov-val" style="color:#7c3aed">${brl(acoes6avg)}</div><div class="prov-sub">Meta R$30k · gap ${brl(META_ACOES_MENSAL-acoes6avg)}/mês</div></div>`;
 
   // Progress bars
   const pctMS=Math.min(renda6avg/META_PROV_MENSAL*100,100);
@@ -1518,13 +1520,24 @@ const totVendasC=tC_all.vendas, totVendasF=tF_all.vendas;
 const totVendas=totVendasC+totVendasF, totCompras=totH;
 const liquido=totCompras-totVendas;
 
+// Compras 2026 e Compras Mês corrente
+const anoAtual='2026';
+const mesAtual=AD.months[AD.months.length-1]; // último mês do array
+let comp2026=0, compMes=0;
+AD.months.forEach(m=>{
+  const r=AD.resumos[m];
+  if(m.startsWith(anoAtual)) comp2026+=r.compras.total;
+  if(m===mesAtual) compMes+=r.compras.total;
+});
+const labelMes=(()=>{const [a,mo]=mesAtual.split('-');const nomes=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];return nomes[+mo-1]+'/'+a.slice(2);})();
+
 // HERO
 document.getElementById('ap-hero').innerHTML=[
   {l:'Total Compras',v:R(totCompras),s:'12 meses (bruto)',c:'purple'},
   {l:'Total Vendas',v:R(totVendas),s:'12 meses',c:'red'},
   {l:'Líquido',v:R(liquido),s:'Compras − Vendas',c:'green'},
-  {l:'Compras Caio',v:R(totC),s:Pct(totC/totH*100)+' do total',c:'blue dark-val'},
-  {l:'Compras Fatima',v:R(totF),s:Pct(totF/totH*100)+' do total',c:'blue dark-val'},
+  {l:'Compras '+anoAtual,v:R(comp2026),s:'total aportes no ano',c:'blue dark-val'},
+  {l:'Compras '+labelMes,v:R(compMes),s:'aportes no mês corrente',c:'blue dark-val'},
 ].map(h=>`<div class="ap-hcard ${h.c}"><div class="ap-hl">${h.l}</div><div class="ap-hv">${h.v}</div><div class="ap-hs">${h.s}</div></div>`).join('');
 
 // CHART COMPRAS vs VENDAS MENSAL
@@ -1984,7 +1997,6 @@ window.filtrarFatos = function(cat, btn){
 };
 
 })();
-
 
 </script>
 </body>
