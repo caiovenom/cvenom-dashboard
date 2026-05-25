@@ -121,17 +121,13 @@ tbody tr:hover{background:#f9fafb;}
 /* FII CARDS */
 .fii-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}
 .atv-perf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
-.atv-card{background:var(--card);border-radius:var(--r);padding:16px 18px;border:1px solid var(--border);box-shadow:var(--sh-sm);position:relative;overflow:hidden;}
-.atv-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;border-radius:var(--r) var(--r) 0 0;}
-.atv-card.atv-total::before{background:linear-gradient(90deg,var(--cyan),#2563eb);}
-.atv-card.atv-fiis::before{background:linear-gradient(90deg,var(--brand),var(--orange));}
-.atv-card.atv-acoes::before{background:linear-gradient(90deg,#7c3aed,#2563eb);}
-.atv-card.atv-ibov::before{background:linear-gradient(90deg,#16a34a,var(--cyan));}
-.atv-card.atv-ifix::before{background:linear-gradient(90deg,var(--orange),#dc2626);}
-.atv-card.atv-idiv::before{background:linear-gradient(90deg,var(--green),#16a34a);}
+.atv-card{background:var(--card);border-radius:var(--r);padding:16px 18px;border:1px solid var(--border);box-shadow:var(--sh-sm);}
 .atv-card.atv-loading{color:var(--muted);font-size:13px;padding:18px;}
 .atv-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
-.atv-val{font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.5px;margin-bottom:4px;}
+.atv-val{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px;}
+.atv-val.up{color:var(--green);}
+.atv-val.down{color:var(--red);}
+.atv-val.neutral{color:var(--brand);}
 .atv-sub{font-size:13px;font-weight:600;}
 .atv-sub.up{color:var(--green);}
 .atv-sub.down{color:var(--red);}
@@ -312,11 +308,11 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('carteira',this)">Carteira</button>
-  <button class="tab-btn" onclick="showTab('ativos',this)">📊 Ativos</button>
+  <button class="tab-btn" onclick="showTab('ativos',this)">Ativos</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Proventos</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
-  <button class="tab-btn" onclick="showTab('fatos',this)">📰 Notícias</button>
+  <button class="tab-btn" onclick="showTab('fatos',this)">Notícias</button>
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
@@ -375,11 +371,11 @@ tbody tr:hover{background:#f9fafb;}
 <div id="tab-ativos" class="tab-panel">
   <!-- ── Daily Performance + Indices ── -->
   <div id="ativos-perf-section" style="margin-bottom:18px">
-    <div class="sec" style="margin-top:0;margin-bottom:10px">📈 Performance do Dia</div>
+    <div class="sec" style="margin-top:0;margin-bottom:10px">Performance do Dia</div>
     <div id="ativos-perf-cards" class="atv-perf-grid">
       <div class="atv-card atv-loading">⏳ Calculando...</div>
     </div>
-    <div class="sec" style="margin-top:14px;margin-bottom:10px">🌐 Índices</div>
+    <div class="sec" style="margin-top:14px;margin-bottom:10px">Índices</div>
     <div id="ativos-idx-cards" class="atv-perf-grid">
       <div class="atv-card atv-loading">⏳ Buscando índices...</div>
     </div>
@@ -1403,15 +1399,15 @@ function renderAtivosPerfCards(){
   const totPct=totTot>0?(totChgR/(totTot-totChgR))*100:0;
 
   const cards=[
-    {id:'atv-total',label:'Carteira Total',val:r(totChgR),sub:`${arrow(totPct)} ${pct(totPct)}`,cls:cls(totPct)},
-    {id:'atv-acoes',label:'Carteira Ações',val:r(acChgR),sub:`${arrow(acPct)} ${pct(acPct)}`,cls:cls(acPct)},
-    {id:'atv-fiis',label:'Carteira FIIs',val:r(fiChgR),sub:`${arrow(fiPct)} ${pct(fiPct)}`,cls:cls(fiPct)},
+    {label:'Carteira Total',chg:totChgR,val:r(totChgR),sub:`${arrow(totPct)} ${pct(totPct)}`,cls:cls(totPct)},
+    {label:'Carteira Ações',chg:acChgR,val:r(acChgR),sub:`${arrow(acPct)} ${pct(acPct)}`,cls:cls(acPct)},
+    {label:'Carteira FIIs',chg:fiChgR,val:r(fiChgR),sub:`${arrow(fiPct)} ${pct(fiPct)}`,cls:cls(fiPct)},
   ];
 
   document.getElementById('ativos-perf-cards').innerHTML=cards.map(c=>`
-    <div class="atv-card ${c.id}">
+    <div class="atv-card">
       <div class="atv-label">${c.label}</div>
-      <div class="atv-val">${totChgR<0&&c.id==='atv-total'?'−':totChgR>0&&c.id==='atv-total'?'+':''}${c.val}</div>
+      <div class="atv-val ${c.cls}">${c.chg<0?'−':c.chg>0?'+':''}${c.val}</div>
       <div class="atv-sub ${c.cls}">${c.sub}</div>
       <div class="atv-note">variação estimada hoje</div>
     </div>`).join('');
@@ -1446,7 +1442,7 @@ async function fetchIndices(){
       const cls=chgP>=0?'up':'down';
       document.getElementById(`idx-${idx.id}`).innerHTML=`
         <div class="atv-label">${idx.label}</div>
-        <div class="atv-val" style="font-size:17px">${idx.fmt(price)}</div>
+        <div class="atv-val ${cls}" style="font-size:17px">${idx.fmt(price)}</div>
         <div class="atv-sub ${cls}">${arrow} ${chgP>=0?'+':'-'}${Math.abs(chgP).toFixed(2).replace('.',',')}% · ${chgR>=0?'+':'-'}${Math.abs(chgR).toFixed(2).replace('.',',')}</div>
         <div class="atv-note">mercado hoje</div>`;
     }catch(e){
