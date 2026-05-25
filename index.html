@@ -1236,13 +1236,13 @@ function renderProventos(){
 function renderPontos(){
   const grupos=[
     {titulo:'🔵 Contexto Macro e de Carteira', tipo:'info', items:[
-      {t:'SELIC',msg:'14,75% a.a. — pico do ciclo de juros',sub:'FIIs de tijolo baratos. Momento favorável para acumular.',
-       detail:'Com Selic no pico, FIIs de tijolo estão com P/VP médio abaixo de 1. Quando a Selic ceder para ~8%, os FIIs de tijolo devem se valorizar expressivamente. FIIs de papel (RECR11, VGIP11, MCCI11) continuam capturando CDI/IPCA alto.'},
+      {t:'SELIC',msg:'14,50% a.a. — ciclo de cortes iniciado (–0,25pp em abr/26)',sub:'FIIs de tijolo valorizando com queda de juros. RF IPCA+ com ganho expressivo no pivô.',
+       detail:'Copom cortou para 14,5% em abr/2026 — 2º corte consecutivo. Quando a Selic ceder para ~8%, os FIIs de tijolo devem se valorizar expressivamente. FIIs de papel (RECR11, VGIP11, MCCI11) continuam capturando IPCA+ alto. Momento favorável para acumular ativos de tijolo antes do pivô completo.'},
       {t:'PLANILHA',msg:'Preços ao vivo via Google Sheet (GOOGLEFINANCE)',sub:'Dashboard conectado à planilha CVENOM® — atualiza automaticamente ao abrir.',
        detail:'O dashboard lê diretamente a planilha CVENOM® no Google Drive. Preços, quantidades e patrimônio total são atualizados a cada abertura. IBMPREV R$102.554 e INSS R$107.000 (CVENOM BANK) incluídos no patrimônio de Fatima.'},
     ]},
     {titulo:'🔴 Crítico — Ação Necessária', tipo:'danger', items:[
-      {t:'SAPR4',msg:'VENDER 2.309 cotas (Caio) — M.S. -55,23%',sub:'Cotação ~R$8,13 × 2.309 = ~R$18.772 a liberar · Fatima também tem posição',
+      {t:'SAPR4',msg:'VENDER 2.309 cotas (Caio) — M.S. -49,86%',sub:'Cotação R$7,26 × 2.309 = ~R$16.763 a liberar · Fatima também tem posição',
        detail:'SAPR4 está 55% acima do teto de R$3,64. Caio tem 2.309 cotas remanescentes. Fatima também possui SAPR4 na sua carteira (total holding ~4.618 cotas). Vender o restante de Caio imediatamente e realocar em KLBN11 e FIIs prioritários (TRXF11, RECR11).'},
       {t:'ITSA4',msg:'16% acima do teto R$11,50 — não aportar',sub:'Cotação R$13,33 vs Teto R$11,50 | PM R$7,97 | Rent. +67,3%',
        detail:'Teto foi revisado de R$9,50 para R$11,50 após reavaliação da tese. Mesmo assim, ITSA4 ainda negocia 16% acima do novo teto. Não aportar. A holding Itaúsa tem excelente qualidade mas o preço atual não oferece margem de segurança.'},
@@ -1274,8 +1274,8 @@ function renderPontos(){
        detail:'15+ meses consecutivos de crescimento de dividendos. Portfólio logístico premium. Continuar acumulando.'},
       {t:'BBAS3',msg:'Bancos subpeso | M.S. +15,58%',sub:'ROE >20% | P/L <5x | DY >8% | 11.078 cotas',
        detail:'Setor bancário está subpeso na carteira. BBAS3 com M.S. de +15,58% e BBDC3 recém-comprado ampliam a exposição ao setor. Aguardar pullback para R$20–R$21 para novo aporte em BBAS3.'},
-      {t:'BBDC3',msg:'1.200 cotas — 200 adicionadas em 18/05/26',sub:'PM R$15,27 | M.S. +14,07% | Teto R$17,43 | +200 cotas em 18/05/26',
-       detail:'BBDC3 estreia na carteira CVENOM® com 1.000 cotas em 15/05/26. ON escolhido sobre PN porque o spread PN/ON > 10% inverte o DY em favor do ON — análise validada por Baroni. Bradesco em turnaround: posição inicial para acumulação gradual conforme os fundamentos normalizam.'},
+      {t:'BBDC3',msg:'1.800 cotas — +200 adicionadas hoje (25/05/26)',sub:'PM R$15,26 | M.S. +13,04% | Teto R$17,43 | Lucro 1T26: +16,1%',
+       detail:'Acumulação em andamento: 1.000 cotas (15/05) + 200 (18/05) + 200 (25/05) = 1.800 cotas. ON escolhido sobre PN: spread PN/ON >10% inverte o DY em favor do ON (análise Baroni). 1T26: lucro R$6,8bi (+16,1%), ROE 15,8%, 9º trim. consecutivo de melhora. Ponto de atenção: inadimplência 4,2% e provisões R$9,7bi ainda presentes. Turnaround em andamento — acumular com disciplina.'},
     ]},
   ];
   document.getElementById('alerts-content').innerHTML=grupos.map(g=>`
@@ -1732,55 +1732,63 @@ window.toggleMes=function(id){
 
 // ▸ DADOS — atualizados diariamente pela tarefa das 11h
 const FATOS = {
-  atualizado: "22/05/2026 · 11:00",
+  atualizado: "25/05/2026 · 17:30",
   fatos: [
     {
-      ticker: "CXSE3",
+      ticker: "BBDC3",
       cat: "acao",
       catLabel: "Ação",
-      title: "CXSE3: lucro +13,2% no 1T26 e dividendo de R$0,35/ação",
-      body: "<strong>Caixa Seguridade</strong> lucrou R$1,14bi no 1T26 (+13,2% a/a), receitas operacionais +7,6%. Conselho aprovou <strong>R$0,35/ação</strong> em dividendos (91,9% do lucro). Yield pontual ~2,3% sobre PM da carteira.",
-      data: "22/05/2026"
+      title: "BBDC3: lucro R$6,8bi no 1T26 (+16,1%) — aporte de +200 cotas executado hoje",
+      body: "Bradesco entregou <strong>R$6,81 bilhões</strong> de lucro recorrente no 1T26, alta de 16,1% a/a e +4,5% vs 4T25 — <strong>9º trimestre consecutivo</strong> de melhora. ROE subiu para 15,8% (vs 14,4% ano anterior). Caio adicionou +200 cotas hoje a R$15,62 (PM: R$15,26 | 1.800 cotas). Ponto de atenção: inadimplência em 4,2% e provisões de ~R$9,7bi ainda pressionam. Turnaround em andamento.",
+      data: "25/05/2026"
     },
     {
-      ticker: "BBSE3",
-      cat: "acao",
-      catLabel: "Ação",
-      title: "BB Seguridade: lucro de R$2,2bi no 1T26, alta de 11,2%",
-      body: "BBSE3 entregou <strong>R$2,2bi</strong> de lucro no 1T26 (+11,2% a/a), dentro das expectativas. Brasilprev puxou crescimento, resultado financeiro +58,5% e sinistralidade historicamente baixa.",
-      data: "22/05/2026"
-    },
-    {
-      ticker: "XPML11",
+      ticker: "PVBI11",
       cat: "fii",
       catLabel: "FII",
-      title: "XPML11 paga R$0,92/cota e vende fatia do Shops Jardins",
-      body: "XP Malls distribuiu <strong>R$0,92 por cota</strong> em maio (yield 11,11% a.a.). O fundo também desinvestiu fatia do Shops Jardins — gestão ativa do portfólio. Data-com: 11/05/2026.",
-      data: "22/05/2026"
-    },
-    {
-      ticker: "TAEE11",
-      cat: "acao",
-      catLabel: "Ação",
-      title: "TAEE11: data-com do JCP R$0,4872/unit foi HOJE",
-      body: "Taesa tinha <strong>data-com hoje, 22/05/2026</strong>, para o JCP de R$0,4872 por unit. Quem carregou o papel até hoje tem direito ao provento. Pagamento: 30/06/2026. Yield semestral ~5,2% sobre PM.",
-      data: "22/05/2026"
-    },
-    {
-      ticker: "KNRI11",
-      cat: "fii",
-      catLabel: "FII",
-      title: "Vacância cai para 5,8% — menor nível em 3 anos",
-      body: "Relatório de gestão de maio aponta vacância física de <strong>5,8%</strong>, contra 7,2% em jan/2026. KNRI11 com 100% dos contratos corrigidos por IPCA. Gestão sinaliza revisional de aluguéis no 2S/2026.",
-      data: "21/05/2026"
+      title: "PVBI11: vacância deve subir para 24% em julho com saída do Banco ABC",
+      body: "<strong>VBI Prime Properties</strong> projeta vacância de <strong>24,1% a partir de jul/2026</strong> com a saída do Banco ABC do ativo CJ. Vacância atual: ~18,7% (física) após a ServiceNow ocupar parte da área do Vera Cruz. P/VP em 0,73 — desconto expressivo em lajes corporativas premium de SP. Dividendo mantido em <strong>R$0,40/cota</strong>. Tese de recuperação exige paciência.",
+      data: "25/05/2026"
     },
     {
       ticker: "VALE3",
       cat: "macro",
       catLabel: "Macro",
-      title: "Minério de ferro recua 3,1% após dados da China",
-      body: "Produção industrial chinesa de abril abaixo do esperado pressionou o minério (–3,1% para US$97/t). <strong>VALE3:</strong> pressão pontual de curto prazo. Médio prazo suportado pelo estímulo fiscal chinês a infraestrutura.",
-      data: "21/05/2026"
+      title: "Minério estável em US$110/t — JP Morgan eleva alvo de VALE3 para R$104",
+      body: "Minério de ferro em <strong>~US$110/t</strong>, estável, sustentado por estímulos fiscais chineses a infraestrutura. Porém estoques nos portos da China em <strong>167 milhões de toneladas</strong> (+14,2% a/a), nível recorde, pressiona o upside. JP Morgan revisou preço-alvo para <strong>R$104</strong>, classificando VALE3 como 'descontada demais'. Posição CVENOM® acima do teto (R$75) — não aportar, manter.",
+      data: "23/05/2026"
+    },
+    {
+      ticker: "SELIC",
+      cat: "macro",
+      catLabel: "Macro",
+      title: "Copom corta Selic para 14,5% — ciclo de afrouxamento monetário iniciado",
+      body: "O <strong>Copom reduziu a Selic para 14,5% a.a.</strong> em abril/2026 (–0,25pp), segundo corte consecutivo. Apesar das pressões do IPCA-15 (+0,89% em abril, puxado por combustíveis e alimentos), o BC sinalizou continuidade gradual do ciclo. <strong>Para a CVENOM®:</strong> RF IPCA+ valoriza com queda de juros; FIIs de tijolo ficam mais atrativos; momento de acumular antes do pivô completo.",
+      data: "29/04/2026"
+    },
+    {
+      ticker: "RECR11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "RECR11 distribui R$1,05/cota — DY mensal de 1,30%",
+      body: "<strong>Hectare CE</strong> (RECR11) pagou <strong>R$1,05 por cota</strong> referente a maio/2026, com data-ex 08/05/2026. Dividend yield mensal de <strong>1,30%</strong> (12m: 13,09%). CRIs indexados a IPCA+ continuam capturando o juro alto. YoC da carteira CVENOM®: 1,24% a.m. sobre PM de R$83,09. Uma das âncoras de papel do portfólio.",
+      data: "08/05/2026"
+    },
+    {
+      ticker: "TRXF11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "TRXF11: yield de maio supera 1% mensal — R$0,93/cota",
+      body: "<strong>TRX Real Estate</strong> (TRXF11) confirmou dividendo de <strong>R$0,93/cota</strong> para maio (yield >1% a.m. sobre preço atual). Pagamento: 15/05/2026 para quem estava posicionado até 30/04. Contratos atípicos de longo prazo com grande varejista garantem previsibilidade. M.S. de +34% vs teto de R$123 — maior margem de segurança dos FIIs de tijolo da carteira.",
+      data: "04/05/2026"
+    },
+    {
+      ticker: "BTLG11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "BTLG11 paga dividendo hoje (25/05) — ~R$0,81/cota",
+      body: "<strong>BTG Logística</strong> (BTLG11) paga seus dividendos de maio <strong>hoje, 25/05/2026</strong> (data-ex: 15/05). Yield mensal ~0,78–0,81% (P/VP ~1,00). Portfólio logístico premium com crescimento consistente de proventos nos últimos 15+ meses. Caio possui 642 cotas — recebe <strong>~R$520</strong> hoje.",
+      data: "25/05/2026"
     }
   ]
 };
