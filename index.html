@@ -569,72 +569,72 @@ tbody tr:hover{background:#f9fafb;}
 <script>
 // ── DADOS ESTÁTICOS — atualizados planilha 25/05/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:82.76, pm:62.53, q:2687,  v:222376.12, teto:75.0, ms:-9.38, s:'Mineração'},
-  {t:'EGIE3', p:32.62, pm:28.01, q:3514,  v:114626.68, teto:28.6, ms:-12.32, s:'Elétrico'},
-  {t:'TAEE11', p:39.55, pm:34.62, q:3352,  v:132571.60, teto:47.33, ms:19.67, s:'Elétrico'},
-  {t:'ISAE4', p:28.09, pm:23.69, q:6010,  v:168820.90, teto:28.58, ms:1.74, s:'Elétrico'},
-  {t:'BBSE3', p:34.70, pm:32.22, q:5639,  v:195673.30, teto:35.5, ms:2.31, s:'Seguridade'},
-  {t:'CXSE3', p:17.66, pm:15.26, q:10651,  v:188096.66, teto:18.7, ms:5.89, s:'Seguridade'},
-  {t:'BBAS3', p:21.63, pm:22.17, q:11078,  v:239617.14, teto:25.0, ms:15.58, s:'Bancos'},
-  {t:'ITSA4', p:13.09, pm:7.97, q:7603,  v:99523.27, teto:11.5, ms:-12.15, s:'Bancos'},
-  {t:'BBDC3', p:15.68, pm:15.22, q:1800,  v:28224.00, teto:17.43, ms:11.16, s:'Bancos'},
-  {t:'SAPR4', p:7.39, pm:3.58, q:2309,  v:17063.51, teto:3.64, ms:-50.74, sell:true, s:'Saneamento'},
+  {t:'VALE3', p:83.59, pm:62.53, q:2687,  v:224606.33, teto:75.0, ms:-10.28, s:'Mineração'},
+  {t:'EGIE3', p:32.58, pm:28.01, q:3514,  v:114486.12, teto:28.6, ms:-12.22, s:'Elétrico'},
+  {t:'TAEE11', p:39.51, pm:34.62, q:3352,  v:132437.52, teto:47.33, ms:19.79, s:'Elétrico'},
+  {t:'ISAE4', p:28.10, pm:23.69, q:6010,  v:168881.00, teto:28.58, ms:1.71, s:'Elétrico'},
+  {t:'BBSE3', p:34.62, pm:32.22, q:5639,  v:195222.18, teto:35.5, ms:2.54, s:'Seguridade'},
+  {t:'CXSE3', p:17.62, pm:15.26, q:10651,  v:187670.62, teto:18.7, ms:6.13, s:'Seguridade'},
+  {t:'BBAS3', p:21.65, pm:22.17, q:11078,  v:239838.70, teto:25.0, ms:15.47, s:'Bancos'},
+  {t:'ITSA4', p:13.11, pm:7.97, q:7603,  v:99675.33, teto:11.5, ms:-12.28, s:'Bancos'},
+  {t:'BBDC3', p:15.64, pm:15.22, q:1800,  v:28152.00, teto:17.43, ms:11.45, s:'Bancos'},
+  {t:'SAPR4', p:7.35, pm:3.58, q:2309,  v:16971.15, teto:3.64, ms:-50.48, sell:true, s:'Saneamento'},
   {t:'KLBN11', p:16.55, pm:16.35, q:4729,  v:78264.95, teto:28.0, ms:69.18, s:'Papel/Cel.'},
-  {t:'WEGE3', p:43.41, pm:29.42, q:866,  v:37593.06, teto:37.0, ms:-14.77, s:'Bens Ind.'},
-  {t:'VIVT3', p:33.62, pm:20.04, q:1680,  v:56481.60, teto:34.58, ms:2.86, s:'Telecom'},
-  {t:'PETR4', p:43.18, pm:30.38, q:1863,  v:80444.34, teto:38.0, ms:-12.00, trim:true, s:'Petróleo'},
-  {t:'HODL11', p:65.39, pm:80.67, q:299,  v:19551.61, teto:85.00, ms:29.99, s:'ETF BTC'},
+  {t:'WEGE3', p:43.31, pm:29.42, q:866,  v:37506.46, teto:37.0, ms:-14.57, s:'Bens Ind.'},
+  {t:'VIVT3', p:33.54, pm:20.04, q:1680,  v:56347.20, teto:34.58, ms:3.10, s:'Telecom'},
+  {t:'PETR4', p:43.40, pm:30.38, q:1863,  v:80854.20, teto:38.0, ms:-12.44, trim:true, s:'Petróleo'},
+  {t:'HODL11', p:64.35, pm:80.67, q:299,  v:19240.65, teto:85.00, ms:32.09, s:'ETF BTC'},
 ];
 const FIIS=[
-  {t:'XPML11',p:107.03,pm:105.12,q:663,  v:70960.89, teto:129.0,ms:20.53, s:'Shopping', div:0.92, yoc:0.88, ativo:true},
-  {t:'PMLL11',p:107.11,pm:102.93,q:553,  v:59231.83, teto:123.0,ms:14.84, s:'Shopping', div:1.00, yoc:0.97},
-  {t:'BTLG11',p:103.25,pm:102.29,q:642,  v:66286.50, teto:112.0,ms:8.47, s:'Logístico', div:0.81, yoc:0.79, ativo:true},
-  {t:'TRXF11',p:91.78,pm:103.62,q:808,  v:74158.24, teto:123.0,ms:34.02, s:'Híbrido', div:0.93, yoc:0.89, ativo:true},
-  {t:'HGRU11',p:130.56,pm:121.58,q:408,  v:53268.48, teto:140.0,ms:7.23, s:'Híbrido', div:0.95, yoc:0.78, ativo:true},
-  {t:'MCCI11',p:95.18,pm:89.17,q:514,  v:48922.52, teto:95.0,ms:-0.19, s:'Papel'},
-  {t:'HGLG11',p:155.39,pm:166.66,q:284,  v:44130.76, teto:164.0,ms:5.54, s:'Logístico', div:1.10, yoc:0.66, ativo:true},
-  {t:'RECR11',p:81.18,pm:83.09,q:710,  v:57637.80, teto:89.0,ms:9.63, s:'Papel', div:1.034, yoc:1.24, ativo:true},
-  {t:'VGIP11',p:81.08,pm:86.09,q:563,  v:45648.04, teto:90.0,ms:11.00, s:'Papel'},
-  {t:'BTHF11',p:9.24,pm:10.12,q:4252,  v:39288.48, teto:9.0,ms:-2.60, s:'Hedge'},
-  {t:'PVBI11',p:74.88,pm:81.06,q:511,  v:38263.68, teto:97.0,ms:29.54, s:'Lajes', div:0.40, yoc:0.49, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:108.50,pm:100.99,q:278,  v:30163.00, teto:113.0,ms:4.15, s:'Logístico'},
-  {t:'IRIM11',p:69.05,pm:77.95,q:431,  v:29760.55, teto:81.0,ms:17.31, s:'Hedge', div:0.75, yoc:0.90},
-  {t:'VISC11',p:108.29,pm:109.21,q:188,  v:20358.52, teto:114.0,ms:5.27, s:'Shopping'},
-  {t:'KNRI11',p:160.35,pm:149.73,q:161,  v:25816.35, teto:164.0,ms:2.28, s:'Híbrido'},
+  {t:'XPML11',p:107.05,pm:105.12,q:663,  v:70974.15, teto:129.0,ms:20.50, s:'Shopping', div:0.92, yoc:0.88, ativo:true},
+  {t:'PMLL11',p:107.10,pm:102.93,q:553,  v:59226.30, teto:123.0,ms:14.85, s:'Shopping', div:1.00, yoc:0.97},
+  {t:'BTLG11',p:103.49,pm:102.29,q:642,  v:66440.58, teto:112.0,ms:8.22, s:'Logístico', div:0.81, yoc:0.79, ativo:true},
+  {t:'TRXF11',p:91.80,pm:103.62,q:808,  v:74174.40, teto:123.0,ms:33.99, s:'Híbrido', div:0.93, yoc:0.89, ativo:true},
+  {t:'HGRU11',p:130.45,pm:121.58,q:408,  v:53223.60, teto:140.0,ms:7.32, s:'Híbrido', div:0.95, yoc:0.78, ativo:true},
+  {t:'MCCI11',p:95.06,pm:89.17,q:514,  v:48860.84, teto:95.0,ms:-0.06, s:'Papel'},
+  {t:'HGLG11',p:155.20,pm:166.66,q:284,  v:44076.80, teto:164.0,ms:5.67, s:'Logístico', div:1.10, yoc:0.66, ativo:true},
+  {t:'RECR11',p:81.28,pm:83.09,q:710,  v:57708.80, teto:89.0,ms:9.50, s:'Papel', div:1.034, yoc:1.24, ativo:true},
+  {t:'VGIP11',p:81.09,pm:86.09,q:563,  v:45653.67, teto:90.0,ms:10.99, s:'Papel'},
+  {t:'BTHF11',p:9.27,pm:10.12,q:4252,  v:39416.04, teto:9.0,ms:-2.91, s:'Hedge'},
+  {t:'PVBI11',p:75.43,pm:81.06,q:511,  v:38544.73, teto:97.0,ms:28.60, s:'Lajes', div:0.40, yoc:0.49, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:108.46,pm:100.99,q:278,  v:30151.88, teto:113.0,ms:4.19, s:'Logístico'},
+  {t:'IRIM11',p:69.20,pm:77.95,q:431,  v:29825.20, teto:81.0,ms:17.05, s:'Hedge', div:0.75, yoc:0.90},
+  {t:'VISC11',p:108.32,pm:109.21,q:188,  v:20364.16, teto:114.0,ms:5.24, s:'Shopping'},
+  {t:'KNRI11',p:160.31,pm:149.73,q:161,  v:25809.91, teto:164.0,ms:2.30, s:'Híbrido'},
 ];
 const FII_SI=[
-  {t:'HGLG11',p:155.39,chg:0.06,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
-  {t:'VISC11',p:108.29,chg:0.27,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
-  {t:'LVBI11',p:108.50,chg:0.90,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
-  {t:'BTHF11',p:9.24,chg:-0.11,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
-  {t:'XPML11',p:107.03,chg:0.03,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
-  {t:'IRIM11',p:69.05,chg:1.81,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
-  {t:'BTLG11',p:103.25,chg:-0.24,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
-  {t:'PMLL11',p:107.11,chg:0.26,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
-  {t:'KNRI11',p:160.35,chg:1.01,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
-  {t:'MCCI11',p:95.18,chg:-1.03,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
-  {t:'RECR11',p:81.18,chg:0.28,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
-  {t:'VGIP11',p:81.08,chg:-0.31,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
-  {t:'HGRU11',p:130.56,chg:-0.40,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
-  {t:'PVBI11',p:74.88,chg:0.65,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
-  {t:'TRXF11',p:91.78,chg:0.02,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
+  {t:'HGLG11',p:155.20,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
+  {t:'VISC11',p:108.32,chg:0.03,dy:9.20,pvp:null,caixa:0,s:'Shopping',cor:'#7c3aed'},
+  {t:'LVBI11',p:108.46,chg:-0.04,dy:8.29,pvp:null,caixa:0,s:'Logístico',cor:'#0891b2'},
+  {t:'BTHF11',p:9.27,chg:0.32,dy:13.07,pvp:null,caixa:0,s:'Hedge',cor:'#475569'},
+  {t:'XPML11',p:107.05,chg:0.02,dy:10.39,pvp:null,caixa:0,s:'Shopping',cor:'#dc2626'},
+  {t:'IRIM11',p:69.20,chg:0.22,dy:13.63,pvp:null,caixa:0,s:'Hedge',cor:'#64748b'},
+  {t:'BTLG11',p:103.49,chg:0.23,dy:9.41,pvp:1.00,caixa:0,s:'Logístico',cor:'#16a34a'},
+  {t:'PMLL11',p:107.10,chg:-0.01,dy:11.14,pvp:null,caixa:0,s:'Shopping',cor:'#9333ea'},
+  {t:'KNRI11',p:160.31,chg:-0.02,dy:8.13,pvp:1.01,caixa:0,s:'Híbrido',cor:'#ea580c'},
+  {t:'MCCI11',p:95.06,chg:-0.13,dy:12.42,pvp:null,caixa:0,s:'Papel',cor:'#c8a84b'},
+  {t:'RECR11',p:81.28,chg:0.12,dy:15.62,pvp:null,caixa:0,s:'Papel',cor:'#b45309'},
+  {t:'VGIP11',p:81.09,chg:0.01,dy:10.74,pvp:null,caixa:0,s:'Papel',cor:'#d97706'},
+  {t:'HGRU11',p:130.45,chg:-0.08,dy:8.80,pvp:null,caixa:0,s:'Híbrido',cor:'#f97316'},
+  {t:'PVBI11',p:75.43,chg:0.73,dy:6.39,pvp:null,caixa:0,s:'Lajes',cor:'#0f172a'},
+  {t:'TRXF11',p:91.80,chg:0.02,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'HODL11',p:65.39,chg:-0.15,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
-  {t:'VALE3',p:82.76,chg:-0.06,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
-  {t:'KLBN11',p:16.55,chg:0.30,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
-  {t:'BBAS3',p:21.63,chg:0.79,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
-  {t:'VIVT3',p:33.62,chg:0.54,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
-  {t:'ISAE4',p:28.09,chg:0.50,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
-  {t:'SAPR4',p:7.39,chg:0.41,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4',p:13.09,chg:0.54,pl:8.80,dy:8.31,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
-  {t:'EGIE3',p:32.62,chg:0.31,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
-  {t:'TAEE11',p:39.55,chg:0.25,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
-  {t:'PETR4',p:43.18,chg:-0.64,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
-  {t:'CXSE3',p:17.66,chg:0.40,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
-  {t:'WEGE3',p:43.41,chg:0.30,pl:28.93,dy:2.19,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
-  {t:'BBSE3',p:34.70,chg:0.29,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
-  {t:'BBDC3',p:15.68,chg:0.71,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
+  {t:'HODL11',p:64.35,chg:-1.59,pl:null,dy:null,pvp:null,mb:null,ml:null,roe:null,s:'ETF BTC',cor:'#f59e0b'},
+  {t:'VALE3',p:83.59,chg:1.00,pl:25.62,dy:8.26,pvp:1.93,mb:35.08,ml:7.26,roe:6.84,s:'Mineração',cor:'#2563eb'},
+  {t:'KLBN11',p:16.55,chg:0.00,pl:25.45,dy:9.62,pvp:2.62,mb:26.40,ml:2.27,roe:5.46,s:'Papel/Cel.',cor:'#16a34a'},
+  {t:'BBAS3',p:21.65,chg:0.09,pl:8.88,dy:1.30,pvp:0.66,mb:null,ml:24.11,roe:11.06,s:'Bancos',cor:'#1d4ed8'},
+  {t:'VIVT3',p:33.54,chg:-0.24,pl:20.18,dy:6.22,pvp:1.69,mb:48.10,ml:10.35,roe:8.90,s:'Telecom',cor:'#0891b2'},
+  {t:'ISAE4',p:28.10,chg:0.04,pl:8.35,dy:8.68,pvp:0.93,mb:39.35,ml:26.01,roe:12.10,s:'Elétrico',cor:'#7c3aed'},
+  {t:'SAPR4',p:7.35,chg:-0.54,pl:6.22,dy:2.79,pvp:0.20,mb:56.27,ml:28.86,roe:17.94,s:'Saneamento',cor:'#0369a1',sell:true},
+  {t:'ITSA4',p:13.11,chg:0.15,pl:8.80,dy:8.31,pvp:1.65,mb:24.37,ml:2.00,roe:17.57,s:'Bancos',cor:'#ea580c'},
+  {t:'EGIE3',p:32.58,chg:-0.12,pl:14.80,dy:5.44,pvp:2.78,mb:46.77,ml:19.35,roe:20.20,s:'Elétrico',cor:'#c8a84b'},
+  {t:'TAEE11',p:39.51,chg:-0.10,pl:37.88,dy:7.91,pvp:1.80,mb:55.11,ml:33.52,roe:20.56,s:'Elétrico',cor:'#f59e0b'},
+  {t:'PETR4',p:43.40,chg:0.51,pl:6.12,dy:8.42,pvp:1.42,mb:47.63,ml:22.13,roe:28.18,s:'Petróleo',cor:'#16a34a',trim:true},
+  {t:'CXSE3',p:17.62,chg:-0.23,pl:11.84,dy:8.04,pvp:3.76,mb:89.42,ml:75.12,roe:31.59,s:'Seguridade',cor:'#dc2626'},
+  {t:'WEGE3',p:43.31,chg:-0.23,pl:28.93,dy:2.19,pvp:10.45,mb:33.24,ml:15.64,roe:32.53,s:'Bens Ind.',cor:'#0f172a'},
+  {t:'BBSE3',p:34.62,chg:-0.23,pl:7.22,dy:15.20,pvp:5.25,mb:98.26,ml:87.75,roe:75.65,s:'Seguridade',cor:'#64748b'},
+  {t:'BBDC3',p:15.64,chg:-0.26,pl:8.50,dy:5.50,pvp:0.85,mb:null,ml:18.50,roe:12.50,s:'Bancos',cor:'#1e40af'}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -701,22 +701,22 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16101,fii:6638,acoes:9463, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3223901}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3225682}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3223901;
-let CAIO = 2433269;
-let FATIMA = 790632;
+let PAT = 3225682;
+let CAIO = 2434677;
+let FATIMA = 791005;
 let RF = 521424;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
 const INDICES_HOJE = {
   atualizado: "25/05/2026",
   indices: [
-    {id:'atv-ibov', label:'Ibovespa', pontos:177815.72, chgPct:0.91,  chgPts:1606.11},
-    {id:'atv-ifix', label:'IFIX',     pontos:3863.87,   chgPct:0.23,  chgPts:8.89},
-    {id:'atv-idiv', label:'IDIV',     pontos:12328.08,  chgPct:0.861, chgPts:105.25},
+    {id:'atv-ibov', label:'Ibovespa', pontos:177815.72,  chgPct:0.91,  chgPts:1603.53},
+    {id:'atv-ifix', label:'IFIX',     pontos:3863.87, chgPct:0.23,  chgPts:8.87},
+    {id:'atv-idiv', label:'IDIV',     pontos:12328.08, chgPct:0.861, chgPts:105.25},
   ]
 };
 let CAIXA = 39113;
@@ -1843,38 +1843,62 @@ window.toggleMes=function(id){
 
 // ▸ DADOS — atualizados diariamente pela tarefa das 11h
 const FATOS = {
-  atualizado: "25/05/2026 · 19:15",
+  atualizado: "25/05/2026 · 22:36",
   fatos: [
     {
       ticker: "BBAS3",
       cat: "acao",
       catLabel: "Ação",
-      title: "BBAS3: lucro despenca 53,5% no 1T26 — R$3,4bi e guidance revisado para baixo",
-      body: "Banco do Brasil registrou <strong>R$3,43 bilhões</strong> de lucro no 1T26, queda de <strong>53,5% a/a</strong> e de 40% vs 4T25. Inadimplência acima de 90 dias subiu para <strong>5,05%</strong> (era 3,63% em mar/25), pressionada pelo segmento agro. Guidance revisado: <strong>R$18–22 bilhões</strong> (antes R$22–26bi). Banco cortou possibilidade de dividendos extras. Cotação caiu e agora oferece maior M.S. (+15,6%). CVENOM® mantém posição.",
+      title: "BBAS3: JCP duplo em junho — data-com 01/06, pagamento 11/06",
+      body: "Banco do Brasil aprovou dois lotes de JCP com pagamento na mesma data: <strong>11/06/2026</strong>. Quem estiver posicionado até <strong>01/06 (data-com)</strong> recebe ambos — totalizando <strong>~R$0,141/ação bruto</strong> (~R$0,12 líquido). CVENOM® possui 11.078 ações → estimativa de <strong>~R$1.330 líquido</strong>.",
       data: "25/05/2026"
+    },
+    {
+      ticker: "BBAS3",
+      cat: "acao",
+      catLabel: "Ação",
+      title: "BBAS3: lucro despenca 53,5% no 1T26 — R$3,4bi e guidance revisado para baixo",
+      body: "Banco do Brasil registrou <strong>R$3,43 bilhões</strong> de lucro no 1T26, queda de <strong>53,5% a/a</strong>. Inadimplência acima de 90 dias subiu para <strong>5,05%</strong> (era 3,63% em mar/25), pressionada pelo segmento agro. Guidance revisado: <strong>R$18–22 bilhões</strong> (antes R$22–26bi). Cotação caiu e oferece M.S. de +15,5%. CVENOM® mantém posição.",
+      data: "13/05/2026"
     },
     {
       ticker: "BBDC3",
       cat: "acao",
       catLabel: "Ação",
       title: "BBDC3: lucro R$6,8bi no 1T26 (+16,1%) — aporte de +200 cotas executado",
-      body: "Bradesco entregou <strong>R$6,81 bilhões</strong> de lucro recorrente no 1T26, alta de 16,1% a/a e +4,5% vs 4T25 — <strong>9º trimestre consecutivo</strong> de melhora. ROE subiu para 15,8% (vs 14,4% ano anterior). Caio adicionou +200 cotas a R$15,62 (PM: R$15,22 | 1.800 cotas). Turnaround em andamento.",
+      body: "Bradesco entregou <strong>R$6,81 bilhões</strong> de lucro recorrente no 1T26, alta de 16,1% a/a e +4,5% vs 4T25 — <strong>9º trimestre consecutivo</strong> de melhora. ROE subiu para 15,8%. Caio adicionou +200 cotas a R$15,62 (PM: R$15,22 | 1.800 cotas). Turnaround em andamento.",
       data: "25/05/2026"
     },
     {
-      ticker: "HGLG11",
+      ticker: "VIVT3",
+      cat: "acao",
+      catLabel: "Ação",
+      title: "VIVT3: lucro R$1,26bi no 1T26, +19,2% — abaixo do esperado",
+      body: "<strong>Vivo (VIVT3)</strong> registrou lucro líquido de <strong>R$1,26 bilhão</strong> no 1T26, alta de 19,2% a/a, porém abaixo das estimativas do consenso. Receita cresceu com expansão de fibra e pós-pago. Companhia mantém política de dividendos robusta. P/L atrativo e posição CVENOM® em margem positiva (+67,4%).",
+      data: "11/05/2026"
+    },
+    {
+      ticker: "VGIP11",
       cat: "fii",
       catLabel: "FII",
-      title: "HGLG11 paga R$1,10/cota em maio — DY mensal 0,70%",
-      body: "<strong>CSHG Logística</strong> (HGLG11) distribuiu <strong>R$1,10 por cota</strong> em maio/2026, pago em 15/05 (data-ex: 01/05). Dividend yield mensal de <strong>0,70%</strong> sobre cotação de ~R$156. Portfólio de galpões logísticos AAA. P/VP ~0,95 — leve desconto. Caio recebe ~R$312/mês desta posição.",
-      data: "15/05/2026"
+      title: "VGIP11 paga R$1,08/cota em maio — maior dividendo em 10 meses",
+      body: "<strong>Valora CRI</strong> (VGIP11) anunciou <strong>R$1,08 por cota</strong> em maio/2026 — maior distribuição em 10 meses, com DY de <strong>1,31%</strong> sobre a cotação. Fundo de papel CRI com carteira indexada a IPCA e CDI. CVENOM® possui 563 cotas → recebe <strong>~R$608</strong> neste ciclo.",
+      data: "20/05/2026"
+    },
+    {
+      ticker: "MCCI11",
+      cat: "fii",
+      catLabel: "FII",
+      title: "MCCI11 mantém R$1,00/cota em maio e reforça guidance",
+      body: "<strong>Mauá Capital Recebíveis</strong> (MCCI11) confirmou distribuição de <strong>R$1,00 por cota</strong> em maio/2026, mantendo consistência. Fundo reforçou guidance de manter patamar similar nos próximos meses, sustentado por carteira de CRIs de alta qualidade. DY ~1,05% ao mês. CVENOM® possui 514 cotas.",
+      data: "20/05/2026"
     },
     {
       ticker: "BTLG11",
       cat: "fii",
       catLabel: "FII",
       title: "BTLG11 pagou dividendo hoje (25/05) — ~R$0,81/cota",
-      body: "<strong>BTG Logística</strong> (BTLG11) pagou seus dividendos de maio <strong>hoje, 25/05/2026</strong> (data-ex: 15/05). Yield mensal ~0,78–0,81% (P/VP ~1,00). Portfólio logístico premium com crescimento consistente de proventos nos últimos 15+ meses. Caio possui 642 cotas — recebeu <strong>~R$520</strong> hoje.",
+      body: "<strong>BTG Logística</strong> (BTLG11) pagou seus dividendos de maio <strong>hoje, 25/05/2026</strong>. Yield mensal ~0,78–0,81% (P/VP ~1,00). Portfólio logístico premium com crescimento consistente de proventos nos últimos 15+ meses. Caio possui 642 cotas — recebeu <strong>~R$520</strong> hoje.",
       data: "25/05/2026"
     },
     {
@@ -1882,7 +1906,7 @@ const FATOS = {
       cat: "fii",
       catLabel: "FII",
       title: "PVBI11: vacância deve subir para 24% em julho com saída do Banco ABC",
-      body: "<strong>VBI Prime Properties</strong> projeta vacância de <strong>24,1% a partir de jul/2026</strong> com a saída do Banco ABC do ativo CJ. Vacância atual: ~18,7% após a ServiceNow ocupar parte da área do Vera Cruz. P/VP em 0,73 — desconto expressivo em lajes corporativas premium de SP. Dividendo mantido em <strong>R$0,40/cota</strong>. Tese de recuperação exige paciência.",
+      body: "<strong>VBI Prime Properties</strong> projeta vacância de <strong>24,1% a partir de jul/2026</strong> com a saída do Banco ABC do ativo CJ. P/VP em 0,73 — desconto expressivo em lajes corporativas premium de SP. Dividendo mantido em <strong>R$0,40/cota</strong>. Tese de recuperação exige paciência.",
       data: "25/05/2026"
     },
     {
@@ -1890,7 +1914,7 @@ const FATOS = {
       cat: "macro",
       catLabel: "Macro",
       title: "Minério estável em US$110/t — JP Morgan eleva alvo de VALE3 para R$104",
-      body: "Minério de ferro em <strong>~US$110/t</strong>, estável, sustentado por estímulos fiscais chineses a infraestrutura. Porém estoques nos portos da China em <strong>167 milhões de toneladas</strong> (+14,2% a/a), nível recorde, pressiona o upside. JP Morgan revisou preço-alvo para <strong>R$104</strong>. Posição CVENOM® acima do teto (R$75) — não aportar, manter.",
+      body: "Minério de ferro em <strong>~US$110/t</strong>, sustentado por estímulos fiscais chineses. Porém estoques nos portos da China em <strong>167 milhões de toneladas</strong> (+14,2% a/a), nível recorde, pressiona o upside. JP Morgan revisou preço-alvo para <strong>R$104</strong>. Posição CVENOM® acima do teto (R$75) — não aportar, manter.",
       data: "23/05/2026"
     },
     {
@@ -1898,7 +1922,7 @@ const FATOS = {
       cat: "macro",
       catLabel: "Macro",
       title: "Copom corta Selic para 14,5% — ciclo de afrouxamento monetário iniciado",
-      body: "O <strong>Copom reduziu a Selic para 14,5% a.a.</strong> em abril/2026 (–0,25pp), segundo corte consecutivo. Apesar das pressões do IPCA-15 (+0,89% em abril, puxado por combustíveis e alimentos), o BC sinalizou continuidade gradual do ciclo. <strong>Para a CVENOM®:</strong> RF IPCA+ valoriza com queda de juros; FIIs de tijolo ficam mais atrativos.",
+      body: "O <strong>Copom reduziu a Selic para 14,5% a.a.</strong> em abril/2026 (–0,25pp), segundo corte consecutivo. Apesar das pressões do IPCA-15 (+0,89% em abril), o BC sinalizou continuidade gradual do ciclo. <strong>Para a CVENOM®:</strong> RF IPCA+ valoriza com queda de juros; FIIs de tijolo ficam mais atrativos.",
       data: "29/04/2026"
     }
   ]
@@ -1917,41 +1941,4 @@ function renderFatos(filtro){
     : sorted.filter(f => f.cat === filtro);
 
   if(!lista.length){
-    feed.innerHTML = `<div class="fatos-empty">
-      <div class="fatos-empty-icon">🔍</div>
-      <div class="fatos-empty-title">Sem fatos nessa categoria hoje</div>
-      <div class="fatos-empty-sub">Volte mais tarde ou selecione outra categoria.</div>
-    </div>`;
-    return;
-  }
-
-  feed.innerHTML = lista.map(f => `
-    <div class="fato-card cat-${f.cat}">
-      <div class="fato-accent"></div>
-      <div class="fato-inner">
-        <div class="fato-tags">
-          ${f.ticker !== 'SETOR' ? `<span class="fato-ticker">${f.ticker}</span>` : ''}
-          <span class="fato-cat-badge">${f.catLabel}</span>
-        </div>
-        <div class="fato-title">${f.title}</div>
-        <div class="fato-body">${f.body}</div>
-        <div class="fato-meta">
-          <span>📅 ${f.data}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Header info
-const tsEl = document.getElementById('fatos-ts');
-const countEl = document.getElementById('fatos-count');
-if(tsEl) tsEl.textContent = FATOS.atualizado;
-if(countEl) countEl.textContent = FATOS.fatos.length + ' fato' + (FATOS.fatos.length !== 1 ? 's' : '') + ' hoje';
-
-// Render inicial
-renderFatos('todos');
-
-// Filtro por categoria
-window.filtrarFatos = function(cat, btn){
-  document.querySelectorAll('.fatos-cat-btn').forEach(b => b.classList.remove('acti
+    feed.i
