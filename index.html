@@ -707,6 +707,16 @@ let PAT = 3223901;
 let CAIO = 2433269;
 let FATIMA = 790632;
 let RF = 521424;
+
+// ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
+const INDICES_HOJE = {
+  atualizado: "25/05/2026",
+  indices: [
+    {id:'atv-ibov', label:'Ibovespa', pontos:177815.72, chgPct:0.91,  chgPts:1606.11},
+    {id:'atv-ifix', label:'IFIX',     pontos:3863.87,   chgPct:0.23,  chgPts:8.89},
+    {id:'atv-idiv', label:'IDIV',     pontos:12328.08,  chgPct:0.861, chgPts:105.25},
+  ]
+};
 let CAIXA = 39113;
 let ACOES_US = 61423;
 const INSS_F   = 107000;
@@ -1413,46 +1423,24 @@ function renderAtivosPerfCards(){
     </div>`).join('');
 }
 
-async function fetchIndices(){
-  const indices=[
-    {id:'atv-ibov',sym:'^BVSP',label:'Ibovespa',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' pts'},
-    {id:'atv-ifix',sym:'IFIX.SA',label:'IFIX',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+' pts'},
-    {id:'atv-idiv',sym:'IDIV.SA',label:'IDIV',fmt:v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+' pts'},
-  ];
-
+function fetchIndices(){
   const el=document.getElementById('ativos-idx-cards');
-  // Show loading state per card
-  el.innerHTML=indices.map(i=>`<div class="atv-card ${i.id}" id="idx-${i.id}">
-    <div class="atv-label">${i.label}</div>
-    <div class="atv-val" style="font-size:14px;color:var(--muted)">⏳</div>
-  </div>`).join('');
-
-  for(const idx of indices){
-    try{
-      const url=`https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(idx.sym)}?interval=1d&range=1d`;
-      const res=await fetch(url,{headers:{'User-Agent':'Mozilla/5.0'}});
-      const json=await res.json();
-      const meta=json?.chart?.result?.[0]?.meta;
-      if(!meta)throw new Error('no meta');
-      const price=meta.regularMarketPrice;
-      const prev=meta.chartPreviousClose||meta.previousClose||price;
-      const chgR=price-prev;
-      const chgP=prev>0?(chgR/prev)*100:0;
-      const arrow=chgP>=0?'↑':'↓';
-      const cls=chgP>=0?'up':'down';
-      document.getElementById(`idx-${idx.id}`).innerHTML=`
-        <div class="atv-label">${idx.label}</div>
-        <div class="atv-val ${cls}" style="font-size:17px">${idx.fmt(price)}</div>
-        <div class="atv-sub ${cls}">${arrow} ${chgP>=0?'+':'-'}${Math.abs(chgP).toFixed(2).replace('.',',')}% · ${chgR>=0?'+':'-'}${Math.abs(chgR).toFixed(2).replace('.',',')}</div>
-        <div class="atv-note">mercado hoje</div>`;
-    }catch(e){
-      document.getElementById(`idx-${idx.id}`).innerHTML=`
-        <div class="atv-label">${idx.label}</div>
-        <div class="atv-val" style="font-size:14px;color:var(--muted)">—</div>
-        <div class="atv-note" style="color:var(--red)">indisponível</div>`;
-    }
-  }
+  if(!el)return;
+  const fmtPts=v=>v>=10000?v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' pts':v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+' pts';
+  el.innerHTML=INDICES_HOJE.indices.map(i=>{
+    const up=i.chgPct>=0;
+    const cls=up?'up':'down';
+    const arrow=up?'↑':'↓';
+    const sinal=up?'+':'-';
+    return`<div class="atv-card">
+      <div class="atv-label">${i.label}</div>
+      <div class="atv-val ${cls}" style="font-size:17px">${fmtPts(i.pontos)}</div>
+      <div class="atv-sub ${cls}">${arrow} ${sinal}${Math.abs(i.chgPct).toFixed(2).replace('.',',')}% · ${sinal}${Math.abs(i.chgPts).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+      <div class="atv-note">fechamento ${INDICES_HOJE.atualizado}</div>
+    </div>`;
+  }).join('');
 }
+
 
 function renderAtivos(){
   renderFiiCards([...FII_SI]);
