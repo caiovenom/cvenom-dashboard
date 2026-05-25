@@ -1941,4 +1941,51 @@ function renderFatos(filtro){
     : sorted.filter(f => f.cat === filtro);
 
   if(!lista.length){
-    feed.i
+    feed.innerHTML = `<div class="fatos-empty">
+      <div class="fatos-empty-icon">🔍</div>
+      <div class="fatos-empty-title">Sem fatos nessa categoria hoje</div>
+      <div class="fatos-empty-sub">Volte mais tarde ou selecione outra categoria.</div>
+    </div>`;
+    return;
+  }
+
+  feed.innerHTML = lista.map(f => `
+    <div class="fato-card cat-${f.cat}">
+      <div class="fato-accent"></div>
+      <div class="fato-inner">
+        <div class="fato-tags">
+          ${f.ticker !== 'SETOR' ? `<span class="fato-ticker">${f.ticker}</span>` : ''}
+          <span class="fato-cat-badge">${f.catLabel}</span>
+        </div>
+        <div class="fato-title">${f.title}</div>
+        <div class="fato-body">${f.body}</div>
+        <div class="fato-meta">
+          <span>📅 ${f.data}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Header info
+const tsEl = document.getElementById('fatos-ts');
+const countEl = document.getElementById('fatos-count');
+if(tsEl) tsEl.textContent = FATOS.atualizado;
+if(countEl) countEl.textContent = FATOS.fatos.length + ' fato' + (FATOS.fatos.length !== 1 ? 's' : '') + ' hoje';
+
+// Render inicial
+renderFatos('todos');
+
+// Filtro por categoria
+window.filtrarFatos = function(cat, btn){
+  document.querySelectorAll('.fatos-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFatos(cat);
+};
+
+})();
+
+
+</script>
+</body>
+</html>
