@@ -587,21 +587,24 @@ const ACOES=[
   {t:'HODL11', p:64.35, pm:80.67, q:299,  v:19240.65, teto:85.00, ms:32.09, s:'ETF BTC'},
 ];
 const FIIS=[
-  {t:'XPML11',p:107.05,pm:105.12,q:663,  v:70974.15, teto:129.0,ms:20.50, s:'Shopping', div:0.92, yoc:0.88, ativo:true},
-  {t:'PMLL11',p:107.10,pm:102.93,q:553,  v:59226.30, teto:123.0,ms:14.85, s:'Shopping', div:1.00, yoc:0.97},
-  {t:'BTLG11',p:103.49,pm:102.29,q:642,  v:66440.58, teto:112.0,ms:8.22, s:'Logístico', div:0.81, yoc:0.79, ativo:true},
-  {t:'TRXF11',p:91.80,pm:103.62,q:808,  v:74174.40, teto:123.0,ms:33.99, s:'Híbrido', div:0.93, yoc:0.89, ativo:true},
-  {t:'HGRU11',p:130.45,pm:121.58,q:408,  v:53223.60, teto:140.0,ms:7.32, s:'Híbrido', div:0.95, yoc:0.78, ativo:true},
-  {t:'MCCI11',p:95.06,pm:89.17,q:514,  v:48860.84, teto:95.0,ms:-0.06, s:'Papel'},
-  {t:'HGLG11',p:155.20,pm:166.66,q:284,  v:44076.80, teto:164.0,ms:5.67, s:'Logístico', div:1.10, yoc:0.66, ativo:true},
-  {t:'RECR11',p:81.28,pm:83.09,q:710,  v:57708.80, teto:89.0,ms:9.50, s:'Papel', div:1.034, yoc:1.24, ativo:true},
-  {t:'VGIP11',p:81.09,pm:86.09,q:563,  v:45653.67, teto:90.0,ms:10.99, s:'Papel'},
-  {t:'BTHF11',p:9.27,pm:10.12,q:4252,  v:39416.04, teto:9.0,ms:-2.91, s:'Hedge'},
-  {t:'PVBI11',p:75.43,pm:81.06,q:511,  v:38544.73, teto:97.0,ms:28.60, s:'Lajes', div:0.40, yoc:0.49, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:108.46,pm:100.99,q:278,  v:30151.88, teto:113.0,ms:4.19, s:'Logístico'},
-  {t:'IRIM11',p:69.20,pm:77.95,q:431,  v:29825.20, teto:81.0,ms:17.05, s:'Hedge', div:0.75, yoc:0.90},
-  {t:'VISC11',p:108.32,pm:109.21,q:188,  v:20364.16, teto:114.0,ms:5.24, s:'Shopping'},
-  {t:'KNRI11',p:160.31,pm:149.73,q:161,  v:25809.91, teto:164.0,ms:2.30, s:'Híbrido'},
+  // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
+  // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
+  // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
+  {t:'XPML11',p:107.05,pm:105.12,q:663,  v:70974.15, teto:129.0,ms:20.50, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11',p:107.10,pm:102.93,q:553,  v:59226.30, teto:123.0,ms:14.85, s:'Shopping', div:1.00, vpa:102.98},
+  {t:'BTLG11',p:103.49,pm:102.29,q:642,  v:66440.58, teto:112.0,ms:8.22, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11',p:91.80,pm:103.62,q:808,  v:74174.40, teto:123.0,ms:33.99, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11',p:130.45,pm:121.58,q:408,  v:53223.60, teto:140.0,ms:7.32, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11',p:95.06,pm:89.17,q:514,  v:48860.84, teto:95.0,ms:-0.06, s:'Papel', div:1.00, vpa:97.99},
+  {t:'HGLG11',p:155.20,pm:166.66,q:284,  v:44076.80, teto:164.0,ms:5.67, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
+  {t:'RECR11',p:81.28,pm:83.09,q:710,  v:57708.80, teto:89.0,ms:9.50, s:'Papel', div:1.034, vpa:89.32, ativo:true},
+  {t:'VGIP11',p:81.09,pm:86.09,q:563,  v:45653.67, teto:90.0,ms:10.99, s:'Papel', div:1.08, vpa:90.10},
+  {t:'BTHF11',p:9.27,pm:10.12,q:4252,  v:39416.04, teto:9.0,ms:-2.91, s:'Hedge', vpa:9.97},
+  {t:'PVBI11',p:75.43,pm:81.06,q:511,  v:38544.73, teto:97.0,ms:28.60, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:108.46,pm:100.99,q:278,  v:30151.88, teto:113.0,ms:4.19, s:'Logístico', vpa:119.19},
+  {t:'IRIM11',p:69.20,pm:77.95,q:431,  v:29825.20, teto:81.0,ms:17.05, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11',p:108.32,pm:109.21,q:188,  v:20364.16, teto:114.0,ms:5.24, s:'Shopping', vpa:120.36},
+  {t:'KNRI11',p:160.31,pm:149.73,q:161,  v:25809.91, teto:164.0,ms:2.30, s:'Híbrido', vpa:158.72},
 ];
 const FII_SI=[
   {t:'HGLG11',p:155.20,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -1022,8 +1025,10 @@ function renderAcaoRow(a){
 }
 function renderFiiRow(f){
   const fsi=_FII_SI_MAP[f.t]||{};
+  // YOC calculado dinamicamente: div mensal / preço médio de compra × 100
   const yoc=f.div?((f.div/f.pm)*100):null;
-  const pvp=fsi.pvp!=null?fsi.pvp.toFixed(2):'—';
+  // P/VP calculado dinamicamente: preço atual / VPA (atualiza a cada sync de preço)
+  const pvp=f.vpa?(f.p/f.vpa).toFixed(2):(fsi.pvp!=null?fsi.pvp.toFixed(2):'—');
   return`<tr>
     <td>${f.t}${f.warn?'<span class="warn-b">⚠</span>':''}</td>
     <td>${f.s}</td><td>${brl(f.p)}</td><td>${brl(f.pm)}</td>
@@ -2001,4 +2006,3 @@ window.filtrarFatos = function(cat, btn){
 </script>
 </body>
 </html>
-    
