@@ -302,6 +302,36 @@ tbody tr:hover{background:#f9fafb;}
 .ap-badge.bc{background:#dbeafe;color:#1d4ed8;}
 .ap-badge.bf{background:#ede9fe;color:#6d28d9;}
 
+
+/* DY PROJETIVO TAB */
+.dyp-section-title{font-size:15px;font-weight:700;color:var(--text);margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--brand);display:flex;align-items:center;gap:8px;}
+.dyp-section-title span{background:var(--brand);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.dyp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px;}
+.dyp-card{background:#fff;border-radius:10px;padding:16px 18px;border:1px solid var(--border);box-shadow:var(--sh-sm);}
+.dyp-card-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px;}
+.dyp-card-value{font-size:20px;font-weight:800;color:var(--brand);letter-spacing:-.5px;}
+.dyp-card-sub{font-size:11px;color:var(--muted);margin-top:3px;}
+.dyp-card.accent .dyp-card-value{color:var(--green);}
+.dyp-card.warn .dyp-card-value{color:var(--red);}
+.dyp-bar-wrap{margin-top:8px;background:#eef2f7;border-radius:20px;height:5px;}
+.dyp-bar-fill{height:5px;border-radius:20px;background:var(--brand);}
+.dyp-section{margin-bottom:32px;}
+.dyp-table-wrap{overflow-x:auto;}
+.dyp-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.dyp-tbl th{background:#f8f9fb;color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px;padding:8px 10px;text-align:right;border-bottom:2px solid var(--border);white-space:nowrap;}
+.dyp-tbl th:first-child{text-align:left;}
+.dyp-tbl td{padding:8px 10px;border-bottom:1px solid #f0f2f5;text-align:right;color:var(--text);white-space:nowrap;}
+.dyp-tbl td:first-child{text-align:left;font-weight:600;}
+.dyp-tbl tr:hover td{background:#f8fbff;}
+.dyp-tbl .pos{color:var(--green);font-weight:600;}
+.dyp-tbl .neg{color:var(--red);}
+.dyp-tbl .neu{color:var(--muted);}
+.dyp-consolidado{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px;}
+.dyp-big-card{background:#fff;border-radius:12px;padding:22px 24px;border:1px solid var(--border);box-shadow:var(--sh-sm);text-align:center;}
+.dyp-big-card .big-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
+.dyp-big-card .big-val{font-size:28px;font-weight:800;color:var(--brand);letter-spacing:-.8px;}
+.dyp-big-card .big-sub{font-size:12px;color:var(--muted);margin-top:5px;}
+.dyp-big-card.brand-green .big-val{color:var(--green);}
 </style>
 </head>
 <body>
@@ -316,6 +346,7 @@ tbody tr:hover{background:#f9fafb;}
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
   <button class="tab-btn" onclick="showTab('fatos',this)">Notícias</button>
+  <button class="tab-btn" onclick="showTab('dyproj',this)">DY Projetivo</button>
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
@@ -568,45 +599,102 @@ tbody tr:hover{background:#f9fafb;}
   </div>
   <div class="fatos-feed" id="fatos-feed"></div>
 </div><!-- /tab-fatos -->
+<div id="tab-dyproj" class="tab-panel" style="background:var(--bg);padding:0;border:none;box-shadow:none;">
+  <div style="padding:20px 0;">
+
+    <!-- SEÇÃO 1: FIIs -->
+    <div class="dyp-section">
+      <div class="dyp-section-title"><span>1</span>FIIs — Renda Mensal Projetiva</div>
+      <div class="dyp-cards" id="dyp-fii-cards"></div>
+      <div class="dyp-table-wrap">
+        <table class="dyp-tbl">
+          <thead><tr>
+            <th style="text-align:left">Ticker</th>
+            <th>Cotas</th>
+            <th>Div/Cota</th>
+            <th>Renda/Mês</th>
+            <th>DY Mensal%</th>
+            <th>YoC Mensal%</th>
+            <th>DPA 12m Proj.</th>
+            <th>Renda Anual</th>
+            <th>Frequência</th>
+          </tr></thead>
+          <tbody id="dyp-fii-tbody"></tbody>
+          <tfoot id="dyp-fii-tfoot"></tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 2: Ações -->
+    <div class="dyp-section">
+      <div class="dyp-section-title"><span>2</span>Ações — Dividendos Projetados 2026</div>
+      <div class="dyp-cards" id="dyp-ac-cards"></div>
+      <div class="dyp-table-wrap">
+        <table class="dyp-tbl">
+          <thead><tr>
+            <th style="text-align:left">Ticker</th>
+            <th>Cotas</th>
+            <th>DPA 2026 Proj.</th>
+            <th>DY 2026%</th>
+            <th>YoC 2026%</th>
+            <th>Renda 2026</th>
+            <th>Renda/Mês Est.</th>
+            <th>Frequência</th>
+          </tr></thead>
+          <tbody id="dyp-ac-tbody"></tbody>
+          <tfoot id="dyp-ac-tfoot"></tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 3: Consolidado -->
+    <div class="dyp-section">
+      <div class="dyp-section-title"><span>3</span>Consolidado</div>
+      <div class="dyp-consolidado" id="dyp-consolidado"></div>
+    </div>
+
+  </div>
+</div><!-- /tab-dyproj -->
+
 
 <script>
-// ── DADOS ESTÁTICOS — atualizados planilha 27/05/2026 ─────────────────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 28/05/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:83.45, pm:62.53, q:2687,  v:224230.15, teto:75.0, ms:-10.13, vuc:50.15, s:'Mineração'},
-  {t:'EGIE3', p:32.63, pm:28.01, q:3514,  v:114661.82, teto:28.6, ms:-12.35, vuc:28.0, s:'Elétrico'},
+  {t:'VALE3', p:83.85, pm:62.53, q:2687,  v:225304.95, teto:75.0, ms:-10.55, vuc:50.15, s:'Mineração'},
+  {t:'EGIE3', p:32.38, pm:28.01, q:3514,  v:113783.32, teto:28.6, ms:-11.67, vuc:28.0, s:'Elétrico'},
   {t:'TAEE11', p:39.37, pm:34.62, q:3352,  v:131968.24, teto:47.33, ms:20.22, vuc:33.78, s:'Elétrico'},
-  {t:'ISAE4', p:27.38, pm:23.69, q:6010,  v:164553.8, teto:28.58, ms:4.38, vuc:21.9, s:'Elétrico'},
-  {t:'BBSE3', p:34.86, pm:32.22, q:5639,  v:196575.54, teto:35.5, ms:1.84, vuc:34.01, s:'Seguridade'},
-  {t:'CXSE3', p:17.46, pm:15.3, q:10851,  v:189458.46, teto:18.7, ms:7.1, vuc:17.42, s:'Seguridade'},
-  {t:'BBAS3', p:21.07, pm:22.17, q:11078,  v:233413.46, teto:25.0, ms:18.65, vuc:20.76, s:'Bancos'},
-  {t:'ITSA4', p:13.07, pm:7.97, q:7603,  v:99371.21, teto:11.5, ms:-12.01, vuc:8.82, s:'Bancos'},
-  {t:'BBDC3', p:15.64, pm:15.24, q:1864,  v:29152.96, teto:17.43, ms:11.45, vuc:15.53, s:'Bancos'},
-  {t:'SAPR4', p:7.36, pm:3.58, q:2309,  v:16994.24, teto:3.64, ms:-50.54, sell:true, vuc:3.47, s:'Saneamento'},
-  {t:'KLBN11', p:16.78, pm:16.35, q:4729,  v:79352.62, teto:28.0, ms:66.87, vuc:16.59, s:'Papel/Cel.'},
-  {t:'WEGE3', p:43.45, pm:29.42, q:866,  v:37627.70, teto:37.0, ms:-14.84, vuc:33.24, s:'Bens Ind.'},
-  {t:'VIVT3', p:33.93, pm:20.04, q:1680,  v:57002.4, teto:34.58, ms:1.92, vuc:20.0, s:'Telecom'},
-  {t:'PETR4', p:42.82, pm:30.38, q:1863,  v:79773.66, teto:38.0, ms:-11.26, trim:true, vuc:29.69, s:'Petróleo'},
-  {t:'HODL11', p:63.7, pm:80.67, q:299,  v:19046.3, teto:85.00, ms:33.44, vuc:79.3, s:'ETF BTC'},
+  {t:'ISAE4', p:27.05, pm:23.69, q:6010,  v:162570.5, teto:28.58, ms:5.66, vuc:21.9, s:'Elétrico'},
+  {t:'BBSE3', p:34.61, pm:32.22, q:5639,  v:195165.79, teto:35.5, ms:2.57, vuc:34.01, s:'Seguridade'},
+  {t:'CXSE3', p:17.4, pm:15.28, q:10851,  v:188807.4, teto:18.7, ms:7.47, vuc:17.42, s:'Seguridade'},
+  {t:'BBAS3', p:20.75, pm:22.17, q:11078,  v:229868.5, teto:25.0, ms:20.48, vuc:20.76, s:'Bancos'},
+  {t:'ITSA4', p:12.99, pm:7.97, q:7603,  v:98762.97, teto:11.5, ms:-11.47, vuc:8.82, s:'Bancos'},
+  {t:'BBDC3', p:15.62, pm:15.22, q:1864,  v:29115.68, teto:17.43, ms:11.59, vuc:15.53, s:'Bancos'},
+  {t:'SAPR4', p:7.53, pm:3.58, q:2309,  v:17386.77, teto:3.64, ms:-51.66, sell:true, vuc:3.47, s:'Saneamento'},
+  {t:'KLBN11', p:16.72, pm:18.06, q:4729,  v:79068.88, teto:28.0, ms:67.46, vuc:16.59, s:'Papel/Cel.'},
+  {t:'WEGE3', p:43.68, pm:29.42, q:866,  v:37826.88, teto:37.0, ms:-15.29, vuc:33.24, s:'Bens Ind.'},
+  {t:'VIVT3', p:33.76, pm:20.04, q:1680,  v:56716.8, teto:34.58, ms:2.43, vuc:20.0, s:'Telecom'},
+  {t:'PETR4', p:42.45, pm:30.38, q:1863,  v:79084.35, teto:38.0, ms:-10.48, trim:true, vuc:29.69, s:'Petróleo'},
+  {t:'HODL11', p:62.21, pm:80.67, q:299,  v:18600.79, teto:85.0, ms:36.63, vuc:79.3, s:'ETF BTC'},
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
   // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
   // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
-  {t:'XPML11',p:106.69,pm:105.12,q:663,  v:70642.65, teto:129.0,ms:21.08, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
-  {t:'PMLL11',p:106.98,pm:102.93,q:553,  v:59171.00, teto:123.0,ms:14.58, s:'Shopping', div:1.00, vpa:102.98},
-  {t:'BTLG11',p:103.09,pm:102.29,q:642,  v:65862.78, teto:112.0,ms:8.94, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
-  {t:'TRXF11',p:91.78,pm:103.62,q:808,  v:74045.12, teto:123.0,ms:34.02, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
-  {t:'HGRU11',p:129.3,pm:121.58,q:408,  v:52750.32, teto:140.0,ms:8.41, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
-  {t:'MCCI11',p:95.42,pm:89.17,q:514,  v:48593.56, teto:95.0,ms:0.49, s:'Papel', div:1.00, vpa:97.99},
-  {t:'HGLG11',p:154.96,pm:166.66,q:284,  v:43934.80, teto:164.0,ms:5.9, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
-  {t:'RECR11',p:80.49,pm:83.09,q:710,  v:57360.90, teto:89.0,ms:9.63, s:'Papel', div:1.034, vpa:89.32, ativo:true},
-  {t:'VGIP11',p:80.52,pm:86.09,q:563,  v:45546.70, teto:90.0,ms:10.59, s:'Papel', div:1.08, vpa:90.10},
-  {t:'BTHF11',p:9.17,pm:10.12,q:4252,  v:38990.84, teto:9.0,ms:-2.17, s:'Hedge', vpa:9.97},
-  {t:'PVBI11',p:73.6,pm:81.06,q:511,  v:37573.83, teto:97.0,ms:31.87, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:106.53,pm:100.99,q:278,  v:29812.72, teto:113.0,ms:5.11, s:'Logístico', vpa:119.19},
-  {t:'IRIM11',p:68.25,pm:77.95,q:431,  v:29523.50, teto:81.0,ms:17.96, s:'Hedge', div:0.75, vpa:82.38},
-  {t:'VISC11',p:106.4,pm:109.21,q:188,  v:20116.00, teto:114.0,ms:6.76, s:'Shopping', vpa:120.36},
-  {t:'KNRI11',p:162.03,pm:149.73,q:161,  v:26487.72, teto:164.0,ms:0.26, s:'Híbrido', vpa:158.72},
+  {t:'XPML11',p:106.9,pm:105.12,q:663,  v:70874.7, teto:129.0,ms:20.67, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11',p:107.04,pm:102.93,q:553,  v:59193.12, teto:123.0,ms:14.91, s:'Shopping', div:1.00, vpa:102.98},
+  {t:'BTLG11',p:103.04,pm:102.29,q:642,  v:66151.68, teto:112.0,ms:8.7, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11',p:91.66,pm:103.62,q:808,  v:74061.28, teto:123.0,ms:34.19, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11',p:129.9,pm:121.58,q:408,  v:52999.2, teto:140.0,ms:7.78, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11',p:95.78,pm:89.17,q:514,  v:49230.92, teto:95.0,ms:-0.81, s:'Papel', div:1.00, vpa:97.99},
+  {t:'HGLG11',p:155.0,pm:166.66,q:284,  v:44020.0, teto:164.0,ms:5.81, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
+  {t:'RECR11',p:80.92,pm:83.09,q:710,  v:57453.2, teto:89.0,ms:9.99, s:'Papel', div:1.034, vpa:89.32, ativo:true},
+  {t:'VGIP11',p:80.5,pm:86.09,q:563,  v:45321.5, teto:90.0,ms:11.8, s:'Papel', div:1.08, vpa:90.10},
+  {t:'BTHF11',p:9.2,pm:10.12,q:4252,  v:39118.4, teto:9.0,ms:-2.17, s:'Hedge', vpa:9.97},
+  {t:'PVBI11',p:73.63,pm:81.06,q:511,  v:37624.93, teto:97.0,ms:31.74, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:106.31,pm:100.99,q:278,  v:29554.18, teto:113.0,ms:6.29, s:'Logístico', vpa:119.19},
+  {t:'IRIM11',p:68.86,pm:77.95,q:431,  v:29678.66, teto:81.0,ms:17.63, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11',p:106.43,pm:109.21,q:188,  v:20008.84, teto:114.0,ms:7.11, s:'Shopping', vpa:120.36},
+  {t:'KNRI11',p:162.14,pm:149.73,q:161,  v:26104.54, teto:164.0,ms:1.15, s:'Híbrido', vpa:158.72},
 ];
 const FII_SI=[
   {t:'HGLG11',p:154.96,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -649,7 +737,7 @@ const ANUAL=[
   {ano:'2023',total:64886,  fii:29819, acoes:34452, dolar:615},
   {ano:'2024',total:108074, fii:49114, acoes:58170, dolar:790},
   {ano:'2025',total:154228, fii:67106, acoes:86028, dolar:1094},
-  {ano:'2026',total:76737,  fii:29812, acoes:46884, dolar:41, parcial:true},
+  {ano:'2026',total:76986,  fii:29812, acoes:46884, dolar:290, parcial:true},
 ];
 const MENSAIS=[
   {ano:'2022',m:'Jan/22',total:2169, fii:2007,acoes:132,  dolar:30},
@@ -707,13 +795,13 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16101,fii:6638,acoes:9463, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3212969}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3205178}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3212969;
-let CAIO = 2425808;
-let FATIMA = 787160;
+let PAT = 3205178;
+let CAIO = 2420219;
+let FATIMA = 784959;
 let RF = 521424;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
@@ -725,8 +813,8 @@ const INDICES_HOJE = {
     {id:'atv-idiv', label:'IDIV', pontos:12328.08, chgPct:0.00, chgPts:0.00},
   ]
 };
-let CAIXA = 40513;
-let ACOES_US = 61999;
+let CAIXA = 37213;
+let ACOES_US = 62021;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1487,10 +1575,145 @@ function renderAll(){
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
+
+// ── DY PROJETIVO ──────────────────────────────────────────────────────────────
+const ACOES_DPA=[
+  {t:'VALE3',   dpa26:5.28,  dy26:6.33,  freq:'Semestral'},
+  {t:'EGIE3',   dpa26:1.51,  dy26:4.63,  freq:'Semestral'},
+  {t:'TAEE11',  dpa26:2.58,  dy26:6.55,  freq:'Semestral'},
+  {t:'ISAE4',   dpa26:1.80,  dy26:6.57,  freq:'Semestral'},
+  {t:'BBSE3',   dpa26:3.98,  dy26:11.42, freq:'Trimestral'},
+  {t:'CXSE3',   dpa26:1.41,  dy26:8.08,  freq:'Trimestral'},
+  {t:'BBAS3',   dpa26:1.23,  dy26:5.84,  freq:'Trimestral'},
+  {t:'ITSA4',   dpa26:1.08,  dy26:8.26,  freq:'Trimestral'},
+  {t:'PETR4',   dpa26:3.60,  dy26:8.41,  freq:'Semestral'},
+  {t:'VIVT3',   dpa26:2.74,  dy26:8.08,  freq:'Semestral'},
+  {t:'KLBN11',  dpa26:1.00,  dy26:5.96,  freq:'Trimestral'},
+  {t:'BBDC3',   dpa26:1.47,  dy26:9.40,  freq:'Trimestral'},
+  {t:'WEGE3',   dpa26:0.93,  dy26:2.14,  freq:'Trimestral'},
+];
+const META_FII_MES   = 10000;
+const META_ACOES_ANO = 30000*12;
+const META_TOTAL_MES = 40000;
+
+function renderDYProjetivo(){
+  // ── FIIs ──
+  const fiisComDiv = FIIS.filter(f=>f.div&&f.div>0);
+  let totalFiiMes=0, totalFiiAno=0;
+  const fiiRows = fiisComDiv.map(f=>{
+    const rMes   = f.q * f.div;
+    const rAno   = rMes * 12;
+    const dyMes  = (f.div / f.p * 100);
+    const yocMes = (f.div / f.pm * 100);
+    const dpa12  = f.div * 12;
+    totalFiiMes += rMes;
+    totalFiiAno += rAno;
+    return `<tr>
+      <td>${f.t}</td>
+      <td>${f.q.toLocaleString('pt-BR')}</td>
+      <td>${brl(f.div)}</td>
+      <td class="pos">${brl(rMes)}</td>
+      <td>${dyMes.toFixed(2)}%</td>
+      <td>${yocMes.toFixed(2)}%</td>
+      <td>${brl(dpa12)}</td>
+      <td>${brl(rAno)}</td>
+      <td><span style="background:#eff6ff;color:#2563eb;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">Mensal</span></td>
+    </tr>`;
+  });
+  document.getElementById('dyp-fii-tbody').innerHTML = fiiRows.join('');
+  document.getElementById('dyp-fii-tfoot').innerHTML = `<tr style="background:#f8f9fb;font-weight:700">
+    <td colspan="3" style="text-align:left;font-weight:700">TOTAL FIIs</td>
+    <td class="pos">${brl(totalFiiMes)}</td>
+    <td colspan="2">—</td>
+    <td>—</td>
+    <td class="pos">${brl(totalFiiAno)}</td>
+    <td>—</td>
+  </tr>`;
+
+  // FII cards
+  const pctFii = Math.min(totalFiiMes/META_FII_MES*100,100);
+  const gapFii = META_FII_MES - totalFiiMes;
+  document.getElementById('dyp-fii-cards').innerHTML = `
+    <div class="dyp-card"><div class="dyp-card-label">Renda FIIs/mês</div><div class="dyp-card-value">${brl(totalFiiMes)}</div><div class="dyp-bar-wrap"><div class="dyp-bar-fill" style="width:${pctFii.toFixed(0)}%"></div></div><div class="dyp-card-sub">${pctFii.toFixed(0)}% da meta R$10k</div></div>
+    <div class="dyp-card"><div class="dyp-card-label">Renda FIIs/ano</div><div class="dyp-card-value">${brl(totalFiiAno)}</div><div class="dyp-card-sub">Projeção 12 meses</div></div>
+    <div class="dyp-card ${gapFii>0?'warn':'accent'}"><div class="dyp-card-label">Meta R$10k/mês</div><div class="dyp-card-value">${pctFii.toFixed(0)}%</div><div class="dyp-card-sub">Gap: ${gapFii>0?'-':''}${brl(Math.abs(gapFii))}/mês</div></div>
+    <div class="dyp-card"><div class="dyp-card-label">FIIs sem div</div><div class="dyp-card-value">${FIIS.length - fiisComDiv.length}</div><div class="dyp-card-sub">de ${FIIS.length} FIIs</div></div>
+  `;
+
+  // ── Ações ──
+  const acMap = {};
+  ACOES.forEach(a=>acMap[a.t]=a);
+  let totalAcAno=0;
+  const acRows = ACOES_DPA.map(d=>{
+    const a = acMap[d.t];
+    if(!a) return '';
+    const renda2026 = a.q * d.dpa26;
+    const yoc26     = (d.dpa26 / a.pm * 100);
+    const rendaMes  = renda2026 / 12;
+    totalAcAno += renda2026;
+    const freq = d.freq;
+    const freqColor = freq==='Mensal'?'#eff6ff':freq==='Trimestral'?'#f0fdf4':'#fefce8';
+    const freqText  = freq==='Mensal'?'#2563eb':freq==='Trimestral'?'#16a34a':'#ca8a04';
+    return `<tr>
+      <td>${d.t}</td>
+      <td>${a.q.toLocaleString('pt-BR')}</td>
+      <td>${brl(d.dpa26)}</td>
+      <td>${d.dy26.toFixed(2)}%</td>
+      <td>${yoc26.toFixed(2)}%</td>
+      <td class="pos">${brl(renda2026)}</td>
+      <td class="${rendaMes>0?'pos':'neu'}">${brl(rendaMes)}</td>
+      <td><span style="background:${freqColor};color:${freqText};border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${freq}</span></td>
+    </tr>`;
+  });
+  document.getElementById('dyp-ac-tbody').innerHTML = acRows.join('');
+  const totalAcMes = totalAcAno / 12;
+  const pctAc = Math.min(totalAcAno/(META_ACOES_ANO)*100,100);
+  document.getElementById('dyp-ac-tfoot').innerHTML = `<tr style="background:#f8f9fb;font-weight:700">
+    <td colspan="5" style="text-align:left;font-weight:700">TOTAL AÇÕES</td>
+    <td class="pos">${brl(totalAcAno)}</td>
+    <td class="pos">${brl(totalAcMes)}</td>
+    <td>—</td>
+  </tr>`;
+
+  const gapAc = META_ACOES_ANO - totalAcAno;
+  document.getElementById('dyp-ac-cards').innerHTML = `
+    <div class="dyp-card"><div class="dyp-card-label">Renda Ações/mês est.</div><div class="dyp-card-value">${brl(totalAcMes)}</div><div class="dyp-card-sub">Baseado no DPA 2026</div></div>
+    <div class="dyp-card"><div class="dyp-card-label">Renda Ações/ano</div><div class="dyp-card-value">${brl(totalAcAno)}</div><div class="dyp-card-sub">Projeção 2026</div></div>
+    <div class="dyp-card ${pctAc>=100?'accent':'warn'}"><div class="dyp-card-label">Meta R$30k/mês</div><div class="dyp-card-value">${pctAc.toFixed(0)}%</div><div class="dyp-card-sub">Gap: ${brl(Math.abs(gapAc))}/ano</div></div>
+    <div class="dyp-card"><div class="dyp-card-label">Ativos com DPA</div><div class="dyp-card-value">${ACOES_DPA.length}</div><div class="dyp-card-sub">de ${ACOES.length} ações</div></div>
+  `;
+
+  // ── Consolidado ──
+  const totalMes   = totalFiiMes + totalAcMes;
+  const totalAnoC  = totalFiiAno + totalAcAno;
+  const pctTotal   = Math.min(totalMes/META_TOTAL_MES*100,100);
+  const gapTotal   = META_TOTAL_MES - totalMes;
+  document.getElementById('dyp-consolidado').innerHTML = `
+    <div class="dyp-big-card">
+      <div class="big-label">Renda Total/mês</div>
+      <div class="big-val">${brl(totalMes)}</div>
+      <div class="big-sub">FIIs ${brl(totalFiiMes)} + Ações ${brl(totalAcMes)}</div>
+      <div class="dyp-bar-wrap" style="margin-top:12px"><div class="dyp-bar-fill" style="width:${pctTotal.toFixed(0)}%"></div></div>
+      <div class="dyp-card-sub" style="margin-top:5px">${pctTotal.toFixed(0)}% da meta R$40k/mês</div>
+    </div>
+    <div class="dyp-big-card brand-green">
+      <div class="big-label">Renda Total/ano</div>
+      <div class="big-val">${brl(totalAnoC)}</div>
+      <div class="big-sub">Projeção acumulada 2026</div>
+    </div>
+    <div class="dyp-big-card ${gapTotal>0?'':'brand-green'}">
+      <div class="big-label">Gap meta R$40k/mês</div>
+      <div class="big-val" style="${gapTotal>0?'color:var(--red)':'color:var(--green)'}">${gapTotal>0?'-':''}${brl(Math.abs(gapTotal))}</div>
+      <div class="big-sub">${gapTotal>0?'Faltam para a meta':'Meta atingida 🎯'}</div>
+    </div>
+  `;
+}
+
 function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
+  if(id==='dyproj') renderDYProjetivo();
   if(btn)btn.classList.add('active');
 }
 
@@ -1877,19 +2100,17 @@ window.toggleMes=function(id){
 
 // ▸ DADOS — atualizados diariamente pela tarefa das 11h
 const FATOS = {
-  atualizado: "27/05/2026 · 19:15",
+  atualizado: "28/05/2026 · 16:40",
   fatos: [
-    {ticker:"TAEE11", cat:"acao", catLabel:"Ação", title:"TAEE11 paga R$0,90/unit hoje", body:"Taesa distribui R$0,90 por unit em 27/05/2026, referente aos dividendos de 2025. Data-com foi 29/04. Total distribuído no ano: R$3,26/unit.", data:"27/05/2026"},
-    {ticker:"BBAS3", cat:"acao", catLabel:"Ação", title:"BBAS3: JCP duplo — data-com 01/06", body:"Banco do Brasil aprovou dois lotes de JCP (1T26 + antecipado 2T26) totalizando ~R$0,14/ação. Quem segurar até 01/06 recebe pagamento em 11/06.", data:"26/05/2026"},
-    {ticker:"PETR4", cat:"acao", catLabel:"Ação", title:"PETR4: dividendo R$0,70/ação, data-com 01/06", body:"Petrobras aprovou dividendos de R$0,70/ação como antecipação de 2026. Quem segurar até 01/06 recebe. Lucro 1T26: R$32,6bi.", data:"26/05/2026"},
-    {ticker:"VALE3", cat:"acao", catLabel:"Ação", title:"JP Morgan eleva alvo de VALE3 para R$104", body:"Banco aponta VALE3 descontada demais e eleva preço-alvo para R$104. Lucro 1T26 de US$1,89bi. Minério estável em ~US$113/t.", data:"27/05/2026"},
-    {ticker:"WEGE3", cat:"acao", catLabel:"Ação", title:"WEG: lucro 1T26 cai 5,7% mas margens sustentam", body:"WEG reportou lucro de R$1,45bi no 1T26, queda de 5,7% a/a pressionada pelo câmbio. EBITDA avançou para margem de 22,2% e ROIC de 33,1%.", data:"27/05/2026"},
-    {ticker:"CXSE3", cat:"acao", catLabel:"Ação", title:"CXSE3 pagou R$0,33/ação em maio", body:"Caixa Seguridade distribuiu dividendo trimestral de R$0,33/ação com data-com 30/04 e pagamento em 15/05/2026.", data:"15/05/2026"},
-    {ticker:"KLBN11", cat:"acao", catLabel:"Ação", title:"KLBN11 pagou R$0,23/unit em maio", body:"Klabin distribuiu a parcela trimestral de dividendos de R$0,23/unit em 20/05/2026, dentro do calendário anual previsto.", data:"20/05/2026"},
-    {ticker:"MCCI11", cat:"fii", catLabel:"FII", title:"MCCI11 mantém R$1,00/cota em maio", body:"Mauá Capital reiterou guidance e pagou R$1,00/cota em maio, mantendo o patamar estável desde ago/25.", data:"27/05/2026"},
-    {ticker:"IRIM11", cat:"fii", catLabel:"FII", title:"IRIM11 paga R$0,90/cota — maior em 10 meses", body:"Iridium distribuiu R$0,90/cota em maio de 2026, o maior rendimento mensal registrado nos últimos 10 meses.", data:"27/05/2026"},
-    {ticker:"PVBI11", cat:"fii", catLabel:"FII", title:"PVBI11: R$0,40/cota pago em maio", body:"VBI Prime Properties distribuiu R$0,40/cota em 08/05. DY mensal de 0,52%. Vacância de 24% prevista para jul/26 segue no radar.", data:"08/05/2026"},
-    {ticker:"BBAS3", cat:"macro", catLabel:"Macro", title:"Selic em 14,5% — Copom manteve em abr/26", body:"Banco Central manteve a Selic em 14,5% na reunião de abril. Próxima decisão em junho. Taxa favorece ativos de renda fixa e pressiona múltiplos de crescimento.", data:"29/04/2026"},
+    {ticker:"BTLG11", cat:"fii", catLabel:"FII", title:"BTLG11 paga R$0,81/cota em 25/05", body:"BTG Pactual Logística manteve a distribuição de R$0,81/cota, com pagamento em 25/05/2026 para cotistas posicionados até 15/05. DY mensal de ~0,78%.", data:"25/05/2026"},
+    {ticker:"XPML11", cat:"fii", catLabel:"FII", title:"XPML11 distribui R$0,92/cota em 25/05", body:"XP Malls confirmou R$0,92/cota referente à competência de abril, pago em 25/05/2026. Rendimento mensal próximo de 0,83% sobre o último fechamento.", data:"25/05/2026"},
+    {ticker:"HGLG11", cat:"fii", catLabel:"FII", title:"HGLG11 pagou R$1,10/cota em 15/05", body:"Pátria Logística (HGLG11) distribuiu R$1,10/cota em 15/05/2026, mantendo o patamar do mês anterior. DY anualizado ~8,5%.", data:"15/05/2026"},
+    {ticker:"BBAS3", cat:"acao", catLabel:"Ação", title:"BBAS3 aprova R$465,7M em JCP do 1T26", body:"Banco do Brasil anunciou em 13/05 R$465,7 milhões em JCP referente ao 1T26. Somado aos R$400M anteriores, totaliza R$866M em proventos no trimestre. Diretoria descartou dividendos extras em 2026.", data:"13/05/2026"},
+    {ticker:"TAEE11", cat:"acao", catLabel:"Ação", title:"TAEE11: JCP de R$0,559/unit aprovado", body:"Taesa aprovou R$192,6 milhões em JCP (R$0,559/unit), com data-com 11/05 e pagamento em 26/08/2026. Lucro regulatório do 1T26 cresceu 2,3% a/a para R$192,6M.", data:"11/05/2026"},
+    {ticker:"CXSE3", cat:"acao", catLabel:"Ação", title:"CXSE3 pagou R$0,33/ação em 15/05", body:"Caixa Seguridade distribuiu dividendo de R$0,33/ação com data-com 30/04 e pagamento em 15/05/2026. Lucro IFRS4 2025 fechou em R$4,32bi com payout de 91,1%.", data:"15/05/2026"},
+    {ticker:"VALE3", cat:"acao", catLabel:"Ação", title:"VALE3: lucro 1T26 sobe 36%, mas mercado pressiona", body:"Vale reportou US$1,89bi de lucro no 1T26 (+36% a/a) e Ebitda ajustado de US$3,83bi (+23%). Custos pressionados levaram as ações às maiores baixas do Ibov. Executivos sinalizam dividendo extra à frente.", data:"22/05/2026"},
+    {ticker:"BBSE3", cat:"acao", catLabel:"Ação", title:"BBSE3 acumula R$2,61/ação em proventos 2026", body:"BB Seguridade segue como uma das maiores pagadoras da Bolsa. Projeção de DY ~11% para 2026 sustentada por lucro recorde em 2025 e payout próximo de 90%.", data:"19/05/2026"},
+    {ticker:"SETOR", cat:"macro", catLabel:"Macro", title:"Selic em 14,5% após segundo corte consecutivo", body:"Copom reduziu a Selic em 0,25 p.p. para 14,5% a.a. em abril, totalizando 0,50 p.p. de queda no ciclo. Ata indica que BC não sinaliza mais cortes — IPCA-15 acelerou para 4,37% em 12 meses.", data:"29/04/2026"},
   ]
 };
 
