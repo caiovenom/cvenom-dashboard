@@ -315,6 +315,9 @@ tbody tr:hover{background:#f9fafb;}
 .dyp-card.warn .dyp-card-value{color:var(--red);}
 .dyp-bar-wrap{margin-top:8px;background:#eef2f7;border-radius:20px;height:5px;}
 .dyp-bar-fill{height:5px;border-radius:20px;background:var(--brand);}
+.dyp-th{cursor:pointer;user-select:none;white-space:nowrap}
+.dyp-th:hover{background:rgba(0,0,0,.04)}
+.dyp-si{font-size:11px;margin-left:3px;color:var(--muted)}
 .dyp-section{margin-bottom:32px;}
 .dyp-table-wrap{overflow-x:auto;}
 .dyp-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
@@ -609,14 +612,14 @@ tbody tr:hover{background:#f9fafb;}
       <div class="dyp-table-wrap">
         <table class="dyp-tbl">
           <thead><tr>
-            <th style="text-align:left">Ticker</th>
-            <th>Cotas</th>
-            <th>Div/Cota</th>
-            <th>Renda/Mês</th>
-            <th>DY Mensal%</th>
-            <th>YoC Mensal%</th>
-            <th>DPA 12m Proj.</th>
-            <th>Renda Anual</th>
+            <th class="dyp-th" style="text-align:left" onclick="dypSort('fii',0,this)">Ticker <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',1,this)">Cotas <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',2,this)">Div/Cota <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',3,this)">Renda/Mês <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',4,this)">DY Mensal% <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',5,this)">YoC Mensal% <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',6,this)">DPA 12m Proj. <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('fii',7,this)">Renda Anual <span class="dyp-si">⇅</span></th>
             <th>Frequência</th>
           </tr></thead>
           <tbody id="dyp-fii-tbody"></tbody>
@@ -632,13 +635,13 @@ tbody tr:hover{background:#f9fafb;}
       <div class="dyp-table-wrap">
         <table class="dyp-tbl">
           <thead><tr>
-            <th style="text-align:left">Ticker</th>
-            <th>Cotas</th>
-            <th>DPA 2026 Proj.</th>
-            <th>DY 2026%</th>
-            <th>YoC 2026%</th>
-            <th>Renda 2026</th>
-            <th>Renda/Mês Est.</th>
+            <th class="dyp-th" style="text-align:left" onclick="dypSort('ac',0,this)">Ticker <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',1,this)">Cotas <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',2,this)">DPA 2026 Proj. <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',3,this)">DY 2026% <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',4,this)">YoC 2026% <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',5,this)">Renda 2026 <span class="dyp-si">⇅</span></th>
+            <th class="dyp-th" onclick="dypSort('ac',6,this)">Renda/Mês Est. <span class="dyp-si">⇅</span></th>
             <th>Frequência</th>
           </tr></thead>
           <tbody id="dyp-ac-tbody"></tbody>
@@ -1596,27 +1599,53 @@ const META_FII_MES   = 10000;
 const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 
+// ── DY Projetivo sort state ──────────────────────────────────────────────────
+const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
+
+function dypSort(sec, col, th){
+  const s = _DYP[sec];
+  if(s.col===col){ s.dir*=-1; } else { s.col=col; s.dir=1; }
+  // update header indicators
+  const tbl = th.closest('table');
+  tbl.querySelectorAll('th .dyp-si').forEach(si=>{ si.textContent='⇅'; si.style.color=''; });
+  th.querySelector('.dyp-si').textContent = s.dir===1 ? '↓' : '↑';
+  th.querySelector('.dyp-si').style.color = 'var(--blue)';
+  renderDYProjetivo();
+}
+
 function renderDYProjetivo(){
   // ── FIIs ──
   const fiisComDiv = FIIS.filter(f=>f.div&&f.div>0);
-  let totalFiiMes=0, totalFiiAno=0;
-  const fiiRows = fiisComDiv.map(f=>{
+  let fiiData = fiisComDiv.map(f=>{
     const rMes   = f.q * f.div;
     const rAno   = rMes * 12;
     const dyMes  = (f.div / f.p * 100);
     const yocMes = (f.div / f.pm * 100);
     const dpa12  = f.div * 12;
-    totalFiiMes += rMes;
-    totalFiiAno += rAno;
+    return { t:f.t, q:f.q, div:f.div, rMes, dyMes, yocMes, dpa12, rAno };
+  });
+  // sort FII
+  const sf = _DYP.fii;
+  if(sf.col>=0){
+    const keys = ['t','q','div','rMes','dyMes','yocMes','dpa12','rAno'];
+    fiiData.sort((a,b)=>{
+      const k=keys[sf.col];
+      return typeof a[k]==='string' ? a[k].localeCompare(b[k])*sf.dir : (a[k]-b[k])*sf.dir;
+    });
+  }
+  let totalFiiMes=0, totalFiiAno=0;
+  const fiiRows = fiiData.map(f=>{
+    totalFiiMes += f.rMes;
+    totalFiiAno += f.rAno;
     return `<tr>
       <td>${f.t}</td>
       <td>${f.q.toLocaleString('pt-BR')}</td>
       <td>${brl(f.div)}</td>
-      <td class="pos">${brl(rMes)}</td>
-      <td>${dyMes.toFixed(2)}%</td>
-      <td>${yocMes.toFixed(2)}%</td>
-      <td>${brl(dpa12)}</td>
-      <td>${brl(rAno)}</td>
+      <td class="pos">${brl(f.rMes)}</td>
+      <td>${f.dyMes.toFixed(2)}%</td>
+      <td>${f.yocMes.toFixed(2)}%</td>
+      <td>${brl(f.dpa12)}</td>
+      <td>${brl(f.rAno)}</td>
       <td><span style="background:#eff6ff;color:#2563eb;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">Mensal</span></td>
     </tr>`;
   });
@@ -1643,26 +1672,38 @@ function renderDYProjetivo(){
   // ── Ações ──
   const acMap = {};
   ACOES.forEach(a=>acMap[a.t]=a);
-  let totalAcAno=0;
-  const acRows = ACOES_DPA.map(d=>{
+  let acData = ACOES_DPA.map(d=>{
     const a = acMap[d.t];
-    if(!a) return '';
+    if(!a) return null;
     const renda2026 = a.q * d.dpa26;
     const yoc26     = (d.dpa26 / a.pm * 100);
     const rendaMes  = renda2026 / 12;
-    totalAcAno += renda2026;
-    const freq = d.freq;
-    const freqColor = freq==='Mensal'?'#eff6ff':freq==='Trimestral'?'#f0fdf4':'#fefce8';
-    const freqText  = freq==='Mensal'?'#2563eb':freq==='Trimestral'?'#16a34a':'#ca8a04';
+    return { t:d.t, q:a.q, dpa26:d.dpa26, dy26:d.dy26, yoc26, renda2026, rendaMes, freq:d.freq };
+  }).filter(Boolean);
+  // sort Ações
+  const sa = _DYP.ac;
+  if(sa.col>=0){
+    const keys = ['t','q','dpa26','dy26','yoc26','renda2026','rendaMes'];
+    acData.sort((a,b)=>{
+      const k=keys[sa.col];
+      if(k===undefined) return 0;
+      return typeof a[k]==='string' ? a[k].localeCompare(b[k])*sa.dir : (a[k]-b[k])*sa.dir;
+    });
+  }
+  let totalAcAno=0;
+  const acRows = acData.map(d=>{
+    totalAcAno += d.renda2026;
+    const freqColor = d.freq==='Mensal'?'#eff6ff':d.freq==='Trimestral'?'#f0fdf4':'#fefce8';
+    const freqText  = d.freq==='Mensal'?'#2563eb':d.freq==='Trimestral'?'#16a34a':'#ca8a04';
     return `<tr>
       <td>${d.t}</td>
-      <td>${a.q.toLocaleString('pt-BR')}</td>
+      <td>${d.q.toLocaleString('pt-BR')}</td>
       <td>${brl(d.dpa26)}</td>
       <td>${d.dy26.toFixed(2)}%</td>
-      <td>${yoc26.toFixed(2)}%</td>
-      <td class="pos">${brl(renda2026)}</td>
-      <td class="${rendaMes>0?'pos':'neu'}">${brl(rendaMes)}</td>
-      <td><span style="background:${freqColor};color:${freqText};border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${freq}</span></td>
+      <td>${d.yoc26.toFixed(2)}%</td>
+      <td class="pos">${brl(d.renda2026)}</td>
+      <td class="${d.rendaMes>0?'pos':'neu'}">${brl(d.rendaMes)}</td>
+      <td><span style="background:${freqColor};color:${freqText};border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${d.freq}</span></td>
     </tr>`;
   });
   document.getElementById('dyp-ac-tbody').innerHTML = acRows.join('');
