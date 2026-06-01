@@ -233,49 +233,6 @@ tbody tr:hover{background:#f9fafb;}
 .fii-sort-sel{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:12px;font-weight:500;color:var(--brand);cursor:pointer;min-width:170px;outline:none;font-family:inherit;}
 .fii-sort-sel:focus{border-color:var(--gold);}
 
-/* ── FATOS RELEVANTES ───────────────────────────────────────── */
-.fatos-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
-.fatos-topbar-left{display:flex;align-items:center;gap:10px;}
-.fatos-live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-dot 2s infinite;}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-.fatos-atualiz{font-size:11px;color:var(--muted);}
-.fatos-atualiz strong{color:var(--brand);font-weight:600;}
-.fatos-count{font-size:12px;font-weight:700;color:var(--brand);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 12px;}
-.fatos-feed{display:flex;flex-direction:column;gap:10px;}
-.fato-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh-sm);display:flex;overflow:hidden;transition:box-shadow .2s,transform .15s;}
-.fato-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
-.fato-accent{width:4px;flex-shrink:0;border-radius:0;}
-.fato-card.cat-dividendo .fato-accent{background:var(--gold);}
-.fato-card.cat-fii .fato-accent{background:var(--purple);}
-.fato-card.cat-resultado .fato-accent{background:#2563eb;}
-.fato-card.cat-macro .fato-accent{background:var(--brand);}
-.fato-card.cat-setor .fato-accent{background:var(--cyan);}
-.fato-card.cat-alerta .fato-accent{background:var(--red);}
-.fato-card.cat-proventos .fato-accent{background:var(--green);}
-.fato-inner{padding:14px 18px;flex:1;}
-.fato-tags{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
-.fato-ticker{font-size:11px;font-weight:800;color:#fff;background:var(--brand);border-radius:5px;padding:2px 8px;letter-spacing:.3px;}
-.fato-cat-badge{font-size:10px;font-weight:700;border-radius:5px;padding:2px 8px;letter-spacing:.3px;}
-.fato-card.cat-dividendo .fato-cat-badge{background:#fef9ee;color:#a37a1a;border:1px solid #fde68a;}
-.fato-card.cat-fii .fato-cat-badge{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe;}
-.fato-card.cat-resultado .fato-cat-badge{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;}
-.fato-card.cat-macro .fato-cat-badge{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;}
-.fato-card.cat-setor .fato-cat-badge{background:#ecfeff;color:#0e7490;border:1px solid #a5f3fc;}
-.fato-card.cat-alerta .fato-cat-badge{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;}
-.fato-card.cat-proventos .fato-cat-badge{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
-.fato-title{font-size:13.5px;font-weight:700;color:var(--brand);line-height:1.35;margin-bottom:5px;}
-.fato-body{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
-.fato-body strong{color:var(--brand);font-weight:600;}
-.fato-meta{font-size:10.5px;color:#b0b0b0;display:flex;align-items:center;gap:8px;}
-.fato-meta span{display:inline-flex;align-items:center;gap:4px;}
-.fatos-empty{text-align:center;padding:48px 20px;color:var(--muted);}
-.fatos-empty-icon{font-size:36px;margin-bottom:12px;opacity:.5;}
-.fatos-empty-title{font-size:15px;font-weight:700;color:var(--brand);margin-bottom:6px;}
-.fatos-empty-sub{font-size:12px;line-height:1.6;}
-.fatos-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
-.fatos-cat-btn{padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:var(--card);font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;font-family:inherit;}
-.fatos-cat-btn.active,.fatos-cat-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
-
 /* ── Tooltip aportes ────────────────────────────────────────── */
 .ap-tooltip{
   position:fixed;z-index:9999;pointer-events:none;
@@ -348,7 +305,6 @@ tbody tr:hover{background:#f9fafb;}
   <button class="tab-btn" onclick="showTab('proventos',this)">Proventos</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
-  <button class="tab-btn" onclick="showTab('fatos',this)">Notícias</button>
   <button class="tab-btn" onclick="showTab('dyproj',this)">DY Projetivo</button>
 </div>
 <div class="content">
@@ -592,16 +548,7 @@ tbody tr:hover{background:#f9fafb;}
 
 </div><!-- /tab-aportes -->
 
-<div id="tab-fatos" class="tab-panel">
-  <div class="fatos-topbar">
-    <div class="fatos-topbar-left">
-      <div class="fatos-live-dot"></div>
-      <div class="fatos-atualiz">Atualizado <strong id="fatos-ts">—</strong></div>
-    </div>
-    <div class="fatos-count" id="fatos-count">0 fatos hoje</div>
-  </div>
-  <div class="fatos-feed" id="fatos-feed"></div>
-</div><!-- /tab-fatos -->
+
 <div id="tab-dyproj" class="tab-panel" style="background:var(--bg);padding:0;border:none;box-shadow:none;">
   <div style="padding:20px 0;">
 
@@ -2136,83 +2083,6 @@ window.toggleMes=function(id){
 };
 })();
 
-// ── FATOS RELEVANTES ─────────────────────────────────────────────────────────
-(function(){
-
-// ▸ DADOS — atualizados diariamente pela tarefa das 11h
-const FATOS = {
-  atualizado: "30/05/2026 · 11:00",
-  fatos: [
-    {ticker:"BBAS3", cat:"acao", catLabel:"Ação", title:"BBAS3: JCP do 2T26 — data-com 01/06", body:"Banco do Brasil aprovou R$340,7M em JCP referente ao 2T26 (R$0,0597/ação), data-com 01/06/2026, pagamento em 11/06/2026. Somado ao JCP do 1T26, acumula R$806M em proventos no semestre.", data:"30/05/2026"},
-    {ticker:"HGRU11", cat:"fii", catLabel:"FII", title:"HGRU11 paga R$0,95/cota em 15/06", body:"Pátria Renda Urbana confirmou rendimento de R$0,95/cota referente a maio/2026, com pagamento em 15/06/2026. DY mensal de ~0,73% sobre a cota atual.", data:"30/05/2026"},
-    {ticker:"BTLG11", cat:"fii", catLabel:"FII", title:"BTLG11 paga R$0,81/cota em 25/05", body:"BTG Pactual Logística manteve a distribuição de R$0,81/cota, com pagamento em 25/05/2026 para cotistas posicionados até 15/05. DY mensal de ~0,78%.", data:"25/05/2026"},
-    {ticker:"XPML11", cat:"fii", catLabel:"FII", title:"XPML11 distribui R$0,92/cota em 25/05", body:"XP Malls confirmou R$0,92/cota referente à competência de abril, pago em 25/05/2026. Rendimento mensal próximo de 0,83% sobre o último fechamento.", data:"25/05/2026"},
-    {ticker:"HGLG11", cat:"fii", catLabel:"FII", title:"HGLG11 pagou R$1,10/cota em 15/05", body:"Pátria Logística (HGLG11) distribuiu R$1,10/cota em 15/05/2026, mantendo o patamar do mês anterior. DY anualizado ~8,5%.", data:"15/05/2026"},
-    {ticker:"BBAS3", cat:"acao", catLabel:"Ação", title:"BBAS3 aprova R$465,7M em JCP do 1T26", body:"Banco do Brasil anunciou em 13/05 R$465,7 milhões em JCP referente ao 1T26. Somado aos R$400M anteriores, totaliza R$866M em proventos no trimestre. Diretoria descartou dividendos extras em 2026.", data:"13/05/2026"},
-    {ticker:"TAEE11", cat:"acao", catLabel:"Ação", title:"TAEE11: JCP de R$0,559/unit aprovado", body:"Taesa aprovou R$192,6 milhões em JCP (R$0,559/unit), com data-com 11/05 e pagamento em 26/08/2026. Lucro regulatório do 1T26 cresceu 2,3% a/a para R$192,6M.", data:"11/05/2026"},
-    {ticker:"CXSE3", cat:"acao", catLabel:"Ação", title:"CXSE3 pagou R$0,33/ação em 15/05", body:"Caixa Seguridade distribuiu dividendo de R$0,33/ação com data-com 30/04 e pagamento em 15/05/2026. Lucro IFRS4 2025 fechou em R$4,32bi com payout de 91,1%.", data:"15/05/2026"},
-    {ticker:"VALE3", cat:"acao", catLabel:"Ação", title:"VALE3: lucro 1T26 sobe 36%, mas mercado pressiona", body:"Vale reportou US$1,89bi de lucro no 1T26 (+36% a/a) e Ebitda ajustado de US$3,83bi (+23%). Custos pressionados levaram as ações às maiores baixas do Ibov. Executivos sinalizam dividendo extra à frente.", data:"22/05/2026"},
-    {ticker:"BBSE3", cat:"acao", catLabel:"Ação", title:"BBSE3 acumula R$2,61/ação em proventos 2026", body:"BB Seguridade segue como uma das maiores pagadoras da Bolsa. Projeção de DY ~11% para 2026 sustentada por lucro recorde em 2025 e payout próximo de 90%.", data:"19/05/2026"},
-    {ticker:"SETOR", cat:"macro", catLabel:"Macro", title:"Selic em 14,5% após segundo corte consecutivo", body:"Copom reduziu a Selic em 0,25 p.p. para 14,5% a.a. em abril, totalizando 0,50 p.p. de queda no ciclo. Ata indica que BC não sinaliza mais cortes — IPCA-15 acelerou para 4,37% em 12 meses.", data:"29/04/2026"},
-  ]
-};
-
-// ── RENDER ────────────────────────────────────────────────────────────────────
-function renderFatos(filtro){
-  filtro = filtro || 'todos';
-  const feed = document.getElementById('fatos-feed');
-  if(!feed) return;
-
-  const parseDate = d => { const [dia,mes,ano] = d.split('/'); return new Date(ano,mes-1,dia); };
-  const sorted = [...FATOS.fatos].sort((a,b) => parseDate(b.data) - parseDate(a.data));
-  const lista = filtro === 'todos'
-    ? sorted
-    : sorted.filter(f => f.cat === filtro);
-
-  if(!lista.length){
-    feed.innerHTML = `<div class="fatos-empty">
-      <div class="fatos-empty-icon">🔍</div>
-      <div class="fatos-empty-title">Sem fatos nessa categoria hoje</div>
-      <div class="fatos-empty-sub">Volte mais tarde ou selecione outra categoria.</div>
-    </div>`;
-    return;
-  }
-
-  feed.innerHTML = lista.map(f => `
-    <div class="fato-card cat-${f.cat}">
-      <div class="fato-accent"></div>
-      <div class="fato-inner">
-        <div class="fato-tags">
-          ${f.ticker !== 'SETOR' ? `<span class="fato-ticker">${f.ticker}</span>` : ''}
-          <span class="fato-cat-badge">${f.catLabel}</span>
-        </div>
-        <div class="fato-title">${f.title}</div>
-        <div class="fato-body">${f.body}</div>
-        <div class="fato-meta">
-          <span>📅 ${f.data}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Header info
-const tsEl = document.getElementById('fatos-ts');
-const countEl = document.getElementById('fatos-count');
-if(tsEl) tsEl.textContent = FATOS.atualizado;
-if(countEl) countEl.textContent = FATOS.fatos.length + ' fato' + (FATOS.fatos.length !== 1 ? 's' : '') + ' hoje';
-
-// Render inicial
-renderFatos('todos');
-
-// Filtro por categoria
-window.filtrarFatos = function(cat, btn){
-  document.querySelectorAll('.fatos-cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderFatos(cat);
-};
-
-})();
 
 </script>
 </body>
