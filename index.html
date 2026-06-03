@@ -524,7 +524,7 @@ tbody tr:hover{background:#f9fafb;}
 
 <div class="sec">Ativo mais comprado — por Ano</div>
 <div class="top-grid">
-  <div class="ap-cw"><div class="ap-ct">📅 2025</div><div id="top-2025"></div></div>
+  <div class="ap-cw"><div class="ap-ct">📅 Últimos 12m</div><div id="top-2025"></div></div>
   <div class="ap-cw"><div class="ap-ct">📅 2026 (<span id="lbl-jan-mes">Jan→Mai</span>)</div><div id="top-2026"></div></div>
 </div>
 
@@ -2237,7 +2237,7 @@ tbody tr:hover{background:#f9fafb;}
 
 <div class="sec">Ativo mais comprado — por Ano</div>
 <div class="top-grid">
-  <div class="ap-cw"><div class="ap-ct">📅 2025</div><div id="top-2025"></div></div>
+  <div class="ap-cw"><div class="ap-ct">📅 Últimos 12m</div><div id="top-2025"></div></div>
   <div class="ap-cw"><div class="ap-ct">📅 2026 (<span id="lbl-jan-mes">Jan→Mai</span>)</div><div id="top-2026"></div></div>
 </div>
 
@@ -3562,18 +3562,47 @@ const APORTES_HIST={
 
 // TOP ATIVOS POR ANO
 const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b2','#0f172a','#64748b','#9333ea'];
-['2025','2026'].forEach(ano=>{
-  const top=AD.top_por_ano[ano];
+
+// Calcular top últimos 12 meses dinamicamente
+(function(){
+  const ult12 = AD.months.slice(-12);
+  const totais = {};
+  ult12.forEach(m=>{
+    const d = AD.data[m]; if(!d) return;
+    ['Caio','Fatima'].forEach(p=>{
+      Object.entries(d[p]?.compras||{}).forEach(([t,v])=>{
+        if(t==='CDB') return;
+        totais[t]=(totais[t]||0)+v;
+      });
+    });
+  });
+  const sorted = Object.entries(totais).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const total = sorted.reduce((s,[,v])=>s+v,0);
+  const topUlt12 = sorted.map(([ticker,valor])=>({ticker,valor,pct:+(valor/total*100).toFixed(1)}));
+  const mx12 = topUlt12[0]?.valor||1;
+  document.getElementById('top-2025').innerHTML = topUlt12.map((t,i)=>`
+    <div class="top-item" data-ticker="${t.ticker}" data-ano="ult12">
+      <span class="top-rank">${i+1}</span>
+      <span class="top-ticker">${t.ticker}</span>
+      <div class="top-bar-wrap"><div class="top-bar-fill" style="width:${t.valor/mx12*100}%;background:${cores[i]}"></div></div>
+      <span class="top-val">${R(t.valor)}</span>
+      <span class="top-pct">${Pct(t.pct)}</span>
+    </div>`).join('');
+})();
+
+// 2026
+(function(){
+  const top=AD.top_por_ano['2026'];
   const mx=top[0].valor;
-  document.getElementById('top-'+ano).innerHTML=top.map((t,i)=>`
-    <div class="top-item" data-ticker="${t.ticker}" data-ano="${ano}">
+  document.getElementById('top-2026').innerHTML=top.map((t,i)=>`
+    <div class="top-item" data-ticker="${t.ticker}" data-ano="2026">
       <span class="top-rank">${i+1}</span>
       <span class="top-ticker">${t.ticker}</span>
       <div class="top-bar-wrap"><div class="top-bar-fill" style="width:${t.valor/mx*100}%;background:${cores[i]}"></div></div>
       <span class="top-val">${R(t.valor)}</span>
       <span class="top-pct">${Pct(t.pct)}</span>
     </div>`).join('');
-});
+})();
 
 // ── Tooltip aportes ──────────────────────────────────────────
 (function(){
