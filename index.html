@@ -602,36 +602,36 @@ const ACOES=[
   {t:'TAEE11', p:39.25, pm:34.62, q:3352,  v:131566.00, teto:47.33, ms:20.59, vuc:33.78, s:'Elétrico'},
   {t:'ISAE4', p:27.50, pm:23.69, q:6010,  v:165275.00, teto:28.58, ms:3.93, vuc:21.9, s:'Elétrico'},
   {t:'BBSE3', p:35.13, pm:32.22, q:5639,  v:198098.07, teto:35.5, ms:1.05, vuc:34.01, s:'Seguridade'},
-  {t:'CXSE3', p:17.34, pm:15.34, q:11151,  v:193358.34, teto:18.7, ms:7.84, vuc:17.34, s:'Seguridade'},
+  {t:'CXSE3', p:17.45, pm:15.34, q:11451,  v:199819.95, teto:18.7, ms:7.16, vuc:17.33, s:'Seguridade'},
   {t:'BBAS3', p:19.89, pm:22.17, q:11078,  v:220341.42, teto:25.0, ms:25.69, vuc:20.76, s:'Bancos'},
   {t:'ITSA4', p:12.90, pm:7.97, q:7603,  v:98078.70, teto:11.5, ms:-10.85, vuc:8.82, s:'Bancos'},
-  {t:'BBDC3', p:15.25, pm:15.24, q:3164,  v:48251.00, teto:17.43, ms:14.29, vuc:15.24, s:'Bancos'},
+  {t:'BBDC3', p:15.11, pm:15.22, q:3764,  v:56874.04, teto:17.43, ms:15.35, vuc:15.19, s:'Bancos'},
   {t:'SAPR4', p:7.18, pm:3.58, q:2309,  v:16578.62, teto:3.64, ms:-49.30, sell:true, vuc:3.47, s:'Saneamento'},
-  {t:'KLBN11', p:16.91, pm:18.03, q:4829,  v:81658.39, teto:28.0, ms:65.58, vuc:16.76, s:'Papel/Cel.'},
+  {t:'KLBN11', p:16.76, pm:18.03, q:4829,  v:80934.04, teto:28.0, ms:67.06, vuc:16.76, s:'Papel/Cel.'},
   {t:'WEGE3', p:42.00, pm:29.42, q:866,  v:36372.00, teto:37.0, ms:-11.90, vuc:33.24, s:'Bens Ind.'},
   {t:'VIVT3', p:33.80, pm:20.04, q:1680,  v:56784.00, teto:34.58, ms:2.31, vuc:20.0, s:'Telecom'},
   {t:'PETR4', p:41.57, pm:30.38, q:1863,  v:77444.91, teto:38.0, ms:-8.59, trim:true, vuc:29.69, s:'Petróleo'},
-  {t:'HODL11', p:56.60, pm:80.67, q:63,   v:3565.80, teto:85.0, ms:50.18, vuc:79.3, s:'ETF BTC'},
+  {t:'HODL11', p:56.61, pm:80.67, q:63,   v:3566.43, teto:85.0, ms:50.18, vuc:79.3, s:'ETF BTC'},
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
   // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
   // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
-  {t:'XPML11',p:106.57,pm:105.12,q:663,  v:70655.91, teto:129.0,ms:21.05, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
-  {t:'PMLL11',p:105.72,pm:102.93,q:553,  v:58463.16, teto:123.0,ms:16.35, s:'Shopping', div:1.00, vpa:102.98},
-  {t:'BTLG11',p:102.95,pm:102.29,q:642,  v:66093.90, teto:112.0,ms:8.79, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
-  {t:'TRXF11',p:91.00,pm:103.62,q:808,  v:73528.00, teto:123.0,ms:35.16, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
-  {t:'HGRU11',p:127.32,pm:121.58,q:408,  v:51946.56, teto:140.0,ms:9.96, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
-  {t:'MCCI11',p:95.00,pm:89.17,q:514,  v:48830.00, teto:95.0,ms:0.00, s:'Papel', div:1.00, vpa:97.99},
-  {t:'HGLG11',p:154.12,pm:166.66,q:284,  v:43770.08, teto:164.0,ms:6.41, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
-  {t:'RECR11',p:82.15,pm:83.09,q:710,  v:58326.50, teto:89.0,ms:8.34, s:'Papel', div:1.034, vpa:89.32, ativo:true},
-  {t:'VGIP11',p:80.57,pm:86.09,q:563,  v:45360.91, teto:90.0,ms:11.70, s:'Papel', div:1.08, vpa:90.10},
-  {t:'BTHF11',p:9.26,pm:10.12,q:4252,  v:39373.52, teto:9.0,ms:-2.81, s:'Hedge', div:0.101, vpa:9.97},
-  {t:'PVBI11',p:72.28,pm:80.91,q:521,  v:37657.88, teto:97.0,ms:34.20, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:105.84,pm:100.99,q:278,  v:29423.52, teto:113.0,ms:6.76, s:'Logístico', div:0.75, vpa:119.19},
-  {t:'IRIM11',p:68.01,pm:77.95,q:431,  v:29312.31, teto:81.0,ms:19.10, s:'Hedge', div:0.75, vpa:82.38},
-  {t:'VISC11',p:106.37,pm:109.21,q:188,  v:19997.56, teto:114.0,ms:7.17, s:'Shopping', div:0.84, vpa:120.36},
-  {t:'KNRI11',p:157.03,pm:149.73,q:161,  v:25281.83, teto:164.0,ms:4.44, s:'Híbrido', div:1.10, vpa:158.72},
+  {t:'XPML11',p:106.0,pm:105.12,q:663,  v:70278.0, teto:129.0,ms:21.7, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11',p:105.64,pm:102.93,q:553,  v:58418.92, teto:123.0,ms:16.43, s:'Shopping', div:1.00, vpa:102.98},
+  {t:'BTLG11',p:102.97,pm:102.29,q:642,  v:66106.74, teto:112.0,ms:8.77, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11',p:90.80,pm:103.62,q:808,  v:73366.40, teto:123.0,ms:35.46, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11',p:127.4,pm:121.58,q:408,  v:51979.2, teto:140.0,ms:9.89, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11',p:95.22,pm:89.17,q:514,  v:48943.08, teto:95.0,ms:-0.23, s:'Papel', div:1.00, vpa:97.99},
+  {t:'HGLG11',p:153.97,pm:166.66,q:284,  v:43727.48, teto:164.0,ms:6.51, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
+  {t:'RECR11',p:82.04,pm:83.09,q:710,  v:58248.4, teto:89.0,ms:8.48, s:'Papel', div:1.034, vpa:89.32, ativo:true},
+  {t:'VGIP11',p:80.65,pm:86.09,q:563,  v:45405.95, teto:90.0,ms:11.59, s:'Papel', div:1.08, vpa:90.10},
+  {t:'BTHF11',p:9.27,pm:10.12,q:4252,  v:39416.04, teto:9.0,ms:-2.91, s:'Hedge', div:0.101, vpa:9.97},
+  {t:'PVBI11',p:71.01,pm:80.91,q:521,  v:36996.21, teto:97.0,ms:36.60, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:105.42,pm:100.99,q:278,  v:29306.76, teto:113.0,ms:7.19, s:'Logístico', div:0.75, vpa:119.19},
+  {t:'IRIM11',p:67.3,pm:77.95,q:431,  v:29006.3, teto:81.0,ms:20.36, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11',p:105.99,pm:109.21,q:188,  v:19926.12, teto:114.0,ms:7.56, s:'Shopping', div:0.84, vpa:120.36},
+  {t:'KNRI11',p:155.06,pm:149.73,q:161,  v:24964.66, teto:164.0,ms:5.77, s:'Híbrido', div:1.10, vpa:158.72},
 ];
 const FII_SI=[
   {t:'HGLG11',p:154.96,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -732,13 +732,13 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16105,fii:6638,acoes:9463, dolar:4},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3221971}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*',v:3209087}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3221971;
-let CAIO = 2434324;
-let FATIMA = 787647;
+let PAT = 3209087;
+let CAIO = 2416740;
+let FATIMA = 792347;
 let RF = 521424;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
@@ -750,8 +750,8 @@ const INDICES_HOJE = {
     {id:'atv-idiv', label:'IDIV', pontos:12328.08, chgPct:0.00, chgPts:0.00},
   ]
 };
-let CAIXA = 47765;
-let ACOES_US = 60442;
+let CAIXA = 42265;
+let ACOES_US = 61048;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
