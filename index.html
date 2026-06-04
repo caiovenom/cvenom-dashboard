@@ -1552,11 +1552,11 @@ const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
 function dypSort(sec, col, th){
   const s = _DYP[sec];
   if(s.col===col){ s.dir*=-1; } else { s.col=col; s.dir=1; }
-  // update header indicators
+  // update header indicators (só se existir o span)
   const tbl = th.closest('table');
-  tbl.querySelectorAll('th .dyp-si').forEach(si=>{ si.textContent='⇅'; si.style.color=''; });
-  th.querySelector('.dyp-si').textContent = s.dir===1 ? '↓' : '↑';
-  th.querySelector('.dyp-si').style.color = 'var(--blue)';
+  tbl.querySelectorAll('th .dyp-si').forEach(si=>{ si.textContent=''; si.style.color=''; });
+  const si = th.querySelector('.dyp-si');
+  if(si){ si.textContent = s.dir===1 ? '↓' : '↑'; si.style.color = 'var(--blue)'; }
   renderDYProjetivo();
 }
 
