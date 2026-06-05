@@ -167,8 +167,8 @@ tbody tr:hover{background:#f9fafb;}
 
 /* PROV TABLE */
 .prov-table .yr-row{cursor:pointer;user-select:none;}
-.prov-table .yr-row td{background:#ececec;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
-.prov-table .yr-row:hover td{background:#e5e5e5!important;}
+.prov-table .yr-row td{background:#f4f4f4;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
+.prov-table .yr-row:hover td{background:#ebebeb!important;}
 .prov-table .yr-row td:first-child::before{content:'▶  ';font-size:9px;opacity:.5;}
 .prov-table .yr-row.open td:first-child::before{content:'▼  ';}
 .prov-table .mo-row{display:none;}
@@ -455,8 +455,8 @@ tbody tr:hover{background:#f9fafb;}
 .ap-tbl tbody td:first-child{text-align:left;font-weight:700;color:var(--brand);}
 .ap-tbl tbody tr:hover{background:#f9fafb;}
 .ap-tbl .yr-row{cursor:pointer;user-select:none;}
-.ap-tbl .yr-row td{background:#ececec;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
-.ap-tbl .yr-row:hover td{background:#e5e5e5!important;}
+.ap-tbl .yr-row td{background:#f4f4f4;font-weight:700;color:var(--brand);border-top:2px solid var(--border);}
+.ap-tbl .yr-row:hover td{background:#ebebeb!important;}
 .ap-tbl .yr-row td:first-child::before{content:'▶  ';font-size:9px;opacity:.5;}
 .ap-tbl .yr-row.open td:first-child::before{content:'▼  ';}
 .ap-tbl .mo-row{display:none;}
@@ -1276,7 +1276,7 @@ function renderProventos(){
       :`<td style="text-align:right;color:#94a3b8">—</td>`;
     const nMeses=rows.filter(r=>r.total>0).length||1;
     const medMes=sT/nMeses;
-    h+=`<tr class="yr-row" onclick="toggleYr('${yr}')" data-yr="${yr}"><td><strong>${yr}${yr==='2026'?' (parcial)':''}</strong></td><td style="font-weight:400">${brl(sF)}</td><td style="font-weight:400">${brl(sA)}</td><td style="font-weight:400">${brl(sD)}</td><td><strong>${brl(sT)}</strong></td>${yrYoy}<td style="text-align:right;font-weight:400">${brl(medMes)}</td>${pdCell(sT,yrDias)}</tr>`;
+    h+=`<tr class="yr-row" onclick="toggleYr('${yr}')" data-yr="${yr}"><td><strong>${yr}${''}</strong></td><td style="font-weight:400">${brl(sF)}</td><td style="font-weight:400">${brl(sA)}</td><td style="font-weight:400">${brl(sD)}</td><td><strong>${brl(sT)}</strong></td>${yrYoy}<td style="text-align:right;font-weight:400">${brl(medMes)}</td>${pdCell(sT,yrDias)}</tr>`;
     prevT=sT;
     rows.forEach(r=>{
       const mDias=diasMes(r.m.split('/')[0],r.ano);
@@ -2039,7 +2039,7 @@ Object.keys(yrGroups).sort().forEach(yr=>{
   const pR=yrC.total?Pct(yrC.rf/yrC.total*100):'—';
 
   tbodyHtml+=`<tr class="yr-row" onclick="toggleApYr('${yr}')" data-yr="${yr}">
-    <td>${yr}${yr==='2026'?' (parcial)':''}</td>
+    <td>${yr}${''}</td>
     <td>${R(yrC.acoes)}</td><td>${pA}</td>
     <td>${R(yrC.fiis)}</td><td>${pF}</td>
     <td>${yrC.rf?R(yrC.rf):'—'}</td><td>${pR}</td>
