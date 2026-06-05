@@ -1864,11 +1864,24 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     </div>`).join('');
 })();
 
-// 2026
+// 2026 — calculado dinamicamente do AD.data (atualiza automaticamente com aportes)
 (function(){
-  const top=AD.top_por_ano['2026'];
-  const mx=top[0].valor;
-  document.getElementById('top-2026').innerHTML=top.map((t,i)=>`
+  const anoAtualStr = new Date().getFullYear().toString();
+  const totais2026 = {};
+  Object.entries(AD.data).forEach(([mes, pessoas])=>{
+    if(!mes.startsWith(anoAtualStr)) return;
+    Object.values(pessoas).forEach(p=>{
+      Object.entries(p.compras||{}).forEach(([t,v])=>{
+        if(t==='CDB') return;
+        totais2026[t]=(totais2026[t]||0)+v;
+      });
+    });
+  });
+  const sorted2026 = Object.entries(totais2026).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const total2026 = sorted2026.reduce((s,[,v])=>s+v,0);
+  const top2026 = sorted2026.map(([ticker,valor])=>({ticker,valor,pct:+(valor/total2026*100).toFixed(1)}));
+  const mx=top2026[0]?.valor||1;
+  document.getElementById('top-2026').innerHTML=top2026.map((t,i)=>`
     <div class="top-item" data-ticker="${t.ticker}" data-ano="2026">
       <span class="top-rank">${i+1}</span>
       <span class="top-ticker">${t.ticker}</span>
