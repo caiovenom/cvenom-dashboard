@@ -316,7 +316,7 @@ tbody tr:hover{background:#f9fafb;}
   </div>
   <div class="chart-wrap" style="margin-bottom:14px"><div class="chart-title">Evolução Patrimonial 2022–2026</div><canvas id="chartPatrim" height="100"></canvas></div>
   <div id="metas-prog"></div>
-  <div class="sec" style="margin-top:6px">AÇÕES — preços ao vivo da planilha</div>
+  <div class="sec" style="margin-top:6px">CVENOM ® Ações — preços ao vivo</div>
   <div class="tbl-wrap"><table><thead id="acoes-head"><tr>
     <th class="tbl-sort" onclick="sortAcoesTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortAcoesTable('s',this)" style="text-align:left">Setor</th>
@@ -333,7 +333,7 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('vuc',this)">VUC</th>
     <th class="tbl-sort" onclick="sortAcoesTable('pvuc',this)">%VUC</th>
   </tr></thead><tbody id="acoes-body"></tbody></table></div>
-  <div class="sec" style="margin-top:20px">FIIs — preços ao vivo da planilha</div>
+  <div class="sec" style="margin-top:20px">CVENOM ® FIIs — preços ao vivo</div>
   <div class="tbl-wrap"><table><thead id="fiis-head"><tr>
     <th class="tbl-sort" onclick="sortFiisTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortFiisTable('s',this)" style="text-align:left">Segmento</th>
@@ -1209,7 +1209,7 @@ function renderProventos(){
 
   // Prov-hero cards
   document.getElementById('prov-hero').innerHTML=`
-    <div class="prov-card purple"><div class="prov-label">Total Histórico</div><div class="prov-val" style="color:var(--purple)">${brl(totalHist)}</div><div class="prov-sub">Caio+Fatima desde 2018</div></div>
+    <div class="prov-card purple"><div class="prov-label">TOTAL</div><div class="prov-val" style="color:var(--purple)">${brl(totalHist)}</div><div class="prov-sub">CVENOM ® HOLDING</div></div>
     <div class="prov-card blue"><div class="prov-label">Melhor Mês</div><div class="prov-val" style="color:#2563eb">${brl(melhorMes.total)}</div><div class="prov-sub">${melhorMes.m} 🏆</div></div>
     <div class="prov-card blue"><div class="prov-label">Média Mensal 2026</div><div class="prov-val">${brl(media2026)}</div><div class="prov-sub">Últ 12m: ${brl(media12m)}</div></div>
     <div class="prov-card purple"><div class="prov-label">Projeção 2026</div><div class="prov-val">${brl(proj2026)}</div><div class="prov-sub">DY s/ renda variável: ${dyRV}%</div></div>
