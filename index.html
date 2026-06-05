@@ -121,8 +121,6 @@ tbody tr:hover{background:#f9fafb;}
 .atv-sub.down{color:var(--red);}
 .atv-sub.neutral{color:var(--muted);}
 .atv-note{font-size:10px;color:var(--muted);margin-top:4px;}
-#tab-ativos .fii-chg.down{color:var(--red);}
-#tab-ativos .fii-chg.up{color:var(--green);}
 .fii-card{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:box-shadow .2s,transform .15s;}
 .fii-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
 .fii-ticker-row{display:flex;justify-content:space-between;margin-bottom:8px;}
@@ -288,7 +286,6 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('carteira',this)">Carteira</button>
-  <button class="tab-btn" onclick="showTab('ativos',this)">Ativos</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Faturamento</button>
   <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
@@ -349,45 +346,6 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortFiisTable('yoc',this)">YoC</th>
     <th class="tbl-sort" onclick="sortFiisByPvp(this)">P/VP</th>
   </tr></thead><tbody id="fiis-body"></tbody></table></div>
-</div>
-<div id="tab-ativos" class="tab-panel">
-  <!-- ── Daily Performance + Indices ── -->
-  <div id="ativos-perf-section" style="margin-bottom:18px">
-    <div class="sec" style="margin-top:0;margin-bottom:10px">Performance do Dia</div>
-    <div id="ativos-perf-cards" class="atv-perf-grid">
-      <div class="atv-card atv-loading">⏳ Calculando...</div>
-    </div>
-    <div class="sec" style="margin-top:14px;margin-bottom:10px">Índices</div>
-    <div id="ativos-idx-cards" class="atv-perf-grid">
-      <div class="atv-card atv-loading">⏳ Buscando índices...</div>
-    </div>
-  </div>
-  <!-- ── FIIs ── -->
-  <div class="fii-toolbar">
-    <div style="font-size:16px;font-weight:800;color:var(--brand)">FIIs <span style="font-size:12px;font-weight:400;color:var(--muted)" id="fii-ts">— carregando...</span></div>
-    <select class="fii-sort-sel" onchange="sortFiiCards(this.value)">
-      <option value="default">Ordenar: Padrão</option>
-      <option value="dy_desc">Maior DY</option>
-      <option value="dy_asc">Menor DY</option>
-      <option value="pvp_desc">Maior P/VP</option>
-      <option value="pvp_asc">Menor P/VP</option>
-      <option value="caixa_desc">Maior Caixa</option>
-    </select>
-  </div>
-  <div class="fii-grid" id="fii-grid"></div>
-  <!-- ── Ações ── -->
-  <div class="fii-toolbar" style="margin-top:22px">
-    <div style="font-size:16px;font-weight:800;color:var(--brand)">Ações <span style="font-size:12px;font-weight:400;color:var(--muted)">— Status Invest · preço via planilha</span></div>
-    <select class="fii-sort-sel" onchange="sortAcoesSI(this.value)">
-      <option value="default">Ordenar: Padrão</option>
-      <option value="dy_desc">Maior DY</option>
-      <option value="roe_desc">Maior ROE</option>
-      <option value="pl_asc">Menor P/L</option>
-      <option value="pvp_asc">Menor P/VP</option>
-      <option value="pvp_desc">Maior P/VP</option>
-    </select>
-  </div>
-  <div class="fii-grid" id="acoes-si-grid"></div>
 </div>
 <div id="tab-proventos" class="tab-panel">
   <div class="prov-hero" id="prov-hero"></div>
@@ -1506,7 +1464,6 @@ function renderAll(){
   renderProventos();
   renderPontos();
   renderAcoesSI([...ACOES_SI]);
-  renderAtivos();
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
