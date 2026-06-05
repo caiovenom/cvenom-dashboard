@@ -1977,11 +1977,11 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     tt.style.top=y+'px';
   }
 
-  // Eventos diretos — re-bind sempre que top-CURR for populado
+  // Eventos diretos — bind em AMBOS os containers (2026 e Últimos 12m)
   function bindEvents(){
-    const container=document.getElementById('top-'+CURR);
-    if(!container) return;
-    container.querySelectorAll('.top-item').forEach(item=>{
+    const ids=['top-'+CURR,'top-2025'];
+    const items=ids.flatMap(id=>{const c=document.getElementById(id);return c?[...c.querySelectorAll('.top-item')]:[];});
+    items.forEach(item=>{
       item.addEventListener('mouseenter',function(){
         const ticker=this.dataset.ticker;
         const content=buildTT(ticker);
