@@ -799,19 +799,20 @@ function parseSheet(text){
 async function loadSheet(){
   const banner=document.getElementById('live-banner');
   const src=document.getElementById('data-src');
-  // Fora do Cowork (acesso público): usa dados estáticos imediatamente
-  if(!window.cowork?.callMcpTool){
-    const d=new Date().toLocaleDateString('pt-BR');
-    banner.className='banner static';
-    banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
-    src.textContent=d;
-    document.getElementById('fii-ts').textContent=`— ${d}`;
-    renderAll();return;
-  }
+  const d=new Date().toLocaleDateString('pt-BR');
+  // Renderiza imediatamente com dados estáticos (garante que o dashboard sempre aparece)
+  banner.className='banner static';
+  banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
+  src.textContent=d;
+  document.getElementById('fii-ts').textContent=`— ${d}`;
+  renderAll();
+  // Sem Cowork: encerra aqui
+  if(!window.cowork?.callMcpTool) return;
+  // Tenta atualizar com planilha em background
   try{
     banner.className='banner yellow';
-    banner.textContent='⏳ Lendo planilha CVENOM® no Google Drive...';
-    const withTimeout=p=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),8000))]);
+    banner.textContent='⏳ Atualizando com planilha CVENOM®...';
+    const withTimeout=p=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),12000))]);
     const res=await withTimeout(window.cowork.callMcpTool(
       'mcp__e675dddb-5a81-44d7-a362-c8758a047b87__read_file_content',
       {fileId:'1CWGLVgzwpu4-gDB5BR1gCBRSROx7Ih-Ows-KRN46pyQ'}
@@ -824,13 +825,12 @@ async function loadSheet(){
       banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
       src.textContent=`Planilha ${h}`;
       document.getElementById('fii-ts').textContent=`— planilha ${h}`;
-    } else throw new Error('sem dados parseados');
-    renderAll();
+      renderAll();
+    } else throw new Error('sem dados');
   }catch(e){
     banner.className='banner static';
-    banner.textContent=`📋 Preços via Yahoo Finance · ${new Date().toLocaleDateString('pt-BR')} (planilha indisponível)`;
-    src.textContent='22/05/2026';
-    renderAll();
+    banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
+    src.textContent=d;
   }
 }
 
