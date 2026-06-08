@@ -800,9 +800,7 @@ async function loadSheet(){
   const banner=document.getElementById('live-banner');
   const src=document.getElementById('data-src');
   const d=new Date().toLocaleDateString('pt-BR');
-  // Aguarda todos os scripts (incluindo AD) carregarem antes de renderizar
-  await new Promise(r=>setTimeout(r,0));
-  // Renderiza com dados estáticos — garantia de que o dashboard sempre aparece
+  // Renderiza imediatamente com dados estáticos
   banner.className='banner static';
   banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
   src.textContent=d;
@@ -810,7 +808,7 @@ async function loadSheet(){
   renderAll();
   // Sem Cowork: encerra aqui
   if(!window.cowork?.callMcpTool) return;
-  // Tenta atualizar com planilha em background
+  // Tenta atualizar com planilha em background (async)
   try{
     banner.className='banner yellow';
     banner.textContent='⏳ Atualizando com planilha CVENOM®...';
@@ -1650,7 +1648,7 @@ function showTab(id,btn){
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-loadSheet();
+// loadSheet movido para script 2
 </script>
 
 <script>
@@ -2072,7 +2070,8 @@ window.toggleMes=function(id){
 };
 })();
 
-
+// Inicia dashboard após AD estar definido
+loadSheet();
 </script>
 </body>
 </html>
