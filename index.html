@@ -800,7 +800,9 @@ async function loadSheet(){
   const banner=document.getElementById('live-banner');
   const src=document.getElementById('data-src');
   const d=new Date().toLocaleDateString('pt-BR');
-  // Renderiza imediatamente com dados estáticos (garante que o dashboard sempre aparece)
+  // Aguarda todos os scripts (incluindo AD) carregarem antes de renderizar
+  await new Promise(r=>setTimeout(r,0));
+  // Renderiza com dados estáticos — garantia de que o dashboard sempre aparece
   banner.className='banner static';
   banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
   src.textContent=d;
