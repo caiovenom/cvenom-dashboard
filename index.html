@@ -838,7 +838,7 @@ async function loadSheet(){
 
 // ── CHART REGISTRY ───────────────────────────────────────────────────────────
 const CH={};
-function mkC(id,cfg){if(CH[id])CH[id].destroy();const el=document.getElementById(id);if(!el)return;CH[id]=new Chart(el,cfg);return CH[id];}
+function mkC(id,cfg){if(typeof Chart==='undefined')return;if(CH[id]){try{CH[id].destroy();}catch(e){}}const el=document.getElementById(id);if(!el)return;try{CH[id]=new Chart(el,cfg);}catch(e){console.warn('mkC erro',id,e);}return CH[id];}
 // ── CUSTOM TOOLTIP (estética de cartão branco) ────────────────────────────────
 function makeTooltip(context){
   const {chart,tooltip}=context;
@@ -1462,10 +1462,10 @@ function renderAtivos(){
 const _FII_SI_MAP=Object.fromEntries(FII_SI.map(x=>[x.t,x]));
 const _ACOES_SI_MAP=Object.fromEntries(ACOES_SI.map(x=>[x.t,x]));
 function renderAll(){
-  renderCarteira();
-  renderProventos();
-  renderPontos();
-  renderAcoesSI([...ACOES_SI]);
+  try{renderCarteira();}catch(e){console.error('renderCarteira falhou:',e);}
+  try{renderProventos();}catch(e){console.error('renderProventos falhou:',e);}
+  try{renderPontos();}catch(e){console.error('renderPontos falhou:',e);}
+  try{renderAcoesSI([...ACOES_SI]);}catch(e){console.error('renderAcoesSI falhou:',e);}
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
