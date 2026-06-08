@@ -804,7 +804,7 @@ async function loadSheet(){
   banner.className='banner static';
   banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
   src.textContent=d;
-  document.getElementById('fii-ts').textContent=`— ${d}`;
+  const _fiits=document.getElementById('fii-ts');if(_fiits)_fiits.textContent=`— ${d}`;
   renderAll();
   // Sem Cowork: encerra aqui
   if(!window.cowork?.callMcpTool) return;
@@ -824,7 +824,7 @@ async function loadSheet(){
       banner.className='banner live';
       banner.textContent=`📊 CVENOM® Dashboard — O pensamento é a força criadora.`;
       src.textContent=`Planilha ${h}`;
-      document.getElementById('fii-ts').textContent=`— planilha ${h}`;
+      const _fiitsh=document.getElementById('fii-ts');if(_fiitsh)_fiitsh.textContent=`— planilha ${h}`;
       renderAll();
     } else throw new Error('sem dados');
   }catch(e){
