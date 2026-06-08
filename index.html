@@ -553,6 +553,28 @@ tbody tr:hover{background:#f9fafb;}
 
 
 <script>
+// ── DY PROJETIVO — declarado no topo para evitar TDZ no renderAll ─────────────
+const ACOES_DPA=[
+  {t:'VALE3',   dpa26:5.28,  dy26:6.33,  freq:'Semestral'},
+  {t:'EGIE3',   dpa26:1.51,  dy26:4.63,  freq:'Semestral'},
+  {t:'TAEE11',  dpa26:2.58,  dy26:6.55,  freq:'Semestral'},
+  {t:'ISAE4',   dpa26:1.80,  dy26:6.57,  freq:'Semestral'},
+  {t:'BBSE3',   dpa26:3.98,  dy26:11.42, freq:'Trimestral'},
+  {t:'CXSE3',   dpa26:1.41,  dy26:8.08,  freq:'Trimestral'},
+  {t:'BBAS3',   dpa26:1.23,  dy26:5.84,  freq:'Mensal'},
+  {t:'ITSA4',   dpa26:1.08,  dy26:8.26,  freq:'Mensal'},
+  {t:'PETR4',   dpa26:3.60,  dy26:8.41,  freq:'Semestral'},
+  {t:'VIVT3',   dpa26:2.74,  dy26:8.08,  freq:'Semestral'},
+  {t:'KLBN11',  dpa26:1.00,  dy26:5.96,  freq:'Trimestral'},
+  {t:'BBDC3',   dpa26:1.47,  dy26:9.40,  freq:'Mensal'},
+  {t:'WEGE3',   dpa26:0.93,  dy26:2.14,  freq:'Trimestral'},
+];
+const META_FII_MES   = 10000;
+const META_FIIS_ANO  = META_FII_MES*12;
+const META_ACOES_ANO = 30000*12;
+const META_TOTAL_MES = 40000;
+const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
+
 // ── DADOS ESTÁTICOS — atualizados planilha 04/06/2026 ─────────────────────────
 const ACOES=[
   {t:'VALE3', p:78.7, pm:62.53, q:2687,  v:211466.9, teto:75.0, ms:-4.7, vuc:50.15, s:'Mineração'},
@@ -1469,29 +1491,7 @@ function renderAll(){
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 
-// ── DY PROJETIVO ──────────────────────────────────────────────────────────────
-const ACOES_DPA=[
-  {t:'VALE3',   dpa26:5.28,  dy26:6.33,  freq:'Semestral'},
-  {t:'EGIE3',   dpa26:1.51,  dy26:4.63,  freq:'Semestral'},
-  {t:'TAEE11',  dpa26:2.58,  dy26:6.55,  freq:'Semestral'},
-  {t:'ISAE4',   dpa26:1.80,  dy26:6.57,  freq:'Semestral'},
-  {t:'BBSE3',   dpa26:3.98,  dy26:11.42, freq:'Trimestral'},
-  {t:'CXSE3',   dpa26:1.41,  dy26:8.08,  freq:'Trimestral'},
-  {t:'BBAS3',   dpa26:1.23,  dy26:5.84,  freq:'Mensal'},
-  {t:'ITSA4',   dpa26:1.08,  dy26:8.26,  freq:'Mensal'},
-  {t:'PETR4',   dpa26:3.60,  dy26:8.41,  freq:'Semestral'},
-  {t:'VIVT3',   dpa26:2.74,  dy26:8.08,  freq:'Semestral'},
-  {t:'KLBN11',  dpa26:1.00,  dy26:5.96,  freq:'Trimestral'},
-  {t:'BBDC3',   dpa26:1.47,  dy26:9.40,  freq:'Mensal'},
-  {t:'WEGE3',   dpa26:0.93,  dy26:2.14,  freq:'Trimestral'},
-];
-const META_FII_MES   = 10000;
-const META_FIIS_ANO  = META_FII_MES*12;
-const META_ACOES_ANO = 30000*12;
-const META_TOTAL_MES = 40000;
-
-// ── DY Projetivo sort state ──────────────────────────────────────────────────
-const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
+// ── DY Projetivo sort ────────────────────────────────────────────────────────
 
 function dypSort(sec, col, th){
   const s = _DYP[sec];
@@ -2058,4 +2058,6 @@ const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
 document.getElementById('ap-tfoot').innerHTML=`<tr>
   <td>TOTAL</td>
   <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
-  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td
+  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
+  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
+  <td>${R(sumC.tot
