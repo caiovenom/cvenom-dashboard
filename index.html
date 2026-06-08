@@ -1464,6 +1464,7 @@ function renderAll(){
   try{renderProventos();}catch(e){console.error('renderProventos falhou:',e);}
   try{renderPontos();}catch(e){console.error('renderPontos falhou:',e);}
   try{renderAcoesSI([...ACOES_SI]);}catch(e){console.error('renderAcoesSI falhou:',e);}
+  try{renderDYProjetivo();}catch(e){console.error('renderDYProjetivo falhou:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro DY Projetivo: '+e.message+'</div>';}
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
@@ -1644,7 +1645,7 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
-  if(id==='dyproj') renderDYProjetivo();
+  if(id==='dyproj'){try{renderDYProjetivo();}catch(e){console.error('DYP crash:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro: '+e.message+'</div>';}}
   if(btn)btn.classList.add('active');
 }
 
@@ -2057,22 +2058,4 @@ const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
 document.getElementById('ap-tfoot').innerHTML=`<tr>
   <td>TOTAL</td>
   <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
-  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
-  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
-  <td>${R(sumC.total)}</td>
-  <td style="color:var(--red)">${R(sumV)}</td>
-  <td style="font-weight:700;${liqC2}">${R(liquTot)}</td>
-  <td></td>
-</tr>`;
-
-window.toggleMes=function(id){
-  const el=document.getElementById(id+'det');
-  el.style.display=el.style.display==='none'?'table-row':'none';
-};
-})();
-
-// Inicia dashboard após AD estar definido
-loadSheet();
-</script>
-</body>
-</html>
+  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td
