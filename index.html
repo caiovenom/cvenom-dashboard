@@ -1003,7 +1003,7 @@ function tblSortBy(arr,key,dir){
     if(key==='rent'){va=(a.p/a.pm-1)*100;vb=(b.p/b.pm-1)*100;}
     else if(key==='part'){va=a.v;vb=b.v;}
     else if(key==='yoc'){va=a.div?(a.div/a.pm*100):0;vb=b.div?(b.div/b.pm*100):0;}
-    else if(key==='pvp'){va=(_FII_SI_MAP[a.t]||{}).pvp||0;vb=(_FII_SI_MAP[b.t]||{}).pvp||0;}
+    else if(key==='pvp'){va=a.vpa?(a.p/a.vpa):((_FII_SI_MAP[a.t]||{}).pvp||0);vb=b.vpa?(b.p/b.vpa):((_FII_SI_MAP[b.t]||{}).pvp||0);}
     else if(key==='dy'){va=(_ACOES_SI_MAP[a.t]||{}).dy||0;vb=(_ACOES_SI_MAP[b.t]||{}).dy||0;}
     else if(key==='roe'){va=(_ACOES_SI_MAP[a.t]||{}).roe||0;vb=(_ACOES_SI_MAP[b.t]||{}).roe||0;}
     else{va=a[key]||0;vb=b[key]||0;}
