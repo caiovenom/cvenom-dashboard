@@ -287,7 +287,6 @@ tbody tr:hover{background:#f9fafb;}
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('carteira',this)">Carteira</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Faturamento</button>
-  <button class="tab-btn" onclick="showTab('pontos',this)">Pontos de Atenção</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
   <button class="tab-btn" onclick="showTab('dyproj',this)">DY Projetivo</button>
 </div>
@@ -375,7 +374,7 @@ tbody tr:hover{background:#f9fafb;}
     <th style="text-align:left">Período</th><th>FIIs</th><th>Ações</th><th>Dólar</th><th>Total</th><th>vs Ano Ant.</th><th>Méd. Mensal</th><th>Por Dia</th>
   </tr></thead><tbody id="prov-body"></tbody></table></div>
 </div>
-<div id="tab-pontos" class="tab-panel"><div id="alerts-content" class="alert-list"></div></div>
+</div>
 </div>
 
 <div id="tab-aportes" class="tab-panel">
@@ -710,13 +709,13 @@ const MENSAIS=[
   {ano:'2026',m:'Mai/26',total:16105,fii:6638,acoes:9463, dolar:4},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3188624.88}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3201373.05}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT    = 3188624.88;
-let CAIO   = 2404483.02;
-let FATIMA = 784141.86;
+let PAT    = 3201373.05;
+let CAIO   = 2413586.63;
+let FATIMA = 787786.42;
 let RF     = 521424;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
@@ -729,7 +728,7 @@ const INDICES_HOJE = {
   ]
 };
 let CAIXA  = 20500;
-let ACOES_US = 60117.98;
+let ACOES_US = 60645.83;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1293,61 +1292,6 @@ function renderProventos(){
   ]},options:{responsive:true,plugins:{legend:{labels:{font:{size:11},usePointStyle:true}},tooltip:{enabled:false,external:makeTooltip,callbacks:{label:c=>` ${c.dataset.label}: ${brl(c.raw)}`}}},interaction:{mode:'index',intersect:false},scales:{x:{ticks:{font:{size:9},maxRotation:45}},y:{ticks:{callback:v=>brlK(v),font:{size:10}}}}}});
 }
 
-// ── PONTOS ────────────────────────────────────────────────────────────────────
-function renderPontos(){
-  const grupos=[
-    {titulo:'🔵 Contexto Macro e de Carteira', tipo:'info', items:[
-      {t:'SELIC',msg:'14,50% a.a. — ciclo de cortes iniciado (–0,25pp em abr/26)',sub:'FIIs de tijolo valorizando com queda de juros. RF IPCA+ com ganho expressivo no pivô.',
-       detail:'Copom cortou para 14,5% em abr/2026 — 2º corte consecutivo. Quando a Selic ceder para ~8%, os FIIs de tijolo devem se valorizar expressivamente. FIIs de papel (RECR11, VGIP11, MCCI11) continuam capturando IPCA+ alto. Momento favorável para acumular ativos de tijolo antes do pivô completo.'},
-      {t:'PLANILHA',msg:'Preços ao vivo via Google Sheet (GOOGLEFINANCE)',sub:'Dashboard conectado à planilha CVENOM® — atualiza automaticamente ao abrir.',
-       detail:'O dashboard lê diretamente a planilha CVENOM® no Google Drive. Preços, quantidades e patrimônio total são atualizados a cada abertura. IBMPREV R$102.554 e INSS R$107.000 (CVENOM BANK) incluídos no patrimônio de Fatima.'},
-    ]},
-    {titulo:'🔴 Crítico — Ação Necessária', tipo:'danger', items:[
-      {t:'SAPR4',msg:'VENDER 2.309 cotas (Caio) — M.S. -49,86%',sub:'Cotação R$7,26 × 2.309 = ~R$16.763 a liberar · Fatima também tem posição',
-       detail:'SAPR4 está 55% acima do teto de R$3,64. Caio tem 2.309 cotas remanescentes. Fatima também possui SAPR4 na sua carteira (total holding ~4.618 cotas). Vender o restante de Caio imediatamente e realocar em KLBN11 e FIIs prioritários (TRXF11, RECR11).'},
-      {t:'ITSA4',msg:'16% acima do teto R$11,50 — não aportar',sub:'Cotação R$13,33 vs Teto R$11,50 | PM R$7,97 | Rent. +67,3%',
-       detail:'Teto foi revisado de R$9,50 para R$11,50 após reavaliação da tese. Mesmo assim, ITSA4 ainda negocia 16% acima do novo teto. Não aportar. A holding Itaúsa tem excelente qualidade mas o preço atual não oferece margem de segurança.'},
-    ]},
-    {titulo:'🟠 Observação — Monitorar', tipo:'warning', items:[
-      {t:'PETR4',msg:'Trim parcial executado — 200 cotas vendidas Mar/26',sub:'2.063 → 1.863 cotas | M.S. -17,46% | avaliar nova venda acima R$38',
-       detail:'Redução de 200 cotas já executada em março/26. Continua acima do teto de R$38. Monitorar e avaliar nova venda parcial gradual para reduzir concentração no setor de Petróleo.'},
-      {t:'PVBI11',msg:'Vacância 24% prevista jul/2026 — compra tática em curso',sub:'P/VP 0,73 | DY 7,03% | 494 cotas | aportando com tese de recuperação',
-       detail:'Apesar da vacância projetada para jul/26, a tese de compra está ativa: P/VP de 0,73 oferece margem de segurança expressiva em lajes corporativas premium. Qualquer melhora de vacância gera valorização significativa. Aportar com moderação.'},
-      {t:'VALE3',msg:'Não aportar — Mineração já overweight',sub:'M.S. -6,46% | setor cíclico dependente de China',
-       detail:'Manter a posição, não aportar. VALE3 subiu em relação ao mês anterior mas continua acima do teto de R$75. Setor cíclico dependente da economia chinesa.'},
-      {t:'MCCI11',msg:'FII no teto — não aportar',sub:'M.S. -1,44% | P/VP 1,01 | DY 12,14%',
-       detail:'Aguardar queda abaixo de R$95 para reconsiderar novo aporte. Papel de qualidade mas sem margem de segurança atual.'},
-    ]},
-    {titulo:'🟢 Executado / Oportunidade — Aportar', tipo:'good', items:[
-      {t:'KLBN11',msg:'+1.000 cotas compradas (3.729→4.729) — maior M.S. ações +63,84%',sub:'Hoje +300 cotas (4.429→4.729) | Cotação R$17,09 vs Teto R$28,00',
-       detail:'+300 cotas adicionais compradas (15/05/26), acumulando +1.000 total desde abr/26. KLBN11 continua sendo a maior margem de segurança em ações da carteira. Klabin lidera em embalagens de papel no Brasil. Candidato prioritário para receber capital da venda de SAPR4.'},
-      {t:'BBSE3',msg:'+440 cotas compradas (5.099→5.539) — seguridade com DY sólido',sub:'M.S. +3,29% | PM R$32,12 | ROE ~20%',
-       detail:'Compras executadas em mai/26. BBSE3 é seguradora líder com pay-out elevado e ROE consistente. +100 cotas em 15/05/26, totalizando 5.539 cotas. Próximo do teto mas fundamentos sólidos justificam a posição.'},
-      {t:'CXSE3',msg:'+1.300 cotas compradas (9.551→10.851) em 14 aportes',sub:'M.S. +7,1% | PM R$15,30 | 28/05 +200 cotas executado',
-       detail:'+100 cotas adicionais compradas em 15/05/26, totalizando +1.100 desde o pós ex-div de 04/05. Posição total: 10.651 cotas. CXSE3 é seguradora com crescimento de dividendos consistente e DUC 15/05/26.'},
-      {t:'XPML11',msg:'+24 cotas compradas hoje (639→663) — Shopping premium',sub:'Cotação R$106,97 | M.S. +20,59% vs Teto R$129,00',
-       detail:'Compra de 24 cotas executada hoje (11/05/26) com o mercado em queda. XPML11 tem portfólio de shoppings premium e M.S. de +20% oferece boa oportunidade de acumulação.'},
-      {t:'TRXF11',msg:'FII prioritário — M.S. +34,65%',sub:'P/VP 0,93 | DY 12,87% | Vacância 0,42% | 808 cotas',
-       detail:'Melhor relação risco/retorno da carteira FII. Contratos atípicos longos com grande locatário. Candidato prioritário para receber capital da venda de SAPR4.'},
-      {t:'RECR11',msg:'Maior DY — YoC 1,24% | R$1,034/cota | 710 cotas',sub:'M.S. +7,70% | Papel IPCA+',
-       detail:'Lidera em dividend yield absoluto. CRIs indexados a IPCA+, beneficiado pela Selic alta. +12 cotas desde última atualização.'},
-      {t:'BTLG11',msg:'Logístico premium — M.S. +8,30% | ativo',sub:'Vacância 2,9% | dividendos em recorde | 637 cotas',
-       detail:'15+ meses consecutivos de crescimento de dividendos. Portfólio logístico premium. Continuar acumulando.'},
-      {t:'BBAS3',msg:'Bancos subpeso | M.S. +15,58%',sub:'ROE >20% | P/L <5x | DY >8% | 11.078 cotas',
-       detail:'Setor bancário está subpeso na carteira. BBAS3 com M.S. de +15,58% e BBDC3 recém-comprado ampliam a exposição ao setor. Aguardar pullback para R$20–R$21 para novo aporte em BBAS3.'},
-      {t:'BBDC3',msg:'Aporte +500 em 08/06/26 @R$15,08',sub:'PM R$15,20 | M.S. +15,20% | Teto R$17,43 | Lucro 1T26: +16,1%',
-       detail:'Acumulação em andamento: 1.000 cotas (15/05) + 200 (18/05) + 200 (25/05) = 1.800 cotas. ON escolhido sobre PN: spread PN/ON >10% inverte o DY em favor do ON (análise Baroni). 1T26: lucro R$6,8bi (+16,1%), ROE 15,8%, 9º trim. consecutivo de melhora. Ponto de atenção: inadimplência 4,2% e provisões R$9,7bi ainda presentes. Turnaround em andamento — acumular com disciplina.'},
-    ]},
-  ];
-  document.getElementById('alerts-content').innerHTML=grupos.map(g=>`
-    <div class="alert-grp">${g.titulo}</div>
-    ${g.items.map(a=>`<div class="alert-item ${g.tipo}">
-      <div class="alert-ticker">${a.t}</div>
-      <div style="flex:1"><div class="alert-msg">${a.msg}</div><div class="alert-sub">${a.sub}</div>
-      ${a.detail?`<div class="alert-detail">${a.detail}</div>`:''}</div>
-    </div>`).join('')}
-  `).join('');
-}
 
 // ── AÇÕES SI CARDS ───────────────────────────────────────────────────────────
 function renderAcoesSI(data){
@@ -1484,7 +1428,6 @@ const _ACOES_SI_MAP=Object.fromEntries(ACOES_SI.map(x=>[x.t,x]));
 function renderAll(){
   try{renderCarteira();}catch(e){console.error('renderCarteira falhou:',e);}
   try{renderProventos();}catch(e){console.error('renderProventos falhou:',e);}
-  try{renderPontos();}catch(e){console.error('renderPontos falhou:',e);}
   try{renderAcoesSI([...ACOES_SI]);}catch(e){console.error('renderAcoesSI falhou:',e);}
   try{renderDYProjetivo();}catch(e){console.error('renderDYProjetivo falhou:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro DY Projetivo: '+e.message+'</div>';}
 }
