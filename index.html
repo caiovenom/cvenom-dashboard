@@ -300,7 +300,7 @@ tbody tr:hover{background:#f9fafb;}
     <div class="prev-grid">
       <div class="prev-item"><div class="prev-name">INSS / Prev. Social</div><div class="prev-type">CVENOM BANK® · Fatima</div><div class="prev-val">R$107.000,00</div><div class="prev-obs">Adicionado abr/2026</div></div>
       <div class="prev-item"><div class="prev-name">IBMPREV</div><div class="prev-type">Previdência Complementar · Fatima</div><div class="prev-val">R$102.554,00</div><div class="prev-obs">Corrigido abr/2026 ✓</div></div>
-      <div class="prev-item"><div class="prev-name">CDB Itaú</div><div class="prev-type">Renda Fixa · Caio</div><div class="prev-val">R$2.265,00</div><div class="prev-obs">Incluso em Caixa</div></div>
+      <div class="prev-item"><div class="prev-name">CDB Itaú</div><div class="prev-type">Renda Fixa · Caio</div><div class="prev-val">R$2.700,00</div><div class="prev-obs">Incluso em Caixa</div></div>
       <div class="prev-item"><div class="prev-name">CDB Itaú</div><div class="prev-type">Renda Fixa · Fatima</div><div class="prev-val">R$12.000,00</div><div class="prev-obs">Incluso em Caixa</div></div>
     </div>
   </div>
@@ -574,42 +574,42 @@ const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
 
-// ── DADOS ESTÁTICOS — atualizados planilha 04/06/2026 ─────────────────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 11/06/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:78.7, pm:62.53, q:2687,  v:211466.9, teto:75.0, ms:-4.7, vuc:50.15, s:'Mineração'},
-  {t:'EGIE3', p:33.73, pm:28.01, q:3514,  v:118527.22, teto:28.6, ms:-15.21, vuc:28.0, s:'Elétrico'},
-  {t:'TAEE11', p:38.6, pm:34.62, q:3352,  v:129387.2, teto:47.33, ms:22.62, vuc:33.78, s:'Elétrico'},
-  {t:'ISAE4', p:26.95, pm:23.69, q:6010,  v:161969.5, teto:28.58, ms:6.05, vuc:21.9, s:'Elétrico'},
-  {t:'BBSE3', p:35.39, pm:32.22, q:5639,  v:199564.21, teto:35.5, ms:0.31, vuc:34.01, s:'Seguridade'},
-  {t:'CXSE3', p:17.57, pm:15.34, q:11451,  v:201194.07, teto:18.7, ms:6.43, vuc:17.33, s:'Seguridade'},
-  {t:'BBAS3', p:19.17, pm:22.17, q:11078,  v:212365.26, teto:25.0, ms:30.41, vuc:20.76, s:'Bancos'},
-  {t:'ITSA4', p:12.54, pm:7.97, q:7603,  v:95341.62, teto:11.5, ms:-8.29, vuc:8.82, s:'Bancos'},
-  {t:'BBDC3', p:15.04, pm:15.19, q:4829,  v:72628.16, teto:17.43, ms:15.89, vuc:15.01, s:'Bancos'},
-  {t:'SAPR4', p:7.16, pm:3.58, q:2309,  v:16532.44, teto:3.64, ms:-49.16, sell:true, vuc:3.47, s:'Saneamento'},
-  {t:'KLBN11', p:17.05, pm:18.03, q:4829,  v:82334.45, teto:28.0, ms:64.22, vuc:16.76, s:'Papel/Cel.'},
-  {t:'WEGE3', p:42.46, pm:29.42, q:866,  v:36770.36, teto:37.0, ms:-12.86, vuc:33.24, s:'Bens Ind.'},
-  {t:'VIVT3', p:32.95, pm:20.04, q:1680,  v:55356.0, teto:34.58, ms:4.95, vuc:20.0, s:'Telecom'},
-  {t:'PETR4', p:40.89, pm:30.38, q:1863,  v:76178.07, teto:38.0, ms:-7.07, trim:true, vuc:29.69, s:'Petróleo'},
+  {t:'VALE3', p:77.70, pm:62.53, q:2687,  v:208779.90, teto:75.0, ms:-3.47, vuc:50.15, s:'Mineração'},
+  {t:'EGIE3', p:33.24, pm:28.01, q:3514,  v:116805.36, teto:28.6, ms:-13.96, vuc:28.0, s:'Elétrico'},
+  {t:'TAEE11', p:38.99, pm:34.62, q:3352,  v:130694.48, teto:47.33, ms:21.39, vuc:33.78, s:'Elétrico'},
+  {t:'ISAE4', p:26.87, pm:23.69, q:6010,  v:161488.70, teto:28.58, ms:6.36, vuc:21.9, s:'Elétrico'},
+  {t:'BBSE3', p:36.63, pm:32.22, q:5639,  v:206556.57, teto:35.5, ms:-3.08, vuc:34.01, s:'Seguridade'},
+  {t:'CXSE3', p:18.35, pm:15.28, q:11451,  v:210125.85, teto:18.7, ms:1.91, vuc:17.33, s:'Seguridade'},
+  {t:'BBAS3', p:19.00, pm:22.17, q:11078,  v:210482.00, teto:25.0, ms:31.58, vuc:20.76, s:'Bancos'},
+  {t:'ITSA4', p:12.59, pm:7.97, q:7603,  v:95721.77, teto:11.5, ms:-8.66, vuc:8.82, s:'Bancos'},
+  {t:'BBDC3', p:15.06, pm:15.22, q:4829,  v:72724.74, teto:17.43, ms:15.74, vuc:15.01, s:'Bancos'},
+  {t:'SAPR4', p:7.20, pm:3.58, q:2309,  v:16624.80, teto:3.64, ms:-49.44, sell:true, vuc:3.47, s:'Saneamento'},
+  {t:'KLBN11', p:16.86, pm:18.03, q:4829,  v:81416.94, teto:28.0, ms:66.07, vuc:16.76, s:'Papel/Cel.'},
+  {t:'WEGE3', p:42.39, pm:29.42, q:866,  v:36709.74, teto:37.0, ms:-12.72, vuc:33.24, s:'Bens Ind.'},
+  {t:'VIVT3', p:33.26, pm:20.04, q:1680,  v:55876.80, teto:34.58, ms:3.97, vuc:20.0, s:'Telecom'},
+  {t:'PETR4', p:41.65, pm:30.38, q:1863,  v:77593.95, teto:38.0, ms:-8.76, trim:true, vuc:29.69, s:'Petróleo'},
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
   // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
   // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
-  {t:'XPML11',p:106.4,pm:105.13,q:675,  v:71820.0, teto:129.0,ms:21.24, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
-  {t:'PMLL11',p:105.69,pm:103.07,q:565,  v:59714.85, teto:123.0,ms:16.38, s:'Shopping', div:1.00, vpa:102.98},
-  {t:'BTLG11',p:103.35,pm:102.29,q:654,  v:67590.9, teto:112.0,ms:8.37, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
-  {t:'TRXF11',p:91.49,pm:103.41,q:822,  v:75204.78, teto:123.0,ms:34.44, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
-  {t:'HGRU11',p:128.47,pm:121.58,q:408,  v:52415.76, teto:140.0,ms:8.97, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
-  {t:'MCCI11',p:95.6,pm:89.17,q:514,  v:49138.4, teto:95.0,ms:-0.63, s:'Papel', div:1.00, vpa:97.99},
-  {t:'HGLG11',p:154.95,pm:166.66,q:284,  v:44005.8, teto:164.0,ms:5.84, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
-  {t:'RECR11',p:82.59,pm:83.09,q:710,  v:58638.9, teto:89.0,ms:7.76, s:'Papel', div:1.034, vpa:89.32, ativo:true},
-  {t:'VGIP11',p:80.53,pm:86.09,q:563,  v:45338.39, teto:90.0,ms:11.76, s:'Papel', div:1.08, vpa:90.10},
-  {t:'BTHF11',p:9.22,pm:10.12,q:4252,  v:39203.44, teto:9.0,ms:-2.39, s:'Hedge', div:0.101, vpa:9.97},
-  {t:'PVBI11',p:72.8,pm:80.91,q:521,  v:37940.8, teto:97.0,ms:33.24, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
-  {t:'LVBI11',p:105.45,pm:100.99,q:278,  v:29315.1, teto:113.0,ms:7.16, s:'Logístico', div:0.75, vpa:119.19},
-  {t:'IRIM11',p:67.09,pm:77.95,q:431,  v:28915.79, teto:81.0,ms:20.73, s:'Hedge', div:0.75, vpa:82.38},
-  {t:'VISC11',p:105.69,pm:109.21,q:188,  v:19869.72, teto:114.0,ms:7.86, s:'Shopping', div:0.84, vpa:120.36},
-  {t:'KNRI11',p:156.6,pm:149.73,q:161,  v:25212.6, teto:164.0,ms:4.73, s:'Híbrido', div:1.10, vpa:158.72},
+  {t:'XPML11',p:104.15,pm:105.12,q:675,  v:70301.25, teto:129.0,ms:23.86, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11',p:104.60,pm:102.93,q:565,  v:59099.00, teto:126.0,ms:20.46, s:'Shopping', div:1.00, vpa:102.98},
+  {t:'BTLG11',p:102.03,pm:102.29,q:654,  v:66727.62, teto:112.0,ms:9.77, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11',p:91.10,pm:103.62,q:822,  v:74884.20, teto:125.0,ms:37.21, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11',p:127.50,pm:121.58,q:408,  v:52020.00, teto:140.0,ms:9.80, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11',p:93.05,pm:89.17,q:514,  v:47827.70, teto:95.0,ms:2.10, s:'Papel', div:1.00, vpa:97.99},
+  {t:'HGLG11',p:150.60,pm:166.66,q:284,  v:42770.40, teto:162.0,ms:7.57, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
+  {t:'RECR11',p:79.78,pm:83.09,q:710,  v:56643.80, teto:89.0,ms:11.56, s:'Papel', div:1.034, vpa:89.32, ativo:true},
+  {t:'VGIP11',p:78.90,pm:86.09,q:563,  v:44420.70, teto:92.0,ms:16.60, s:'Papel', div:1.08, vpa:90.10},
+  {t:'BTHF11',p:8.94,pm:10.12,q:4252,  v:38012.88, teto:9.0,ms:0.67, s:'Hedge', div:0.101, vpa:9.97},
+  {t:'PVBI11',p:71.00,pm:81.06,q:511,  v:36281.00, teto:97.0,ms:36.62, s:'Lajes', div:0.40, vpa:103.33, ativo:true, warn:'Vacância 24% prevista jul/26'},
+  {t:'LVBI11',p:103.99,pm:100.99,q:278,  v:28909.22, teto:113.0,ms:8.66, s:'Logístico', div:0.75, vpa:119.19},
+  {t:'IRIM11',p:66.39,pm:77.95,q:431,  v:28614.09, teto:81.0,ms:22.01, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11',p:100.85,pm:109.21,q:188,  v:18959.80, teto:118.0,ms:17.01, s:'Shopping', div:0.84, vpa:120.36},
+  {t:'KNRI11',p:150.69,pm:149.73,q:161,  v:24261.09, teto:164.0,ms:8.83, s:'Híbrido', div:1.10, vpa:158.72},
 ];
 const FII_SI=[
   {t:'HGLG11',p:154.96,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -704,31 +704,32 @@ const MENSAIS=[
   {ano:'2025',m:'Dez/25',total:20644,fii:5598,acoes:14809,dolar:237},
   {ano:'2026',m:'Jan/26',total:16796,fii:5803,acoes:10956,dolar:37},
   {ano:'2026',m:'Fev/26',total:8672, fii:5610,acoes:3058, dolar:4},
-  {ano:'2026',m:'Mar/26',total:25076,fii:5725,acoes:19351,dolar:0},
-  {ano:'2026',m:'Abr/26',total:10092,fii:6036,acoes:4056, dolar:0},
+  {ano:'2026',m:'Mar/26',total:25292,fii:5725,acoes:19351,dolar:216},
+  {ano:'2026',m:'Abr/26',total:10121,fii:6036,acoes:4056, dolar:29},
   {ano:'2026',m:'Mai/26',total:16105,fii:6638,acoes:9463, dolar:4},
+  {ano:'2026',m:'Jun/26',total:10942,fii:6638,acoes:4304, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3201373.05}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3190603.37}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT    = 3201373.05;
-let CAIO   = 2413586.63;
-let FATIMA = 787786.42;
+let PAT    = 3190603.37;
+let CAIO   = 2403869.26;
+let FATIMA = 786734.11;
 let RF     = 521424;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
 const INDICES_HOJE = {
-  atualizado: "08/06/2026 · 14:35",
+  atualizado: "11/06/2026 · 10:00",
   indices: [
     {id:'atv-ibov', label:'Ibovespa', pontos:176589.03, chgPct:-0.69, chgPts:-1226.69},
     {id:'atv-ifix', label:'IFIX', pontos:3863.87, chgPct:0.00, chgPts:0.00},
     {id:'atv-idiv', label:'IDIV', pontos:12328.08, chgPct:0.00, chgPts:0.00},
   ]
 };
-let CAIXA  = 20500;
-let ACOES_US = 60645.83;
+let CAIXA  = 16200;
+let ACOES_US = 59613.92;
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1791,6 +1792,54 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
       <span class="top-val">${R(t.valor)}</span>
       <span class="top-pct">${Pct(t.pct)}</span>
     </div>`).join('');
+
+  // ── Tooltip de breakdown por classe no cabeçalho 2026 ───────────────────
+  const cb = Object.entries(AD.resumos)
+    .filter(([m])=>m.startsWith(anoAtualStr))
+    .reduce((a,[,r])=>{
+      a.acoes+=(r.compras.acoes||0);
+      a.fiis +=(r.compras.fiis ||0);
+      a.rf   +=(r.compras.rf  ||0);
+      return a;
+    },{acoes:0,fiis:0,rf:0});
+  const cbTotal = cb.acoes+cb.fiis+cb.rf;
+  const rvTotal = cb.acoes+cb.fiis;
+  const fmtC = v=>'R$'+Math.round(v).toLocaleString('pt-BR');
+  const pctC = (v,d)=>d>0?(v/d*100).toFixed(1)+'%':'—';
+
+  const hdr26 = document.querySelector('.ap-cw:last-child .ap-ct');
+  if(hdr26){
+    hdr26.style.cursor='help';
+    hdr26.title='';
+    const tip26 = document.createElement('div');
+    tip26.className='ap-tooltip';
+    tip26.style.cssText='position:fixed;z-index:9999;pointer-events:none;display:none;min-width:230px';
+    document.body.appendChild(tip26);
+    const row=(label,val,pct,cor)=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:5px">
+        <span style="color:var(--muted);font-size:12px">${label}</span>
+        <span style="font-weight:700;font-size:12px">${val}</span>
+        <span style="font-weight:700;font-size:12px;color:${cor};min-width:44px;text-align:right">${pct}</span>
+      </div>`;
+    hdr26.addEventListener('mouseenter',e=>{
+      tip26.innerHTML=`
+        <div style="font-weight:800;font-size:13px;margin-bottom:10px;color:var(--brand)">Capital investido ${anoAtualStr}</div>
+        ${row('Ações',fmtC(cb.acoes),pctC(cb.acoes,rvTotal),'#2563eb')}
+        ${row('FIIs',fmtC(cb.fiis),pctC(cb.fiis,rvTotal),'#7c3aed')}
+        <div style="border-top:1px solid var(--border);margin:6px 0;padding-top:6px">
+        ${row('Total RV','<b>'+fmtC(rvTotal)+'</b>',pctC(rvTotal,cbTotal),'var(--text)')}
+        ${row('Renda Fixa',fmtC(cb.rf),pctC(cb.rf,cbTotal),'#c8a84b')}
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px">
+          <span>* % Ações e FIIs = % do RV</span>
+        </div>`;
+      tip26.style.display='block';
+      const rc=e.target.getBoundingClientRect();
+      tip26.style.left=rc.left+'px';
+      tip26.style.top=(rc.bottom+6)+'px';
+    });
+    hdr26.addEventListener('mouseleave',()=>{ tip26.style.display='none'; });
+  }
 })();
 
 // ── Tooltip aportes ──────────────────────────────────────────
