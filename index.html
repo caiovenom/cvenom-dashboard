@@ -737,6 +737,8 @@ const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
 const META_2026= 3500000;
+const META_2027= 4200000;
+const META_2028= 5000000;
 const FII_RENDA_MENSAL  = 6000;
 const META_PROV_MENSAL  = 40000;
 const META_FII_MENSAL   = 10000;
@@ -1119,12 +1121,18 @@ function renderCarteira(){
     </div>`;
   }).join('');
 
-  document.getElementById('metas-prog').innerHTML=`
+  const METAS_ANUAIS=[
+    {label:'Meta 2026 — R$3,5M',         meta:META_2026},
+    {label:'Meta 2027 — R$4,2M',         meta:META_2027},
+    {label:'Meta 2028 — R$5M',           meta:META_2028},
+    {label:'Meta R$7M — Novembro/2029',  meta:META_7M},
+  ];
+  document.getElementById('metas-prog').innerHTML=METAS_ANUAIS.map(m=>`
     <div class="prog-wrap" style="margin-bottom:8px">
-      <div class="prog-label">Meta R$7M — Novembro/2029</div>
-      <div class="prog-track"><div class="prog-fill gold" style="width:${Math.min(PAT/META_7M*100,100).toFixed(1)}%"></div></div>
-      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:#2563eb">${brl(PAT)} (${(PAT/META_7M*100).toFixed(1)}%)</span><span>R$7M</span></div>
-    </div>`;
+      <div class="prog-label">${m.label}</div>
+      <div class="prog-track"><div class="prog-fill gold" style="width:${Math.min(PAT/m.meta*100,100).toFixed(1)}%"></div></div>
+      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:#2563eb">${brl(PAT)} (${(PAT/m.meta*100).toFixed(1)}%)</span><span>${brl(m.meta)}</span></div>
+    </div>`).join('');
 
   document.getElementById('acoes-body').innerHTML=ACOES.map(renderAcaoRow).join('');
   document.getElementById('fiis-body').innerHTML=FIIS.map(renderFiiRow).join('');
@@ -2063,13 +2071,4 @@ const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
 document.getElementById('ap-tfoot').innerHTML=`<tr>
   <td>TOTAL</td>
   <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
-  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
-  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
-  <td>${R(sumC.total)}</td>
-  <td style="color:var(--red)">${R(sumV)}</td>
-  <td style="font-weight:700;${liqC2}">${R(liquTot)}</td>
-  <td></td>
-</tr>`;
-
-window.toggleMes=function(id){
-  const el=document.getEleme
+  <td>
