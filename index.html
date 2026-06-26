@@ -2045,8 +2045,8 @@ Object.keys(yrGroups).sort().forEach(yr=>{
       Object.entries(pd.compras||{}).forEach(([t,vv])=>{ if(t==='CDB')return; mCompras[t]=(mCompras[t]||0)+vv; });
       Object.entries(pd.vendas||{}).forEach(([t,vv])=>{ if(t==='CDB')return; mVendas[t]=(mVendas[t]||0)+vv; });
     });
-    const buyPicks=Object.entries(mCompras).sort((a,b)=>b[1]-a[1]).map(([t,vv])=>`<span class="mes-chip buy">▲ ${t} ${R(vv)}</span>`).join('');
-    const sellPicks=Object.entries(mVendas).sort((a,b)=>b[1]-a[1]).map(([t,vv])=>`<span class="mes-chip sell">▼ ${t} ${R(vv)}</span>`).join('');
+    const buyPicks=Object.entries(mCompras).sort((a,b)=>b[1]-a[1]).map(([t,vv])=>`<span class="mes-chip buy">▲ ${logoImg(t,13)}${t} ${R(vv)}</span>`).join('');
+    const sellPicks=Object.entries(mVendas).sort((a,b)=>b[1]-a[1]).map(([t,vv])=>`<span class="mes-chip sell">▼ ${logoImg(t,13)}${t} ${R(vv)}</span>`).join('');
 
     tbodyHtml+=`<tr class="mo-row" data-yr="${yr}" onclick="toggleMes('d${i}')">
       <td style="padding-left:20px;font-weight:400">${g.labels[gi]}</td>
