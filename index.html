@@ -286,6 +286,7 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div class="tabs">
   <button class="tab-btn active" onclick="showTab('carteira',this)">Carteira</button>
+  <button class="tab-btn" onclick="showTab('ativos',this)">Ativos</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Faturamento</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
   <button class="tab-btn" onclick="showTab('dyproj',this)">DY Projetivo</button>
@@ -312,7 +313,9 @@ tbody tr:hover{background:#f9fafb;}
   </div>
   <div class="chart-wrap" style="margin-bottom:14px"><div class="chart-title">Evolução Patrimonial 2022–2026</div><canvas id="chartPatrim" height="100"></canvas></div>
   <div id="metas-prog"></div>
-  <div class="sec" style="margin-top:6px">CVENOM ® Ações</div>
+</div>
+<div id="tab-ativos" class="tab-panel">
+  <div class="sec" style="margin-top:0">CVENOM ® Ações</div>
   <div class="tbl-wrap"><table><thead id="acoes-head"><tr>
     <th class="tbl-sort" onclick="sortAcoesTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortAcoesTable('s',this)" style="text-align:left">Setor</th>
@@ -2069,12 +2072,4 @@ document.getElementById('ap-tfoot').innerHTML=`<tr>
 </tr>`;
 
 window.toggleMes=function(id){
-  const el=document.getElementById(id+'det');
-  el.style.display=el.style.display==='none'?'table-row':'none';
-};
-})();
-
-
-</script>
-</body>
-</html>
+  const el=document.getEleme
