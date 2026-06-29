@@ -350,6 +350,8 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortFiisTable('div',this)">Div/cota</th>
     <th class="tbl-sort" onclick="sortFiisTable('yoc',this)">YoC</th>
     <th class="tbl-sort" onclick="sortFiisByPvp(this)">P/VP</th>
+    <th class="tbl-sort" onclick="sortFiisTable('vuc',this)">VUC</th>
+    <th class="tbl-sort" onclick="sortFiisTable('pvuc',this)">%VUC</th>
   </tr></thead><tbody id="fiis-body"></tbody></table></div>
 </div>
 <div id="tab-proventos" class="tab-panel">
@@ -601,21 +603,21 @@ const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
   // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
   // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
-  {t:'XPML11',p:104.13,pm:105.14,q:680,  v:70808.40, teto:128.0,ms:22.92, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
-  {t:'PMLL11',p:104.81,pm:102.94,q:610,  v:63934.10, teto:128.0,ms:22.13, s:'Shopping', div:1.00, vpa:102.98},
-  {t:'BTLG11',p:102.50,pm:102.29,q:654,  v:67035.00, teto:112.0,ms:9.27, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
-  {t:'TRXF11',p:91.80,pm:103.62,q:833,  v:76469.40, teto:125.0,ms:36.17, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
-  {t:'HGRU11',p:130.67,pm:121.58,q:408,  v:53313.36, teto:140.0,ms:7.14, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
-  {t:'MCCI11',p:94.40,pm:89.17,q:514,  v:48521.60, teto:95.0,ms:0.64, s:'Papel', div:1.00, vpa:97.99},
-  {t:'HGLG11',p:151.55,pm:166.66,q:284,  v:43040.20, teto:162.0,ms:6.90, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
-  {t:'RECR11',p:81.16,pm:83.09,q:710,  v:57623.60, teto:89.0,ms:9.66, s:'Papel', div:1.034, vpa:89.32, ativo:true},
-  {t:'VGIP11',p:80.28,pm:86.09,q:602,  v:48328.56, teto:92.0,ms:14.60, s:'Papel', div:1.08, vpa:90.10},
-  {t:'BTHF11',p:8.87,pm:10.12,q:4252,  v:37715.24, teto:9.0,ms:1.47, s:'Hedge', div:0.101, vpa:9.97},
-  {t:'PVBI11',p:71.55,pm:81.06,q:511,  v:36562.05, teto:97.0,ms:35.57, s:'Lajes', div:0.40, vpa:103.33, ativo:true},
-  {t:'LVBI11',p:103.95,pm:100.99,q:278,  v:28898.10, teto:113.0,ms:8.71, s:'Logístico', div:0.75, vpa:119.19},
-  {t:'IRIM11',p:65.83,pm:77.95,q:431,  v:28372.73, teto:81.0,ms:23.04, s:'Hedge', div:0.75, vpa:82.38},
-  {t:'VISC11',p:105.11,pm:109.21,q:188,  v:19760.68, teto:118.0,ms:12.26, s:'Shopping', div:0.84, vpa:120.36},
-  {t:'KNRI11',p:152.72,pm:149.73,q:161,  v:24587.92, teto:164.0,ms:7.39, s:'Híbrido', div:1.10, vpa:158.72},
+  {t:'XPML11',p:104.13,pm:105.14,q:680,  v:70808.40, teto:128.0,ms:22.92, vuc:103.01, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11',p:104.81,pm:102.94,q:610,  v:63934.10, teto:128.0,ms:22.13, vuc:103.25, s:'Shopping', div:1.00, vpa:102.98},
+  {t:'BTLG11',p:102.50,pm:102.29,q:654,  v:67035.00, teto:112.0,ms:9.27, vuc:102.50, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11',p:91.80,pm:103.62,q:833,  v:76469.40, teto:125.0,ms:36.17, vuc:91.79, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11',p:130.67,pm:121.58,q:408,  v:53313.36, teto:140.0,ms:7.14, vuc:129.84, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11',p:94.40,pm:89.17,q:514,  v:48521.60, teto:95.0,ms:0.64, vuc:84.71, s:'Papel', div:1.00, vpa:97.99},
+  {t:'HGLG11',p:151.55,pm:166.66,q:284,  v:43040.20, teto:162.0,ms:6.90, vuc:156.00, s:'Logístico', div:1.10, vpa:158.37, ativo:true},
+  {t:'RECR11',p:81.16,pm:83.09,q:710,  v:57623.60, teto:89.0,ms:9.66, vuc:83.07, s:'Papel', div:1.034, vpa:89.32, ativo:true},
+  {t:'VGIP11',p:80.28,pm:86.09,q:602,  v:48328.56, teto:92.0,ms:14.60, vuc:74.69, s:'Papel', div:1.08, vpa:90.10},
+  {t:'BTHF11',p:8.87,pm:10.12,q:4252,  v:37715.24, teto:9.0,ms:1.47, vuc:8.38, s:'Hedge', div:0.101, vpa:9.97},
+  {t:'PVBI11',p:71.55,pm:81.06,q:511,  v:36562.05, teto:97.0,ms:35.57, vuc:72.99, s:'Lajes', div:0.40, vpa:103.33, ativo:true},
+  {t:'LVBI11',p:103.95,pm:100.99,q:278,  v:28898.10, teto:113.0,ms:8.71, vuc:95.89, s:'Logístico', div:0.75, vpa:119.19},
+  {t:'IRIM11',p:65.83,pm:77.95,q:431,  v:28372.73, teto:81.0,ms:23.04, vuc:73.40, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11',p:105.11,pm:109.21,q:188,  v:19760.68, teto:118.0,ms:12.26, vuc:94.20, s:'Shopping', div:0.84, vpa:120.36},
+  {t:'KNRI11',p:152.72,pm:149.73,q:161,  v:24587.92, teto:164.0,ms:7.39, vuc:132.78, s:'Híbrido', div:1.10, vpa:158.72},
 ];
 const FII_SI=[
   {t:'HGLG11',p:154.96,chg:-0.12,dy:8.49,pvp:0.98,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -1061,6 +1063,7 @@ function renderFiiRow(f){
   const yoc=f.div?((f.div/f.pm)*100):null;
   // P/VP calculado dinamicamente: preço atual / VPA (atualiza a cada sync de preço)
   const pvp=f.vpa?(f.p/f.vpa).toFixed(2):(fsi.pvp!=null?fsi.pvp.toFixed(2):'—');
+  const pvuc=f.vuc?(f.p/f.vuc-1)*100:null;
   return`<tr>
     <td>${f.t}${f.warn?'<span class="warn-b">⚠</span>':''}</td>
     <td>${f.s}</td><td>${brl(f.p)}</td><td>${brl(f.pm)}</td>
@@ -1071,6 +1074,8 @@ function renderFiiRow(f){
     <td>${f.div?'R$'+f.div.toFixed(3):'—'}</td>
     <td>${yoc?(yoc.toFixed(2)+'%'):'—'}</td>
     <td>${pvp}</td>
+    <td>${f.vuc?brl(f.vuc):'—'}</td>
+    <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
 }
 function sortAcoesByDy(thEl){
@@ -1104,6 +1109,17 @@ function sortFiisTable(key,thEl){
   if(TBL_SORT.f.k===key)TBL_SORT.f.d*=-1;else{TBL_SORT.f.k=key;TBL_SORT.f.d=1;}
   document.querySelectorAll('#fiis-head th').forEach(th=>th.classList.remove('sort-asc','sort-desc'));
   thEl.classList.add(TBL_SORT.f.d===1?'sort-asc':'sort-desc');
+  if(key==='pvuc'){
+    const sorted=[...FIIS].sort((a,b)=>{
+      const pa=a.vuc?(a.p/a.vuc-1)*100:null;
+      const pb=b.vuc?(b.p/b.vuc-1)*100:null;
+      if(pa==null)return TBL_SORT.f.d;
+      if(pb==null)return -TBL_SORT.f.d;
+      return (pa-pb)*TBL_SORT.f.d;
+    });
+    document.getElementById('fiis-body').innerHTML=sorted.map(renderFiiRow).join('');
+    return;
+  }
   document.getElementById('fiis-body').innerHTML=tblSortBy(FIIS,key,TBL_SORT.f.d).map(renderFiiRow).join('');
 }
 
@@ -2080,31 +2096,4 @@ if(lastApYr){
 window.toggleApYr=function(yr){
   const yRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${yr}"]`);
   const mRows=document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${yr}"]`);
-  const isOpen=yRow.classList.contains('open');
-  yRow.classList.toggle('open',!isOpen);
-  mRows.forEach(r=>{if(!r.id||!r.id.endsWith('det'))r.classList.toggle('visible',!isOpen);});
-};
-
-const liquTot=sumC.total-sumV;
-const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
-document.getElementById('ap-tfoot').innerHTML=`<tr>
-  <td>TOTAL</td>
-  <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
-  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
-  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
-  <td>${R(sumC.total)}</td>
-  <td style="color:var(--red)">${R(sumV)}</td>
-  <td style="font-weight:700;${liqC2}">${R(liquTot)}</td>
-  <td></td>
-</tr>`;
-
-window.toggleMes=function(id){
-  const el=document.getElementById(id+'det');
-  el.style.display=el.style.display==='none'?'table-row':'none';
-};
-})();
-
-
-</script>
-</body>
-</html>
+  const isOpen=yRow.classList.contains(
