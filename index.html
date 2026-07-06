@@ -584,20 +584,20 @@ const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
 
 // ── DADOS ESTÁTICOS — atualizados planilha 06/07/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:78.03, pm:62.53, q:2687,  v:209666.61, teto:75.0, ms:-3.88, vuc:50.15, s:'Mineração'},
-  {t:'EGIE3', p:32.33, pm:28.01, q:3514,  v:113607.62, teto:28.6, ms:-11.54, vuc:28.0, s:'Elétrico'},
-  {t:'TAEE11', p:40.64, pm:34.62, q:3352,  v:136225.28, teto:47.33, ms:16.46, vuc:33.78, s:'Elétrico'},
-  {t:'ISAE4', p:27.45, pm:23.69, q:6010,  v:164974.5, teto:28.58, ms:4.12, vuc:21.9, s:'Elétrico'},
-  {t:'BBSE3', p:38.53, pm:32.22, q:5639,  v:217270.67, teto:35.5, ms:-7.86, vuc:34.01, s:'Seguridade'},
-  {t:'CXSE3', p:20.35, pm:15.28, q:11451,  v:233027.85, teto:18.7, ms:-8.11, vuc:17.33, s:'Seguridade'},
-  {t:'BBAS3', p:19.68, pm:22.17, q:11078,  v:218015.04, teto:25.0, ms:27.03, vuc:20.76, s:'Bancos'},
-  {t:'ITSA4', p:13.38, pm:7.97, q:7603,  v:101728.14, teto:11.5, ms:-14.05, vuc:8.82, s:'Bancos'},
-  {t:'BBDC3', p:15.41, pm:15.23, q:5096, v:78529.36, teto:17.43, ms:13.11, vuc:15.54, s:'Bancos'},
-  {t:'SAPR4', p:7.04, pm:3.58, q:2309,  v:16255.36, teto:3.64, ms:-48.3, vuc:3.47, s:'Saneamento'},
-  {t:'KLBN11', p:16.88, pm:18.0, q:5048,  v:85210.24, teto:28.0, ms:65.88, vuc:16.67, s:'Papel/Cel.'},
-  {t:'WEGE3', p:46.02, pm:29.42, q:866,  v:39853.32, teto:37.0, ms:-19.6, vuc:33.24, s:'Bens Ind.'},
-  {t:'VIVT3', p:34.46, pm:20.04, q:1680,  v:57892.8, teto:34.58, ms:0.35, vuc:20.0, s:'Telecom'},
-  {t:'PETR4', p:37.81, pm:30.38, q:1863,  v:70440.03, teto:38.0, ms:0.5, vuc:29.69, s:'Petróleo'},
+  {t:'VALE3', p:77.79, pm:62.53, q:2687,  v:209021.73, teto:75.0, ms:-3.59, vuc:50.15, s:'Mineração'},
+  {t:'EGIE3', p:32.14, pm:28.01, q:3514,  v:112939.96, teto:28.6, ms:-11.01, vuc:28.0, s:'Elétrico'},
+  {t:'TAEE11', p:40.27, pm:34.62, q:3352,  v:134985.04, teto:47.33, ms:17.53, vuc:33.78, s:'Elétrico'},
+  {t:'ISAE4', p:27.58, pm:23.69, q:6010,  v:165755.8, teto:28.58, ms:3.63, vuc:21.9, s:'Elétrico'},
+  {t:'BBSE3', p:38.71, pm:32.22, q:5639,  v:218285.69, teto:35.5, ms:-8.29, vuc:34.01, s:'Seguridade'},
+  {t:'CXSE3', p:20.58, pm:15.28, q:11451,  v:235661.58, teto:18.7, ms:-9.14, vuc:17.33, s:'Seguridade'},
+  {t:'BBAS3', p:19.77, pm:22.17, q:11078,  v:219012.06, teto:25.0, ms:26.45, vuc:20.76, s:'Bancos'},
+  {t:'ITSA4', p:13.46, pm:7.97, q:7603,  v:102336.38, teto:11.5, ms:-14.56, vuc:8.82, s:'Bancos'},
+  {t:'BBDC3', p:15.55, pm:15.23, q:5096, v:79242.8, teto:17.43, ms:12.09, vuc:15.54, s:'Bancos'},
+  {t:'SAPR4', p:7.01, pm:3.58, q:2309,  v:16186.09, teto:3.64, ms:-48.07, vuc:3.47, s:'Saneamento'},
+  {t:'KLBN11', p:17.0, pm:18.0, q:5048,  v:85816.0, teto:28.0, ms:64.71, vuc:16.67, s:'Papel/Cel.'},
+  {t:'WEGE3', p:46.26, pm:29.42, q:866,  v:40061.16, teto:37.0, ms:-20.02, vuc:33.24, s:'Bens Ind.'},
+  {t:'VIVT3', p:34.5, pm:20.04, q:1680,  v:57960.0, teto:34.58, ms:0.23, vuc:20.0, s:'Telecom'},
+  {t:'PETR4', p:37.77, pm:30.38, q:1863,  v:70365.51, teto:38.0, ms:0.61, vuc:29.69, s:'Petróleo'},
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
@@ -718,18 +718,18 @@ const MENSAIS=[
   {ano:'2026',m:'Jun/26',total:10942,fii:6638,acoes:4304, dolar:0},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3289738.28}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3294671.26}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT    = 3289738.28;
-let CAIO   = 2480640.11;
-let FATIMA = 809098.17;
+let PAT    = 3294671.26;
+let CAIO   = 2484359.84;
+let FATIMA = 810311.42;
 let RF     = 531424.0;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
 const INDICES_HOJE = {
-  atualizado: "06/07/2026 · 11:46",
+  atualizado: "06/07/2026 · 19:33",
   indices: [
     {id:'atv-ibov', label:'Ibovespa', pontos:176589.03, chgPct:-0.69, chgPts:-1226.69},
     {id:'atv-ifix', label:'IFIX', pontos:3863.87, chgPct:0.00, chgPts:0.00},
