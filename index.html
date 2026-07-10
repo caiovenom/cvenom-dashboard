@@ -91,7 +91,8 @@ tbody tr:hover{background:#f9fafb;}
 .chart-title{font-size:14px;font-weight:700;color:var(--brand);margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px;}.chart-title::before{content:'';display:block;width:3px;height:18px;background:var(--brand);border-radius:2px;flex-shrink:0;}
 
 /* PROGRESS */
-.prog-wrap{background:var(--bg);border-radius:var(--r-sm);padding:18px 22px;margin-bottom:10px;border:1px solid var(--border);}
+.prog-wrap{position:relative;background:var(--bg);border-radius:var(--r-sm);padding:18px 22px;margin-bottom:10px;border:1px solid var(--border);transition:border-color .15s;}
+.prog-wrap:hover{border-color:var(--brand);}
 .prog-label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
 .prog-track{background:#efefef;border-radius:20px;height:5px;overflow:hidden;margin-bottom:6px;}
 .prog-fill{height:6px;border-radius:20px;}
@@ -99,6 +100,12 @@ tbody tr:hover{background:#f9fafb;}
 .prog-fill.green{background:#22c55e;}
 .prog-fill.blue{background:#7c3aed;}
 .prog-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
+/* TOOLTIP METAS */
+.meta-tt{position:absolute;top:50%;right:20px;transform:translateY(-50%);background:rgba(15,15,20,.92);color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .18s;z-index:20;box-shadow:0 4px 16px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);}
+.prog-wrap:hover .meta-tt{opacity:1;}
+.meta-tt-title{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.45);margin-bottom:5px;}
+.meta-tt-val{font-size:18px;font-weight:700;line-height:1.1;}
+.meta-tt-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:4px;}
 
 /* FII TOOLBAR */
 .fii-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
@@ -1162,12 +1169,27 @@ function renderCarteira(){
     {label:'Meta 2028 — R$5M',           meta:META_2028, cor:'#7c3aed'},
     {label:'Meta R$7M — Novembro/2029',  meta:META_7M,   cor:'#22c55e'},
   ];
-  document.getElementById('metas-prog').innerHTML=METAS_ANUAIS.map(m=>`
+  document.getElementById('metas-prog').innerHTML=METAS_ANUAIS.map(m=>{
+    const pct  = Math.min(PAT/m.meta*100, 100);
+    const falta = m.meta - PAT;
+    const faltaTxt = falta > 0
+      ? `<span style="color:${m.cor}">${brl(falta)}</span>`
+      : `<span style="color:#22c55e">✅ Meta atingida!</span>`;
+    const faltaSub = falta > 0
+      ? `${pct.toFixed(1)}% concluído · faltam ${((1-PAT/m.meta)*100).toFixed(1)}%`
+      : `Patrimônio atual: ${brl(PAT)}`;
+    return `
     <div class="prog-wrap" style="margin-bottom:8px">
+      <div class="meta-tt">
+        <div class="meta-tt-title">Falta para atingir</div>
+        <div class="meta-tt-val">${faltaTxt}</div>
+        <div class="meta-tt-sub">${faltaSub}</div>
+      </div>
       <div class="prog-label">${m.label}</div>
-      <div class="prog-track"><div class="prog-fill" style="width:${Math.min(PAT/m.meta*100,100).toFixed(1)}%;background:${m.cor}"></div></div>
-      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:var(--muted)">${brl(PAT)} (${(PAT/m.meta*100).toFixed(1)}%)</span><span>${brl(m.meta)}</span></div>
-    </div>`).join('');
+      <div class="prog-track"><div class="prog-fill" style="width:${pct.toFixed(1)}%;background:${m.cor}"></div></div>
+      <div class="prog-row"><span>R$0</span><span style="font-weight:700;color:var(--muted)">${brl(PAT)} (${pct.toFixed(1)}%)</span><span>${brl(m.meta)}</span></div>
+    </div>`;
+  }).join('');
 
   document.getElementById('acoes-body').innerHTML=ACOES.map(renderAcaoRow).join('');
   document.getElementById('fiis-body').innerHTML=FIIS.map(renderFiiRow).join('');
@@ -2088,39 +2110,4 @@ Object.keys(yrGroups).sort().forEach(yr=>{
 });
 document.getElementById('ap-tbody').innerHTML=tbodyHtml;
 // Abrir o ano mais recente por padrão
-const lastApYr=Object.keys(yrGroups).sort().pop();
-if(lastApYr){
-  const lastYrRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${lastApYr}"]`);
-  if(lastYrRow){lastYrRow.classList.add('open');document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${lastApYr}"]`).forEach(r=>r.classList.add('visible'));}
-}
-window.toggleApYr=function(yr){
-  const yRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${yr}"]`);
-  const mRows=document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${yr}"]`);
-  const isOpen=yRow.classList.contains('open');
-  yRow.classList.toggle('open',!isOpen);
-  mRows.forEach(r=>{if(!r.id||!r.id.endsWith('det'))r.classList.toggle('visible',!isOpen);});
-};
-
-const liquTot=sumC.total-sumV;
-const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
-document.getElementById('ap-tfoot').innerHTML=`<tr>
-  <td>TOTAL</td>
-  <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
-  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
-  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
-  <td>${R(sumC.total)}</td>
-  <td style="color:var(--red)">${R(sumV)}</td>
-  <td style="font-weight:700;${liqC2}">${R(liquTot)}</td>
-  <td></td>
-</tr>`;
-
-window.toggleMes=function(id){
-  const el=document.getElementById(id+'det');
-  el.style.display=el.style.display==='none'?'table-row':'none';
-};
-})();
-
-
-</script>
-</body>
-</htm
+const lastApYr=Object.keys(yrGroups).sort().
