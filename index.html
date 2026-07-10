@@ -101,11 +101,11 @@ tbody tr:hover{background:#f9fafb;}
 .prog-fill.blue{background:#7c3aed;}
 .prog-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
 /* TOOLTIP METAS */
-.meta-tt{position:absolute;top:50%;right:20px;transform:translateY(-50%);background:rgba(15,15,20,.92);color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .18s;z-index:20;box-shadow:0 4px 16px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);}
+.meta-tt{position:absolute;top:50%;right:20px;transform:translateY(-50%);background:#fff;color:#374151;padding:10px 16px;border-radius:8px;font-size:12px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .18s;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.09);border:1px solid var(--border);}
 .prog-wrap:hover .meta-tt{opacity:1;}
-.meta-tt-title{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.45);margin-bottom:5px;}
-.meta-tt-val{font-size:18px;font-weight:700;line-height:1.1;}
-.meta-tt-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:4px;}
+.meta-tt-title{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#9ca3af;margin-bottom:5px;}
+.meta-tt-val{font-size:16px;font-weight:700;color:#374151;line-height:1.2;}
+.meta-tt-sub{font-size:10px;color:#9ca3af;margin-top:4px;}
 
 /* FII TOOLBAR */
 .fii-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
@@ -1173,8 +1173,8 @@ function renderCarteira(){
     const pct  = Math.min(PAT/m.meta*100, 100);
     const falta = m.meta - PAT;
     const faltaTxt = falta > 0
-      ? `<span style="color:${m.cor}">${brl(falta)}</span>`
-      : `<span style="color:#22c55e">✅ Meta atingida!</span>`;
+      ? brl(falta)
+      : '✅ Meta atingida!';
     const faltaSub = falta > 0
       ? `${pct.toFixed(1)}% concluído · faltam ${((1-PAT/m.meta)*100).toFixed(1)}%`
       : `Patrimônio atual: ${brl(PAT)}`;
@@ -2110,4 +2110,7 @@ Object.keys(yrGroups).sort().forEach(yr=>{
 });
 document.getElementById('ap-tbody').innerHTML=tbodyHtml;
 // Abrir o ano mais recente por padrão
-const lastApYr=Object.keys(yrGroups).sort().
+const lastApYr=Object.keys(yrGroups).sort().pop();
+if(lastApYr){
+  const lastYrRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${lastApYr}"]`);
+  if
