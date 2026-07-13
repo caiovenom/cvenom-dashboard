@@ -2130,4 +2130,23 @@ window.toggleApYr=function(yr){
 const liquTot=sumC.total-sumV;
 const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
 document.getElementById('ap-tfoot').innerHTML=`<tr>
-  <td>TOTAL</
+  <td>TOTAL</td>
+  <td>${R(sumC.acoes)}</td><td>${Pct(sumC.acoes/sumC.total*100)}</td>
+  <td>${R(sumC.fiis)}</td><td>${Pct(sumC.fiis/sumC.total*100)}</td>
+  <td>${R(sumC.rf)}</td><td>${Pct(sumC.rf/sumC.total*100)}</td>
+  <td>${R(sumC.total)}</td>
+  <td style="color:var(--red)">${R(sumV)}</td>
+  <td style="font-weight:700;${liqC2}">${R(liquTot)}</td>
+  <td></td>
+</tr>`;
+
+window.toggleMes=function(id){
+  const el=document.getElementById(id+'det');
+  el.style.display=el.style.display==='none'?'table-row':'none';
+};
+})();
+
+
+</script>
+</body>
+</html>
