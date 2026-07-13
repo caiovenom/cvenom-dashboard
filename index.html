@@ -324,10 +324,6 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div id="tab-acoes" class="tab-panel">
   <div class="sec" style="margin-top:0">CVENOM ® Ações</div>
-  <div class="chart-row" style="margin-bottom:16px">
-    <div class="chart-wrap"><div class="chart-title">Alocação por Setor</div><canvas id="chartSetorAcoes" height="220"></canvas></div>
-    <div class="chart-wrap"><div class="chart-title">Distribuição por Setor</div><div id="tbl-set-a2"></div></div>
-  </div>
   <div class="tbl-wrap"><table><thead id="acoes-head"><tr>
     <th class="tbl-sort" onclick="sortAcoesTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortAcoesTable('s',this)" style="text-align:left">Setor</th>
@@ -344,13 +340,10 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('vuc',this)">VUC</th>
     <th class="tbl-sort" onclick="sortAcoesTable('pvuc',this)">%VUC</th>
   </tr></thead><tbody id="acoes-body"></tbody></table></div>
+  <div class="chart-wrap" style="margin-top:14px"><div class="chart-title">Distribuição por Setor</div><div id="tbl-set-a2"></div></div>
 </div>
 <div id="tab-fiis" class="tab-panel">
   <div class="sec" style="margin-top:0">CVENOM ® FIIs</div>
-  <div class="chart-row" style="margin-bottom:16px">
-    <div class="chart-wrap"><div class="chart-title">Alocação por Segmento</div><canvas id="chartSegFiis" height="220"></canvas></div>
-    <div class="chart-wrap"><div class="chart-title">Distribuição por Segmento</div><div id="tbl-set-f2"></div></div>
-  </div>
   <div class="tbl-wrap"><table><thead id="fiis-head"><tr>
     <th class="tbl-sort" onclick="sortFiisTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortFiisTable('s',this)" style="text-align:left">Segmento</th>
@@ -368,6 +361,7 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortFiisTable('vuc',this)">VUC</th>
     <th class="tbl-sort" onclick="sortFiisTable('pvuc',this)">%VUC</th>
   </tr></thead><tbody id="fiis-body"></tbody></table></div>
+  <div class="chart-wrap" style="margin-top:14px"><div class="chart-title">Distribuição por Segmento</div><div id="tbl-set-f2"></div></div>
 </div>
 <div id="tab-proventos" class="tab-panel">
   <div class="prov-hero" id="prov-hero"></div>
@@ -1223,38 +1217,12 @@ function renderCarteira(){
   const tblW=(hdr,rows,tot)=>`<table style="width:100%;border-collapse:collapse"><thead><tr style="border-bottom:2px solid var(--border)"><th style="padding:4px;font-size:10px;color:var(--muted);font-weight:600;text-align:left">${hdr}</th><th style="padding:4px;font-size:10px;color:var(--muted);font-weight:600;text-align:right">Valor</th><th style="padding:4px;font-size:10px;color:var(--muted);font-weight:600;text-align:right">%</th></tr></thead><tbody>${rows}</tbody><tfoot><tr style="background:#f8fafc;border-top:2px solid var(--border)"><td style="padding:6px 4px;font-size:11px;font-weight:700;color:var(--brand)">Total</td><td style="padding:6px 4px;text-align:right;font-size:11px;font-weight:800;color:var(--brand)">${brl(tot)}</td><td style="padding:6px 4px;text-align:right;font-size:12px;font-weight:800;color:var(--brand)">100%</td></tr></tfoot></table>`;
   document.getElementById('tbl-set-a').innerHTML=tblW('Setor',sk.map((s,i)=>tblR(s,sm[s],tA,PAL[i%PAL.length])).join(''),tA);
   document.getElementById('tbl-set-a2').innerHTML=tblW('Setor',sk.map((s,i)=>tblR(s,sm[s],tA,PAL[i%PAL.length])).join(''),tA);
-  mkC('chartSetorAcoes',{type:'doughnut',data:{
-    labels:sk,
-    datasets:[{data:sk.map(s=>sm[s]),backgroundColor:sk.map((s,i)=>PAL[i%PAL.length]),borderWidth:2,borderColor:'#fff'}]
-  },options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:6}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
-    title:()=>'Ações por Setor',
-    label:()=>null,
-    afterBody:items=>{
-      const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
-      const tot=ds.data.reduce((s,v)=>s+v,0);
-      return labs.map((l,i)=>`  ${l}: ${brl(ds.data[i])} (${(ds.data[i]/tot*100).toFixed(1)}%)`);
-    },
-    footer:()=>'Total Ações: '+brl(tA)
-  }}}}});
 
   const fm={};FIIS.forEach(f=>{fm[f.s]=(fm[f.s]||0)+f.v;});
   const fk=Object.keys(fm).sort((a,b)=>fm[b]-fm[a]);
   const FC=['#c8a84b','#2563eb','#ea580c','#16a34a','#64748b','#7c3aed'];
   document.getElementById('tbl-set-f').innerHTML=tblW('Segmento',fk.map((s,i)=>tblR(s,fm[s],tF,FC[i%FC.length])).join(''),tF);
   document.getElementById('tbl-set-f2').innerHTML=tblW('Segmento',fk.map((s,i)=>tblR(s,fm[s],tF,FC[i%FC.length])).join(''),tF);
-  mkC('chartSegFiis',{type:'doughnut',data:{
-    labels:fk,
-    datasets:[{data:fk.map(s=>fm[s]),backgroundColor:fk.map((s,i)=>FC[i%FC.length]),borderWidth:2,borderColor:'#fff'}]
-  },options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:6}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
-    title:()=>'FIIs por Segmento',
-    label:()=>null,
-    afterBody:items=>{
-      const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
-      const tot=ds.data.reduce((s,v)=>s+v,0);
-      return labs.map((l,i)=>`  ${l}: ${brl(ds.data[i])} (${(ds.data[i]/tot*100).toFixed(1)}%)`);
-    },
-    footer:()=>'Total FIIs: '+brl(tF)
-  }}}}});
 
   mkC('chartPatrim',{type:'bar',data:{
     labels:PATRIM_EVOL.map(p=>p.ano),
@@ -2127,4 +2095,39 @@ Object.keys(yrGroups).sort().forEach(yr=>{
 
     tbodyHtml+=`<tr class="mo-row" data-yr="${yr}" onclick="toggleMes('d${i}')">
       <td style="padding-left:20px;font-weight:400">${g.labels[gi]}</td>
-      <td>${c.acoes?R(c.acoes):'—'}</td><td>$
+      <td>${c.acoes?R(c.acoes):'—'}</td><td>${pA2}</td>
+      <td>${c.fiis?R(c.fiis):'—'}</td><td>${pF2}</td>
+      <td>${c.rf?R(c.rf):'—'}</td><td>${pR2}</td>
+      <td style="font-weight:700">${R(c.total)}</td>
+      <td style="color:var(--red)">${v?R(v):'—'}</td>
+      <td style="${liqCls}">${R(liq)}</td>
+      <td style="color:var(--muted);font-size:10px">▼</td>
+    </tr>
+    <tr class="mo-row" data-yr="${yr}" id="d${i}det" style="display:none"><td colspan="11">
+      <div class="mes-detail-inner">
+        <div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:4px;">COMPRAS</div>
+        <div class="mes-picks">${buyPicks}</div>
+        ${sellPicks?`<div style="font-size:10px;color:var(--muted);font-weight:600;margin:8px 0 4px">VENDAS</div><div class="mes-picks">${sellPicks}</div>`:''}
+      </div>
+    </td></tr>`;
+  });
+});
+document.getElementById('ap-tbody').innerHTML=tbodyHtml;
+// Abrir o ano mais recente por padrão
+const lastApYr=Object.keys(yrGroups).sort().pop();
+if(lastApYr){
+  const lastYrRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${lastApYr}"]`);
+  if(lastYrRow){lastYrRow.classList.add('open');document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${lastApYr}"]`).forEach(r=>r.classList.add('visible'));}
+}
+window.toggleApYr=function(yr){
+  const yRow=document.querySelector(`.ap-tbl .yr-row[data-yr="${yr}"]`);
+  const mRows=document.querySelectorAll(`.ap-tbl .mo-row[data-yr="${yr}"]`);
+  const isOpen=yRow.classList.contains('open');
+  yRow.classList.toggle('open',!isOpen);
+  mRows.forEach(r=>{if(!r.id||!r.id.endsWith('det'))r.classList.toggle('visible',!isOpen);});
+};
+
+const liquTot=sumC.total-sumV;
+const liqC2=liquTot>=0?'color:var(--green)':'color:var(--red)';
+document.getElementById('ap-tfoot').innerHTML=`<tr>
+  <td>TOTAL</
