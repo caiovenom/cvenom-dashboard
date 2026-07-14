@@ -1749,7 +1749,14 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
         Object.entries(mData[p]?.compras||{}).forEach(([t,v])=>{compras[t]=(compras[t]||0)+v;});
         Object.entries(mData[p]?.vendas||{}).forEach(([t,v])=>{vendas[t]=(vendas[t]||0)+v;});
       });
+      const caioC=Object.values(mData.Caio?.compras||{}).reduce((a,v)=>a+v,0);
+      const fatC =Object.values(mData.Fatima?.compras||{}).reduce((a,v)=>a+v,0);
+      const caioV=Object.values(mData.Caio?.vendas||{}).reduce((a,v)=>a+v,0);
+      const fatV =Object.values(mData.Fatima?.vendas||{}).reduce((a,v)=>a+v,0);
       const lines=[];
+      lines.push('── Por Pessoa ──');
+      if(caioC>0||caioV>0) lines.push('  Caio:   '+R(caioC)+(caioV>0?' · vendas '+R(caioV):''));
+      if(fatC>0||fatV>0)   lines.push('  Fatima: '+R(fatC)+(fatV>0?' · vendas '+R(fatV):''));
       const sc=Object.entries(compras).sort((a,b)=>b[1]-a[1]);
       const sv=Object.entries(vendas).sort((a,b)=>b[1]-a[1]);
       if(sc.length){lines.push('── Compras ──');sc.forEach(([t,v])=>lines.push('  '+t+': '+R(v)));}
