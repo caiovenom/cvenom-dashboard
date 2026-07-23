@@ -1661,6 +1661,7 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
+  if(id==='aportes'){try{if(window.renderAportes)window.renderAportes();}catch(e){console.error('aportes crash:',e);}}
   if(id==='dyproj'){try{renderDYProjetivo();}catch(e){console.error('DYP crash:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro: '+e.message+'</div>';}}
   if(btn)btn.classList.add('active');
 }
@@ -1722,6 +1723,7 @@ AD.months.forEach(m=>{
   if(m===mesAtual) compMes+=r.compras.total;
 });
 const labelMes=(()=>{const [a,mo]=mesAtual.split('-');const nomes=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];return nomes[+mo-1]+'/'+a.slice(2);})();
+let _apRend=false;window.renderAportes=function(){if(_apRend)return;_apRend=true;
 const elLblMes=document.getElementById('lbl-jan-mes');if(elLblMes){const nomes2=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];const [a2,mo2]=mesAtual.split('-');elLblMes.textContent='Jan→'+nomes2[+mo2-1];}
 
 // HERO
@@ -2150,6 +2152,7 @@ window.toggleMes=function(id){
   const el=document.getElementById(id+'det');
   el.style.display=el.style.display==='none'?'table-row':'none';
 };
+}; // end renderAportes
 })();
 
 
