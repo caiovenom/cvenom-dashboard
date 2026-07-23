@@ -1749,7 +1749,13 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
       const caioC=Object.values(mData.Caio?.compras||{}).reduce((a,v)=>a+v,0);
       const fatC =Object.values(mData.Fatima?.compras||{}).reduce((a,v)=>a+v,0);
       const totPess=caioC+fatC;
+      const res=AD.resumos[m]?.compras||{};
+      const totClasse=res.total||0;
       const lines=[];
+      lines.push('── Por Classe ──');
+      if(res.acoes>0) lines.push('  Ações: '+R(res.acoes)+(totClasse>0?' ('+Pct(res.acoes/totClasse*100)+')':''));
+      if(res.fiis>0)  lines.push('  FIIs:  '+R(res.fiis)+(totClasse>0?' ('+Pct(res.fiis/totClasse*100)+')':''));
+      if(res.rf>0)    lines.push('  RF:    '+R(res.rf)+(totClasse>0?' ('+Pct(res.rf/totClasse*100)+')':''));
       lines.push('── Por Pessoa ──');
       if(caioC>0) lines.push('  Caio:   '+R(caioC)+(totPess>0?' ('+Pct(caioC/totPess*100)+')':''));
       if(fatC>0)  lines.push('  Fatima: '+R(fatC)+(totPess>0?' ('+Pct(fatC/totPess*100)+')':''));
