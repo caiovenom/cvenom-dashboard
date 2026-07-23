@@ -467,7 +467,7 @@ tbody tr:hover{background:#f9fafb;}
 <div class="sec">Movimentações · últ. 12 meses</div>
 <div class="ap-hero" id="ap-hero"></div>
 
-<div class="ap-g3">
+<div class="ap-g2">
   <div class="ap-cw">
     <div class="ap-ct">📊 Compras vs Vendas — Mensal</div>
     <canvas id="ap-cv-mensal" height="175"></canvas>
@@ -475,11 +475,6 @@ tbody tr:hover{background:#f9fafb;}
   <div class="ap-cw">
     <div class="ap-ct">🧩 Compras por Classe</div>
     <canvas id="ap-classe" height="175"></canvas>
-  </div>
-  <div class="ap-cw">
-    <div class="ap-ct">👤 Caio vs Fatima</div>
-    <canvas id="ap-pessoa" height="130"></canvas>
-    <div id="ap-share" style="margin-top:8px;"></div>
   </div>
 </div>
 
@@ -1785,21 +1780,6 @@ new Chart(document.getElementById('ap-classe'),{type:'doughnut',data:{
     footer:()=>'Total: '+R(totCompras)
   }}}}});
 
-// CHART PESSOA
-new Chart(document.getElementById('ap-pessoa'),{type:'doughnut',data:{
-  labels:['Caio','Fatima'],datasets:[{data:[Math.round(totC),Math.round(totF)],backgroundColor:['#00b4d8','#7c3aed'],borderWidth:2,borderColor:'#fff'}]
-},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
-    title:()=>'Aportes por Pessoa',
-    label:()=>null,
-    afterBody:items=>{
-      const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
-      const tot=ds.data.reduce((s,v)=>s+v,0);
-      return labs.map((l,i)=>`  ${l}: ${R(ds.data[i])} (${Pct(ds.data[i]/tot*100)})`);
-    },
-    footer:()=>'Total: '+R(totH)
-  }}}}});
-const pc=(totC/totH*100).toFixed(1),pf=(totF/totH*100).toFixed(1);
-document.getElementById('ap-share').innerHTML=`<div style="background:#f1f5f9;border-radius:5px;height:10px;overflow:hidden;margin:6px 0 3px;display:flex"><div style="width:${pc}%;background:#2563eb;height:10px"></div><div style="width:${pf}%;background:#7c3aed;height:10px"></div></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted)"><span><span class="ap-bc">Caio</span> ${pc}%</span><span><span class="ap-bf">Fatima</span> ${pf}%</span></div>`;
 
 const APORTES_HIST={
   'BBDC3':[{d:'mai/26',q:900,p:15.25,v:13725.0,o:'C'},{d:'mai/26',q:700,p:15.08,v:10556.0,o:'F'},{d:'25/05/26',q:200,p:15.62,v:3124.0,o:'C'},{d:'26/05/26',q:64,p:15.53,v:993.92,o:'F'},{d:'01/06/26',q:300,p:15.34,v:4602.0,o:'C'},{d:'01/06/26',q:200,p:15.39,v:3078.0,o:'F'},{d:'03/06/26',q:300,p:15.19,v:4557.0,o:'C'},{d:'03/06/26',q:400,p:15.32,v:6128.0,o:'C'},{d:'03/06/26',q:300,p:15.19,v:4557.0,o:'C'},{d:'03/06/26',q:400,p:15.19,v:6076.0,o:'F'},{d:'05/06/26',q:100,p:15.24,v:1524.0,o:'F'},{d:'08/06/26',q:500,p:15.08,v:7540.0,o:'C'},{d:'08/06/26',q:300,p:15.01,v:4503.0,o:'C'},{d:'08/06/26',q:165,p:15.01,v:2476.65,o:'F'},{d:'11/06/26',q:67,p:15.04,v:1007.68,o:'C'},{d:'26/06/26',q:100,p:15.29,v:1529.0,o:'C'},{d:'03/07/26',q:100,p:15.54,v:1554.0,o:'C'},{d:'08/07/26',q:100,p:15.47,v:1547.0,o:'C'}],
