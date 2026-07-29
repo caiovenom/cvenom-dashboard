@@ -1791,7 +1791,7 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
   const cell=(v,t)=>{
     if(v<=0) return `<span style="color:var(--muted)">—</span>`;
     const p=t>0?`<br><span style="color:var(--muted);font-size:10px;font-weight:400">${Pct(v/t*100)}</span>`:'';
-    return R(v)+p;
+    return `<span style="color:var(--text)">${R(v)}</span>`+p;
   };
   let html=`<table class="ap-tbl">
 <thead><tr>
@@ -1812,26 +1812,7 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
 </tr>`;
   });
   html+='</tbody></table>';
-  html+=`<div style="display:flex;justify-content:center;margin-top:14px"><canvas id="ap-classe-pie" height="160" style="max-width:320px"></canvas></div>`;
   document.getElementById('ap-classe-tbl').innerHTML=html;
-  // pie YTD
-  const {a,f,r}=sAno;
-  new Chart(document.getElementById('ap-classe-pie'),{type:'doughnut',data:{
-    labels:['Ações','FIIs','Renda Fixa'],
-    datasets:[{data:[Math.round(a),Math.round(f),Math.round(r)],
-      backgroundColor:['#7c3aed','#00b4d8','#22c55e'],borderWidth:2,borderColor:'#fff',hoverOffset:6}]
-  },options:{responsive:true,cutout:'52%',plugins:{
-    legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:14}},
-    tooltip:{enabled:false,external:makeTooltip,callbacks:{
-      title:()=>anoAtualStr+' YTD — Por Classe',
-      label:()=>null,
-      afterBody:items=>{
-        const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
-        const tot=ds.data.reduce((s,v)=>s+v,0);
-        return labs.map((l,i)=>`  ${l}: ${R(ds.data[i])} (${Pct(ds.data[i]/tot*100)})`);
-      }
-    }}
-  }}});
 })();
 
 
