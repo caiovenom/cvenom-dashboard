@@ -1774,7 +1774,6 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
   const now=new Date();
   const anoAtualStr=String(now.getFullYear());
   const mesAtualStr=anoAtualStr+'-'+String(now.getMonth()+1).padStart(2,'0');
-  // últimos 12 meses
   const last12=AD.months.slice(-12);
   function soma(meses){
     let a=0,f=0,r=0,t=0;
@@ -1789,25 +1788,24 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
     {label:anoAtualStr+' YTD', d:sAno},
     {label:AD.labels[AD.labels.length-1], d:sMes},
   ];
-  const pct=(v,t)=>t>0?'<span style="color:#9ca3af;font-size:10px"> '+Pct(v/t*100)+'</span>':'';
-  const rFmt=v=>v>0?R(v):'<span style="color:#9ca3af">—</span>';
-  let html=`<table style="width:100%;border-collapse:collapse;font-size:12px">
+  const pct=(v,t)=>t>0?`<span style="color:var(--muted);font-size:10px;font-weight:400"> ${Pct(v/t*100)}</span>`:'';
+  const rFmt=v=>v>0?R(v):`<span style="color:var(--muted)">—</span>`;
+  let html=`<table class="ap-tbl">
 <thead><tr>
-  <th style="text-align:left;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#6b7280;font-weight:600"></th>
-  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#7c3aed;font-weight:600">Ações</th>
-  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#00b4d8;font-weight:600">FIIs</th>
-  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#22c55e;font-weight:600">Renda Fixa</th>
-  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:600">Total</th>
+  <th style="text-align:left"></th>
+  <th style="color:#7c3aed">Ações</th>
+  <th style="color:#00b4d8">FIIs</th>
+  <th style="color:#22c55e">Renda Fixa</th>
+  <th>Total</th>
 </tr></thead><tbody>`;
-  rows.forEach((row,i)=>{
+  rows.forEach(row=>{
     const {a,f,r,t}=row.d;
-    const bg=i%2===0?'':'background:#f9fafb';
-    html+=`<tr style="${bg}">
-  <td style="padding:6px 6px;font-weight:600;color:#374151;white-space:nowrap">${row.label}</td>
-  <td style="padding:6px 6px;text-align:right">${rFmt(a)}${pct(a,t)}</td>
-  <td style="padding:6px 6px;text-align:right">${rFmt(f)}${pct(f,t)}</td>
-  <td style="padding:6px 6px;text-align:right">${rFmt(r)}${pct(r,t)}</td>
-  <td style="padding:6px 6px;text-align:right;font-weight:700;color:#111827">${rFmt(t)}</td>
+    html+=`<tr>
+  <td>${row.label}</td>
+  <td>${rFmt(a)}${pct(a,t)}</td>
+  <td>${rFmt(f)}${pct(f,t)}</td>
+  <td>${rFmt(r)}${pct(r,t)}</td>
+  <td style="font-weight:700;color:var(--txt)">${rFmt(t)}</td>
 </tr>`;
   });
   html+='</tbody></table>';
