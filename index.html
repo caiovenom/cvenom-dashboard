@@ -474,7 +474,7 @@ tbody tr:hover{background:#f9fafb;}
   </div>
   <div class="ap-cw">
     <div class="ap-ct">🧩 Compras por Classe</div>
-    <canvas id="ap-classe" height="175"></canvas>
+    <div id="ap-classe-tbl" style="padding:4px 0"></div>
   </div>
 </div>
 
@@ -1769,23 +1769,50 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
     footer:items=>'Total movimentado: '+R(items.reduce((a,i)=>a+Math.abs(i.raw),0))
   }}},scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9},callback:v=>v<0?'-'+R(-v):R(v)}}}}});
 
-// CHART CLASSES (Ações / FIIs / RF)
-let totAcoes=0,totFiis=0,totRF=0,totOutros=0;
-AD.months.forEach(m=>{const c=AD.resumos[m].compras;totAcoes+=c.acoes;totFiis+=c.fiis;totRF+=c.rf;totOutros+=(c.outros||0);});
-new Chart(document.getElementById('ap-classe'),{type:'doughnut',data:{
-  labels:['Ações','FIIs','Renda Fixa','Outros'],
-  datasets:[{data:[Math.round(totAcoes),Math.round(totFiis),Math.round(totRF),Math.round(totOutros)],
-    backgroundColor:['#7c3aed','#00b4d8','#22c55e','#9ca3af'],borderWidth:1,borderColor:'#fff'}]
-},options:{responsive:true,cutout:'58%',plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10}},tooltip:{enabled:false,external:makeTooltip,callbacks:{
-    title:()=>'Aportes por Classe',
-    label:()=>null,
-    afterBody:items=>{
-      const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
-      const tot=ds.data.reduce((s,v)=>s+v,0);
-      return labs.map((l,i)=>`  ${l}: ${R(ds.data[i])} (${Pct(ds.data[i]/tot*100)})`);
-    },
-    footer:()=>'Total: '+R(totCompras)
-  }}}}});
+// TABELA — Compras por Classe
+(function(){
+  const now=new Date();
+  const anoAtualStr=String(now.getFullYear());
+  const mesAtualStr=anoAtualStr+'-'+String(now.getMonth()+1).padStart(2,'0');
+  // últimos 12 meses
+  const last12=AD.months.slice(-12);
+  function soma(meses){
+    let a=0,f=0,r=0,t=0;
+    meses.forEach(m=>{const c=AD.resumos[m]?.compras||{};a+=c.acoes||0;f+=c.fiis||0;r+=c.rf||0;t+=c.total||0;});
+    return {a,f,r,t};
+  }
+  const s12=soma(last12);
+  const sAno=soma(AD.months.filter(m=>m.startsWith(anoAtualStr)));
+  const sMes=soma(AD.months.filter(m=>m===mesAtualStr));
+  const rows=[
+    {label:'Últ. 12m', d:s12},
+    {label:anoAtualStr+' YTD', d:sAno},
+    {label:AD.labels[AD.labels.length-1], d:sMes},
+  ];
+  const pct=(v,t)=>t>0?'<span style="color:#9ca3af;font-size:10px"> '+Pct(v/t*100)+'</span>':'';
+  const rFmt=v=>v>0?R(v):'<span style="color:#9ca3af">—</span>';
+  let html=`<table style="width:100%;border-collapse:collapse;font-size:12px">
+<thead><tr>
+  <th style="text-align:left;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#6b7280;font-weight:600"></th>
+  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#7c3aed;font-weight:600">Ações</th>
+  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#00b4d8;font-weight:600">FIIs</th>
+  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#22c55e;font-weight:600">Renda Fixa</th>
+  <th style="text-align:right;padding:5px 6px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:600">Total</th>
+</tr></thead><tbody>`;
+  rows.forEach((row,i)=>{
+    const {a,f,r,t}=row.d;
+    const bg=i%2===0?'':'background:#f9fafb';
+    html+=`<tr style="${bg}">
+  <td style="padding:6px 6px;font-weight:600;color:#374151;white-space:nowrap">${row.label}</td>
+  <td style="padding:6px 6px;text-align:right">${rFmt(a)}${pct(a,t)}</td>
+  <td style="padding:6px 6px;text-align:right">${rFmt(f)}${pct(f,t)}</td>
+  <td style="padding:6px 6px;text-align:right">${rFmt(r)}${pct(r,t)}</td>
+  <td style="padding:6px 6px;text-align:right;font-weight:700;color:#111827">${rFmt(t)}</td>
+</tr>`;
+  });
+  html+='</tbody></table>';
+  document.getElementById('ap-classe-tbl').innerHTML=html;
+})();
 
 
 const APORTES_HIST={
