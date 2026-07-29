@@ -1769,7 +1769,7 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
     footer:items=>'Total movimentado: '+R(items.reduce((a,i)=>a+Math.abs(i.raw),0))
   }}},scales:{x:{ticks:{font:{size:9}}},y:{ticks:{font:{size:9},callback:v=>v<0?'-'+R(-v):R(v)}}}}});
 
-// TABELA — Compras por Classe
+// TABELA + PIE — Compras por Classe
 (function(){
   const now=new Date();
   const anoAtualStr=String(now.getFullYear());
@@ -1801,15 +1801,34 @@ new Chart(document.getElementById('ap-cv-mensal'),{type:'bar',data:{labels:AD.la
   rows.forEach(row=>{
     const {a,f,r,t}=row.d;
     html+=`<tr>
-  <td>${row.label}</td>
+  <td style="color:var(--text);font-weight:600">${row.label}</td>
   <td>${rFmt(a)}${pct(a,t)}</td>
   <td>${rFmt(f)}${pct(f,t)}</td>
   <td>${rFmt(r)}${pct(r,t)}</td>
-  <td style="font-weight:700;color:var(--txt)">${rFmt(t)}</td>
+  <td style="font-weight:700;color:var(--text)">${rFmt(t)}</td>
 </tr>`;
   });
   html+='</tbody></table>';
+  html+=`<div style="display:flex;justify-content:center;margin-top:14px"><canvas id="ap-classe-pie" height="160" style="max-width:320px"></canvas></div>`;
   document.getElementById('ap-classe-tbl').innerHTML=html;
+  // pie YTD
+  const {a,f,r}=sAno;
+  new Chart(document.getElementById('ap-classe-pie'),{type:'doughnut',data:{
+    labels:['Ações','FIIs','Renda Fixa'],
+    datasets:[{data:[Math.round(a),Math.round(f),Math.round(r)],
+      backgroundColor:['#7c3aed','#00b4d8','#22c55e'],borderWidth:2,borderColor:'#fff',hoverOffset:6}]
+  },options:{responsive:true,cutout:'52%',plugins:{
+    legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:14}},
+    tooltip:{enabled:false,external:makeTooltip,callbacks:{
+      title:()=>anoAtualStr+' YTD — Por Classe',
+      label:()=>null,
+      afterBody:items=>{
+        const ch=items[0].chart,ds=ch.data.datasets[0],labs=ch.data.labels;
+        const tot=ds.data.reduce((s,v)=>s+v,0);
+        return labs.map((l,i)=>`  ${l}: ${R(ds.data[i])} (${Pct(ds.data[i]/tot*100)})`);
+      }
+    }}
+  }}});
 })();
 
 
