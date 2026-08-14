@@ -1835,7 +1835,7 @@ const APORTES_HIST={
 };
 
 // TOP ATIVOS POR ANO
-const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b2','#0f172a','#64748b','#9333ea'];
+const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b2','#0f172a','#64748b','#9333ea','#be185d','#0369a1','#15803d','#b45309','#6d28d9'];
 
 // Calcular top últimos 12 meses dinamicamente
 (function(){
@@ -1850,7 +1850,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
       });
     });
   });
-  const sorted = Object.entries(totais).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const sorted = Object.entries(totais).sort((a,b)=>b[1]-a[1]).slice(0,15);
   const total = sorted.reduce((s,[,v])=>s+v,0);
   const topUlt12 = sorted.map(([ticker,valor])=>({ticker,valor,pct:+(valor/total*100).toFixed(1)}));
   const mx12 = topUlt12[0]?.valor||1;
@@ -1877,7 +1877,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
       });
     });
   });
-  const sorted2026 = Object.entries(totais2026).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const sorted2026 = Object.entries(totais2026).sort((a,b)=>b[1]-a[1]).slice(0,15);
   const total2026 = sorted2026.reduce((s,[,v])=>s+v,0);
   const top2026 = sorted2026.map(([ticker,valor])=>({ticker,valor,pct:+(valor/total2026*100).toFixed(1)}));
   const mx=top2026[0]?.valor||1;
