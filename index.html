@@ -338,7 +338,6 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('pc',this)">Consenso</th>
     <th class="tbl-sort" onclick="sortAcoesTable('ppc',this)">M.S.PC%</th>
     <th class="tbl-sort" onclick="sortAcoesByDy(this)">DYP</th>
-<th class="tbl-sort" onclick="sortAcoesTable('roe',this)">ROE</th>
     <th class="tbl-sort" onclick="sortAcoesTable('roe',this)">ROE</th>
     <th class="tbl-sort" onclick="sortAcoesTable('vuc',this)">VUC</th>
     <th class="tbl-sort" onclick="sortAcoesTable('pvuc',this)">%VUC</th>
@@ -1061,8 +1060,8 @@ function renderAcaoRow(a){
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${a.pc!=null?brl(a.pc):'—'}</td>
     <td class="${a.pc!=null?cls((a.p/a.pc-1)*100):''}">${a.pc!=null?pct((a.p/a.pc-1)*100):'—'}</td>
-    <td>${a.dyp!=null?pct(a.dyp):'—'}</td><td class="${cls(a.roe)}">${a.roe!=null?pct(a.roe):'—'}</td>
-    <td>${roe}</td>
+    <td>${a.dyp!=null?pct(a.dyp):'—'}</td>
+    <td class="${cls(a.roe)}">${a.roe!=null?pct(a.roe):'—'}</td>
     <td>${a.vuc?brl(a.vuc):'—'}</td>
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
