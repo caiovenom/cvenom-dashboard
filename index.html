@@ -1060,7 +1060,7 @@ function renderAcaoRow(a){
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${a.pc!=null?brl(a.pc):'—'}</td>
     <td class="${a.pc!=null?cls((a.p/a.pc-1)*100):''}">${a.pc!=null?pct((a.p/a.pc-1)*100):'—'}</td>
-    <td>${a.dyp!=null?pct(a.dyp):'—'}</td>
+    <td>${a.dyp!=null?a.dyp.toFixed(2)+'%':'—'}</td>
     <td>${a.vuc?brl(a.vuc):'—'}</td>
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
