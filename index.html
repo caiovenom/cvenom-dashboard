@@ -1059,7 +1059,7 @@ function renderAcaoRow(a){
     <td>${(a.v/PAT*100).toFixed(2)}%</td><td>${brl(a.teto)}</td>
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${a.pc!=null?brl(a.pc):'—'}</td>
-    <td class="${a.pc!=null?cls((a.p/a.pc-1)*100):''}">${a.pc!=null?pct((a.p/a.pc-1)*100):'—'}</td>
+    <td class="${a.pc!=null?cls((1-a.p/a.pc)*100):''}">${a.pc!=null?pct((1-a.p/a.pc)*100):'—'}</td>
     <td>${a.dyp!=null?a.dyp.toFixed(2)+'%':'—'}</td>
     <td>${a.vuc?brl(a.vuc):'—'}</td>
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
@@ -1113,8 +1113,8 @@ function sortAcoesTable(key,thEl){
   }
   if(key==='ppc'){
     const sorted=[...ACOES].sort((a,b)=>{
-      const pa=a.pc?(a.p/a.pc-1)*100:null;
-      const pb=b.pc?(b.p/b.pc-1)*100:null;
+      const pa=a.pc?(1-a.p/a.pc)*100:null;
+      const pb=b.pc?(1-b.p/b.pc)*100:null;
       if(pa==null)return TBL_SORT.a.d;
       if(pb==null)return -TBL_SORT.a.d;
       return (pa-pb)*TBL_SORT.a.d;
