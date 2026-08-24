@@ -567,19 +567,19 @@ tbody tr:hover{background:#f9fafb;}
 <script>
 // ── DY PROJETIVO — declarado no topo para evitar TDZ no renderAll ─────────────
 const ACOES_DPA=[
-  {t:'VALE3', p:75.03, pm:62.53, q:2687, v:201605.61, teto:null, ms:-0.04, vuc:50.15, s:'', pc:null, roe:null, dyp:null},
-  {t:'EGIE3', p:27.63, pm:28.01, q:3514, v:97091.82, teto:null, ms:3.51, vuc:28.0, s:'', pc:null, roe:null, dyp:null},
-  {t:'TAEE11', p:37.57, pm:34.77, q:3531, v:132659.67, teto:null, ms:25.98, vuc:37.59, s:'', pc:null, roe:null, dyp:null},
-  {t:'ISAE4', p:26.02, pm:23.73, q:6085, v:158331.7, teto:null, ms:9.84, vuc:26.6, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:37.19, pm:32.22, q:5639, v:209714.41, teto:null, ms:-4.54, vuc:34.01, s:'', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:18.25, pm:15.28, q:11651, v:212630.75, teto:null, ms:2.47, vuc:17.83, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBAS3', p:18.43, pm:22.17, q:11078, v:204167.54, teto:null, ms:35.65, vuc:20.76, s:'', pc:null, roe:null, dyp:null},
-  {t:'ITSA4', p:12.5, pm:7.97, q:7603, v:95037.5, teto:null, ms:-8.0, vuc:8.82, s:'', pc:null, roe:null, dyp:null},
-  {t:'PETR4', p:44.3, pm:30.38, q:1863, v:82530.9, teto:null, ms:-14.22, vuc:29.69, s:'', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:29.33, pm:20.04, q:1680, v:49274.4, teto:null, ms:17.9, vuc:20.0, s:'', pc:null, roe:null, dyp:null},
-  {t:'KLBN11', p:18.49, pm:18.0, q:5048, v:93337.52, teto:null, ms:51.43, vuc:16.67, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBDC3', p:14.33, pm:15.11, q:7369, v:105597.77, teto:null, ms:21.63, vuc:13.94, s:'', pc:null, roe:null, dyp:null},
-  {t:'WEGE3', p:49.27, pm:29.42, q:866, v:42667.82, teto:null, ms:-24.9, vuc:33.24, s:'', pc:null, roe:null, dyp:null},
+  {t:'VALE3', p:77.13, pm:62.53, q:2687, v:207248.31, teto:null, ms:-2.76, vuc:50.15, s:'', pc:null, roe:null, dyp:null},
+  {t:'EGIE3', p:28.04, pm:28.01, q:3514, v:98532.56, teto:null, ms:2.0, vuc:28.0, s:'', pc:null, roe:null, dyp:null},
+  {t:'TAEE11', p:37.78, pm:34.77, q:3531, v:133401.18, teto:null, ms:25.28, vuc:37.59, s:'', pc:null, roe:null, dyp:null},
+  {t:'ISAE4', p:26.08, pm:23.73, q:6085, v:158696.8, teto:null, ms:9.59, vuc:26.6, s:'', pc:null, roe:null, dyp:null},
+  {t:'BBSE3', p:38.1, pm:32.22, q:5639, v:214845.9, teto:null, ms:-6.82, vuc:34.01, s:'', pc:null, roe:null, dyp:null},
+  {t:'CXSE3', p:18.7, pm:15.28, q:11651, v:217873.7, teto:null, ms:None, vuc:17.83, s:'', pc:null, roe:null, dyp:null},
+  {t:'BBAS3', p:18.6, pm:22.17, q:11078, v:206050.8, teto:null, ms:34.41, vuc:20.76, s:'', pc:null, roe:null, dyp:null},
+  {t:'ITSA4', p:12.65, pm:7.97, q:7603, v:96177.95, teto:null, ms:-9.09, vuc:8.82, s:'', pc:null, roe:null, dyp:null},
+  {t:'PETR4', p:42.11, pm:30.38, q:1863, v:78450.93, teto:null, ms:-9.76, vuc:29.69, s:'', pc:null, roe:null, dyp:null},
+  {t:'VIVT3', p:29.42, pm:20.04, q:1680, v:49425.6, teto:null, ms:17.54, vuc:20.0, s:'', pc:null, roe:null, dyp:null},
+  {t:'KLBN11', p:18.68, pm:18.0, q:5048, v:94296.64, teto:null, ms:49.89, vuc:16.67, s:'', pc:null, roe:null, dyp:null},
+  {t:'BBDC3', p:14.36, pm:15.11, q:7369, v:105818.84, teto:null, ms:21.38, vuc:13.94, s:'', pc:null, roe:null, dyp:null},
+  {t:'WEGE3', p:49.07, pm:29.42, q:866, v:42494.62, teto:null, ms:-24.6, vuc:33.24, s:'', pc:null, roe:null, dyp:null},
 ];
 const META_FII_MES   = 10000;
 const META_FIIS_ANO  = META_FII_MES*12;
@@ -587,21 +587,21 @@ const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
 
-// ── DADOS ESTÁTICOS — atualizados planilha 21/08/2026 · fechamento ─────────────────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 24/08/2026 · fechamento ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:75.03, pm:62.53, q:2687, v:201605.61, teto:75.0, ms:-0.04, vuc:50.15, s:'Mineração', pc:86.24, roe:4.31, dyp:7.31},
-  {t:'EGIE3', p:27.63, pm:28.01, q:3514, v:97091.82, teto:28.6, ms:3.51, vuc:28.0, s:'Elétrico', pc:33.38, roe:26.21, dyp:3.71},
-  {t:'TAEE11', p:37.57, pm:34.77, q:3531, v:132659.67, teto:47.33, ms:25.98, vuc:37.59, s:'Elétrico', pc:37.54, roe:20.14, dyp:7.92},
-  {t:'ISAE4', p:26.02, pm:23.73, q:6085, v:158331.7, teto:28.58, ms:9.84, vuc:26.6, s:'Elétrico', pc:29.73, roe:12.8, dyp:7.12},
-  {t:'BBSE3', p:37.19, pm:32.22, q:5639, v:209714.41, teto:35.5, ms:-4.54, vuc:34.01, s:'Seguridade', pc:37.66, roe:84.38, dyp:10.77},
-  {t:'CXSE3', p:18.25, pm:15.28, q:11651, v:212630.75, teto:18.7, ms:2.47, vuc:17.83, s:'Seguridade', pc:19.57, roe:32.79, dyp:7.89},
-  {t:'BBAS3', p:18.43, pm:22.17, q:11078, v:204167.54, teto:25.0, ms:35.65, vuc:20.76, s:'Bancos', pc:24.44, roe:9.34, dyp:4.95},
-  {t:'ITSA4', p:12.5, pm:7.97, q:7603, v:95037.5, teto:11.5, ms:-8.0, vuc:8.82, s:'Bancos', pc:16.87, roe:18.49, dyp:7.87},
-  {t:'BBDC3', p:14.33, pm:15.11, q:7369, v:105597.77, teto:17.43, ms:21.63, vuc:13.94, s:'Bancos', pc:null, roe:14.14, dyp:9.73},
-  {t:'KLBN11', p:18.49, pm:18.0, q:5048, v:93337.52, teto:28.0, ms:51.43, vuc:16.67, s:'Papel/Cel.', pc:22.33, roe:3.36, dyp:5.51},
-  {t:'WEGE3', p:49.27, pm:29.42, q:866, v:42667.82, teto:37.0, ms:-24.9, vuc:33.24, s:'Bens Ind.', pc:55.12, roe:33.05, dyp:1.46},
-  {t:'VIVT3', p:29.33, pm:20.04, q:1680, v:49274.4, teto:34.58, ms:17.9, vuc:20.0, s:'Telecom', pc:41.53, roe:10.06, dyp:8.91},
-  {t:'PETR4', p:44.3, pm:30.38, q:1863, v:82530.9, teto:38.0, ms:-14.22, vuc:29.69, s:'Petróleo', pc:55.05, roe:27.76, dyp:12.24},
+  {t:'VALE3', p:77.13, pm:62.53, q:2687, v:207248.31, teto:75.0, ms:-2.76, vuc:50.15, s:'Mineração', pc:86.24, roe:4.31, dyp:7.31},
+  {t:'EGIE3', p:28.04, pm:28.01, q:3514, v:98532.56, teto:28.6, ms:2.0, vuc:28.0, s:'Elétrico', pc:33.38, roe:26.21, dyp:3.71},
+  {t:'TAEE11', p:37.78, pm:34.77, q:3531, v:133401.18, teto:47.33, ms:25.28, vuc:37.59, s:'Elétrico', pc:37.54, roe:20.14, dyp:7.92},
+  {t:'ISAE4', p:26.08, pm:23.73, q:6085, v:158696.8, teto:28.58, ms:9.59, vuc:26.6, s:'Elétrico', pc:29.73, roe:12.8, dyp:7.12},
+  {t:'BBSE3', p:38.1, pm:32.22, q:5639, v:214845.9, teto:35.5, ms:-6.82, vuc:34.01, s:'Seguridade', pc:37.66, roe:84.38, dyp:10.77},
+  {t:'CXSE3', p:18.7, pm:15.28, q:11651, v:217873.7, teto:18.7, ms:None, vuc:17.83, s:'Seguridade', pc:19.57, roe:32.79, dyp:7.89},
+  {t:'BBAS3', p:18.6, pm:22.17, q:11078, v:206050.8, teto:25.0, ms:34.41, vuc:20.76, s:'Bancos', pc:24.44, roe:9.34, dyp:4.95},
+  {t:'ITSA4', p:12.65, pm:7.97, q:7603, v:96177.95, teto:11.5, ms:-9.09, vuc:8.82, s:'Bancos', pc:16.87, roe:18.49, dyp:7.87},
+  {t:'BBDC3', p:14.36, pm:15.11, q:7369, v:105818.84, teto:17.43, ms:21.38, vuc:13.94, s:'Bancos', pc:null, roe:14.14, dyp:9.73},
+  {t:'KLBN11', p:18.68, pm:18.0, q:5048, v:94296.64, teto:28.0, ms:49.89, vuc:16.67, s:'Papel/Cel.', pc:22.33, roe:3.36, dyp:5.51},
+  {t:'WEGE3', p:49.07, pm:29.42, q:866, v:42494.62, teto:37.0, ms:-24.6, vuc:33.24, s:'Bens Ind.', pc:55.12, roe:33.05, dyp:1.46},
+  {t:'VIVT3', p:29.42, pm:20.04, q:1680, v:49425.6, teto:34.58, ms:17.54, vuc:20.0, s:'Telecom', pc:41.53, roe:10.06, dyp:8.91},
+  {t:'PETR4', p:42.11, pm:30.38, q:1863, v:78450.93, teto:38.0, ms:-9.76, vuc:29.69, s:'Petróleo', pc:55.05, roe:27.76, dyp:12.24},
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
@@ -641,20 +641,20 @@ const FII_SI=[
   {t:'TRXF11',p:91.78,chg:0.02,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'VALE3', p:75.03, pm:62.53, q:2687, v:201605.61, teto:75.0, ms:-0.04, vuc:50.15, s:'Mineração', pc:null, roe:null, dyp:null},
-  {t:'KLBN11', p:18.49, pm:18.0, q:5048, v:93337.52, teto:28.0, ms:51.43, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null, dyp:null},
-  {t:'BBAS3', p:18.43, pm:22.17, q:11078, v:204167.54, teto:25.0, ms:35.65, vuc:20.76, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:29.33, pm:20.04, q:1680, v:49274.4, teto:34.58, ms:17.9, vuc:20.0, s:'Telecom', pc:null, roe:null, dyp:null},
-  {t:'ISAE4', p:26.02, pm:23.73, q:6085, v:158331.7, teto:28.58, ms:9.84, vuc:26.6, s:'Elétrico', pc:null, roe:null, dyp:null},
+  {t:'VALE3', p:77.13, pm:62.53, q:2687, v:207248.31, teto:75.0, ms:-2.76, vuc:50.15, s:'Mineração', pc:null, roe:null, dyp:null},
+  {t:'KLBN11', p:18.68, pm:18.0, q:5048, v:94296.64, teto:28.0, ms:49.89, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null, dyp:null},
+  {t:'BBAS3', p:18.6, pm:22.17, q:11078, v:206050.8, teto:25.0, ms:34.41, vuc:20.76, s:'Bancos', pc:null, roe:null, dyp:null},
+  {t:'VIVT3', p:29.42, pm:20.04, q:1680, v:49425.6, teto:34.58, ms:17.54, vuc:20.0, s:'Telecom', pc:null, roe:null, dyp:null},
+  {t:'ISAE4', p:26.08, pm:23.73, q:6085, v:158696.8, teto:28.58, ms:9.59, vuc:26.6, s:'Elétrico', pc:null, roe:null, dyp:null},
   {t:'SAPR4',p:7.17,pm:3.58,q:2309,v:16555.53,teto:3.64,ms:-49.23,vuc:3.47,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4', p:12.5, pm:7.97, q:7603, v:95037.5, teto:11.5, ms:-8.0, vuc:8.82, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'EGIE3', p:27.63, pm:28.01, q:3514, v:97091.82, teto:28.6, ms:3.51, vuc:28.0, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'TAEE11', p:37.57, pm:34.77, q:3531, v:132659.67, teto:47.33, ms:25.98, vuc:37.59, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'PETR4', p:44.3, pm:30.38, q:1863, v:82530.9, teto:38.0, ms:-14.22, vuc:29.69, s:'Petróleo', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:18.25, pm:15.28, q:11651, v:212630.75, teto:18.7, ms:2.47, vuc:17.83, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'WEGE3', p:49.27, pm:29.42, q:866, v:42667.82, teto:37.0, ms:-24.9, vuc:33.24, s:'Bens Ind.', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:37.19, pm:32.22, q:5639, v:209714.41, teto:35.5, ms:-4.54, vuc:34.01, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'BBDC3', p:14.33, pm:15.11, q:7369, v:105597.77, teto:17.43, ms:21.63, vuc:13.94, s:'Bancos', pc:null, roe:null, dyp:null}
+  {t:'ITSA4', p:12.65, pm:7.97, q:7603, v:96177.95, teto:11.5, ms:-9.09, vuc:8.82, s:'Bancos', pc:null, roe:null, dyp:null},
+  {t:'EGIE3', p:28.04, pm:28.01, q:3514, v:98532.56, teto:28.6, ms:2.0, vuc:28.0, s:'Elétrico', pc:null, roe:null, dyp:null},
+  {t:'TAEE11', p:37.78, pm:34.77, q:3531, v:133401.18, teto:47.33, ms:25.28, vuc:37.59, s:'Elétrico', pc:null, roe:null, dyp:null},
+  {t:'PETR4', p:42.11, pm:30.38, q:1863, v:78450.93, teto:38.0, ms:-9.76, vuc:29.69, s:'Petróleo', pc:null, roe:null, dyp:null},
+  {t:'CXSE3', p:18.7, pm:15.28, q:11651, v:217873.7, teto:18.7, ms:None, vuc:17.83, s:'Seguridade', pc:null, roe:null, dyp:null},
+  {t:'WEGE3', p:49.07, pm:29.42, q:866, v:42494.62, teto:37.0, ms:-24.6, vuc:33.24, s:'Bens Ind.', pc:null, roe:null, dyp:null},
+  {t:'BBSE3', p:38.1, pm:32.22, q:5639, v:214845.9, teto:35.5, ms:-6.82, vuc:34.01, s:'Seguridade', pc:null, roe:null, dyp:null},
+  {t:'BBDC3', p:14.36, pm:15.11, q:7369, v:105818.84, teto:17.43, ms:21.38, vuc:13.94, s:'Bancos', pc:null, roe:null, dyp:null}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -724,13 +724,13 @@ const MENSAIS=[
   {ano:'2026',m:'Ago/26',total:15561,fii:6738,acoes:8819, dolar:4},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3187824.69}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3203902.81}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT    = 3187824.69;
-let CAIO   = 2395839.82;
-let FATIMA = 791984.87;
+let PAT    = 3203902.81;
+let CAIO   = 2408161.08;
+let FATIMA = 795741.73;
 let RF     = 531424.0;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
