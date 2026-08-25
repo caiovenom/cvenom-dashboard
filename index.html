@@ -1997,6 +1997,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
         <div>
           <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Saldo</div>
           <div style="font-size:14px;font-weight:800;color:${cor}">${sinal}${R(saldo)}</div>
+          <div style="font-size:10px;font-weight:600;color:${cor}">${sinal}${inv>0?(saldo/inv*100).toFixed(2)+'%':'—'}</div>
         </div>
       </div>`;
   }
