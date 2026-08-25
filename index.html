@@ -1973,7 +1973,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
   Object.entries(APORTES_HIST).forEach(([ticker,ops])=>{
     const p=priceMap[ticker]; if(!p) return;
     ops.forEach(op=>{
-      if(op.o!=='C') return;
+      if(op.o==='V') return;
       const dt=parseDate(op.d); if(!dt) return;
       if(dt>=last12Start){inv12+=op.v; val12+=op.q*p;}
       if(dt>=yr26Start&&dt<=yr26End){inv26+=op.v; val26+=op.q*p;}
