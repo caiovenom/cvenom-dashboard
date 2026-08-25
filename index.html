@@ -481,8 +481,8 @@ tbody tr:hover{background:#f9fafb;}
 
 <div class="sec">Ativo mais comprado — por Ano</div>
 <div class="top-grid">
-  <div class="ap-cw"><div class="ap-ct">📅 Últimos 12m</div><div id="top-2025"></div></div>
-  <div class="ap-cw"><div class="ap-ct">📅 2026 (<span id="lbl-jan-mes">Jan→Mai</span>)</div><div id="top-2026"></div></div>
+  <div class="ap-cw"><div class="ap-ct">📅 Últimos 12m</div><div id="top-2025"></div><div id="saldo-rv-12m" style="margin-top:14px"></div></div>
+  <div class="ap-cw"><div class="ap-ct">📅 2026 (<span id="lbl-jan-mes">Jan→Mai</span>)</div><div id="top-2026"></div><div id="saldo-rv-2026" style="margin-top:14px"></div></div>
 </div>
 
 <div class="sec">Movimentação Mensal — Compras e Vendas</div>
@@ -663,7 +663,7 @@ const ANUAL=[
   {ano:'2023',total:64886,  fii:29819, acoes:34452, dolar:615},
   {ano:'2024',total:108074, fii:49114, acoes:58170, dolar:790},
   {ano:'2025',total:154228, fii:67106, acoes:86028, dolar:1094},
-  {ano:'2026',total:97900,  fii:43783, acoes:53587, dolar:530, parcial:true},
+  {ano:'2026',total:113461, fii:50521, acoes:62406, dolar:534, parcial:true},
 ];
 const MENSAIS=[
   {ano:'2022',m:'Jan/22',total:2169, fii:2007,acoes:132,  dolar:30},
@@ -1952,6 +1952,47 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
   }
 })();
 
+
+// ── SALDO RV ─────────────────────────────────────────────────────────────
+(function(){
+  const anoAtualStr = new Date().getFullYear().toString();
+  const mesAtualStr = anoAtualStr+'-'+String(new Date().getMonth()+1).padStart(2,'0');
+  const last12 = AD.months.slice(-12);
+
+  function somaRV(meses){
+    let cA=0,cF=0,vA=0,vF=0;
+    meses.forEach(m=>{
+      const r=AD.resumos[m]; if(!r) return;
+      cA+=(r.compras.acoes||0); cF+=(r.compras.fiis||0);
+      vA+=(r.vendas.acoes||0);  vF+=(r.vendas.fiis||0);
+    });
+    return {compras:cA+cF, vendas:vA+vF, saldo:(cA+cF)-(vA+vF)};
+  }
+
+  function renderSaldo(elId, rv){
+    const el=document.getElementById(elId); if(!el) return;
+    const cor = rv.saldo>=0 ? '#22c55e' : '#ef4444';
+    const sinal = rv.saldo>=0 ? '+' : '';
+    el.innerHTML=`
+      <div style="border-top:1px solid var(--border);padding-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Compras RV</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text)">${R(rv.compras)}</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Vendas RV</div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444">${R(rv.vendas)}</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Saldo RV</div>
+          <div style="font-size:14px;font-weight:800;color:${cor}">${sinal}${R(rv.saldo)}</div>
+        </div>
+      </div>`;
+  }
+
+  renderSaldo('saldo-rv-12m',   somaRV(last12));
+  renderSaldo('saldo-rv-2026',  somaRV(AD.months.filter(m=>m.startsWith(anoAtualStr))));
+})();
 // ── Tooltip aportes ──────────────────────────────────────────
 (function(){
   const CURR=new Date().getFullYear().toString();
