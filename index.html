@@ -1010,9 +1010,6 @@ function renderFiiRow(f){
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
 }
-  document.querySelectorAll('#acoes-head th').forEach(th=>th.classList.remove('sort-asc','sort-desc'));
-  document.getElementById('acoes-body').innerHTML=tblSortBy(ACOES,'dy',TBL_SORT.a.d).map(renderAcaoRow).join('');
-}
 function sortFiisByPvp(thEl){
   if(TBL_SORT.f.k==='pvp')TBL_SORT.f.d*=-1;else{TBL_SORT.f.k='pvp';TBL_SORT.f.d=-1;}
   document.querySelectorAll('#fiis-head th').forEach(th=>th.classList.remove('sort-asc','sort-desc'));
