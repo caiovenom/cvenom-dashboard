@@ -253,37 +253,6 @@ tbody tr:hover{background:#f9fafb;}
 
 
 /* DY PROJETIVO TAB */
-.dyp-section-title{font-size:15px;font-weight:700;color:var(--text);margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--brand);display:flex;align-items:center;gap:8px;}
-.dyp-section-title span{background:var(--brand);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
-.dyp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px;}
-.dyp-card{background:#fff;border-radius:10px;padding:16px 18px;border:1px solid var(--border);box-shadow:var(--sh-sm);}
-.dyp-card-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px;}
-.dyp-card-value{font-size:20px;font-weight:800;color:var(--brand);letter-spacing:-.5px;}
-.dyp-card-sub{font-size:11px;color:var(--muted);margin-top:3px;}
-.dyp-card.accent .dyp-card-value{color:var(--green);}
-.dyp-card.warn .dyp-card-value{color:var(--red);}
-.dyp-bar-wrap{margin-top:8px;background:#eef2f7;border-radius:20px;height:5px;}
-.dyp-bar-fill{height:5px;border-radius:20px;background:var(--brand);}
-.dyp-th{cursor:pointer;user-select:none;white-space:nowrap}
-.dyp-th:hover{background:rgba(0,0,0,.04)}
-.dyp-si{font-size:11px;margin-left:3px;color:var(--muted)}
-.dyp-section{margin-bottom:32px;}
-.dyp-table-wrap{overflow-x:auto;}
-.dyp-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
-.dyp-tbl th{background:#f8f9fb;color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px;padding:8px 10px;text-align:right;border-bottom:2px solid var(--border);white-space:nowrap;}
-.dyp-tbl th:first-child{text-align:left;}
-.dyp-tbl td{padding:8px 10px;border-bottom:1px solid #f0f2f5;text-align:right;color:var(--text);white-space:nowrap;}
-.dyp-tbl td:first-child{text-align:left;font-weight:600;}
-.dyp-tbl tr:hover td{background:#f8fbff;}
-.dyp-tbl .pos{color:var(--green);font-weight:600;}
-.dyp-tbl .neg{color:var(--red);}
-.dyp-tbl .neu{color:var(--muted);}
-.dyp-consolidado{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px;}
-.dyp-big-card{background:#fff;border-radius:12px;padding:22px 24px;border:1px solid var(--border);box-shadow:var(--sh-sm);text-align:center;}
-.dyp-big-card .big-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
-.dyp-big-card .big-val{font-size:28px;font-weight:800;color:var(--brand);letter-spacing:-.8px;}
-.dyp-big-card .big-sub{font-size:12px;color:var(--muted);margin-top:5px;}
-.dyp-big-card.brand-green .big-val{color:var(--green);}
 </style>
 </head>
 <body>
@@ -297,7 +266,6 @@ tbody tr:hover{background:#f9fafb;}
   <button class="tab-btn" onclick="showTab('fiis',this)">FIIs</button>
   <button class="tab-btn" onclick="showTab('proventos',this)">Faturamento</button>
   <button class="tab-btn" onclick="showTab('aportes',this)">Aportes</button>
-  <button class="tab-btn" onclick="showTab('dyproj',this)">DY Projetivo</button>
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
@@ -337,7 +305,6 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('ms',this)">M.S.%</th>
     <th class="tbl-sort" onclick="sortAcoesTable('pc',this)">Consenso</th>
     <th class="tbl-sort" onclick="sortAcoesTable('ppc',this)">M.S.PC%</th>
-    <th class="tbl-sort" onclick="sortAcoesByDy(this)">DYP</th>
     <th class="tbl-sort" onclick="sortAcoesTable('vuc',this)">VUC</th>
     <th class="tbl-sort" onclick="sortAcoesTable('pvuc',this)">%VUC</th>
   </tr></thead><tbody id="acoes-body"></tbody></table></div>
@@ -506,102 +473,45 @@ tbody tr:hover{background:#f9fafb;}
 </div><!-- /tab-aportes -->
 
 
-<div id="tab-dyproj" class="tab-panel" style="background:var(--bg);padding:0;border:none;box-shadow:none;">
-  <div style="padding:20px 0;">
-
-    <!-- SEÇÃO 1: FIIs -->
-    <div class="dyp-section">
-      <div class="dyp-section-title"><span>1</span>FIIs — Renda Mensal Projetiva</div>
-      <div class="dyp-cards" id="dyp-fii-cards"></div>
-      <div class="dyp-table-wrap">
-        <table class="dyp-tbl">
-          <thead><tr>
-            <th class="dyp-th" style="text-align:left" onclick="dypSort('fii',0,this)">Ticker <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',1,this)">Cotas <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',2,this)">Div/Cota <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',3,this)">Renda/Mês <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',4,this)">DY Mensal% <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',5,this)">YoC Mensal% <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',6,this)">DPA 12m Proj. <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('fii',7,this)">Renda Anual <span class="dyp-si"></span></th>
-            <th>Frequência</th>
-          </tr></thead>
-          <tbody id="dyp-fii-tbody"></tbody>
-          <tfoot id="dyp-fii-tfoot"></tfoot>
-        </table>
-      </div>
-    </div>
-
-    <!-- SEÇÃO 2: Ações -->
-    <div class="dyp-section">
-      <div class="dyp-section-title"><span>2</span>Ações — Dividendos Projetados 2026</div>
-      <div class="dyp-cards" id="dyp-ac-cards"></div>
-      <div class="dyp-table-wrap">
-        <table class="dyp-tbl">
-          <thead><tr>
-            <th class="dyp-th" style="text-align:left" onclick="dypSort('ac',0,this)">Ticker <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',1,this)">Cotas <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',2,this)">DPA 2026 Proj. <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',3,this)">DY 2026% <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',4,this)">YoC 2026% <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',5,this)">Renda 2026 <span class="dyp-si"></span></th>
-            <th class="dyp-th" onclick="dypSort('ac',6,this)">Renda/Mês Est. <span class="dyp-si"></span></th>
-            <th>Frequência</th>
-          </tr></thead>
-          <tbody id="dyp-ac-tbody"></tbody>
-          <tfoot id="dyp-ac-tfoot"></tfoot>
-        </table>
-      </div>
-    </div>
-
-    <!-- SEÇÃO 3: Consolidado -->
-    <div class="dyp-section">
-      <div class="dyp-section-title"><span>3</span>Consolidado</div>
-      <div class="dyp-consolidado" id="dyp-consolidado"></div>
-    </div>
-
-  </div>
-</div><!-- /tab-dyproj -->
 
 
 <script>
 // ── DY PROJETIVO — declarado no topo para evitar TDZ no renderAll ─────────────
 const ACOES_DPA=[
-  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:null, ms:2.0, vuc:50.15, s:'', pc:null, roe:null, dyp:null},
-  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:null, ms:-7.0, vuc:28.0, s:'', pc:null, roe:null, dyp:null},
-  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:null, ms:14.0, vuc:37.59, s:'', pc:null, roe:null, dyp:null},
-  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:null, ms:5.0, vuc:26.6, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:null, ms:-13.0, vuc:34.01, s:'', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:null, ms:-9.0, vuc:17.83, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:null, ms:9.0, vuc:20.76, s:'', pc:null, roe:null, dyp:null},
-  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:null, ms:-19.0, vuc:8.82, s:'', pc:null, roe:null, dyp:null},
-  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:null, ms:-22.0, vuc:29.69, s:'', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:null, ms:12.0, vuc:20.0, s:'', pc:null, roe:null, dyp:null},
-  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:null, ms:43.0, vuc:16.67, s:'', pc:null, roe:null, dyp:null},
-  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:null, ms:10.0, vuc:15.83, s:'', pc:null, roe:null, dyp:null},
-  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:null, ms:-28.0, vuc:33.24, s:'', pc:null, roe:null, dyp:null},
+  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:null, ms:2.0, vuc:50.15, s:'', pc:null, roe:null},
+  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:null, ms:-7.0, vuc:28.0, s:'', pc:null, roe:null},
+  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:null, ms:14.0, vuc:37.59, s:'', pc:null, roe:null},
+  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:null, ms:5.0, vuc:26.6, s:'', pc:null, roe:null},
+  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:null, ms:-13.0, vuc:34.01, s:'', pc:null, roe:null},
+  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:null, ms:-9.0, vuc:17.83, s:'', pc:null, roe:null},
+  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:null, ms:9.0, vuc:20.76, s:'', pc:null, roe:null},
+  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:null, ms:-19.0, vuc:8.82, s:'', pc:null, roe:null},
+  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:null, ms:-22.0, vuc:29.69, s:'', pc:null, roe:null},
+  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:null, ms:12.0, vuc:20.0, s:'', pc:null, roe:null},
+  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:null, ms:43.0, vuc:16.67, s:'', pc:null, roe:null},
+  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:null, ms:10.0, vuc:15.83, s:'', pc:null, roe:null},
+  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:null, ms:-28.0, vuc:33.24, s:'', pc:null, roe:null},
 ];
 const META_FII_MES   = 10000;
 const META_FIIS_ANO  = META_FII_MES*12;
 const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
-const _DYP = { fii: {col:-1,dir:1}, ac: {col:-1,dir:1} };
 
 // ── DADOS ESTÁTICOS — atualizados planilha 18/09/2026 ─────────────────────────
 const ACOES=[
-  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:75.0, ms:2.0, vuc:50.15, s:'Mineração', pc:null, roe:null, dyp:null},
-  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:28.6, ms:-7.0, vuc:28.0, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:47.33, ms:14.0, vuc:37.59, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:28.58, ms:5.0, vuc:26.6, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:35.5, ms:-13.0, vuc:34.01, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:18.7, ms:-9.0, vuc:17.83, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:25.0, ms:9.0, vuc:20.76, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:11.5, ms:-19.0, vuc:8.82, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:17.43, ms:10.0, vuc:15.83, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:28.0, ms:43.0, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null, dyp:null},
-  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:37.0, ms:-28.0, vuc:33.24, s:'Bens Ind.', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:34.58, ms:12.0, vuc:20.0, s:'Telecom', pc:null, roe:null, dyp:null},
-  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:38.0, ms:-22.0, vuc:29.69, s:'Petróleo', pc:null, roe:null, dyp:null}
+  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:75.0, ms:2.0, vuc:50.15, s:'Mineração', pc:null, roe:null},
+  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:28.6, ms:-7.0, vuc:28.0, s:'Elétrico', pc:null, roe:null},
+  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:47.33, ms:14.0, vuc:37.59, s:'Elétrico', pc:null, roe:null},
+  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:28.58, ms:5.0, vuc:26.6, s:'Elétrico', pc:null, roe:null},
+  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:35.5, ms:-13.0, vuc:34.01, s:'Seguridade', pc:null, roe:null},
+  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:18.7, ms:-9.0, vuc:17.83, s:'Seguridade', pc:null, roe:null},
+  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:25.0, ms:9.0, vuc:20.76, s:'Bancos', pc:null, roe:null},
+  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:11.5, ms:-19.0, vuc:8.82, s:'Bancos', pc:null, roe:null},
+  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:17.43, ms:10.0, vuc:15.83, s:'Bancos', pc:null, roe:null},
+  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:28.0, ms:43.0, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null},
+  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:37.0, ms:-28.0, vuc:33.24, s:'Bens Ind.', pc:null, roe:null},
+  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:34.58, ms:12.0, vuc:20.0, s:'Telecom', pc:null, roe:null},
+  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:38.0, ms:-22.0, vuc:29.69, s:'Petróleo', pc:null, roe:null}
 ];
 const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
@@ -641,20 +551,20 @@ const FII_SI=[
   {t:'TRXF11',p:74.44,chg:0.02,dy:12.22,pvp:null,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:75.0, ms:2.0, vuc:50.15, s:'Mineração', pc:null, roe:null, dyp:null},
-  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:28.0, ms:43.0, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null, dyp:null},
-  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:25.0, ms:9.0, vuc:20.76, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:34.58, ms:12.0, vuc:20.0, s:'Telecom', pc:null, roe:null, dyp:null},
-  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:28.58, ms:5.0, vuc:26.6, s:'Elétrico', pc:null, roe:null, dyp:null},
+  {t:'VALE3', p:73.25, pm:62.53, q:2687, v:196822.75, teto:75.0, ms:2.0, vuc:50.15, s:'Mineração', pc:null, roe:null},
+  {t:'KLBN11', p:19.58, pm:18.0, q:5048, v:98839.84, teto:28.0, ms:43.0, vuc:16.67, s:'Papel/Cel.', pc:null, roe:null},
+  {t:'BBAS3', p:22.94, pm:22.17, q:11078, v:254129.32, teto:25.0, ms:9.0, vuc:20.76, s:'Bancos', pc:null, roe:null},
+  {t:'VIVT3', p:30.95, pm:20.04, q:1680, v:51996.0, teto:34.58, ms:12.0, vuc:20.0, s:'Telecom', pc:null, roe:null},
+  {t:'ISAE4', p:27.22, pm:23.73, q:6085, v:165633.7, teto:28.58, ms:5.0, vuc:26.6, s:'Elétrico', pc:null, roe:null},
   {t:'SAPR4',p:7.17,pm:3.58,q:2309,v:16555.53,teto:3.64,ms:-49.23,vuc:3.47,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:11.5, ms:-19.0, vuc:8.82, s:'Bancos', pc:null, roe:null, dyp:null},
-  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:28.6, ms:-7.0, vuc:28.0, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:47.33, ms:14.0, vuc:37.59, s:'Elétrico', pc:null, roe:null, dyp:null},
-  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:38.0, ms:-22.0, vuc:29.69, s:'Petróleo', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:18.7, ms:-9.0, vuc:17.83, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:37.0, ms:-28.0, vuc:33.24, s:'Bens Ind.', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:35.5, ms:-13.0, vuc:34.01, s:'Seguridade', pc:null, roe:null, dyp:null},
-  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:17.43, ms:10.0, vuc:15.83, s:'Bancos', pc:null, roe:null, dyp:null}
+  {t:'ITSA4', p:14.14, pm:7.97, q:7603, v:107506.42, teto:11.5, ms:-19.0, vuc:8.82, s:'Bancos', pc:null, roe:null},
+  {t:'EGIE3', p:30.65, pm:28.01, q:3514, v:107704.1, teto:28.6, ms:-7.0, vuc:28.0, s:'Elétrico', pc:null, roe:null},
+  {t:'TAEE11', p:41.64, pm:34.77, q:3531, v:147030.84, teto:47.33, ms:14.0, vuc:37.59, s:'Elétrico', pc:null, roe:null},
+  {t:'PETR4', p:48.45, pm:30.38, q:1863, v:90262.35, teto:38.0, ms:-22.0, vuc:29.69, s:'Petróleo', pc:null, roe:null},
+  {t:'CXSE3', p:20.55, pm:15.28, q:11651, v:239428.05, teto:18.7, ms:-9.0, vuc:17.83, s:'Seguridade', pc:null, roe:null},
+  {t:'WEGE3', p:51.5, pm:29.42, q:866, v:44599.0, teto:37.0, ms:-28.0, vuc:33.24, s:'Bens Ind.', pc:null, roe:null},
+  {t:'BBSE3', p:40.74, pm:32.22, q:5639, v:229732.86, teto:35.5, ms:-13.0, vuc:34.01, s:'Seguridade', pc:null, roe:null},
+  {t:'BBDC3', p:15.8, pm:15.13, q:7669, v:121170.2, teto:17.43, ms:10.0, vuc:15.83, s:'Bancos', pc:null, roe:null}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
@@ -1052,7 +962,6 @@ function tblSortBy(arr,key,dir){
     else if(key==='part'){va=a.v;vb=b.v;}
     else if(key==='yoc'){va=a.div?(a.div/a.pm*100):0;vb=b.div?(b.div/b.pm*100):0;}
     else if(key==='pvp'){va=a.vpa?(a.p/a.vpa):((_FII_SI_MAP[a.t]||{}).pvp||0);vb=b.vpa?(b.p/b.vpa):((_FII_SI_MAP[b.t]||{}).pvp||0);}
-    else if(key==='dy'){va=a.dyp||0;vb=b.dyp||0;}
     
     else{va=a[key]||0;vb=b[key]||0;}
     if(typeof va==='string')return dir*va.localeCompare(vb,'pt');
@@ -1074,7 +983,6 @@ function renderAcaoRow(a){
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${a.pc!=null?brl(a.pc):'—'}</td>
     <td class="${a.pc!=null?cls((1-a.p/a.pc)*100):''}">${a.pc!=null?pct((1-a.p/a.pc)*100):'—'}</td>
-    <td>${a.dyp!=null?a.dyp.toFixed(2)+'%':'—'}</td>
     <td>${a.vuc?brl(a.vuc):'—'}</td>
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
@@ -1100,8 +1008,6 @@ function renderFiiRow(f){
     <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
   </tr>`;
 }
-function sortAcoesByDy(thEl){
-  if(TBL_SORT.a.k==='dy')TBL_SORT.a.d*=-1;else{TBL_SORT.a.k='dy';TBL_SORT.a.d=-1;}
   document.querySelectorAll('#acoes-head th').forEach(th=>th.classList.remove('sort-asc','sort-desc'));
   document.getElementById('acoes-body').innerHTML=tblSortBy(ACOES,'dy',TBL_SORT.a.d).map(renderAcaoRow).join('');
 }
@@ -1526,167 +1432,17 @@ function renderAll(){
   try{renderCarteira();}catch(e){console.error('renderCarteira falhou:',e);}
   try{renderProventos();}catch(e){console.error('renderProventos falhou:',e);}
   try{renderAcoesSI([...ACOES_SI]);}catch(e){console.error('renderAcoesSI falhou:',e);}
-  try{renderDYProjetivo();}catch(e){console.error('renderDYProjetivo falhou:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro DY Projetivo: '+e.message+'</div>';}
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 
-// ── DY Projetivo sort ────────────────────────────────────────────────────────
-
-function dypSort(sec, col, th){
-  const s = _DYP[sec];
-  if(s.col===col){ s.dir*=-1; } else { s.col=col; s.dir=1; }
-  // update header indicators
-  const tbl = th.closest('table');
-  tbl.querySelectorAll('th .dyp-si').forEach(si=>{ si.textContent='⇅'; si.style.color=''; });
-  th.querySelector('.dyp-si').textContent = s.dir===1 ? '↓' : '↑';
-  th.querySelector('.dyp-si').style.color = 'var(--blue)';
-  renderDYProjetivo();
-}
-
-function renderDYProjetivo(){
-  // ── FIIs ──
-  const fiisComDiv = FIIS.filter(f=>f.div&&f.div>0);
-  let fiiData = fiisComDiv.map(f=>{
-    const rMes   = f.q * f.div;
-    const rAno   = rMes * 12;
-    const dyMes  = (f.div / f.p * 100);
-    const yocMes = (f.div / f.pm * 100);
-    const dpa12  = f.div * 12;
-    return { t:f.t, q:f.q, div:f.div, rMes, dyMes, yocMes, dpa12, rAno };
-  });
-  // sort FII
-  const sf = _DYP.fii;
-  if(sf.col>=0){
-    const keys = ['t','q','div','rMes','dyMes','yocMes','dpa12','rAno'];
-    fiiData.sort((a,b)=>{
-      const k=keys[sf.col];
-      return typeof a[k]==='string' ? a[k].localeCompare(b[k])*sf.dir : (a[k]-b[k])*sf.dir;
-    });
-  }
-  let totalFiiMes=0, totalFiiAno=0;
-  const fiiRows = fiiData.map(f=>{
-    totalFiiMes += f.rMes;
-    totalFiiAno += f.rAno;
-    return `<tr>
-      <td>${f.t}</td>
-      <td>${f.q.toLocaleString('pt-BR')}</td>
-      <td>${brl(f.div)}</td>
-      <td class="pos">${brl(f.rMes)}</td>
-      <td>${f.dyMes.toFixed(2)}%</td>
-      <td>${f.yocMes.toFixed(2)}%</td>
-      <td>${brl(f.dpa12)}</td>
-      <td>${brl(f.rAno)}</td>
-      <td><span style="background:#eff6ff;color:#2563eb;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">Mensal</span></td>
-    </tr>`;
-  });
-  document.getElementById('dyp-fii-tbody').innerHTML = fiiRows.join('');
-  document.getElementById('dyp-fii-tfoot').innerHTML = `<tr style="background:#f8f9fb;font-weight:700">
-    <td colspan="3" style="text-align:left;font-weight:700">TOTAL FIIs</td>
-    <td class="pos">${brl(totalFiiMes)}</td>
-    <td colspan="2">—</td>
-    <td>—</td>
-    <td class="pos">${brl(totalFiiAno)}</td>
-    <td>—</td>
-  </tr>`;
-
-  // FII cards
-  const pctFii = Math.min(totalFiiMes/META_FII_MES*100,100);
-  const gapFii = META_FII_MES - totalFiiMes;
-  document.getElementById('dyp-fii-cards').innerHTML = `
-    <div class="dyp-card"><div class="dyp-card-label">Renda FIIs/mês</div><div class="dyp-card-value">${brl(totalFiiMes)}</div><div class="dyp-bar-wrap"><div class="dyp-bar-fill" style="width:${pctFii.toFixed(0)}%"></div></div><div class="dyp-card-sub">${pctFii.toFixed(0)}% da meta R$10k</div></div>
-    <div class="dyp-card"><div class="dyp-card-label">Renda FIIs/ano</div><div class="dyp-card-value">${brl(totalFiiAno)}</div><div class="dyp-card-sub">Projeção 12 meses</div></div>
-    <div class="dyp-card ${gapFii>0?'warn':'accent'}"><div class="dyp-card-label">Meta R$10k/mês</div><div class="dyp-card-value">${pctFii.toFixed(0)}%</div><div class="dyp-card-sub">Gap: ${gapFii>0?'-':''}${brl(Math.abs(gapFii))}/mês</div></div>
-    <div class="dyp-card"><div class="dyp-card-label">FIIs sem div</div><div class="dyp-card-value">${FIIS.length - fiisComDiv.length}</div><div class="dyp-card-sub">de ${FIIS.length} FIIs</div></div>
-  `;
-
-  // ── Ações ──
-  const acMap = {};
-  ACOES.forEach(a=>acMap[a.t]=a);
-  let acData = ACOES_DPA.map(d=>{
-    const a = acMap[d.t];
-    if(!a) return null;
-    const renda2026 = a.q * d.dpa26;
-    const yoc26     = (d.dpa26 / a.pm * 100);
-    const rendaMes  = renda2026 / 12;
-    return { t:d.t, q:a.q, dpa26:d.dpa26, dy26:d.dy26, yoc26, renda2026, rendaMes, freq:d.freq };
-  }).filter(Boolean);
-  // sort Ações
-  const sa = _DYP.ac;
-  if(sa.col>=0){
-    const keys = ['t','q','dpa26','dy26','yoc26','renda2026','rendaMes'];
-    acData.sort((a,b)=>{
-      const k=keys[sa.col];
-      if(k===undefined) return 0;
-      return typeof a[k]==='string' ? a[k].localeCompare(b[k])*sa.dir : (a[k]-b[k])*sa.dir;
-    });
-  }
-  let totalAcAno=0;
-  const acRows = acData.map(d=>{
-    totalAcAno += d.renda2026;
-    const freqColor = d.freq==='Mensal'?'#eff6ff':d.freq==='Trimestral'?'#f0fdf4':'#fefce8';
-    const freqText  = d.freq==='Mensal'?'#2563eb':d.freq==='Trimestral'?'#16a34a':'#ca8a04';
-    return `<tr>
-      <td>${logoImg(d.t)}${d.t}</td>
-      <td>${d.q.toLocaleString('pt-BR')}</td>
-      <td>${brl(d.dpa26)}</td>
-      <td>${d.dy26.toFixed(2)}%</td>
-      <td>${d.yoc26.toFixed(2)}%</td>
-      <td class="pos">${brl(d.renda2026)}</td>
-      <td class="${d.rendaMes>0?'pos':'neu'}">${brl(d.rendaMes)}</td>
-      <td><span style="background:${freqColor};color:${freqText};border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600">${d.freq}</span></td>
-    </tr>`;
-  });
-  document.getElementById('dyp-ac-tbody').innerHTML = acRows.join('');
-  const totalAcMes = totalAcAno / 12;
-  const pctAc = Math.min(totalAcAno/(META_ACOES_ANO)*100,100);
-  document.getElementById('dyp-ac-tfoot').innerHTML = `<tr style="background:#f8f9fb;font-weight:700">
-    <td colspan="5" style="text-align:left;font-weight:700">TOTAL AÇÕES</td>
-    <td class="pos">${brl(totalAcAno)}</td>
-    <td class="pos">${brl(totalAcMes)}</td>
-    <td>—</td>
-  </tr>`;
-
-  const gapAc = META_ACOES_ANO - totalAcAno;
-  document.getElementById('dyp-ac-cards').innerHTML = `
-    <div class="dyp-card"><div class="dyp-card-label">Renda Ações/mês est.</div><div class="dyp-card-value">${brl(totalAcMes)}</div><div class="dyp-card-sub">Baseado no DPA 2026</div></div>
-    <div class="dyp-card"><div class="dyp-card-label">Renda Ações/ano</div><div class="dyp-card-value">${brl(totalAcAno)}</div><div class="dyp-card-sub">Projeção 2026</div></div>
-    <div class="dyp-card ${pctAc>=100?'accent':'warn'}"><div class="dyp-card-label">Meta R$30k/mês</div><div class="dyp-card-value">${pctAc.toFixed(0)}%</div><div class="dyp-card-sub">Gap: ${brl(Math.abs(gapAc))}/ano</div></div>
-    <div class="dyp-card"><div class="dyp-card-label">Ativos com DPA</div><div class="dyp-card-value">${ACOES_DPA.length}</div><div class="dyp-card-sub">de ${ACOES.length} ações</div></div>
-  `;
-
-  // ── Consolidado ──
-  const totalMes   = totalFiiMes + totalAcMes;
-  const totalAnoC  = totalFiiAno + totalAcAno;
-  const pctTotal   = Math.min(totalMes/META_TOTAL_MES*100,100);
-  const gapTotal   = META_TOTAL_MES - totalMes;
-  document.getElementById('dyp-consolidado').innerHTML = `
-    <div class="dyp-big-card">
-      <div class="big-label">Renda Total/mês</div>
-      <div class="big-val">${brl(totalMes)}</div>
-      <div class="big-sub">FIIs ${brl(totalFiiMes)} + Ações ${brl(totalAcMes)}</div>
-      <div class="dyp-bar-wrap" style="margin-top:12px"><div class="dyp-bar-fill" style="width:${pctTotal.toFixed(0)}%"></div></div>
-      <div class="dyp-card-sub" style="margin-top:5px">${pctTotal.toFixed(0)}% da meta R$40k/mês</div>
-    </div>
-    <div class="dyp-big-card brand-green">
-      <div class="big-label">Renda Total/ano</div>
-      <div class="big-val">${brl(totalAnoC)}</div>
-      <div class="big-sub">Projeção acumulada 2026</div>
-    </div>
-    <div class="dyp-big-card ${gapTotal>0?'':'brand-green'}">
-      <div class="big-label">Gap meta R$40k/mês</div>
-      <div class="big-val" style="${gapTotal>0?'color:var(--red)':'color:var(--green)'}">${gapTotal>0?'-':''}${brl(Math.abs(gapTotal))}</div>
-      <div class="big-sub">${gapTotal>0?'Faltam para a meta':'Meta atingida 🎯'}</div>
-    </div>
-  `;
-}
 
 function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   if(id==='aportes'){try{if(window.renderAportes)window.renderAportes();}catch(e){console.error('aportes crash:',e);}}
-  if(id==='dyproj'){try{renderDYProjetivo();}catch(e){console.error('DYP crash:',e);const el=document.getElementById('dyp-fii-cards');if(el)el.innerHTML='<div style="color:red;padding:10px;font-weight:600">⚠️ Erro: '+e.message+'</div>';}}
+  if(id==='dyproj'){
   if(btn)btn.classList.add('active');
 }
 
