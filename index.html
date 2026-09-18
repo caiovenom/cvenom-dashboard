@@ -1445,7 +1445,6 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   if(id==='aportes'){try{if(window.renderAportes)window.renderAportes();}catch(e){console.error('aportes crash:',e);}}
-  if(id==='dyproj'){
   if(btn)btn.classList.add('active');
 }
 
