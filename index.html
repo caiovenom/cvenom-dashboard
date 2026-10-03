@@ -1797,7 +1797,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     return null;
   }
 
-  function buildTT(ticker){
+  function buildTT(ticker, context){
     const ops=APORTES_HIST[ticker];
     if(!ops||!ops.length) return null;
     // Totais sempre sobre toda a história
@@ -1805,9 +1805,17 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     const totalQtd=ops.reduce((s,o)=>s+o.q,0);
     const pmAnual=totalInv/totalQtd;
 
-    // Exibe as últimas 36 entradas (ou todas, se forem menos)
+    // Filtro por contexto: ano corrente (seção 2026) ou últimos 12m
     const MAX_VIS=36;
-    const opsVis=ops.slice(-MAX_VIS);
+    const currYear=new Date().getFullYear();
+    const ult12cutoff=new Date(); ult12cutoff.setMonth(ult12cutoff.getMonth()-12);
+    let filtered;
+    if(context==='ult12'){
+      filtered=ops.filter(o=>{const dt=parseOpDate(o.d);return !dt||dt>=ult12cutoff;});
+    } else {
+      filtered=ops.filter(o=>{const dt=parseOpDate(o.d);return !dt||dt.getFullYear()===currYear;});
+    }
+    const opsVis=filtered.slice(-MAX_VIS);
     const hidden=ops.length-opsVis.length;
 
     // Busca preço atual em ACOES ou FIIS
@@ -1859,9 +1867,10 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
       </div>`;
     }
 
+    const periodoLabel=context==='ult12'?'últ. 12m':String(new Date().getFullYear());
     return `<div class="ap-tooltip-head">
       <span>${ticker}</span>
-      <span class="tt-total">${ops.length} compra${ops.length>1?'s':''} em 2026</span>
+      <span class="tt-total">${ops.length} compra${ops.length>1?'s':''} (${periodoLabel})</span>
     </div>${hiddenNote}${rows}${footer}${perf}`;
   }
 
@@ -1886,7 +1895,8 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     items.forEach(item=>{
       item.addEventListener('mouseenter',function(){
         const ticker=this.dataset.ticker;
-        const content=buildTT(ticker);
+        const context=this.dataset.ano||'2026';
+        const content=buildTT(ticker, context);
         if(!content) return;
         tt.innerHTML=content;
         tt.classList.add('visible');
