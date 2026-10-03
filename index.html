@@ -1805,11 +1805,9 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     const totalQtd=ops.reduce((s,o)=>s+o.q,0);
     const pmAnual=totalInv/totalQtd;
 
-    // Filtra exibição: últimos 120 dias, mas garante mínimo de 8 entradas sempre visíveis
-    const MIN_VIS=8;
-    const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-120);
-    let opsVis=ops.filter(o=>{const dt=parseOpDate(o.d);return !dt||dt>=cutoff;});
-    if(opsVis.length<MIN_VIS) opsVis=ops.slice(-Math.min(MIN_VIS,ops.length));
+    // Exibe as últimas 36 entradas (ou todas, se forem menos)
+    const MAX_VIS=36;
+    const opsVis=ops.slice(-MAX_VIS);
     const hidden=ops.length-opsVis.length;
 
     // Busca preço atual em ACOES ou FIIS
