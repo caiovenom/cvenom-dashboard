@@ -518,21 +518,21 @@ const FIIS=[
   // vpa = Valor Patrimonial da Cota (atualizado mensalmente via relatório do fundo)
   // pvp é calculado automaticamente: p/vpa (atualiza com cada sync de preço)
   // yoc é calculado automaticamente: div/pm*100 (atualiza quando div muda)
-  {t:'XPML11', p:101.9, pm:105.12, q:690, v:70311.0, teto:123.0, ms:20.71, vuc:101.39, s:'Shopping', div:70311.0, vpa:104.95, ativo:true},
-  {t:'PMLL11', p:104.4, pm:102.88, q:650, v:67860.0, teto:128.0, ms:22.61, vuc:102.49, s:'Shopping', div:67860.0, vpa:102.98},
-  {t:'BTLG11', p:100.0, pm:102.24, q:702, v:70200.0, teto:112.0, ms:12.0, vuc:100.0, s:'Logístico', div:70200.0, vpa:103.49, ativo:true},
-  {t:'TRXF11', p:70.32, pm:102.14, q:922, v:64835.04, teto:125.0, ms:77.76, vuc:71.59, s:'Híbrido', div:64835.04, vpa:109.28, ativo:true},
-  {t:'HGRU11', p:114.4, pm:121.23, q:436, v:49878.4, teto:140.0, ms:18.01, vuc:112.33, s:'Híbrido', div:49878.4, vpa:146.57, ativo:true},
-  {t:'MCCI11', p:94.47, pm:89.17, q:514, v:48557.58, teto:95.0, ms:1.62, vuc:84.71, s:'Papel', div:48557.58, vpa:97.99},
-  {t:'HGLG11', p:147.9, pm:165.35, q:305, v:45109.5, teto:162.0, ms:9.53, vuc:146.72, s:'Logístico', div:45109.5, vpa:158.37, ativo:true},
-  {t:'RECR11', p:73.4, pm:82.95, q:723, v:53068.2, teto:89.0, ms:21.25, vuc:75.49, s:'Papel', div:53068.2, vpa:89.32, ativo:true},
-  {t:'VGIP11', p:71.05, pm:85.23, q:644, v:45756.2, teto:92.0, ms:29.49, vuc:71.77, s:'Papel', div:45756.2, vpa:90.1},
-  {t:'BTHF11', p:8.71, pm:10.12, q:4252, v:37034.92, teto:9.0, ms:3.33, vuc:8.38, s:'Hedge', div:37034.92, vpa:9.97},
-  {t:'PVBI11', p:65.5, pm:80.83, q:511, v:33470.5, teto:97.0, ms:48.09, vuc:72.99, s:'Lajes', div:33470.5, vpa:103.33, ativo:true},
-  {t:'LVBI11', p:96.84, pm:100.99, q:278, v:26921.52, teto:113.0, ms:16.69, vuc:95.89, s:'Logístico', div:26921.52, vpa:119.19},
-  {t:'IRIM11', p:61.95, pm:77.95, q:431, v:26700.45, teto:81.0, ms:30.75, vuc:73.4, s:'Hedge', div:26700.45, vpa:82.38},
-  {t:'VISC11', p:105.51, pm:109.21, q:188, v:19835.88, teto:118.0, ms:11.84, vuc:94.2, s:'Shopping', div:19835.88, vpa:120.36},
-  {t:'KNRI11', p:157.91, pm:149.73, q:161, v:25423.51, teto:164.0, ms:3.86, vuc:132.78, s:'Híbrido', div:25423.51, vpa:158.72}
+  {t:'XPML11', p:101.9, pm:105.12, q:690, v:70311.0, teto:123.0, ms:20.71, vuc:101.39, s:'Shopping', div:0.92, vpa:104.95, ativo:true},
+  {t:'PMLL11', p:104.4, pm:102.88, q:650, v:67860.0, teto:128.0, ms:22.61, vuc:102.49, s:'Shopping', div:1.0, vpa:102.98},
+  {t:'BTLG11', p:100.0, pm:102.24, q:702, v:70200.0, teto:112.0, ms:12.0, vuc:100.0, s:'Logístico', div:0.81, vpa:103.49, ativo:true},
+  {t:'TRXF11', p:70.32, pm:102.14, q:922, v:64835.04, teto:125.0, ms:77.76, vuc:71.59, s:'Híbrido', div:0.93, vpa:109.28, ativo:true},
+  {t:'HGRU11', p:114.4, pm:121.23, q:436, v:49878.4, teto:140.0, ms:18.01, vuc:112.33, s:'Híbrido', div:0.95, vpa:146.57, ativo:true},
+  {t:'MCCI11', p:94.47, pm:89.17, q:514, v:48557.58, teto:95.0, ms:1.62, vuc:84.71, s:'Papel', div:1.0, vpa:97.99},
+  {t:'HGLG11', p:147.9, pm:165.35, q:305, v:45109.5, teto:162.0, ms:9.53, vuc:146.72, s:'Logístico', div:1.17, vpa:158.37, ativo:true},
+  {t:'RECR11', p:73.4, pm:82.95, q:723, v:53068.2, teto:89.0, ms:21.25, vuc:75.49, s:'Papel', div:0.7373, vpa:89.32, ativo:true},
+  {t:'VGIP11', p:71.05, pm:85.23, q:644, v:45756.2, teto:92.0, ms:29.49, vuc:71.77, s:'Papel', div:0.88, vpa:90.1},
+  {t:'BTHF11', p:8.71, pm:10.12, q:4252, v:37034.92, teto:9.0, ms:3.33, vuc:8.38, s:'Hedge', div:0.101, vpa:9.97},
+  {t:'PVBI11', p:65.5, pm:80.83, q:511, v:33470.5, teto:97.0, ms:48.09, vuc:72.99, s:'Lajes', div:0.37, vpa:103.33, ativo:true},
+  {t:'LVBI11', p:96.84, pm:100.99, q:278, v:26921.52, teto:113.0, ms:16.69, vuc:95.89, s:'Logístico', div:0.8, vpa:119.19},
+  {t:'IRIM11', p:61.95, pm:77.95, q:431, v:26700.45, teto:81.0, ms:30.75, vuc:73.4, s:'Hedge', div:0.75, vpa:82.38},
+  {t:'VISC11', p:105.51, pm:109.21, q:188, v:19835.88, teto:118.0, ms:11.84, vuc:94.2, s:'Shopping', div:0.84, vpa:120.36},
+  {t:'KNRI11', p:157.91, pm:149.73, q:161, v:25423.51, teto:164.0, ms:3.86, vuc:132.78, s:'Híbrido', div:1.1, vpa:158.72}
 ];
 const FII_SI=[
   {t:'HGLG11',p:157.91,chg:-0.12,dy:8.49,pvp:156.49,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -960,7 +960,7 @@ function tblSortBy(arr,key,dir){
     let va,vb;
     if(key==='rent'){va=(a.p/a.pm-1)*100;vb=(b.p/b.pm-1)*100;}
     else if(key==='part'){va=a.v;vb=b.v;}
-    else if(key==='yoc'){va=a.div?(a.div/a.pm*100):0;vb=b.div?(b.div/b.pm*100):0;}
+    else if(key==='yoc'){va=a.div?(a.div/a.pm*100*12):0;vb=b.div?(b.div/b.pm*100*12):0;}
     else if(key==='pvp'){va=a.vpa?(a.p/a.vpa):((_FII_SI_MAP[a.t]||{}).pvp||0);vb=b.vpa?(b.p/b.vpa):((_FII_SI_MAP[b.t]||{}).pvp||0);}
     
     else{va=a[key]||0;vb=b[key]||0;}
@@ -991,7 +991,7 @@ function renderAcaoRow(a){
 function renderFiiRow(f){
   const fsi=_FII_SI_MAP[f.t]||{};
   // YOC calculado dinamicamente: div mensal / preço médio de compra × 100
-  const yoc=f.div?((f.div/f.pm)*100):null;
+  const yoc=f.div?((f.div/f.pm)*100*12):null;
   // P/VP calculado dinamicamente: preço atual / VPA (atualiza a cada sync de preço)
   const pvp=f.vpa?(f.p/f.vpa).toFixed(2):(fsi.pvp!=null?fsi.pvp.toFixed(2):'—');
   const pvuc=f.vuc?(f.p/f.vuc-1)*100:null;
@@ -1002,7 +1002,7 @@ function renderFiiRow(f){
     <td>${f.q.toLocaleString('pt-BR')}</td><td>${brl(f.v)}</td>
     <td>${(f.v/PAT*100).toFixed(2)}%</td><td>${brl(f.teto)}</td>
     <td class="${cls(f.ms)}">${pct(f.ms)}</td>
-    <td>${f.div?'R$'+f.div.toFixed(3):'—'}</td>
+    <td>${f.div?'R$'+f.div.toFixed(2):'—'}</td>
     <td>${yoc?(yoc.toFixed(2)+'%'):'—'}</td>
     <td>${pvp}</td>
     <td>${f.vuc?brl(f.vuc):'—'}</td>
