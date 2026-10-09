@@ -291,7 +291,7 @@ tbody tr:hover{background:#f9fafb;}
   <div id="metas-prog"></div>
 </div>
 <div id="tab-acoes" class="tab-panel">
-  <div class="sec" style="margin-top:0">CVENOM ® Ações</div>
+  <div class="sec" style="margin-top:0">CVENOM ® Ações<span id="acoes-total" style="margin-left:auto;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0"></span></div>
   <div class="tbl-wrap"><table><thead id="acoes-head"><tr>
     <th class="tbl-sort" onclick="sortAcoesTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortAcoesTable('s',this)" style="text-align:left">Setor</th>
@@ -312,7 +312,7 @@ tbody tr:hover{background:#f9fafb;}
   <div class="chart-wrap" style="margin-top:14px"><div class="chart-title">Distribuição por Setor</div><div id="tbl-set-a2"></div></div>
 </div>
 <div id="tab-fiis" class="tab-panel">
-  <div class="sec" style="margin-top:0">CVENOM ® FIIs</div>
+  <div class="sec" style="margin-top:0">CVENOM ® FIIs<span id="fiis-total" style="margin-left:auto;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0"></span></div>
   <div class="tbl-wrap"><table><thead id="fiis-head"><tr>
     <th class="tbl-sort" onclick="sortFiisTable('t',this)" style="text-align:left">Ticker</th>
     <th class="tbl-sort" onclick="sortFiisTable('s',this)" style="text-align:left">Segmento</th>
@@ -1125,6 +1125,10 @@ function renderCarteira(){
 
   document.getElementById('acoes-body').innerHTML=ACOES.map(renderAcaoRow).join('');
   document.getElementById('fiis-body').innerHTML=FIIS.map(renderFiiRow).join('');
+  const tA=ACOES.reduce((s,a)=>s+(a.v||0),0);
+  const tF=FIIS.reduce((s,f)=>s+(f.v||0),0);
+  const elAt=document.getElementById('acoes-total');if(elAt)elAt.textContent='Total '+brl(tA);
+  const elFt=document.getElementById('fiis-total');if(elFt)elFt.textContent='Total '+brl(tF);
 
   mkC('chartAloc',{type:'doughnut',data:{
     labels:['Ações BR','FIIs','Renda Fixa','Caixa','Ações US$'],
