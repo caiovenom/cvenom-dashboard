@@ -1132,8 +1132,6 @@ function renderCarteira(){
 
   document.getElementById('acoes-body').innerHTML=ACOES.map(renderAcaoRow).join('');
   document.getElementById('fiis-body').innerHTML=FIIS.map(renderFiiRow).join('');
-  const tA=ACOES.reduce((s,a)=>s+(a.v||0),0);
-  const tF=FIIS.reduce((s,f)=>s+(f.v||0),0);
   const elAt=document.getElementById('acoes-total');if(elAt)elAt.textContent='Total '+brl(tA);
   const elFt=document.getElementById('fiis-total');if(elFt)elFt.textContent='Total '+brl(tF);
 
