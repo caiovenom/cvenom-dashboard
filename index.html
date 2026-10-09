@@ -1700,7 +1700,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
         <span style="font-weight:700;font-size:12px">${val}</span>
         <span style="font-weight:700;font-size:12px;color:${cor};min-width:44px;text-align:right">${pct}</span>
       </div>`;
-    hdr26.addEventListener('mouseenter',e=>{
+    const showTip26=(e)=>{
       tip26.innerHTML=`
         <div style="font-weight:800;font-size:13px;margin-bottom:10px;color:var(--brand)">Capital investido ${anoAtualStr}</div>
         ${row('Ações',fmtC(cb.acoes),pctC(cb.acoes,rvTotal),'#2563eb')}
@@ -1716,8 +1716,14 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
       const rc=e.target.getBoundingClientRect();
       tip26.style.left=rc.left+'px';
       tip26.style.top=(rc.bottom+6)+'px';
-    });
+    };
+    hdr26.addEventListener('mouseenter',showTip26);
     hdr26.addEventListener('mouseleave',()=>{ tip26.style.display='none'; });
+    hdr26.addEventListener('touchstart',e=>{
+      e.preventDefault();
+      if(tip26.style.display==='none'||!tip26.style.display){ showTip26(e); }
+      else { tip26.style.display='none'; }
+    },{passive:false});
   }
 })();
 
@@ -1893,7 +1899,7 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
     const ids=['top-'+CURR,'top-2025'];
     const items=ids.flatMap(id=>{const c=document.getElementById(id);return c?[...c.querySelectorAll('.top-item')]:[];});
     items.forEach(item=>{
-      item.addEventListener('mouseenter',function(){
+      const openTT=function(rect){
         const ticker=this.dataset.ticker;
         const context=this.dataset.ano||'2026';
         const content=buildTT(ticker, context);
@@ -1901,15 +1907,32 @@ const cores=['#2563eb','#16a34a','#dc2626','#ea580c','#7c3aed','#c8a84b','#0891b
         tt.innerHTML=content;
         tt.classList.add('visible');
         currentItem=this;
-        // Posiciona após render (para ter dimensões)
-        requestAnimationFrame(()=>positionTT(this.getBoundingClientRect()));
-      });
+        requestAnimationFrame(()=>positionTT(rect||this.getBoundingClientRect()));
+      };
+      item.addEventListener('mouseenter',function(){ openTT.call(this); });
       item.addEventListener('mouseleave',function(){
         tt.classList.remove('visible');
         currentItem=null;
       });
+      item.addEventListener('touchstart',function(e){
+        e.preventDefault();
+        if(currentItem===this && tt.classList.contains('visible')){
+          tt.classList.remove('visible');
+          currentItem=null;
+        } else {
+          openTT.call(this, this.getBoundingClientRect());
+        }
+      },{passive:false});
     });
   }
+
+  // Fechar tooltip ao tocar fora (mobile)
+  document.addEventListener('touchstart',function(e){
+    if(tt.classList.contains('visible') && !tt.contains(e.target) && currentItem && !currentItem.contains(e.target)){
+      tt.classList.remove('visible');
+      currentItem=null;
+    }
+  },{passive:true});
 
   // Garante bind após DOM estar pronto
   if(document.readyState==='complete'||document.readyState==='interactive'){
