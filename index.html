@@ -1494,14 +1494,18 @@ const liquido=totCompras-totVendas;
 
 // Compras 2026 e Compras Mês corrente
 const anoAtual='2026';
-const mesAtual=AD.months[AD.months.length-1]; // último mês do array
+// Mês real do calendário (não o último com dado)
+const _now=new Date();
+const mesAtualReal=`${_now.getFullYear()}-${String(_now.getMonth()+1).padStart(2,'0')}`;
+const mesAtual=AD.months[AD.months.length-1]; // último mês com dado (para outros usos)
 let comp2026=0, compMes=0;
 AD.months.forEach(m=>{
   const r=AD.resumos[m];
   if(m.startsWith(anoAtual)) comp2026+=r.compras.total;
-  if(m===mesAtual) compMes+=r.compras.total;
+  if(m===mesAtualReal) compMes+=r.compras.total;
 });
-const labelMes=(()=>{const [a,mo]=mesAtual.split('-');const nomes=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];return nomes[+mo-1]+'/'+a.slice(2);})();
+const _nomes=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const labelMes=_nomes[_now.getMonth()]+'/'+String(_now.getFullYear()).slice(2);
 let _apRend=false;window.renderAportes=function(){if(_apRend)return;_apRend=true;
 const elLblMes=document.getElementById('lbl-jan-mes');if(elLblMes){const nomes2=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];const [a2,mo2]=mesAtual.split('-');elLblMes.textContent='Jan→'+nomes2[+mo2-1];}
 
