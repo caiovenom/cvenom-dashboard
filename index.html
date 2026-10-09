@@ -656,6 +656,9 @@ const INDICES_HOJE = {
 };
 let CAIXA  = 14219.0;
 let ACOES_US = 62771.2951;
+let PAT_CRESC_RS  = 811468.36;  // crescimento vs fechamento ano anterior
+let PAT_CRESC_PCT = 29.19;      // % crescimento vs fechamento ano anterior
+let PAT_CRESC_REF = 'jan/26';   // referência do início do período
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1073,7 +1076,7 @@ function renderCarteira(){
     <div class="card"><div class="card-label">Caio</div><div class="card-value">${brl(CAIO)}</div><div class="card-sub">${caioPct}% do total</div></div>
     <div class="card purple"><div class="card-label">Fatima</div><div class="card-value">${brl(FATIMA)}</div><div class="card-sub">${fatPct}% · incl. INSS+IBMPREV</div></div>
     <div class="card gold"><div class="card-label">Meta R$7M (nov/29)</div><div class="card-value">${(PAT/META_7M*100).toFixed(1)}%</div><div class="card-sub">${brl(META_7M-PAT)} de distância</div></div>
-    <div class="card green"><div class="card-label">Meta 2026 — R$3,5M</div><div class="card-value">${(PAT/META_2026*100).toFixed(0)}%</div><div class="card-sub">Gap ${brl(META_2026-PAT)}</div></div>
+    <div class="card green"><div class="card-label">Upside ${new Date().getFullYear()}</div><div class="card-value">+${PAT_CRESC_PCT.toFixed(1)}%</div><div class="card-sub">+${brl(PAT_CRESC_RS)} vs. ${PAT_CRESC_REF}</div></div>
   </div>`;
 
   const allocDef=[
