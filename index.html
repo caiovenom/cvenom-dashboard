@@ -269,7 +269,7 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 <div class="content">
 <div id="tab-carteira" class="tab-panel active">
-  <div id="live-banner" class="banner yellow">⏳ Buscando preços da planilha CVENOM®...</div>
+  <div id="live-banner" class="banner static">📊 CVENOM® Dashboard — O pensamento é a força criadora.</div>
   <div id="summary-cards"></div>
   <div id="alloc-grid" class="alloc-grid"></div>
   <div class="prev-box">
@@ -659,6 +659,9 @@ let ACOES_US = 62771.2951;
 let PAT_CRESC_RS  = 811468.36;  // crescimento vs fechamento ano anterior
 let PAT_CRESC_PCT = 29.19;      // % crescimento vs fechamento ano anterior
 let PAT_CRESC_REF = 'jan/26';   // referência do início do período
+let PAT_ULT12M_RS  = 1065401.72; // upside últimos 12 meses (out/25 → out/26)
+let PAT_ULT12M_PCT = 42.17;      // % upside últimos 12 meses
+let PAT_ULT12M_REF = 'out/25';   // referência dos últimos 12m
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
 const META_7M  = 7000000;
@@ -1077,6 +1080,7 @@ function renderCarteira(){
     <div class="card purple"><div class="card-label">Fatima</div><div class="card-value">${brl(FATIMA)}</div><div class="card-sub">${fatPct}% · incl. INSS+IBMPREV</div></div>
     <div class="card gold"><div class="card-label">Meta R$7M (nov/29)</div><div class="card-value">${(PAT/META_7M*100).toFixed(1)}%</div><div class="card-sub">${brl(META_7M-PAT)} de distância</div></div>
     <div class="card green"><div class="card-label">Upside ${new Date().getFullYear()}</div><div class="card-value">+${PAT_CRESC_PCT.toFixed(1)}%</div><div class="card-sub">+${brl(PAT_CRESC_RS)} vs. ${PAT_CRESC_REF}</div></div>
+    <div class="card green"><div class="card-label">Upside Últimos 12m</div><div class="card-value">+${PAT_ULT12M_PCT.toFixed(1)}%</div><div class="card-sub">+${brl(PAT_ULT12M_RS)} vs. ${PAT_ULT12M_REF}</div></div>
   </div>`;
 
   const allocDef=[
