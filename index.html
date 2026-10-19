@@ -967,17 +967,19 @@ function tblSortBy(arr,key,dir){
   });
 }
 function renderAcaoRow(a){
-  const asi=_ACOES_SI_MAP[a.t]||{};
+  const tk=a.t||a.s;
+  const sec=a.t?a.s:'—';
+  const asi=_ACOES_SI_MAP[tk]||{};
   const dy=asi.dy!=null?asi.dy.toFixed(2)+'%':'—';
   const roeVal=asi.roe!=null?asi.roe:null;
   const roe=roeVal!=null?roeVal.toFixed(1)+'%':'—';
   const pvuc=a.vuc?(a.p/a.vuc-1)*100:null;
   return`<tr>
-    <td>${logoImg(a.t)}${a.t}${a.sell?'<span class="sell-b">VENDER</span>':''}${a.trim?'<span class="warn-b">TRIM</span>':''}${a.watch?`<span class="warn-b">${a.watch}</span>`:''}</td>
-    <td>${a.s}</td><td>${brl(a.p)}</td><td>${brl(a.pm)}</td>
+    <td>${logoImg(tk)}${tk}${a.sell?'<span class="sell-b">VENDER</span>':''}${a.trim?'<span class="warn-b">TRIM</span>':''}${a.watch?`<span class="warn-b">${a.watch}</span>`:''}</td>
+    <td>${sec}</td><td>${brl(a.p)}</td><td>${brl(a.pm)}</td>
     <td class="${cls((a.p/a.pm-1)*100)}">${pct((a.p/a.pm-1)*100)}</td>
     <td>${a.q.toLocaleString('pt-BR')}</td><td>${brl(a.v)}</td>
-    <td>${(a.v/PAT*100).toFixed(2)}%</td><td>${brl(a.teto)}</td>
+    <td>${(a.v/PAT*100).toFixed(2)}%</td><td>${a.teto!=null?brl(a.teto):'—'}</td>
     <td class="${cls(a.ms)}">${pct(a.ms)}</td>
     <td>${a.pc!=null?brl(a.pc):'—'}</td>
     <td class="${a.pc!=null?cls((1-a.p/a.pc)*100):''}">${a.pc!=null?pct((1-a.p/a.pc)*100):'—'}</td>
@@ -987,18 +989,20 @@ function renderAcaoRow(a){
   </tr>`;
 }
 function renderFiiRow(f){
-  const fsi=_FII_SI_MAP[f.t]||{};
+  const tk=f.t||f.s;
+  const sec=f.t?f.s:'—';
+  const fsi=_FII_SI_MAP[tk]||{};
   // YOC calculado dinamicamente: div mensal / preço médio de compra × 100
   const yoc=f.div?((f.div/f.pm)*100*12):null;
   // P/VP calculado dinamicamente: preço atual / VPA (atualiza a cada sync de preço)
   const pvp=f.vpa?(f.p/f.vpa).toFixed(2):(fsi.pvp!=null?fsi.pvp.toFixed(2):'—');
   const pvuc=f.vuc?(f.p/f.vuc-1)*100:null;
   return`<tr>
-    <td>${f.t}${f.warn?'<span class="warn-b">⚠</span>':''}</td>
-    <td>${f.s}</td><td>${brl(f.p)}</td><td>${brl(f.pm)}</td>
+    <td>${tk}${f.warn?'<span class="warn-b">⚠</span>':''}</td>
+    <td>${sec}</td><td>${brl(f.p)}</td><td>${brl(f.pm)}</td>
     <td class="${cls((f.p/f.pm-1)*100)}">${pct((f.p/f.pm-1)*100)}</td>
     <td>${f.q.toLocaleString('pt-BR')}</td><td>${brl(f.v)}</td>
-    <td>${(f.v/PAT*100).toFixed(2)}%</td><td>${brl(f.teto)}</td>
+    <td>${(f.v/PAT*100).toFixed(2)}%</td><td>${f.teto!=null?brl(f.teto):'—'}</td>
     <td class="${cls(f.ms)}">${pct(f.ms)}</td>
     <td>${f.div?'R$'+f.div.toFixed(2):'—'}</td>
     <td>${yoc?(yoc.toFixed(2)+'%'):'—'}</td>
