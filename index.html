@@ -741,7 +741,7 @@ function parseSheet(text){
       const price=parseAmt(cols[3]);
       const qty=parseQty(cols[12]);
       const val=parseAmt(cols[13]);
-      const a=ACOES.find(x=>x.t===cleanT);
+      const a=ACOES.find(x=>(x.t||x.s)===cleanT);
       if(a && price>1){
         a.p=price; if(qty>0)a.q=qty;
         a.v=val||(price*a.q);
@@ -755,7 +755,7 @@ function parseSheet(text){
       const price=parseAmt(cols[3]);
       const qty=parseQty(cols[12]);
       const val=parseAmt(cols[13]);
-      const f=FIIS.find(x=>x.t===t0);
+      const f=FIIS.find(x=>(x.t||x.s)===t0);
       if(f && price>1){
         f.p=price; if(qty>0)f.q=qty;
         f.v=val||(price*f.q);
@@ -959,8 +959,12 @@ function tblSortBy(arr,key,dir){
     let va,vb;
     if(key==='rent'){va=(a.p/a.pm-1)*100;vb=(b.p/b.pm-1)*100;}
     else if(key==='part'){va=a.v;vb=b.v;}
-    else if(key==='yoc'){va=a.div?(a.div/a.pm*100*12):0;vb=b.div?(b.div/b.pm*100*12):0;}
-    else if(key==='pvp'){va=a.vpa?(a.p/a.vpa):((_FII_SI_MAP[a.t]||{}).pvp||0);vb=b.vpa?(b.p/b.vpa):((_FII_SI_MAP[b.t]||{}).pvp||0);}
+    else if(key==='yoc'){
+      const fa=_FII_SI_MAP[a.t||a.s]||{};const fb=_FII_SI_MAP[b.t||b.s]||{};
+      va=(fa.dy&&a.pm)?(fa.dy*a.p/a.pm):0;vb=(fb.dy&&b.pm)?(fb.dy*b.p/b.pm):0;}
+    else if(key==='pvp'){
+      const fa=_FII_SI_MAP[a.t||a.s]||{};const fb=_FII_SI_MAP[b.t||b.s]||{};
+      va=fa.pvp?(a.p/fa.pvp):0;vb=fb.pvp?(b.p/fb.pvp):0;}
     
     else{va=a[key]||0;vb=b[key]||0;}
     if(typeof va==='string')return dir*va.localeCompare(vb,'pt');
@@ -996,19 +1000,22 @@ function renderFiiRow(f){
   const tk=f.t||f.s;
   const fsi=_FII_SI_MAP[tk]||{};
   const sec=f.t?f.s:(fsi.s||'—');
-  // YOC calculado dinamicamente: div mensal / preço médio de compra × 100
-  const yoc=f.div?((f.div/f.pm)*100*12):null;
-  // P/VP calculado dinamicamente: preço atual / VPA (atualiza a cada sync de preço)
-  const pvp=f.vpa?(f.p/f.vpa).toFixed(2):(fsi.pvp!=null?fsi.pvp.toFixed(2):'—');
+  // Div mensal estimado: DY anual (%) × preço atual / 12 / 100
+  const divMensal=fsi.dy?(fsi.dy*f.p/1200):null;
+  // YOC: DY estimado aplicado ao PM (yield on cost)
+  const yoc=(fsi.dy&&f.pm)?(fsi.dy*f.p/f.pm):null;
+  // P/VP: preço atual / VPA (campo pvp em FII_SI armazena o VPA)
+  const pvp=fsi.pvp!=null?(f.p/fsi.pvp).toFixed(2):'—';
   const pvuc=f.vuc?(f.p/f.vuc-1)*100:null;
+  const teto=f.teto??fsi.teto??null;
   return`<tr>
     <td>${tk}${f.warn?'<span class="warn-b">⚠</span>':''}</td>
     <td>${sec}</td><td>${brl(f.p)}</td><td>${brl(f.pm)}</td>
     <td class="${cls((f.p/f.pm-1)*100)}">${pct((f.p/f.pm-1)*100)}</td>
     <td>${f.q.toLocaleString('pt-BR')}</td><td>${brl(f.v)}</td>
-    <td>${(f.v/PAT*100).toFixed(2)}%</td><td>${f.teto!=null?brl(f.teto):'—'}</td>
+    <td>${(f.v/PAT*100).toFixed(2)}%</td><td>${teto!=null?brl(teto):'—'}</td>
     <td class="${cls(f.ms)}">${pct(f.ms)}</td>
-    <td>${f.div?'R$'+f.div.toFixed(2):'—'}</td>
+    <td>${divMensal?'R$'+divMensal.toFixed(2):'—'}</td>
     <td>${yoc?(yoc.toFixed(2)+'%'):'—'}</td>
     <td>${pvp}</td>
     <td>${f.vuc?brl(f.vuc):'—'}</td>
@@ -1060,6 +1067,22 @@ function sortFiisTable(key,thEl){
       if(pa==null)return TBL_SORT.f.d;
       if(pb==null)return -TBL_SORT.f.d;
       return (pa-pb)*TBL_SORT.f.d;
+    });
+    document.getElementById('fiis-body').innerHTML=sorted.map(renderFiiRow).join('');
+    return;
+  }
+  if(key==='t'){
+    // Ticker: FIIS usa s como ticker (t é undefined)
+    const sorted=[...FIIS].sort((a,b)=>TBL_SORT.f.d*(a.t||a.s).localeCompare(b.t||b.s,'pt'));
+    document.getElementById('fiis-body').innerHTML=sorted.map(renderFiiRow).join('');
+    return;
+  }
+  if(key==='s'){
+    // Segmento: busca no _FII_SI_MAP pelo ticker real
+    const sorted=[...FIIS].sort((a,b)=>{
+      const sa=(_FII_SI_MAP[a.t||a.s]||{}).s||'';
+      const sb=(_FII_SI_MAP[b.t||b.s]||{}).s||'';
+      return TBL_SORT.f.d*sa.localeCompare(sb,'pt');
     });
     document.getElementById('fiis-body').innerHTML=sorted.map(renderFiiRow).join('');
     return;
@@ -1368,7 +1391,7 @@ function renderAtivosPerfCards(){
   // Carteira Ações: soma(valor_atual × chg/100)
   let acChgR=0, acTot=0;
   ACOES_SI.forEach(a=>{
-    const estoq=ACOES.find(x=>x.t===a.t);
+    const estoq=ACOES.find(x=>(x.t||x.s)===a.t);
     if(!estoq)return;
     const vAtual=estoq.v;
     acTot+=vAtual;
@@ -1379,7 +1402,7 @@ function renderAtivosPerfCards(){
   // Carteira FIIs: soma(valor_atual × chg/100)
   let fiChgR=0, fiTot=0;
   FII_SI.forEach(f=>{
-    const estoq=FIIS.find(x=>x.t===f.t);
+    const estoq=FIIS.find(x=>(x.t||x.s)===f.t);
     if(!estoq)return;
     const vAtual=estoq.v;
     fiTot+=vAtual;
