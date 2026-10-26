@@ -1172,7 +1172,7 @@ function renderCarteira(){
     footer:()=>'Total: '+brl(PAT)
   }}}}});
 
-  const sm={};ACOES.forEach(a=>{sm[a.s]=(sm[a.s]||0)+a.v;});
+  const sm={};ACOES.forEach(a=>{const sec=(_ACOES_SI_MAP[a.s]||{}).s||a.s;sm[sec]=(sm[sec]||0)+a.v;});
   const sk=Object.keys(sm).sort((a,b)=>sm[b]-sm[a]);
   // ─── Tabelas de Setor / Segmento (substituem os gráficos de rosca) ────────
   const tblR=(s,v,tot,cor)=>`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:6px 4px;font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${cor};margin-right:6px;vertical-align:middle"></span>${s}</td><td style="padding:6px 4px;text-align:right;font-size:11px;font-weight:700;white-space:nowrap">${brl(v)}</td><td style="padding:6px 4px;text-align:right;font-size:12px;font-weight:800;color:var(--brand);white-space:nowrap">${(v/tot*100).toFixed(1)}%</td></tr>`;
@@ -1180,7 +1180,7 @@ function renderCarteira(){
   document.getElementById('tbl-set-a').innerHTML=tblW('Setor',sk.map((s,i)=>tblR(s,sm[s],tA,PAL[i%PAL.length])).join(''),tA);
   document.getElementById('tbl-set-a2').innerHTML=tblW('Setor',sk.map((s,i)=>tblR(s,sm[s],tA,PAL[i%PAL.length])).join(''),tA);
 
-  const fm={};FIIS.forEach(f=>{fm[f.s]=(fm[f.s]||0)+f.v;});
+  const fm={};FIIS.forEach(f=>{const seg=(_FII_SI_MAP[f.s]||{}).s||f.s;fm[seg]=(fm[seg]||0)+f.v;});
   const fk=Object.keys(fm).sort((a,b)=>fm[b]-fm[a]);
   const FC=['#c8a84b','#2563eb','#ea580c','#16a34a','#64748b','#7c3aed'];
   document.getElementById('tbl-set-f').innerHTML=tblW('Segmento',fk.map((s,i)=>tblR(s,fm[s],tF,FC[i%FC.length])).join(''),tF);
