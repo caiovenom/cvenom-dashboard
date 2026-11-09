@@ -498,20 +498,20 @@ const META_FIIS_ANO  = META_FII_MES*12;
 const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 
-// ── DADOS ESTÁTICOS — atualizados planilha 09/11/2026 (2ª sync) ───────────────
+// ── DADOS ESTÁTICOS — atualizados planilha 09/11/2026 (3ª sync) ───────────────
 const ACOES=[
-  {s:'VALE3',p:65.98,pm:62.6,vuc:63.01,ms:13.67,q:2867,v:189164.66},
-  {s:'EGIE3',p:27.66,pm:28.01,vuc:28.0,ms:3.4,q:3514,v:97197.24},
+  {s:'VALE3',p:66.11,pm:62.6,vuc:63.01,ms:13.45,q:2867,v:189537.37},
+  {s:'EGIE3',p:27.71,pm:28.01,vuc:28.0,ms:3.21,q:3514,v:97372.94},
   {s:'TAEE11',p:41.08,pm:34.85,vuc:39.17,ms:15.21,q:3645,v:149736.6},
   {s:'ISAE4',p:26.8,pm:23.78,vuc:24.62,ms:6.64,q:6297,v:168759.6},
-  {s:'BBSE3',p:38.53,pm:32.22,vuc:34.01,ms:-7.86,q:5639,v:217270.67},
-  {s:'CXSE3',p:21.12,pm:15.28,vuc:17.83,ms:-11.46,q:11651,v:246069.12},
-  {s:'BBAS3',p:16.96,pm:21.95,vuc:16.21,ms:47.41,q:11678,v:198058.88},
+  {s:'BBSE3',p:38.59,pm:32.22,vuc:34.01,ms:-8.01,q:5639,v:217609.01},
+  {s:'CXSE3',p:21.15,pm:15.28,vuc:17.83,ms:-11.58,q:11651,v:246418.65},
+  {s:'BBAS3',p:17.02,pm:21.95,vuc:16.21,ms:46.89,q:11678,v:198759.56},
   {s:'ITSA4',p:13.4,pm:7.97,vuc:8.82,ms:-14.18,q:7603,v:101880.2},
-  {s:'BBDC3',p:13.39,pm:14.78,vuc:12.6,ms:30.17,q:10511,v:140742.29},
+  {s:'BBDC3',p:13.42,pm:14.78,vuc:12.6,ms:29.88,q:10511,v:141057.62},
   {s:'KLBN11',p:17.85,pm:18.0,vuc:16.67,ms:56.86,q:5048,v:90106.8},
   {s:'WEGE3',p:50.74,pm:29.42,vuc:33.24,ms:-27.08,q:482,v:24456.68},
-  {s:'VIVT3',p:32.06,pm:20.04,vuc:20.0,ms:7.86,q:1680,v:53860.8},
+  {s:'VIVT3',p:32.15,pm:20.04,vuc:20.0,ms:7.56,q:1680,v:54012.0},
   {s:'PETR4',p:45.19,pm:30.38,vuc:29.69,ms:-15.91,q:1763,v:79669.97}
 ];
 const FIIS=[
@@ -635,13 +635,13 @@ const MENSAIS=[
     {ano:'2026',m:'Nov/26',total:14204, fii:6400,acoes:7800, dolar:4},
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3213545.86}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3215949.35}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3213545.86;
-let CAIO = 2385096.56;
-let FATIMA = 828449.3;
+let PAT = 3215949.35;
+let CAIO = 2386897.27;
+let FATIMA = 829052.08;
 let RF = 514303.0;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
@@ -655,11 +655,11 @@ const INDICES_HOJE = {
 };
 let CAIXA = 13100.0;
 let ACOES_US = 63028.18;
-let PAT_CRESC_RS  = 433560.86;  // crescimento vs fechamento ano anterior
-let PAT_CRESC_PCT = 15.59;      // % crescimento vs fechamento ano anterior
+let PAT_CRESC_RS  = 435964.35;  // crescimento vs fechamento ano anterior
+let PAT_CRESC_PCT = 15.68;      // % crescimento vs fechamento ano anterior
 let PAT_CRESC_REF = 'jan/26';   // referência do início do período
-let PAT_ULT12M_RS  = 687493.97; // upside últimos 12 meses (out/25 → nov/26)
-let PAT_ULT12M_PCT = 27.21;      // % upside últimos 12 meses
+let PAT_ULT12M_RS  = 689897.46; // upside últimos 12 meses (out/25 → nov/26)
+let PAT_ULT12M_PCT = 27.31;      // % upside últimos 12 meses
 let PAT_ULT12M_REF = 'out/25';   // referência dos últimos 12m
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
