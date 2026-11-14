@@ -479,18 +479,18 @@ tbody tr:hover{background:#f9fafb;}
 <script>
 // ── DY PROJETIVO — declarado no topo para evitar TDZ no renderAll ─────────────
 const ACOES_DPA=[
-  {t:'VALE3', p:65.75, pm:62.53, q:2787.0, v:183245.25, teto:null, ms:14.07, vuc:50.15, s:'', pc:85.05, roe:null, dyp:65.75},
-  {t:'EGIE3', p:31.18, pm:28.01, q:3514.0, v:109566.52, teto:null, ms:-8.27, vuc:28.0, s:'', pc:32.5, roe:null, dyp:31.18},
-  {t:'TAEE11', p:45.92, pm:34.77, q:3531.0, v:162143.52, teto:null, ms:3.07, vuc:37.59, s:'', pc:37.1, roe:null, dyp:45.92},
-  {t:'ISAE4', p:28.7, pm:23.73, q:6085.0, v:174639.5, teto:null, ms:-0.42, vuc:26.6, s:'', pc:30.65, roe:null, dyp:28.7},
-  {t:'BBSE3', p:41.75, pm:32.22, q:5639.0, v:235428.25, teto:null, ms:-14.97, vuc:34.01, s:'', pc:36.0, roe:null, dyp:41.75},
-  {t:'CXSE3', p:21.15, pm:15.28, q:11651.0, v:246418.65, teto:null, ms:-11.58, vuc:17.83, s:'', pc:20.75, roe:null, dyp:21.15},
-  {t:'BBAS3', p:24.13, pm:22.17, q:11078.0, v:267312.14, teto:null, ms:3.61, vuc:20.76, s:'', pc:21.5, roe:null, dyp:24.13},
-  {t:'ITSA4', p:15.69, pm:7.97, q:7603.0, v:119291.07, teto:null, ms:-26.7, vuc:8.82, s:'', pc:16.25, roe:null, dyp:15.69},
+  {t:'VALE3', p:65.75, pm:62.53, q:2787.0, v:183245.25, teto:null, ms:14.07, vuc:50.15, s:'', pc:85.05, roe:null, dyp:8.71},
+  {t:'EGIE3', p:31.18, pm:28.01, q:3514.0, v:109566.52, teto:null, ms:-8.27, vuc:28.0, s:'', pc:32.5, roe:null, dyp:5.79},
+  {t:'TAEE11', p:45.92, pm:34.77, q:3531.0, v:162143.52, teto:null, ms:3.07, vuc:37.59, s:'', pc:37.1, roe:null, dyp:7.53},
+  {t:'ISAE4', p:28.7, pm:23.73, q:6085.0, v:174639.5, teto:null, ms:-0.42, vuc:26.6, s:'', pc:30.65, roe:null, dyp:7.97},
+  {t:'BBSE3', p:41.75, pm:32.22, q:5639.0, v:235428.25, teto:null, ms:-14.97, vuc:34.01, s:'', pc:36.0, roe:null, dyp:10.82},
+  {t:'CXSE3', p:21.15, pm:15.28, q:11651.0, v:246418.65, teto:null, ms:-11.58, vuc:17.83, s:'', pc:20.75, roe:null, dyp:6.68},
+  {t:'BBAS3', p:24.13, pm:22.17, q:11078.0, v:267312.14, teto:null, ms:3.61, vuc:20.76, s:'', pc:21.5, roe:null, dyp:4.80},
+  {t:'ITSA4', p:15.69, pm:7.97, q:7603.0, v:119291.07, teto:null, ms:-26.7, vuc:8.82, s:'', pc:16.25, roe:null, dyp:7.32},
   {t:'PETR4', p:58.53, pm:30.38, q:1763.0, v:103188.39, teto:null, ms:-35.08, vuc:29.69, s:'', pc:null, roe:null, dyp:null},
-  {t:'VIVT3', p:32.21, pm:20.04, q:1680.0, v:54112.8, teto:null, ms:7.36, vuc:20.0, s:'', pc:36.4, roe:null, dyp:32.21},
-  {t:'KLBN11', p:18.14, pm:18.0, q:5048.0, v:91570.72, teto:null, ms:54.35, vuc:16.67, s:'', pc:23.5, roe:null, dyp:18.14},
-  {t:'BBDC3', p:18.14, pm:15.15, q:7869.0, v:142743.66, teto:null, ms:-3.91, vuc:15.6, s:'', pc:22.0, roe:null, dyp:18.14},
+  {t:'VIVT3', p:32.21, pm:20.04, q:1680.0, v:54112.8, teto:null, ms:7.36, vuc:20.0, s:'', pc:36.4, roe:null, dyp:7.08},
+  {t:'KLBN11', p:18.14, pm:18.0, q:5048.0, v:91570.72, teto:null, ms:54.35, vuc:16.67, s:'', pc:23.5, roe:null, dyp:5.75},
+  {t:'BBDC3', p:18.14, pm:15.15, q:7869.0, v:142743.66, teto:null, ms:-3.91, vuc:15.6, s:'', pc:22.0, roe:null, dyp:9.67},
   {t:'WEGE3', p:47.57, pm:29.42, q:866.0, v:41195.62, teto:null, ms:-22.22, vuc:33.24, s:'', pc:null, roe:null, dyp:null},
 ];
 const META_FII_MES   = 10000;
@@ -549,20 +549,20 @@ const FII_SI=[
   {t:'TRXF11',p:71.9,chg:0.02,dy:12.22,pvp:96.62,teto:97.0,caixa:0,s:'Híbrido',cor:'#db2777'}
 ];
 const ACOES_SI=[
-  {t:'VALE3', p:65.75, pm:62.53, q:2787.0, v:183245.25, teto:75.0, ms:14.07, vuc:50.15, s:'Mineração', pc:85.05, roe:null, dyp:5.5353},
-  {t:'KLBN11', p:18.14, pm:18.0, q:5048.0, v:91570.72, teto:28.0, ms:54.35, vuc:16.67, s:'Papel/Cel.', pc:23.5, roe:null, dyp:1.0000},
-  {t:'BBAS3', p:24.13, pm:22.17, q:11078.0, v:267312.14, teto:25.0, ms:3.61, vuc:20.76, s:'Bancos', pc:21.5, roe:null, dyp:0.7250},
-  {t:'VIVT3', p:32.21, pm:20.04, q:1680.0, v:54112.8, teto:34.58, ms:7.36, vuc:20.0, s:'Telecom', pc:36.4, roe:null, dyp:2.4122},
-  {t:'ISAE4', p:28.7, pm:23.73, q:6085.0, v:174639.5, teto:28.58, ms:-0.42, vuc:26.6, s:'Elétrico', pc:30.65, roe:null, dyp:2.1231},
+  {t:'VALE3', p:65.75, pm:62.53, q:2787.0, v:183245.25, teto:75.0, ms:14.07, vuc:50.15, s:'Mineração', pc:85.05, roe:null, dyp:8.71},
+  {t:'KLBN11', p:18.14, pm:18.0, q:5048.0, v:91570.72, teto:28.0, ms:54.35, vuc:16.67, s:'Papel/Cel.', pc:23.5, roe:null, dyp:5.75},
+  {t:'BBAS3', p:24.13, pm:22.17, q:11078.0, v:267312.14, teto:25.0, ms:3.61, vuc:20.76, s:'Bancos', pc:21.5, roe:null, dyp:4.80},
+  {t:'VIVT3', p:32.21, pm:20.04, q:1680.0, v:54112.8, teto:34.58, ms:7.36, vuc:20.0, s:'Telecom', pc:36.4, roe:null, dyp:7.08},
+  {t:'ISAE4', p:28.7, pm:23.73, q:6085.0, v:174639.5, teto:28.58, ms:-0.42, vuc:26.6, s:'Elétrico', pc:30.65, roe:null, dyp:7.97},
   {t:'SAPR4',p:7.17,pm:3.58,q:2309,v:16555.53,teto:3.64,ms:-49.23,vuc:3.47,s:'Saneamento',cor:'#0369a1',sell:true},
-  {t:'ITSA4', p:15.69, pm:7.97, q:7603.0, v:119291.07, teto:11.5, ms:-26.7, vuc:8.82, s:'Bancos', pc:16.25, roe:null, dyp:1.0000},
-  {t:'EGIE3', p:31.18, pm:28.01, q:3514.0, v:109566.52, teto:28.6, ms:-8.27, vuc:28.0, s:'Elétrico', pc:32.5, roe:null, dyp:1.5200},
-  {t:'TAEE11', p:45.92, pm:34.77, q:3531.0, v:162143.52, teto:47.33, ms:3.07, vuc:37.59, s:'Elétrico', pc:37.1, roe:null, dyp:3.1700},
+  {t:'ITSA4', p:15.69, pm:7.97, q:7603.0, v:119291.07, teto:11.5, ms:-26.7, vuc:8.82, s:'Bancos', pc:16.25, roe:null, dyp:7.32},
+  {t:'EGIE3', p:31.18, pm:28.01, q:3514.0, v:109566.52, teto:28.6, ms:-8.27, vuc:28.0, s:'Elétrico', pc:32.5, roe:null, dyp:5.79},
+  {t:'TAEE11', p:45.92, pm:34.77, q:3531.0, v:162143.52, teto:47.33, ms:3.07, vuc:37.59, s:'Elétrico', pc:37.1, roe:null, dyp:7.53},
   {t:'PETR4', p:58.53, pm:30.38, q:1763.0, v:103188.39, teto:38.0, ms:-35.08, vuc:29.69, s:'Petróleo', pc:null, roe:null, dyp:null},
-  {t:'CXSE3', p:21.15, pm:15.28, q:11651.0, v:246418.65, teto:18.7, ms:-11.58, vuc:17.83, s:'Seguridade', pc:20.75, roe:null, dyp:1.4263},
+  {t:'CXSE3', p:21.15, pm:15.28, q:11651.0, v:246418.65, teto:18.7, ms:-11.58, vuc:17.83, s:'Seguridade', pc:20.75, roe:null, dyp:6.68},
   {t:'WEGE3', p:47.57, pm:29.42, q:866.0, v:41195.62, teto:37.0, ms:-22.22, vuc:33.24, s:'Bens Ind.', pc:null, roe:null, dyp:null},
-  {t:'BBSE3', p:41.75, pm:32.22, q:5639.0, v:235428.25, teto:35.5, ms:-14.97, vuc:34.01, s:'Seguridade', pc:36.0, roe:null, dyp:4.0404},
-  {t:'BBDC3', p:19.02, pm:15.15, q:7869.0, v:149668.38, teto:17.43, ms:-8.3596, vuc:15.6, s:'Bancos', pc:22.0, roe:null, dyp:1.3005}
+  {t:'BBSE3', p:41.75, pm:32.22, q:5639.0, v:235428.25, teto:35.5, ms:-14.97, vuc:34.01, s:'Seguridade', pc:36.0, roe:null, dyp:10.82},
+  {t:'BBDC3', p:19.02, pm:15.15, q:7869.0, v:149668.38, teto:17.43, ms:-8.3596, vuc:15.6, s:'Bancos', pc:22.0, roe:null, dyp:9.67}
 ];
 const ANUAL=[
   {ano:'2020',total:8640,   fii:7633,  acoes:1007,  dolar:0},
