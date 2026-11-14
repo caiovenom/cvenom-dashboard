@@ -2311,6 +2311,18 @@ const RENDA_PROJ = {
   ]
 };
 
+/* ===== CVENOM ® HOLDING — tabela agrupada e recolhível ===== */
+#rp-body .rp-grp{cursor:pointer;background:#fafafa;border-top:1px solid var(--border);}
+#rp-body .rp-grp:hover{background:#f2f4f7;}
+#rp-body .rp-grp td{padding-top:13px;padding-bottom:13px;}
+.rp-caret{display:inline-block;width:14px;color:var(--muted);font-size:10px;}
+.rp-gname{font-weight:800;color:var(--brand);font-size:13.5px;letter-spacing:-.2px;}
+.rp-gcount{font-size:11px;color:var(--muted);margin-left:8px;font-weight:500;}
+.rp-gmut{font-size:11.5px;color:var(--muted);}
+#rp-body .rp-row td:first-child{padding-left:32px;}
+#rp-body .rp-row{background:var(--card);}
+.rp-open{font-size:10.5px;color:#2563eb;font-weight:600;}
+
 /* ===== RENDA PROJETADA — render ===== */
 (function(){
   const A=RENDA_PROJ.ativos.map(a=>({...a,v:a.q*a.d})).sort((x,y)=>y.v-x.v);
@@ -2331,17 +2343,39 @@ const RENDA_PROJ = {
       <div class="prov-val">${(sum('acao')/TOT*100).toFixed(0)}% / ${(sum('fii')/TOT*100).toFixed(0)}%</div>
       <div class="prov-sub">${brl(sum('acao'))} · ${brl(sum('fii'))}</div></div>`;
   const mx=A[0].v;
-  document.getElementById('rp-body').innerHTML=A.map(a=>`<tr>
-    <td style="text-align:left"><span class="rp-tick">${a.t}</span><span class="rp-kind ${a.k}">${a.k==='acao'?'ação':a.k==='fii'?'fii':'us$'}</span>${a.w?`<span class="rp-warn" title="${a.w}">⚠</span>`:''}</td>
+  const GRP=[{k:'acao',lab:'Ações'},{k:'fii',lab:'FIIs'},{k:'usd',lab:'Dólar'}];
+  const row=a=>`<tr class="rp-row rp-of-${a.k}" hidden>
+    <td style="text-align:left"><span class="rp-tick">${a.t}</span>${a.w?`<span class="rp-warn" title="${a.w}">⚠</span>`:''}</td>
     <td style="text-align:right">${a.k==='usd'?'—':a.q.toLocaleString('pt-BR')}</td>
     <td style="text-align:right">${a.k==='usd'?'—':'R$ '+a.d.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:4})}</td>
     <td style="text-align:right;font-weight:700">${brl(a.v)}</td>
     <td style="text-align:left"><span class="rp-bar-wrap"><span class="rp-bar-fill ${a.k}" style="width:${a.v/mx*100}%;display:block"></span></span><span class="rp-pct">${(a.v/TOT*100).toFixed(1)}%</span></td>
-    <td style="text-align:right"><span class="rp-src ${a.f==='AGF'?'agf':a.f==='guid'?'guid':''}">${a.f}</span></td>
-  </tr>`).join('')+`<tr class="yr-row" style="cursor:default">
+    <td style="text-align:right"><span class="rp-src ${a.f==='AGF'?'agf':a.f==='guid'?'guid':''}">${a.f}</span></td></tr>`;
+  let H='';
+  GRP.forEach(g=>{
+    const L=A.filter(a=>a.k===g.k); if(!L.length)return;
+    const v=L.reduce((s,a)=>s+a.v,0);
+    H+=`<tr class="rp-grp" data-k="${g.k}">
+      <td style="text-align:left"><span class="rp-caret">&#9656;</span><span class="rp-gname">${g.lab}</span><span class="rp-gcount">${L.length} ativo${L.length>1?'s':''}</span></td>
+      <td style="text-align:right" class="rp-gmut">${brl(v/12)}/mês</td>
+      <td></td>
+      <td style="text-align:right;font-weight:800">${brl(v)}</td>
+      <td style="text-align:left"><span class="rp-bar-wrap"><span class="rp-bar-fill ${g.k}" style="width:${v/TOT*100}%;display:block"></span></span><span class="rp-pct">${(v/TOT*100).toFixed(1)}%</span></td>
+      <td style="text-align:right"><span class="rp-open">abrir</span></td></tr>`+L.map(row).join('');
+  });
+  H+=`<tr class="yr-row" style="cursor:default">
     <td style="text-align:left">TOTAL</td><td></td><td></td>
     <td style="text-align:right">${brl(TOT)}</td>
     <td style="text-align:left">${brl(MES)}/mês</td><td></td></tr>`;
+  document.getElementById('rp-body').innerHTML=H;
+  document.querySelectorAll('#rp-body .rp-grp').forEach(tr=>{
+    tr.addEventListener('click',()=>{
+      const op=tr.classList.toggle('open');
+      tr.querySelector('.rp-caret').innerHTML=op?'&#9662;':'&#9656;';
+      tr.querySelector('.rp-open').textContent=op?'fechar':'abrir';
+      document.querySelectorAll('#rp-body .rp-of-'+tr.dataset.k).forEach(r=>r.hidden=!op);
+    });
+  });
   const nw=A.filter(a=>a.w).length;
   document.getElementById('rp-foot').innerHTML=
     `Atualizado em <strong>${RENDA_PROJ.atualizado}</strong>.`;
