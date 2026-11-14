@@ -431,6 +431,75 @@ tbody tr:hover{background:#f9fafb;}
 .mes-chip{display:inline-flex;align-items:center;gap:3px;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:600;}
 .mes-chip.buy{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
 .mes-chip.sell{background:#fef2f2;color:var(--red);border:1px solid #fecaca;}
+
+/* ===== FATURAMENTO — alinhado à linguagem da aba Carteira ===== */
+
+/* 1. Cards do topo: mesma anatomia do .card da Carteira */
+.prov-card{
+  background:var(--card);border-radius:var(--r);padding:20px 22px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid var(--border);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+}
+.prov-card::before{display:none}
+
+.prov-label{
+  font-size:12px;color:var(--brand);font-weight:600;margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:8px;min-height:2.6em;line-height:1.3;
+}
+.prov-label::before{
+  content:'';display:block;width:3px;height:13px;background:var(--brand);
+  border-radius:2px;flex-shrink:0;margin-top:2px;
+}
+.prov-val{
+  font-size:17px;font-weight:800;color:#2563eb;letter-spacing:-.4px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px;
+}
+.prov-sub{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:0;}
+.prov-sub strong,.prov-sub b{color:var(--cyan);font-weight:600;}
+
+/* variantes pintam o VALOR, igual ao .card */
+.prov-card.gold   .prov-val{color:var(--gold);}
+.prov-card.green  .prov-val{color:var(--green);}
+.prov-card.blue   .prov-val{color:#2563eb;}
+.prov-card.purple .prov-val{color:#7c3aed;}
+.prov-card.red .prov-val,.prov-card.orange .prov-val{color:var(--orange);}
+
+/* 2. Barras de meta: título com o mesmo acento do .chart-title */
+.prog-wrap{padding:20px 22px;margin-bottom:14px;}
+.prog-wrap+.prog-wrap{margin-top:0;}
+.prog-label{
+  font-size:14px;font-weight:700;color:var(--brand);
+  text-transform:none;letter-spacing:-.2px;margin-bottom:14px;
+  display:flex;align-items:center;gap:9px;
+}
+.prog-label::before{
+  content:'';display:block;width:3px;height:18px;background:var(--brand);
+  border-radius:2px;flex-shrink:0;
+}
+.prog-track{height:6px;background:#ebebeb;margin-bottom:8px;}
+.prog-row{font-size:11.5px;}
+
+/* 3. Cards de projeção: mesma anatomia, alinhados à esquerda */
+.proj-card{
+  padding:20px 22px;text-align:left;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.proj-year{
+  font-size:12px;color:var(--brand);font-weight:600;margin-bottom:10px;
+  text-transform:none;letter-spacing:0;
+  display:flex;align-items:center;gap:8px;
+}
+.proj-year::before{
+  content:'';display:block;width:3px;height:13px;background:var(--brand);
+  border-radius:2px;flex-shrink:0;
+}
+.proj-val{
+  font-size:17px;font-weight:800;letter-spacing:-.4px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px;
+}
+.proj-month{font-size:11.5px;color:var(--muted);margin-top:0;}
+.proj-bar-wrap{margin-top:10px;}
+.proj-meta{font-size:11.5px;color:var(--muted);margin-top:6px;}
 </style>
 
 <div class="sec">Movimentações · últ. 12 meses</div>
