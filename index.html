@@ -565,6 +565,18 @@ tbody tr:hover{background:#f9fafb;}
 .rp-foot{font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;
   padding-top:13px;border-top:1px solid var(--border);}
 
+/* ===== PALETA SÓBRIA — número principal em preto, cor só onde há dado ===== */
+/* Regra do Kinvo: o valor de destaque é #0a0a0a. A cor fica reservada
+   para séries de gráfico, barras de progresso e sinal negativo.        */
+.card-value,
+.prov-val,
+#rp-hero .prov-val,
+#prov-hero .prov-val{color:var(--brand)!important;}
+.prov-sub strong,
+.card-sub strong{color:var(--brand)!important;}
+/* negativo continua vermelho */
+.prov-val.neg,.card-value.neg,.neg{color:#eb3d47!important;}
+
 /* ===== CVENOM ® HOLDING — tabela agrupada e recolhível ===== */
 #rp-body .rp-grp{cursor:pointer;background:#fafafa;border-top:1px solid var(--border);}
 #rp-body .rp-grp:hover{background:#f2f4f7;}
