@@ -1062,18 +1062,6 @@ function sortAcoesTable(key,thEl){
     document.getElementById('acoes-body').innerHTML=sorted.map(renderAcaoRow).join('');
     return;
   }
-  if(key==='dyp'){va=a.dyp||0;vb=b.dyp||0;}
-  else if(key==='ppc'){
-    const sorted=[...ACOES].sort((a,b)=>{
-      const pa=a.pc?(1-a.p/a.pc)*100:null;
-      const pb=b.pc?(1-b.p/b.pc)*100:null;
-      if(pa==null)return TBL_SORT.a.d;
-      if(pb==null)return -TBL_SORT.a.d;
-      return (pa-pb)*TBL_SORT.a.d;
-    });
-    document.getElementById('acoes-body').innerHTML=sorted.map(renderAcaoRow).join('');
-    return;
-  }
   document.getElementById('acoes-body').innerHTML=tblSortBy(ACOES,key,TBL_SORT.a.d).map(renderAcaoRow).join('');
 }
 function sortFiisTable(key,thEl){
