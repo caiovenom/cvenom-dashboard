@@ -1388,7 +1388,7 @@ function renderProventos(){
 
   const projs=[{ano:'2026*',v:proj2026},{ano:'2027',v:proj2026*1.17},{ano:'2028',v:proj2026*1.17**2},{ano:'2029',v:proj2026*1.17**3},{ano:'2030',v:proj2026*1.17**4}];
   const maxP=projs[projs.length-1].v;
-  document.getElementById('proj-grid').innerHTML=projs.map(p=>{
+  const _pg=document.getElementById('proj-grid');if(_pg)_pg.innerHTML=projs.map(p=>{
     const ok=p.v/12>=META_PROV_MENSAL;
     return`<div class="proj-card" style="${ok?'border-color:var(--green)':''}">
       <div class="proj-year">${p.ano}</div>
