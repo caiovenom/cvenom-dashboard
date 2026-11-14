@@ -353,6 +353,22 @@ tbody tr:hover{background:#f9fafb;}
     <div class="chart-wrap"><div class="chart-title">Evolução Anual de Proventos</div><canvas id="chartAnual" height="200"></canvas></div>
     <div class="chart-wrap"><div class="chart-title">Últimos 12 Meses</div><canvas id="chartMensal" height="200"></canvas></div>
   </div>
+  <div class="sec">Renda Projetada — Próximos 12 Meses</div>
+  <div class="prov-hero" id="rp-hero"></div>
+  <div class="chart-wrap" style="margin-bottom:16px">
+    <div class="chart-title">De onde vem a renda</div>
+    <div class="rp-tbl-wrap">
+      <table class="prov-table rp-table">
+        <thead><tr>
+          <th style="text-align:left">Ativo</th><th>Qtde</th><th>DPA / Rend. ano</th>
+          <th>Renda/ano</th><th style="text-align:left">% do total</th><th>Fonte</th>
+        </tr></thead>
+        <tbody id="rp-body"></tbody>
+      </table>
+    </div>
+    <div class="rp-foot" id="rp-foot"></div>
+  </div>
+
   <div class="sec">Projeções Futuras (~17% a.a.)</div>
   <div class="proj-grid" id="proj-grid"></div>
   <div class="sec">Histórico Mensal Completo</div>
@@ -500,6 +516,28 @@ tbody tr:hover{background:#f9fafb;}
 .proj-month{font-size:11.5px;color:var(--muted);margin-top:0;}
 .proj-bar-wrap{margin-top:10px;}
 .proj-meta{font-size:11.5px;color:var(--muted);margin-top:6px;}
+
+/* ===== RENDA PROJETADA ===== */
+.rp-tbl-wrap{overflow-x:auto;}
+.rp-table td,.rp-table th{white-space:nowrap;}
+.rp-table .rp-tick{font-weight:700;color:var(--brand);}
+.rp-table .rp-kind{font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+  padding:2px 6px;border-radius:20px;margin-left:7px;vertical-align:middle;}
+.rp-kind.acao{background:#ede9fe;color:#7c3aed;}
+.rp-kind.fii{background:#cffafe;color:#0e7490;}
+.rp-kind.usd{background:#dcfce7;color:#15803d;}
+.rp-bar-wrap{background:#efefef;border-radius:20px;height:6px;width:120px;overflow:hidden;display:inline-block;vertical-align:middle;}
+.rp-bar-fill{height:6px;border-radius:20px;background:#2563eb;}
+.rp-bar-fill.fii{background:var(--cyan);}
+.rp-bar-fill.usd{background:var(--green);}
+.rp-pct{font-size:11px;color:var(--muted);margin-left:9px;font-variant-numeric:tabular-nums;}
+.rp-src{font-size:9px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;background:#f4f4f4;color:var(--muted);}
+.rp-src.agf{background:#dbeafe;color:#1d4ed8;}
+.rp-src.guid{background:#dcfce7;color:#15803d;}
+.rp-warn{color:var(--orange);font-size:11px;margin-left:6px;}
+.rp-foot{font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;
+  padding-top:13px;border-top:1px solid var(--border);}
 </style>
 
 <div class="sec">Movimentações · últ. 12 meses</div>
@@ -2180,6 +2218,84 @@ window.toggleMes=function(id){
 }; // end renderAportes
 })();
 
+
+/* ===== RENDA PROJETADA — PRÓXIMOS 12 MESES =====
+   ATUALIZAÇÃO SEMANAL: troque somente o array abaixo.
+   d = DPA projetivo (ações) ou rendimento anual por cota (FIIs)
+   f = fonte  | w = alerta (cobertura abaixo de 100%)                     */
+const RENDA_PROJ = {
+  atualizado:'14/11/2026',
+  ativos:[
+    {t:'BBSE3', k:'acao',q:5639, d:4.0404,f:'AGF'},
+    {t:'VALE3', k:'acao',q:2867, d:5.5353,f:'AGF'},
+    {t:'BBDC3', k:'acao',q:11111,d:1.3005,f:'AGF'},
+    {t:'ISAE4', k:'acao',q:6297, d:2.1231,f:'AGF'},
+    {t:'TAEE11',k:'acao',q:3645, d:3.1900,f:'AGF'},
+    {t:'CXSE3', k:'acao',q:11651,d:1.7500,f:'est'},
+    {t:'ITSA4', k:'acao',q:7603, d:0.9500,f:'est'},
+    {t:'PETR4', k:'acao',q:1763, d:4.5000,f:'est'},
+    {t:'EGIE3', k:'acao',q:3514, d:1.9000,f:'est'},
+    {t:'BBAS3', k:'acao',q:11678,d:0.4500,f:'est',w:'guidance cortado 50%'},
+    {t:'KLBN11',k:'acao',q:5048, d:0.9000,f:'est'},
+    {t:'VIVT3', k:'acao',q:1680, d:2.2000,f:'est'},
+    {t:'WEGE3', k:'acao',q:272,  d:0.6700,f:'est'},
+    {t:'TRXF11',k:'fii', q:925,  d:11.16, f:'guid',w:'cobertura 68%'},
+    {t:'RECR11',k:'fii', q:757,  d:12.07, f:'méd6m',w:'2 CRIs repactuação'},
+    {t:'PMLL11',k:'fii', q:660,  d:12.31, f:'méd3m'},
+    {t:'XPML11',k:'fii', q:690,  d:11.23, f:'méd3m'},
+    {t:'BTLG11',k:'fii', q:712,  d:9.72,  f:'guid'},
+    {t:'MCCI11',k:'fii', q:514,  d:12.00, f:'guid'},
+    {t:'VGIP11',k:'fii', q:725,  d:8.32,  f:'méd6m'},
+    {t:'BTHF11',k:'fii', q:4252, d:1.20,  f:'guid'},
+    {t:'HGRU11',k:'fii', q:436,  d:11.40, f:'méd3m'},
+    {t:'HGLG11',k:'fii', q:305,  d:13.38, f:'méd3m'},
+    {t:'IRIM11',k:'fii', q:431,  d:9.31,  f:'méd3m',w:'Suno encerrou'},
+    {t:'VISC11',k:'fii', q:243,  d:10.08, f:'méd3m'},
+    {t:'LVBI11',k:'fii', q:278,  d:8.52,  f:'méd3m'},
+    {t:'KNRI11',k:'fii', q:161,  d:13.20, f:'méd3m'},
+    {t:'PVBI11',k:'fii', q:86,   d:4.63,  f:'méd3m'},
+    {t:'US$',   k:'usd', q:1,    d:900,   f:'méd12m'},
+  ]
+};
+
+/* ===== RENDA PROJETADA — render ===== */
+(function(){
+  const A=RENDA_PROJ.ativos.map(a=>({...a,v:a.q*a.d})).sort((x,y)=>y.v-x.v);
+  const TOT=A.reduce((s,a)=>s+a.v,0), MES=TOT/12, META=40000;
+  const sum=k=>A.filter(a=>a.k===k).reduce((s,a)=>s+a.v,0);
+  const h=document.getElementById('rp-hero'); if(!h)return;
+  h.innerHTML=`
+    <div class="prov-card purple"><div class="prov-label">Renda Projetada 12m</div>
+      <div class="prov-val" style="color:#7c3aed">${brl(TOT)}</div>
+      <div class="prov-sub">carteira de hoje, sem novos aportes</div></div>
+    <div class="prov-card blue"><div class="prov-label">Por Mês</div>
+      <div class="prov-val">${brl(MES)}</div>
+      <div class="prov-sub">vs. média 2026 de ${brl(159661/11)}</div></div>
+    <div class="prov-card green"><div class="prov-label">Meta R$40k/mês</div>
+      <div class="prov-val" style="color:var(--green)">${(MES/META*100).toFixed(1)}%</div>
+      <div class="prov-sub">faltam <strong>${brl(META-MES)}</strong>/mês</div></div>
+    <div class="prov-card blue"><div class="prov-label">Ações / FIIs</div>
+      <div class="prov-val">${(sum('acao')/TOT*100).toFixed(0)}% / ${(sum('fii')/TOT*100).toFixed(0)}%</div>
+      <div class="prov-sub">${brl(sum('acao'))} · ${brl(sum('fii'))}</div></div>`;
+  const mx=A[0].v;
+  document.getElementById('rp-body').innerHTML=A.map(a=>`<tr>
+    <td style="text-align:left"><span class="rp-tick">${a.t}</span><span class="rp-kind ${a.k}">${a.k==='acao'?'ação':a.k==='fii'?'fii':'us$'}</span>${a.w?`<span class="rp-warn" title="${a.w}">⚠</span>`:''}</td>
+    <td style="text-align:right">${a.k==='usd'?'—':a.q.toLocaleString('pt-BR')}</td>
+    <td style="text-align:right">${a.k==='usd'?'—':'R$ '+a.d.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:4})}</td>
+    <td style="text-align:right;font-weight:700">${brl(a.v)}</td>
+    <td style="text-align:left"><span class="rp-bar-wrap"><span class="rp-bar-fill ${a.k}" style="width:${a.v/mx*100}%;display:block"></span></span><span class="rp-pct">${(a.v/TOT*100).toFixed(1)}%</span></td>
+    <td style="text-align:right"><span class="rp-src ${a.f==='AGF'?'agf':a.f==='guid'?'guid':''}">${a.f}</span></td>
+  </tr>`).join('')+`<tr class="yr-row" style="cursor:default">
+    <td style="text-align:left">TOTAL</td><td></td><td></td>
+    <td style="text-align:right">${brl(TOT)}</td>
+    <td style="text-align:left">${brl(MES)}/mês</td><td></td></tr>`;
+  const nw=A.filter(a=>a.w).length;
+  document.getElementById('rp-foot').innerHTML=
+    `<strong>Fontes:</strong> AGF = DPA projetivo AGF+ · GUID = guidance do gestor · MÉD3M/MÉD6M = média de rendimentos · EST = estimativa própria.<br>
+     Ações usam DPA projetivo de 12 meses à frente; FIIs de papel usam média de 6 meses (não linearizam rendimento); FIIs de tijolo, média de 3 meses.<br>
+     <span style="color:var(--orange)">⚠ ${nw} ativos com ressalva</span> — distribuição acima do resultado, crédito em repactuação ou recomendação encerrada.<br>
+     Atualizado em <strong>${RENDA_PROJ.atualizado}</strong>.`;
+})();
 
 </script>
 </body>
