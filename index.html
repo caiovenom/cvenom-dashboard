@@ -564,6 +564,18 @@ tbody tr:hover{background:#f9fafb;}
 .rp-warn{color:var(--orange);font-size:11px;margin-left:6px;}
 .rp-foot{font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;
   padding-top:13px;border-top:1px solid var(--border);}
+
+/* ===== CVENOM ® HOLDING — tabela agrupada e recolhível ===== */
+#rp-body .rp-grp{cursor:pointer;background:#fafafa;border-top:1px solid var(--border);}
+#rp-body .rp-grp:hover{background:#f2f4f7;}
+#rp-body .rp-grp td{padding-top:13px;padding-bottom:13px;}
+.rp-caret{display:inline-block;width:14px;color:var(--muted);font-size:10px;}
+.rp-gname{font-weight:800;color:var(--brand);font-size:13.5px;letter-spacing:-.2px;}
+.rp-gcount{font-size:11px;color:var(--muted);margin-left:8px;font-weight:500;}
+.rp-gmut{font-size:11.5px;color:var(--muted);}
+#rp-body .rp-row td:first-child{padding-left:32px;}
+#rp-body .rp-row{background:var(--card);}
+.rp-open{font-size:10.5px;color:#2563eb;font-weight:600;}
 </style>
 
 <div class="sec">Movimentações · últ. 12 meses</div>
@@ -2310,18 +2322,6 @@ const RENDA_PROJ = {
     {t:'US$',   k:'usd', q:1,    d:900,   f:'méd12m'},
   ]
 };
-
-/* ===== CVENOM ® HOLDING — tabela agrupada e recolhível ===== */
-#rp-body .rp-grp{cursor:pointer;background:#fafafa;border-top:1px solid var(--border);}
-#rp-body .rp-grp:hover{background:#f2f4f7;}
-#rp-body .rp-grp td{padding-top:13px;padding-bottom:13px;}
-.rp-caret{display:inline-block;width:14px;color:var(--muted);font-size:10px;}
-.rp-gname{font-weight:800;color:var(--brand);font-size:13.5px;letter-spacing:-.2px;}
-.rp-gcount{font-size:11px;color:var(--muted);margin-left:8px;font-weight:500;}
-.rp-gmut{font-size:11.5px;color:var(--muted);}
-#rp-body .rp-row td:first-child{padding-left:32px;}
-#rp-body .rp-row{background:var(--card);}
-.rp-open{font-size:10.5px;color:#2563eb;font-weight:600;}
 
 /* ===== RENDA PROJETADA — render ===== */
 (function(){
