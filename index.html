@@ -2291,10 +2291,7 @@ const RENDA_PROJ = {
     <td style="text-align:left">${brl(MES)}/mês</td><td></td></tr>`;
   const nw=A.filter(a=>a.w).length;
   document.getElementById('rp-foot').innerHTML=
-    `<strong>Fontes:</strong> AGF = DPA projetivo AGF+ · GUID = guidance do gestor · MÉD3M/MÉD6M = média de rendimentos · EST = estimativa própria.<br>
-     Ações usam DPA projetivo de 12 meses à frente; FIIs de papel usam média de 6 meses (não linearizam rendimento); FIIs de tijolo, média de 3 meses.<br>
-     <span style="color:var(--orange)">⚠ ${nw} ativos com ressalva</span> — distribuição acima do resultado, crédito em repactuação ou recomendação encerrada.<br>
-     Atualizado em <strong>${RENDA_PROJ.atualizado}</strong>.`;
+    `Atualizado em <strong>${RENDA_PROJ.atualizado}</strong>.`;
 })();
 
 </script>
