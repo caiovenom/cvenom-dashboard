@@ -2301,43 +2301,43 @@ window.toggleMes=function(id){
    d = DPA projetivo (ações) ou rendimento anual por cota (FIIs)
    f = fonte  | w = alerta (cobertura abaixo de 100%)                     */
 const RENDA_PROJ = {
-  atualizado:'14/11/2026',
+  atualizado:'16/11/2026',
   ativos:[
-    {t:'BBSE3', k:'acao',q:5639, d:4.0404,f:'AGF'},
-    {t:'VALE3', k:'acao',q:2867, d:5.5353,f:'AGF'},
-    {t:'BBDC3', k:'acao',q:11560,d:1.3005,f:'AGF'},
-    {t:'ISAE4', k:'acao',q:6297, d:2.1231,f:'AGF'},
-    {t:'TAEE11',k:'acao',q:3645, d:3.1900,f:'AGF'},
-    {t:'CXSE3', k:'acao',q:11651,d:1.7500,f:'est'},
-    {t:'ITSA4', k:'acao',q:7603, d:0.9500,f:'est'},
-    {t:'PETR4', k:'acao',q:1763, d:4.5000,f:'est'},
-    {t:'EGIE3', k:'acao',q:3514, d:1.9000,f:'est'},
-    {t:'BBAS3', k:'acao',q:11678,d:0.4500,f:'est',w:'guidance cortado 50%'},
-    {t:'KLBN11',k:'acao',q:5048, d:0.9000,f:'est'},
-    {t:'VIVT3', k:'acao',q:1680, d:2.2000,f:'est'},
-    {t:'WEGE3', k:'acao',q:272,  d:0.6700,f:'est'},
-    {t:'TRXF11',k:'fii', q:925,  d:11.16, f:'guid',w:'cobertura 68%'},
-    {t:'RECR11',k:'fii', q:757,  d:12.07, f:'méd6m',w:'2 CRIs repactuação'},
-    {t:'PMLL11',k:'fii', q:660,  d:12.31, f:'méd3m'},
-    {t:'XPML11',k:'fii', q:690,  d:11.23, f:'méd3m'},
-    {t:'BTLG11',k:'fii', q:712,  d:9.72,  f:'guid'},
-    {t:'MCCI11',k:'fii', q:514,  d:12.00, f:'guid'},
-    {t:'VGIP11',k:'fii', q:756,  d:8.32,  f:'méd6m'},
-    {t:'BTHF11',k:'fii', q:4252, d:1.20,  f:'guid'},
-    {t:'HGRU11',k:'fii', q:436,  d:11.40, f:'méd3m'},
-    {t:'HGLG11',k:'fii', q:305,  d:13.38, f:'méd3m'},
-    {t:'IRIM11',k:'fii', q:431,  d:9.31,  f:'méd3m',w:'Suno encerrou'},
-    {t:'VISC11',k:'fii', q:243,  d:10.08, f:'méd3m'},
-    {t:'LVBI11',k:'fii', q:278,  d:8.52,  f:'méd3m'},
-    {t:'KNRI11',k:'fii', q:161,  d:13.20, f:'méd3m'},
-    {t:'PVBI11',k:'fii', q:86,   d:4.63,  f:'méd3m'},
-    {t:'US$',   k:'usd', q:1,    d:900,   f:'méd12m'},
+    {t:'BBSE3',  k:'acao', qc:4050, qf:1589,d:4.0404, f:'AGF'},
+    {t:'CXSE3',  k:'acao', qc:7692, qf:3959,d:1.3821, f:'12m',w:'payout 87%'},
+    {t:'VALE3',  k:'acao', qc:2230, qf:637, d:5.5353, f:'AGF'},
+    {t:'BBDC3',  k:'acao', qc:8264, qf:3296,d:1.3005, f:'AGF'},
+    {t:'ISAE4',  k:'acao', qc:4855, qf:1442,d:2.1231, f:'AGF'},
+    {t:'TAEE11', k:'acao', qc:2751, qf:894, d:3.19,   f:'AGF'},
+    {t:'ITSA4',  k:'acao', qc:7055, qf:686, d:1.1267, f:'12m'},
+    {t:'PETR4',  k:'acao', qc:1139, qf:624, d:3.5272, f:'12m',w:'ciclico'},
+    {t:'BBAS3',  k:'acao', qc:8705, qf:2973,d:0.45,   f:'est',w:'payout no minimo ate 2027'},
+    {t:'KLBN11', k:'acao', qc:4055, qf:993, d:0.906,  f:'12m',w:'payout 349%'},
+    {t:'EGIE3',  k:'acao', qc:3050, qf:464, d:1.088,  f:'12m',w:'DPA caiu 2,67>1,76>1,09'},
+    {t:'VIVT3',  k:'acao', qc:1520, qf:160, d:1.3248, f:'12m',w:'payout 112%'},
+    {t:'WEGE3',  k:'acao', qc:272,  qf:0,   d:1.9676, f:'12m',w:'DY 12m inflado; posicao em saida'},
+    {t:'TRXF11', k:'fii',  qc:680,  qf:245, d:11.16,  f:'guid',w:'cobertura 68%'},
+    {t:'RECR11', k:'fii',  qc:594,  qf:163, d:12.07,  f:'med6m',w:'2 CRIs repactuacao'},
+    {t:'PMLL11', k:'fii',  qc:612,  qf:48,  d:12.31,  f:'med3m'},
+    {t:'XPML11', k:'fii',  qc:566,  qf:124, d:11.23,  f:'med3m'},
+    {t:'BTLG11', k:'fii',  qc:550,  qf:162, d:9.72,   f:'guid'},
+    {t:'VGIP11', k:'fii',  qc:575,  qf:181, d:8.32,   f:'med6m'},
+    {t:'MCCI11', k:'fii',  qc:445,  qf:69,  d:12.0,   f:'guid'},
+    {t:'BTHF11', k:'fii',  qc:3724, qf:528, d:1.2,    f:'guid'},
+    {t:'HGRU11', k:'fii',  qc:365,  qf:71,  d:11.4,   f:'med3m'},
+    {t:'HGLG11', k:'fii',  qc:282,  qf:23,  d:13.38,  f:'med3m'},
+    {t:'IRIM11', k:'fii',  qc:390,  qf:41,  d:9.31,   f:'med3m',w:'Suno encerrou'},
+    {t:'VISC11', k:'fii',  qc:206,  qf:37,  d:10.08,  f:'med3m'},
+    {t:'LVBI11', k:'fii',  qc:219,  qf:59,  d:8.52,   f:'med3m'},
+    {t:'KNRI11', k:'fii',  qc:139,  qf:22,  d:13.2,   f:'med3m'},
+    {t:'PVBI11', k:'fii',  qc:0,    qf:86,  d:4.63,   f:'med3m'},
+    {t:'US$',    k:'usd',  qc:1,    qf:0,   d:900,    f:'med12m'},
   ]
 };
 
 /* ===== RENDA PROJETADA — render ===== */
 (function(){
-  const A=RENDA_PROJ.ativos.map(a=>({...a,v:a.q*a.d})).sort((x,y)=>y.v-x.v);
+  const A=RENDA_PROJ.ativos.map(a=>({...a,q:(a.qc||0)+(a.qf||0),v:((a.qc||0)+(a.qf||0))*a.d})).sort((x,y)=>y.v-x.v);
   const TOT=A.reduce((s,a)=>s+a.v,0), MES=TOT/12, META=40000;
   const sum=k=>A.filter(a=>a.k===k).reduce((s,a)=>s+a.v,0);
   const h=document.getElementById('rp-hero'); if(!h)return;
