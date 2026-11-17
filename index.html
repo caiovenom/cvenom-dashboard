@@ -1468,10 +1468,7 @@ function renderProventos(){
     });
   });
   document.getElementById('prov-body').innerHTML=h;
-  // Abrir o ano mais recente por padrão
   const lastYr=anos[anos.length-1];
-  document.querySelector(`.yr-row[data-yr="${lastYr}"]`)?.classList.add('open');
-  document.querySelectorAll(`.mo-row[data-yr="${lastYr}"]`).forEach(r=>r.classList.add('visible'));
 
   mkC('chartAnual',{type:'bar',data:{labels:ANUAL.map(a=>a.ano+(a.parcial?'*':'')),datasets:[
     {label:'FIIs', data:ANUAL.map(a=>a.fii), backgroundColor:'rgba(0,180,216,.8)',borderRadius:4},
