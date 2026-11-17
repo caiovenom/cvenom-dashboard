@@ -306,8 +306,8 @@ tbody tr:hover{background:#f9fafb;}
     <th class="tbl-sort" onclick="sortAcoesTable('pc',this)">Consenso</th>
     <th class="tbl-sort" onclick="sortAcoesTable('ppc',this)">M.S.PC%</th>
     <th class="tbl-sort" onclick="sortAcoesTable('dyp',this)">DYP</th>
-    <th class="tbl-sort" onclick="sortAcoesTable('vuc',this)">VUC</th>
-    <th class="tbl-sort" onclick="sortAcoesTable('pvuc',this)">%VUC</th>
+    <th class="tbl-sort" onclick="sortAcoesTable('pma',this)">PMA</th>
+    <th class="tbl-sort" onclick="sortAcoesTable('ppma',this)">%PMA</th>
   </tr></thead><tbody id="acoes-body"></tbody></table></div>
   <div class="chart-wrap" style="margin-top:14px"><div class="chart-title">Distribuição por Setor</div><div id="tbl-set-a2"></div></div>
 </div>
@@ -656,6 +656,7 @@ const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 
 // ── DADOS ESTÁTICOS — atualizados planilha 16/11/2026 (sync) ──────────────────
+const PMA={'BBAS3':[18.94,-21.1],'BBDC3':[14.55,-10.7],'BBSE3':[25.37,46.6],'CXSE3':[14.03,52.2],'EGIE3':[23.14,11.0],'ISAE4':[20.30,31.2],'ITSA4':[5.05,165.3],'KLBN11':[15.89,9.6],'PETR4':[26.92,63.5],'TAEE11':[28.52,47.2],'VALE3':[48.26,25.8],'VIVT3':[14.31,141.3],'WEGE3':[17.26,192.0]};
 const ACOES=[
   {s:'VALE3',p:60.7,pm:62.6,vuc:63.01,ms:23.56,q:2867,v:174026.9},
   {s:'EGIE3',p:25.7,pm:28.01,vuc:28.0,ms:11.28,q:3514,v:90309.8},
@@ -1141,8 +1142,9 @@ function tblSortBy(arr,key,dir){
     else if(key==='dyp'){
       const aa=_ACOES_SI_MAP[a.t||a.s]||{};const ab=_ACOES_SI_MAP[b.t||b.s]||{};
       va=a.dyp??aa.dyp??0;vb=b.dyp??ab.dyp??0;}
-    else if(key==='pvuc'){
-      va=a.vuc?(a.p/a.vuc-1)*100:-Infinity;vb=b.vuc?(b.p/b.vuc-1)*100:-Infinity;}
+    else if(key==='pma'||key==='ppma'){
+      const ix=key==='pma'?0:1;
+      va=(PMA[a.t||a.s]||[])[ix]??-Infinity;vb=(PMA[b.t||b.s]||[])[ix]??-Infinity;}
     else{va=a[key]??0;vb=b[key]??0;}
     if(typeof va==='string')return dir*va.localeCompare(vb,'pt');
     return dir*(va-vb);
@@ -1158,7 +1160,7 @@ function renderAcaoRow(a){
   const dy=asi.dy!=null?asi.dy.toFixed(2)+'%':'—';
   const roeVal=asi.roe!=null?asi.roe:null;
   const roe=roeVal!=null?roeVal.toFixed(1)+'%':'—';
-  const pvuc=a.vuc?(a.p/a.vuc-1)*100:null;
+  const _p=PMA[tk]||[null,null], pma=_p[0], ppma=_p[1];
   return`<tr>
     <td>${logoImg(tk)}${tk}${a.sell?'<span class="sell-b">VENDER</span>':''}${a.trim?'<span class="warn-b">TRIM</span>':''}${a.watch?`<span class="warn-b">${a.watch}</span>`:''}</td>
     <td>${sec}</td><td>${brl(a.p)}</td><td>${brl(a.pm)}</td>
@@ -1169,8 +1171,8 @@ function renderAcaoRow(a){
     <td>${pc!=null?brl(pc):'—'}</td>
     <td class="${pc!=null?cls((1-a.p/pc)*100):''}">${pc!=null?pct((1-a.p/pc)*100):'—'}</td>
     <td>${dyp!=null?dyp.toFixed(2)+'%':'—'}</td>
-    <td>${a.vuc?brl(a.vuc):'—'}</td>
-    <td class="${pvuc!=null?cls(pvuc):''}">${pvuc!=null?pct(pvuc):'—'}</td>
+    <td>${pma!=null?brl(pma):'—'}</td>
+    <td class="${ppma!=null?cls(ppma):''}">${ppma!=null?pct(ppma):'—'}</td>
   </tr>`;
 }
 function renderFiiRow(f){
