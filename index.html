@@ -655,39 +655,39 @@ const META_FIIS_ANO  = META_FII_MES*12;
 const META_ACOES_ANO = 30000*12;
 const META_TOTAL_MES = 40000;
 
-// ── DADOS ESTÁTICOS — atualizados planilha 19/11/2026, aporte 23/11/2026 ──
+// ── DADOS ESTÁTICOS — atualizados planilha 25/11/2026 ──────────────────
 const PMA={'BBAS3':[18.94,-21.1],'BBDC3':[14.55,-10.7],'BBSE3':[25.37,46.6],'CXSE3':[14.03,52.2],'EGIE3':[23.14,11.0],'ISAE4':[20.30,31.2],'ITSA4':[5.05,165.3],'KLBN11':[15.89,9.6],'PETR4':[26.92,63.5],'TAEE11':[28.52,47.2],'VALE3':[48.26,25.8],'VIVT3':[14.31,141.3],'WEGE3':[17.26,192.0]};
 const ACOES=[
-  {s:'VALE3', p:59.0, pm:62.6,  vuc:63.01, ms:27.12, q:2867,  v:169153.0},
-  {s:'EGIE3', p:25.49,pm:27.92, vuc:24.66, ms:12.2,  q:3607,  v:91942.43},
-  {s:'TAEE11',p:40.56,pm:34.85, vuc:39.17, ms:16.69, q:3645,  v:147841.2},
-  {s:'ISAE4', p:26.19,pm:23.78, vuc:26.39, ms:9.13,  q:6397,  v:167537.43},
-  {s:'BBSE3', p:36.66,pm:32.22, vuc:34.01, ms:-3.16, q:5639,  v:206725.74},
-  {s:'CXSE3', p:20.5, pm:15.28, vuc:17.83, ms:-8.78, q:11651, v:238845.5},
-  {s:'BBAS3', p:14.12,pm:21.95, vuc:16.21, ms:16.86, q:11678, v:164893.36},
-  {s:'ITSA4', p:13.15,pm:7.97,  vuc:8.82,  ms:-12.55,q:7741,  v:101794.15},
-  {s:'BBDC3', p:12.9, pm:14.55, vuc:12.75, ms:35.12, q:12209, v:157496.1},
-  {s:'KLBN11',p:17.13,pm:18.0,  vuc:16.67, ms:63.46, q:5048,  v:86472.24},
-  {s:'WEGE3', p:51.38,pm:29.42, vuc:33.24, ms:-27.99,q:121,   v:6216.98},
-  {s:'VIVT3', p:35.56,pm:20.04, vuc:20.0,  ms:-2.76, q:1680,  v:59740.8},
-  {s:'PETR4', p:43.17,pm:30.38, vuc:29.69, ms:-11.98,q:1763,  v:76108.71}
+  {s:'VALE3', p:55.48,pm:62.6, vuc:63.01, ms:35.18, q:2867,  v:159061.16},
+  {s:'EGIE3', p:25.01,pm:27.92, vuc:24.66, ms:14.35, q:3607,  v:90211.07},
+  {s:'TAEE11', p:40.34,pm:34.85, vuc:39.17, ms:17.33, q:3645,  v:147039.3},
+  {s:'ISAE4', p:26.32,pm:23.78, vuc:26.39, ms:8.59, q:6397,  v:168369.04},
+  {s:'BBSE3', p:36.88,pm:32.22, vuc:34.01, ms:-3.74, q:5639,  v:207966.32},
+  {s:'CXSE3', p:20.34,pm:15.28, vuc:17.83, ms:-8.06, q:11651,  v:236981.34},
+  {s:'BBAS3', p:14.28,pm:21.95, vuc:16.21, ms:15.55, q:11678,  v:166761.84},
+  {s:'ITSA4', p:12.98,pm:7.97, vuc:8.82, ms:-11.4, q:7741,  v:100478.18},
+  {s:'BBDC3', p:12.56,pm:14.55, vuc:12.76, ms:38.77, q:12209,  v:153345.04},
+  {s:'KLBN11', p:16.71,pm:18.0, vuc:16.67, ms:67.56, q:5048,  v:84352.08},
+  {s:'WEGE3', p:49.35,pm:29.42, vuc:33.24, ms:-25.03, q:121,  v:5971.35},
+  {s:'VIVT3', p:34.77,pm:20.04, vuc:20.0, ms:-0.55, q:1680,  v:58413.6},
+  {s:'PETR4', p:40.85,pm:30.38, vuc:29.69, ms:-6.98, q:1763,  v:72018.55}
 ];
 const FIIS=[
-  {s:'BTHF11',p:8.0,  pm:10.12, vuc:8.38,  ms:12.5,  q:4252,v:34016.0},
-  {s:'IRIM11',p:56.96,pm:77.95, vuc:73.4,  ms:42.21, q:431, v:24549.76},
-  {s:'PMLL11',p:97.96,pm:102.84,vuc:99.98, ms:26.58, q:660, v:64653.6},
-  {s:'XPML11',p:85.8, pm:105.12,vuc:101.39,ms:34.03, q:690, v:59202.0},
-  {s:'VISC11',p:95.25,pm:107.09,vuc:98.1,  ms:28.08, q:243, v:23145.75},
-  {s:'HGLG11',p:142.65,pm:165.35,vuc:146.72,ms:13.56,q:305, v:43508.25},
-  {s:'BTLG11',p:96.42,pm:102.19,vuc:98.6,  ms:16.16, q:712, v:68651.04},
-  {s:'LVBI11',p:99.0, pm:100.99,vuc:95.89, ms:14.14, q:278, v:27522.0},
-  {s:'KNRI11',p:144.71,pm:149.73,vuc:132.78,ms:11.95,q:161, v:23298.31},
-  {s:'HGRU11',p:114.94,pm:121.23,vuc:112.33,ms:17.45,q:436, v:50113.84},
-  {s:'TRXF11',p:53.93,pm:101.46,vuc:62.52, ms:79.86, q:925, v:49885.25},
-  {s:'MCCI11',p:86.8, pm:89.17, vuc:84.71, ms:10.6,  q:514, v:44615.2},
-  {s:'VGIP11',p:62.47,pm:82.46, vuc:62.16, ms:48.87, q:774, v:48351.78},
-  {s:'RECR11',p:66.39,pm:82.72, vuc:70.52, ms:35.56, q:757, v:50257.23},
-  {s:'PVBI11',p:60.59,pm:80.83, vuc:72.99, ms:38.64, q:86,  v:5210.74}
+  {s:'BTHF11', p:7.97,pm:10.12, vuc:8.38, ms:12.92, q:4252, v:33888.44},
+  {s:'IRIM11', p:55.64,pm:77.95, vuc:73.4, ms:45.58, q:431, v:23980.84},
+  {s:'PMLL11', p:98.09,pm:102.84, vuc:99.98, ms:26.41, q:660, v:64739.4},
+  {s:'XPML11', p:85.6,pm:105.12, vuc:101.39, ms:34.35, q:690, v:59064.0},
+  {s:'VISC11', p:96.81,pm:107.09, vuc:98.1, ms:26.02, q:243, v:23524.83},
+  {s:'HGLG11', p:142.86,pm:165.35, vuc:146.72, ms:13.4, q:305, v:43572.3},
+  {s:'BTLG11', p:95.29,pm:102.19, vuc:98.6, ms:17.54, q:712, v:67846.48},
+  {s:'LVBI11', p:101.62,pm:100.99, vuc:95.89, ms:11.2, q:278, v:28250.36},
+  {s:'KNRI11', p:143.18,pm:149.73, vuc:132.78, ms:13.14, q:161, v:23051.98},
+  {s:'HGRU11', p:114.01,pm:121.23, vuc:112.33, ms:18.41, q:436, v:49708.36},
+  {s:'TRXF11', p:54.17,pm:101.46, vuc:62.52, ms:79.07, q:925, v:50107.25},
+  {s:'MCCI11', p:89.14,pm:89.17, vuc:84.71, ms:7.7, q:514, v:45817.96},
+  {s:'VGIP11', p:61.96,pm:81.99, vuc:62.16, ms:50.1, q:774, v:47957.04},
+  {s:'RECR11', p:65.94,pm:82.72, vuc:70.52, ms:36.49, q:757, v:49916.58},
+  {s:'PVBI11', p:59.75,pm:80.83, vuc:72.99, ms:40.59, q:86, v:5138.5}
 ];
 const FII_SI=[
   {t:'HGLG11',p:157.58,chg:-0.12,dy:8.49,pvp:165.48,teto:165.0,caixa:0,s:'Logístico',cor:'#2563eb'},
@@ -729,7 +729,7 @@ const ANUAL=[
   {ano:'2023',total:64886,  fii:29819, acoes:34452, dolar:615},
   {ano:'2024',total:108074, fii:49114, acoes:58170, dolar:790},
   {ano:'2025',total:154228, fii:67106, acoes:86028, dolar:1094},
-  {ano:'2026',total:159661, fii:69642, acoes:89221, dolar:798, parcial:true},
+  {ano:'2026', total:159665.68, fii:69647, acoes:89221, dolar:797.68, parcial:true},
 ];
 const MENSAIS=[
   {ano:'2022',m:'Jan/22',total:2169, fii:2007,acoes:132,  dolar:30},
@@ -780,26 +780,26 @@ const MENSAIS=[
   {ano:'2025',m:'Out/25',total:5545, fii:5316,acoes:152,  dolar:77},
   {ano:'2025',m:'Nov/25',total:13467,fii:5638,acoes:7809, dolar:20},
   {ano:'2025',m:'Dez/25',total:20644,fii:5598,acoes:14809,dolar:237},
-  {ano:'2026',m:'Jan/26',total:16796,fii:5803,acoes:10956,dolar:37},
-  {ano:'2026',m:'Fev/26',total:8672, fii:5610,acoes:3058, dolar:4},
-  {ano:'2026',m:'Mar/26',total:25292,fii:5725,acoes:19351,dolar:216},
-  {ano:'2026',m:'Abr/26',total:10121,fii:6036,acoes:4056, dolar:29},
-  {ano:'2026',m:'Mai/26',total:16105,fii:6638,acoes:9463, dolar:4},
-  {ano:'2026',m:'Jun/26',total:11140,fii:6614,acoes:4312, dolar:214},
-  {ano:'2026',m:'Jul/26',total:9774, fii:7357,acoes:2391, dolar:26},
-  {ano:'2026',m:'Ago/26',total:15561,fii:6738,acoes:8819, dolar:4},
-  {ano:'2026',m:'Set/26',total:25208,fii:6424,acoes:18755,dolar:29},
-  {ano:'2026',m:'Out/26',total:6584, fii:6297,acoes:260, dolar:27},
-    {ano:'2026',m:'Nov/26',total:14204, fii:6400,acoes:7800, dolar:4},
+  {ano:'2026',m:'Jan/26',total:16796, fii:5803, acoes:10956,dolar:37},
+  {ano:'2026',m:'Fev/26',total:8672,  fii:5610, acoes:3058, dolar:4},
+  {ano:'2026',m:'Mar/26',total:25292, fii:5725, acoes:19351,dolar:216,melhor:true},
+  {ano:'2026',m:'Abr/26',total:10121, fii:6036, acoes:4056, dolar:29},
+  {ano:'2026',m:'Mai/26',total:16105, fii:6638, acoes:9463, dolar:4},
+  {ano:'2026',m:'Jun/26',total:11140, fii:6614, acoes:4312, dolar:214},
+  {ano:'2026',m:'Jul/26',total:9785,  fii:7357, acoes:2391, dolar:37},
+  {ano:'2026',m:'Ago/26',total:15561, fii:6738, acoes:8819, dolar:4},
+  {ano:'2026',m:'Set/26',total:25400, fii:6424, acoes:18755,dolar:221,melhor:true},
+  {ano:'2026',m:'Out/26',total:6584,  fii:6297, acoes:260,  dolar:27},
+  {ano:'2026',m:'Nov/26',total:14209, fii:6405, acoes:7800, dolar:4}
 ];
 const PATRIM_EVOL=[
-  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3108613.32}
+  {ano:'2022',v:1020332},{ano:'2023',v:1628115},{ano:'2024',v:2035364},{ano:'2025',v:2779985},{ano:'2026*', v: 3086572.19}
 ];
 
 // ── CONSTANTES ───────────────────────────────────────────────────────────────
-let PAT = 3108613.32;
-let CAIO = 2303752.6;
-let FATIMA = 804860.72;
+let PAT = 3086572.19;
+let CAIO = 2285068.08;
+let FATIMA = 801504.11;
 let RF = 514303.0;
 
 // ── ÍNDICES — fechamento do dia (atualizado pelo sync diário) ──────────────
@@ -812,12 +812,12 @@ const INDICES_HOJE = {
   ]
 };
 let CAIXA = 11800.0;
-let ACOES_US = 61656.94;
-let PAT_CRESC_RS  = 328628.32;  // crescimento vs fechamento ano anterior
-let PAT_CRESC_PCT = 11.82;      // % crescimento vs fechamento ano anterior
+let ACOES_US = 59636.0;
+let PAT_CRESC_RS  = 306587.19;  // crescimento vs fechamento ano anterior
+let PAT_CRESC_PCT = 11.03;      // % crescimento vs fechamento ano anterior
 let PAT_CRESC_REF = 'jan/26';   // referência do início do período
-let PAT_ULT12M_RS  = 582561.43; // upside últimos 12 meses (out/25 → nov/26)
-let PAT_ULT12M_PCT = 23.06;      // % upside últimos 12 meses
+let PAT_ULT12M_RS  = 560520.3; // upside últimos 12 meses (out/25 → nov/26)
+let PAT_ULT12M_PCT = 22.19;      // % upside últimos 12 meses
 let PAT_ULT12M_REF = 'out/25';   // referência dos últimos 12m
 const INSS_F   = 107000;
 const IBMPREV  = 102554;
