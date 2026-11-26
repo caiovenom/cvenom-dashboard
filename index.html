@@ -260,7 +260,7 @@ tbody tr:hover{background:#f9fafb;}
 .ap-hcard{background:var(--card);border-radius:12px;padding:22px 24px;position:relative;overflow:hidden;box-shadow:var(--sh-sm);border:1px solid var(--border);}
 .ap-hl{font-size:13px;color:var(--brand);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
 .ap-hl::before{content:'';display:block;width:3px;height:13px;background:var(--brand);border-radius:2px;flex-shrink:0;}
-.ap-hv{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.4px;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.ap-hv{font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.5px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:8px;}
 .ap-hcard.purple .ap-hv{color:var(--purple);}
 .ap-hs{font-size:12.5px;color:var(--muted);}
 .ap-bc{display:inline-block;background:#eff6ff;color:var(--blue-accent);border:1px solid #bfdbfe;border-radius:5px;font-size:10px;font-weight:700;padding:1px 6px;}
@@ -353,6 +353,10 @@ tbody tr:hover{background:#f9fafb;}
 #rp-body .rp-row td:first-child{padding-left:32px;}
 #rp-body .rp-row{background:var(--card);}
 .rp-open{font-size:10.5px;color:var(--blue-accent);font-weight:600;}
+
+/* ── APORTES grid fixes ───────────────────────────────── */
+#tab-aportes .ap-g2{grid-template-columns:1.45fr 1fr;align-items:start;}
+#tab-aportes .top-grid{align-items:start;}
 </style>
 </head>
 <body>
@@ -475,8 +479,6 @@ tbody tr:hover{background:#f9fafb;}
     <th style="text-align:left">Período</th><th>FIIs</th><th>Ações</th><th>Dólar</th><th>Total</th><th>vs Ano Ant.</th><th>Méd. Mensal</th><th>Por Dia</th>
   </tr></thead><tbody id="prov-body"></tbody></table></div>
 </div>
-</div>
-</div>
 
 <div id="tab-aportes" class="tab-panel">
 
@@ -519,6 +521,7 @@ tbody tr:hover{background:#f9fafb;}
 </div>
 
 </div><!-- /tab-aportes -->
+</div><!-- /.content -->
 
 
 
